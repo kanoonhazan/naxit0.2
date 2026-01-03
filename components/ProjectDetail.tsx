@@ -27,8 +27,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-0 z-[150] bg-naxit-charcoal/95 backdrop-blur-3xl overflow-y-auto cursor-auto"
     >
-      {/* Header Overlay */}
-      <div className="sticky top-0 z-[160] w-full p-8 md:p-12 pointer-events-none">
+      {/* Header Overlay - Floating above content */}
+      <div className="absolute top-0 left-0 right-0 z-[160] w-full pt-[6.5rem] pb-6 px-6 md:pt-[7rem] md:pb-12 md:px-12 pointer-events-none bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[0px]">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <motion.button
             initial={{ x: -20, opacity: 0 }}
@@ -56,16 +56,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       {/* Content Container */}
       <div className="relative">
         {/* Hero */}
-        <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
           <motion.div
             layoutId={`image-${project.id}`}
-            className="absolute inset-0 z-0"
-          >
+            className="absolute inset-0 top-0 z-0">
             <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-60" />
             <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
           </motion.div>
 
-          <div className="relative z-10 text-center max-w-5xl px-4">
+          <div className="relative z-10 text-center max-w-5xl px-4 mt-20 md:mt-0">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
