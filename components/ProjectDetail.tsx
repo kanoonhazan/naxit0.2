@@ -26,6 +26,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       exit={{ y: '100%' }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-0 z-[150] bg-naxit-charcoal/95 backdrop-blur-3xl overflow-y-auto cursor-auto"
+      data-lenis-prevent
     >
       {/* Header Overlay - Floating above content */}
       <div className="absolute top-0 left-0 right-0 z-[160] w-full pt-[6.5rem] pb-6 px-6 md:pt-[7rem] md:pb-12 md:px-12 pointer-events-none bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[0px]">
