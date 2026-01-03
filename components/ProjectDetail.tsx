@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Project } from '../types';
 import { ArrowLeft, Cpu, Target, Zap, Layout, Globe } from 'lucide-react';
+import Footer from './Footer';
 
 interface ProjectDetailProps {
   project: Project;
@@ -165,6 +166,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             Initialize Cooperation
           </button>
         </section>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </motion.div>
   );

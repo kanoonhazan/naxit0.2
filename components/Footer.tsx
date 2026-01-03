@@ -23,16 +23,20 @@ const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
-          
+
           {/* Brand & Status Column */}
           <div className="lg:col-span-5">
-            <div className="text-4xl font-display font-bold tracking-tighter text-white mb-6">
-              NAXIT<span className="text-naxit-cyan">.</span>
+            <div className="flex items-center gap-3 mb-6">
+              <img
+                src="/assets/logo.png"
+                alt="NAXIT Logo"
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-gray-400 text-lg font-light leading-relaxed mb-8 max-w-sm">
               Empowering global innovation through native talent. A high-frequency micro-agency for the next generation of digital giants.
             </p>
-            
+
             {/* Operational Status (UX: Trust Indicator) */}
             <div className="flex items-center gap-4 p-4 glass rounded-2xl border border-white/5 w-fit">
               <div className="relative">
@@ -49,14 +53,20 @@ const Footer: React.FC = () => {
           <div className="lg:col-span-2">
             <h4 className="text-[10px] font-mono text-gray-500 tracking-[0.4em] uppercase mb-8">Navigation</h4>
             <ul className="space-y-4">
-              {['Home', 'Services', 'Matrix', 'Portfolio', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a 
-                    href={`#${item.toLowerCase()}`}
-                    onClick={(e) => handleScroll(e, item.toLowerCase())}
-                    className="text-gray-400 hover:text-naxit-cyan transition-colors font-medium text-sm inline-block group"
+              {[
+                { name: 'Home', id: 'hero' },
+                { name: 'Services', id: 'services' },
+                { name: 'Matrix', id: 'matrix' },
+                { name: 'Portfolio', id: 'portfolio' },
+                { name: 'Contact', id: 'contact' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => handleScroll(e, item.id)}
+                    className="text-gray-400 hover:text-naxit-cyan transition-colors font-medium text-sm inline-block group cursor-pointer"
                   >
-                    {item}
+                    {item.name}
                     <span className="block h-[1px] w-0 group-hover:w-full bg-naxit-cyan transition-all duration-300" />
                   </a>
                 </li>
@@ -69,8 +79,8 @@ const Footer: React.FC = () => {
             <h4 className="text-[10px] font-mono text-gray-500 tracking-[0.4em] uppercase mb-8">Expertise</h4>
             <ul className="space-y-4">
               {['UI/UX Research', 'React Ecosystems', 'Brand Architecture', 'Motion Design', 'AI Integration'].map((item) => (
-                <li key={item} className="text-gray-400 text-sm flex items-center gap-3">
-                  <div className="w-1 h-1 rounded-full bg-naxit-royal" />
+                <li key={item} className="text-gray-400 text-sm flex items-center gap-3 hover:text-naxit-cyan transition-colors cursor-default group">
+                  <div className="w-1 h-1 rounded-full bg-naxit-royal group-hover:bg-naxit-cyan transition-colors" />
                   {item}
                 </li>
               ))}
@@ -82,23 +92,25 @@ const Footer: React.FC = () => {
             <h4 className="text-[10px] font-mono text-gray-500 tracking-[0.4em] uppercase mb-8">Social Intel</h4>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: <Twitter className="w-4 h-4" />, label: 'X' },
-                { icon: <Linkedin className="w-4 h-4" />, label: 'LI' },
-                { icon: <Github className="w-4 h-4" />, label: 'GH' },
-                { icon: <Instagram className="w-4 h-4" />, label: 'IG' }
+                { icon: <Twitter className="w-4 h-4" />, label: 'X', url: 'https://twitter.com' },
+                { icon: <Linkedin className="w-4 h-4" />, label: 'LI', url: 'https://linkedin.com' },
+                { icon: <Github className="w-4 h-4" />, label: 'GH', url: 'https://github.com' },
+                { icon: <Instagram className="w-4 h-4" />, label: 'IG', url: 'https://instagram.com' }
               ].map((social) => (
-                <a 
-                  key={social.label} 
-                  href="#" 
-                  className="glass p-3 rounded-xl border border-white/5 flex items-center justify-center hover:border-naxit-cyan/40 hover:text-naxit-cyan transition-all group"
+                <a
+                  key={social.label}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass p-3 rounded-xl border border-white/5 flex items-center justify-center hover:border-naxit-cyan/40 hover:text-naxit-cyan hover:scale-110 transition-all group cursor-pointer"
                   title={social.label}
                 >
-                  <motion.div whileHover={{ scale: 1.2 }}>{social.icon}</motion.div>
+                  <motion.div whileHover={{ scale: 1.2, rotate: 5 }}>{social.icon}</motion.div>
                 </a>
               ))}
             </div>
             <div className="mt-8">
-              <button 
+              <button
                 onClick={scrollToTop}
                 className="w-full flex items-center justify-between px-6 py-4 glass rounded-2xl border border-white/5 hover:border-naxit-cyan transition-all group"
               >
@@ -117,14 +129,14 @@ const Footer: React.FC = () => {
             <a href="#" className="hover:text-naxit-cyan transition-colors">Terms of Service</a>
           </div>
           <div className="flex items-center gap-6">
-             <div className="flex items-center gap-2 text-gray-600">
-               <Globe className="w-3 h-3" />
-               <span className="text-[9px] font-mono uppercase tracking-widest">Global Ops</span>
-             </div>
-             <div className="flex items-center gap-2 text-gray-600">
-               <Cpu className="w-3 h-3" />
-               <span className="text-[9px] font-mono uppercase tracking-widest">Encrypted Hub</span>
-             </div>
+            <div className="flex items-center gap-2 text-gray-600">
+              <Globe className="w-3 h-3" />
+              <span className="text-[9px] font-mono uppercase tracking-widest">Global Ops</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-600">
+              <Cpu className="w-3 h-3" />
+              <span className="text-[9px] font-mono uppercase tracking-widest">Encrypted Hub</span>
+            </div>
           </div>
         </div>
       </div>

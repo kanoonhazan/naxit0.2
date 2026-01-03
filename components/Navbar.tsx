@@ -3,19 +3,32 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onCloseModal?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, targetId: string) => {
     e.preventDefault();
     setIsOpen(false);
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+
+    // Close any open modal first
+    if (onCloseModal) {
+      onCloseModal();
     }
+
+    // Wait a bit for modal to close, then scroll
+    setTimeout(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }, 100);
   };
 
   const navLinks = [
