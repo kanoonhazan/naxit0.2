@@ -168,7 +168,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
         </section>
 
         {/* Footer */}
-        <Footer />
+        <Footer onCloseModal={onBack} />
       </div>
     </motion.div>
   );

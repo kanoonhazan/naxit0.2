@@ -3,17 +3,38 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUp, Twitter, Linkedin, Github, Instagram, Cpu, Globe } from 'lucide-react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onCloseModal?: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Close modal first if it exists
+    if (onCloseModal) {
+      onCloseModal();
+    }
+
+    // Wait for modal to close, then scroll
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Close any open modal first
+    if (onCloseModal) {
+      onCloseModal();
     }
+
+    // Wait for modal to close, then scroll
+    setTimeout(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   return (

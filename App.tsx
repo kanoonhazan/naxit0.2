@@ -108,7 +108,7 @@ const App: React.FC = () => {
                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" />
               </div>
               <Contact />
-              <Footer />
+              <Footer onCloseModal={() => setSelectedProject(null)} />
             </div>
           </div>
         </motion.div>
