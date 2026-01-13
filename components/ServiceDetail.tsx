@@ -25,6 +25,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
             className="fixed inset-0 z-[200] bg-naxit-charcoal overflow-y-auto"
+            data-lenis-prevent
         >
             {/* Header with Back Button */}
             <div className="sticky top-0 z-50 bg-naxit-charcoal/80 backdrop-blur-xl border-b border-white/5">

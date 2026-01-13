@@ -49,14 +49,14 @@ const App: React.FC = () => {
   });
   const height = useTransform(scaleY, [0, 1], ["0%", "100%"]);
 
-  // Prevent main scroll when detail view is open (only for project modal, not service page)
+  // Prevent main scroll when detail view is open
   useEffect(() => {
-    if (selectedProject) {
+    if (selectedProject || selectedService) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-  }, [selectedProject]);
+  }, [selectedProject, selectedService]);
 
   const handlePreloaderComplete = () => {
     try {
