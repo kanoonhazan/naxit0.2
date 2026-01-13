@@ -1,37 +1,194 @@
 
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Palette, Code, Globe, Sparkles } from 'lucide-react';
+import { Palette, Code, Globe, Sparkles, ArrowRight } from 'lucide-react';
 import { Service } from '../types';
 
 const SERVICES: Service[] = [
   {
     id: '1',
-    title: 'High-End UI/UX',
-    description: 'Research-backed, user-centric design that blends aesthetic beauty with psychological friction-free flow.',
-    icon: <Palette className="w-8 h-8" />,
-    tag: 'Design'
+    title: 'Professional Business Website',
+    description: 'Look professional online. A secure website that helps customers trust you and find your phone number.',
+    icon: <Globe className="w-8 h-8" />,
+    tag: 'Website',
+    badge: 'Most Popular Service',
+    subtitle: 'Be found on Google. Look trustworthy. Grow your business.',
+    problemTitle: 'Why do you need this?',
+    problem: 'You have a good business, but when new customers search for you on their phones, they find nothing. Or worse, they find outdated information. This makes them worry that you might be closed or unprofessional, so they go to your competitor instead.',
+    targetAudienceTitle: 'Who is this for?',
+    targetAudience: [
+      'Hardware Stores & Shops',
+      'Tuition Classes & Academies',
+      'Law Firms & Consultancies',
+      'Medical Centers & Pharmacies',
+      'Restaurants & Bakeries',
+      'Construction Companies'
+    ],
+    inclusionsTitle: 'What is included?',
+    inclusions: [
+      {
+        title: 'Professional Design',
+        description: 'A clean, one-page layout that shows your services, photos, and contact info clearly.'
+      },
+      {
+        title: 'Mobile Friendly',
+        description: 'Most customers use phones. Your site will look perfect on iPhone and Android.'
+      },
+      {
+        title: '.COM or .LK Domain',
+        description: 'We register your official internet address (e.g., www.yourshop.com).'
+      },
+      {
+        title: 'Google Maps Setup',
+        description: 'We verify your location on Google Maps so customers can drive to you easily.'
+      },
+      {
+        title: 'Hosting & Security',
+        description: '1 year of fast server hosting included. Secure with HTTPS (padlock icon).'
+      },
+      {
+        title: 'WhatsApp Button',
+        description: 'A direct link for customers to message you immediately.'
+      }
+    ],
+    resultTitle: 'The Result',
+    result: 'You look like a serious business. When people search for you, they see your photos, your location, and your services. They trust you enough to call.',
+    ctaText: 'Get your business online',
+    ctaSubtext: 'Projects typically take 5-7 days. Contact us for a fixed price quote.',
+    ctaPrimary: 'Get a Quote on WhatsApp',
+    ctaSecondary: ''
   },
   {
     id: '2',
-    title: 'Web Development',
-    description: 'Turning local businesses into digital powerhouses with high-performance, scalable React ecosystems.',
+    title: 'Digital Presence Setup',
+    description: 'Be found on Google Maps and Facebook. We set up your online profiles so locals can find you easily.',
     icon: <Code className="w-8 h-8" />,
-    tag: 'Tech'
+    tag: 'Presence',
+    badge: 'Essential for Locals',
+    subtitle: 'Be visible where your customers are looking.',
+    problemTitle: 'The Problem',
+    problem: 'People search "hardware store near me" or check Facebook for reviews before visiting. If your shop doesn\'t appear on Google Maps or looks abandoned on Facebook, you are losing customers to the shop down the road.',
+    targetAudienceTitle: 'Who is this for?',
+    targetAudience: [
+      'Restaurants & Cafes',
+      'Salons & Barbers',
+      'Medical Centers',
+      'Car Service Stations',
+      'Local Retail Shops',
+      'Home Bakers'
+    ],
+    inclusionsTitle: 'What is included?',
+    inclusions: [
+      {
+        title: 'Google Maps Verification',
+        description: 'We claim your business location, set correct hours, add photos, and help you get the verification code.'
+      },
+      {
+        title: 'Facebook Page Setup',
+        description: 'A professional cover photo, automated greeting messages, and correct contact info setup.'
+      },
+      {
+        title: 'WhatsApp for Business',
+        description: 'Setup auto-replies, business catalog (menu/prices), and quick response messages.'
+      },
+      {
+        title: 'Basic SEO',
+        description: 'We ensure your business name appears correctly when people search for your services nearby.'
+      }
+    ],
+    resultTitle: 'The Result',
+    result: 'When a customer searches "open now" or looks for your service, you show up. You look active, open, and ready for business.',
+    ctaText: 'Get found online today',
+    ctaSubtext: 'Quick setup in 2-3 days. One-time fee.',
+    ctaPrimary: 'Chat with us',
+    ctaSecondary: ''
   },
   {
     id: '3',
-    title: 'Digital Branding',
-    description: 'Professional identity creation for the next generation of industry leaders. We build legacy brands.',
-    icon: <Globe className="w-8 h-8" />,
-    tag: 'Growth'
+    title: 'UI/UX Design for Startups',
+    description: 'Building an app? Get a professional design blueprint before you spend money on coding.',
+    icon: <Palette className="w-8 h-8" />,
+    tag: 'Design',
+    badge: 'For Startups & Founders',
+    subtitle: 'Turn your idea into a professional design before you spend money on coding.',
+    problemTitle: 'The Problem',
+    problem: 'You explain your app idea to developers, but they build something ugly or hard to use. Changing code is expensive and slow. Investors won\'t fund an app that looks amateur.',
+    targetAudienceTitle: 'Who is this for?',
+    targetAudience: [
+      'Tech Startup Founders',
+      'Entrepreneurs with App Ideas',
+      'Companies building internal tools',
+      'Anyone hiring freelance developers'
+    ],
+    inclusionsTitle: 'What is included?',
+    inclusions: [
+      {
+        title: 'User Flow Diagrams',
+        description: 'We map out exactly how a user moves through your app, screen by screen.'
+      },
+      {
+        title: 'Wireframes',
+        description: 'Blueprints of the app structure without colors, focusing on functionality.'
+      },
+      {
+        title: 'High-Fidelity UI',
+        description: 'Beautiful, full-color designs that show exactly what the final app will look like.'
+      },
+      {
+        title: 'Clickable Prototype',
+        description: 'A simulation of your app that you can tap through on your phone to test the feel.'
+      }
+    ],
+    resultTitle: 'The Result',
+    result: 'You get a complete design file. You can give this to any developer and they will know exactly what to build. No more guessing.',
+    ctaText: 'Visualize your idea',
+    ctaSubtext: 'Packages start from simple 5-screen prototypes to full systems.',
+    ctaPrimary: 'Discuss my Idea',
+    ctaSecondary: ''
   },
   {
     id: '4',
-    title: 'Graphic Design',
-    description: 'Social media creatives, performance ads, and digital assets designed to cut through the noise.',
+    title: 'Graphics & Social Media',
+    description: 'Logos, flyers, and social media posts that look professional and build your brand image.',
     icon: <Sparkles className="w-8 h-8" />,
-    tag: 'Creative'
+    tag: 'Creative',
+    badge: 'Branding & Marketing',
+    subtitle: 'Look big, even if you are small. Professional designs for your brand.',
+    problemTitle: 'The Problem',
+    problem: 'Posting blurry photos, using "Paint" for logos, or having messy flyers makes customers think your product quality is low. First impressions matter.',
+    targetAudienceTitle: 'Who is this for?',
+    targetAudience: [
+      'Clothing Shops',
+      'Tuition Classes',
+      'Food Brands',
+      'Real Estate Agents',
+      'Event Organizers'
+    ],
+    inclusionsTitle: 'What is included?',
+    inclusions: [
+      {
+        title: 'Logo Design',
+        description: 'A unique, professional logo that stands out. We provide all file formats (PNG, SVG, PDF).'
+      },
+      {
+        title: 'Social Media Posts',
+        description: 'Beautiful templates for your Facebook and Instagram posts that you can reuse.'
+      },
+      {
+        title: 'Print Materials',
+        description: 'Design for business cards, flyers, banners, and letterheads ready for printing.'
+      },
+      {
+        title: 'Photo Editing',
+        description: 'Professional retouching for your product photos to make them look appetizing or attractive.'
+      }
+    ],
+    resultTitle: 'The Result',
+    result: 'A consistent, trustworthy look across your shop board, business card, and Facebook page. Customers take you seriously.',
+    ctaText: 'Upgrade your brand',
+    ctaSubtext: 'Fast turnaround times. Packages available for monthly support.',
+    ctaPrimary: 'Get a Quote',
+    ctaSecondary: ''
   }
 ];
 
@@ -39,10 +196,11 @@ const SERVICES: Service[] = [
 interface TiltCardProps {
   service: Service;
   index: number;
+  onClick: () => void;
 }
 
 // Using React.FC to properly handle React-internal props like key and children
-const TiltCard: React.FC<TiltCardProps> = ({ service, index }) => {
+const TiltCard: React.FC<TiltCardProps> = ({ service, index, onClick }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -77,8 +235,9 @@ const TiltCard: React.FC<TiltCardProps> = ({ service, index }) => {
       transition={{ duration: 0.8, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="glass p-8 rounded-[2rem] group glass-hover transition-colors duration-500 flex flex-col justify-between min-h-[400px] relative overflow-hidden"
+      className="glass p-8 rounded-[2rem] group glass-hover transition-colors duration-500 flex flex-col justify-between min-h-[400px] relative overflow-hidden cursor-pointer"
     >
       <div className="relative z-10" style={{ transform: "translateZ(50px)" }}>
         <div className="mb-8 p-4 bg-naxit-royal/10 border border-naxit-royal/20 rounded-2xl w-fit text-naxit-cyan group-hover:bg-naxit-cyan group-hover:text-black transition-all duration-500">
@@ -92,15 +251,15 @@ const TiltCard: React.FC<TiltCardProps> = ({ service, index }) => {
       </div>
 
       <div className="relative z-10 flex items-center gap-3 text-sm font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-        Launch Project <Code className="w-4 h-4" />
+        Learn more <ArrowRight className="w-4 h-4" />
       </div>
 
       {/* Interactive Light Effect */}
-      <motion.div 
-        style={{ 
-          background: useTransform(mouseXSpring, [-0.5, 0.5], 
-            ["radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.15), transparent)", 
-             "radial-gradient(circle at 100% 100%, rgba(0, 212, 255, 0.15), transparent)"]
+      <motion.div
+        style={{
+          background: useTransform(mouseXSpring, [-0.5, 0.5],
+            ["radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.15), transparent)",
+              "radial-gradient(circle at 100% 100%, rgba(0, 212, 255, 0.15), transparent)"]
           )
         }}
         className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
@@ -109,21 +268,25 @@ const TiltCard: React.FC<TiltCardProps> = ({ service, index }) => {
   );
 };
 
-const Services: React.FC = () => {
+interface ServicesProps {
+  onSelectService?: (service: Service) => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
   return (
     <section id="services" className="py-40 px-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
           <div className="max-w-2xl">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               className="text-5xl md:text-7xl font-display font-bold mb-8"
             >
-              Native <span className="text-gradient">Solutions</span>
+              Our <span className="text-gradient">Services</span>
             </motion.h2>
             <p className="text-gray-400 text-xl font-light">
-              Our multidisciplinary team bridges the gap between raw AI processing and human-centric design, delivering digital products that don't just work—they inspire.
+              Simple solutions that help your business grow. No tech talk. Just results.
             </p>
           </div>
           <div className="hidden md:block">
@@ -135,7 +298,12 @@ const Services: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {SERVICES.map((service, index) => (
-            <TiltCard key={service.id} service={service} index={index} />
+            <TiltCard
+              key={service.id}
+              service={service}
+              index={index}
+              onClick={() => onSelectService?.(service)}
+            />
           ))}
         </div>
       </div>

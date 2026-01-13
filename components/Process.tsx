@@ -37,6 +37,8 @@ const STEPS = [
 const Process: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [dragX, setDragX] = useState(0);
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   // Calculate constraints based on window width
   const [dragConstraints, setDragConstraints] = useState({ left: -800, right: 0 });
@@ -47,9 +49,9 @@ const Process: React.FC = () => {
         const contentWidth = 450 * STEPS.length + 32 * (STEPS.length - 1); // Card width + gap
         const visibleWidth = window.innerWidth;
         const padding = visibleWidth > 1280 ? (visibleWidth - 1280) / 2 : 16;
-        setDragConstraints({ 
-          left: -(contentWidth + padding * 2 - visibleWidth), 
-          right: 0 
+        setDragConstraints({
+          left: -(contentWidth + padding * 2 - visibleWidth),
+          right: 0
         });
       }
     };
@@ -59,6 +61,33 @@ const Process: React.FC = () => {
     return () => window.removeEventListener('resize', calculateConstraints);
   }, []);
 
+  // Navigation functions with functional state updates and clamping
+  const scrollLeft = () => {
+    const cardWidth = window.innerWidth > 768 ? 450 : 320;
+    setDragX(prev => {
+      const newX = Math.min(prev + cardWidth + 32, 0);
+      // Ensure we don't exceed the right bound (0)
+      return newX;
+    });
+  };
+
+  const scrollRight = () => {
+    const cardWidth = window.innerWidth > 768 ? 450 : 320;
+    setDragX(prev => {
+      const newX = Math.max(prev - cardWidth - 32, dragConstraints.left);
+      // Ensure we don't exceed the left bound (dragConstraints.left)
+      return newX;
+    });
+  };
+
+  // Calculate which card is currently centered
+  useEffect(() => {
+    const cardWidth = window.innerWidth > 768 ? 450 : 320;
+    const gap = 32;
+    const index = Math.round(Math.abs(dragX) / (cardWidth + gap));
+    setCurrentCardIndex(Math.min(index, STEPS.length - 1));
+  }, [dragX]);
+
   return (
     <section id="process" className="py-40 relative overflow-hidden bg-[#080808]">
       {/* Background Decorative Element */}
@@ -66,11 +95,11 @@ const Process: React.FC = () => {
         <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-naxit-cyan/10 to-transparent" />
         <div className="absolute top-1/4 -right-40 w-96 h-96 bg-naxit-royal/5 rounded-full blur-[120px]" />
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 mb-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
           <div className="lg:col-span-7">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               className="text-naxit-cyan font-mono text-[10px] tracking-[0.5em] uppercase mb-6 flex items-center gap-4"
@@ -78,7 +107,7 @@ const Process: React.FC = () => {
               <span className="w-12 h-[1px] bg-naxit-cyan/30" />
               Operational Framework
             </motion.div>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter"
@@ -88,7 +117,7 @@ const Process: React.FC = () => {
           </div>
           <div className="lg:col-span-5">
             <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-              Predictable process. Measurable progress. People don't buy services — they buy <span className="text-white">clarity and control</span>. 
+              Predictable process. Measurable progress. People don't buy services — they buy <span className="text-white">clarity and control</span>.
               Our process is designed to reduce uncertainty, align teams early, and keep delivery moving without surprises.
             </p>
           </div>
@@ -97,64 +126,96 @@ const Process: React.FC = () => {
 
       {/* Draggable Step Container */}
       <div className="relative z-10" ref={containerRef}>
-        {/* Navigation Hint - UX Refinement: More visible hint */}
-        <div className="max-w-7xl mx-auto px-4 mb-8 flex justify-end">
-          <motion.div 
+        <div className="cursor-grab active:cursor-grabbing overflow-visible">
+          <motion.div
+            drag="x"
+            dragConstraints={dragConstraints}
+            className="flex gap-8 px-4 md:px-[calc((100vw-1280px)/2)]"
+            animate={{ x: dragX }}
+            onDragEnd={(e, info) => setDragX(info.point.x)}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            {STEPS.map((step, i) => {
+              const isActive = i === currentCardIndex;
+              return (
+                <motion.div
+                  key={step.id}
+                  className="min-w-[320px] md:min-w-[450px] glass p-10 rounded-[3rem] border border-white/5 relative group transition-colors hover:border-naxit-cyan/20"
+                  animate={{
+                    scale: isActive ? 1.05 : 1,
+                    opacity: isActive ? 1 : 0.7
+                  }}
+                  whileHover={{ y: -10, scale: isActive ? 1.08 : 1.03 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  {/* Step Header */}
+                  <div className="flex justify-between items-start mb-16">
+                    <div className="flex flex-col">
+                      <span className="text-naxit-cyan font-mono text-xs tracking-[0.3em] uppercase mb-2">Step {step.id}</span>
+                      <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">{step.subtitle}</span>
+                    </div>
+                    <div className="p-4 bg-white/5 rounded-2xl text-naxit-cyan group-hover:bg-naxit-cyan group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+                      {step.icon}
+                    </div>
+                  </div>
+
+                  {/* Step Body */}
+                  <h3 className="text-4xl font-display font-bold mb-6 text-white group-hover:text-naxit-cyan transition-colors">{step.title}</h3>
+                  <p className="text-gray-400 leading-relaxed text-lg group-hover:text-gray-300 transition-colors">
+                    {step.description}
+                  </p>
+
+                  {/* Vertical progression line */}
+                  {i < STEPS.length - 1 && (
+                    <div className="absolute top-1/2 -right-12 w-16 h-[1px] bg-gradient-to-r from-naxit-cyan/30 to-transparent hidden xl:block" />
+                  )}
+
+                  {/* Accent glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-naxit-royal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[3rem] pointer-events-none" />
+
+                  {/* Active card indicator */}
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="absolute inset-0 border-2 border-naxit-cyan/30 rounded-[3rem] pointer-events-none"
+                    />
+                  )}
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* Navigation Hint - Centered below cards */}
+        <div className="max-w-7xl mx-auto px-4 mt-8 flex justify-center">
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             className="flex items-center gap-3 glass py-2 px-4 rounded-full border border-white/5"
           >
-            <ChevronLeft className="w-3 h-3 text-naxit-cyan animate-pulse" />
+            <button
+              onClick={scrollLeft}
+              className="text-naxit-cyan hover:scale-125 transition-transform cursor-pointer"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-3 h-3 animate-pulse" />
+            </button>
             <span className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">Swipe left or right to navigate</span>
-            <ChevronRight className="w-3 h-3 text-naxit-cyan animate-pulse" />
-          </motion.div>
-        </div>
-
-        <div className="cursor-grab active:cursor-grabbing overflow-visible">
-          <motion.div 
-            drag="x"
-            dragConstraints={dragConstraints}
-            className="flex gap-8 px-4 md:px-[calc((100vw-1280px)/2)]"
-          >
-            {STEPS.map((step, i) => (
-              <motion.div
-                key={step.id}
-                className="min-w-[320px] md:min-w-[450px] glass p-10 rounded-[3rem] border border-white/5 relative group transition-colors hover:border-naxit-cyan/20"
-                whileHover={{ y: -10 }}
-              >
-                {/* Step Header */}
-                <div className="flex justify-between items-start mb-16">
-                  <div className="flex flex-col">
-                    <span className="text-naxit-cyan font-mono text-xs tracking-[0.3em] uppercase mb-2">Step {step.id}</span>
-                    <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">{step.subtitle}</span>
-                  </div>
-                  <div className="p-4 bg-white/5 rounded-2xl text-naxit-cyan group-hover:bg-naxit-cyan group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(0,212,255,0.1)]">
-                    {step.icon}
-                  </div>
-                </div>
-
-                {/* Step Body */}
-                <h3 className="text-4xl font-display font-bold mb-6 text-white group-hover:text-naxit-cyan transition-colors">{step.title}</h3>
-                <p className="text-gray-400 leading-relaxed text-lg group-hover:text-gray-300 transition-colors">
-                  {step.description}
-                </p>
-
-                {/* Vertical progression line */}
-                {i < STEPS.length - 1 && (
-                  <div className="absolute top-1/2 -right-12 w-16 h-[1px] bg-gradient-to-r from-naxit-cyan/30 to-transparent hidden xl:block" />
-                )}
-                
-                {/* Accent glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-naxit-royal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[3rem] pointer-events-none" />
-              </motion.div>
-            ))}
+            <button
+              onClick={scrollRight}
+              className="text-naxit-cyan hover:scale-125 transition-transform cursor-pointer"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-3 h-3 animate-pulse" />
+            </button>
           </motion.div>
         </div>
       </div>
 
       {/* Result Section - UX Refinement: Positioned after steps as a conclusion */}
       <div className="max-w-7xl mx-auto px-4 mt-32 relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -163,8 +224,8 @@ const Process: React.FC = () => {
           {/* Decorative Rings */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-naxit-cyan/5 rounded-full pointer-events-none" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-naxit-cyan/10 rounded-full pointer-events-none" />
-          
-          <motion.div 
+
+          <motion.div
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 4, repeat: Infinity }}
             className="w-20 h-20 rounded-full bg-naxit-cyan/10 flex items-center justify-center mb-10 border border-naxit-cyan/30 shadow-[0_0_30px_rgba(0,212,255,0.15)]"
@@ -176,15 +237,15 @@ const Process: React.FC = () => {
           <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-8 max-w-2xl leading-tight">
             Result: <span className="text-gradient">Fewer surprises. Faster decisions. Confident launches.</span>
           </h2>
-          
+
           <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-naxit-cyan/40 to-transparent mb-8" />
-          
+
           <p className="text-gray-500 font-mono text-xs uppercase tracking-[0.2em]">
             Protocol Optimization Complete // Ready for Integration
           </p>
         </motion.div>
       </div>
-      
+
       {/* Mobile Dot Indicators */}
       <div className="md:hidden flex justify-center mt-12 gap-3">
         {STEPS.map((_, i) => (

@@ -7,6 +7,25 @@ export interface Service {
   description: string;
   icon: ReactNode;
   tag: string;
+  badge?: string;
+  subtitle?: string;
+  problem?: string;
+  problemTitle?: string;
+  targetAudience?: string[];
+  targetAudienceTitle?: string;
+  inclusions?: ServiceInclusion[];
+  inclusionsTitle?: string;
+  result?: string;
+  resultTitle?: string;
+  ctaText?: string;
+  ctaSubtext?: string;
+  ctaPrimary?: string;
+  ctaSecondary?: string;
+}
+
+export interface ServiceInclusion {
+  title: string;
+  description: string;
 }
 
 export interface NavItem {

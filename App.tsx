@@ -10,16 +10,18 @@ import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectDetail from './components/ProjectDetail';
+import ServiceDetail from './components/ServiceDetail';
 import NeuralBackground from './components/NeuralBackground';
 
 import Preloader from './components/Preloader';
-import { Project } from './types';
+import { Project, Service } from './types';
 import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
 const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [loading, setLoading] = useState(!sessionStorage.getItem('hasVisited'));
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const App: React.FC = () => {
   });
   const height = useTransform(scaleY, [0, 1], ["0%", "100%"]);
 
-  // Prevent main scroll when detail view is open
+  // Prevent main scroll when detail view is open (only for project modal, not service page)
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = 'hidden';
@@ -82,6 +84,7 @@ const App: React.FC = () => {
           }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
+          style={{ display: selectedService ? 'none' : 'block' }}
         >
           <Hero />
 
@@ -91,7 +94,7 @@ const App: React.FC = () => {
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
             <div className="bg-gradient-to-b from-naxit-charcoal via-[#080808] to-naxit-charcoal">
-              <Services />
+              <Services onSelectService={(s) => setSelectedService(s)} />
               <div className="max-w-7xl mx-auto px-4">
                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />
               </div>
@@ -122,10 +125,20 @@ const App: React.FC = () => {
             />
           )}
         </AnimatePresence>
+
+        <AnimatePresence>
+          {selectedService && (
+            <ServiceDetail
+              key="service-detail"
+              service={selectedService}
+              onBack={() => setSelectedService(null)}
+            />
+          )}
+        </AnimatePresence>
       </main>
 
       {/* Vertical Progress Indicator */}
-      {!selectedProject && !loading && (
+      {!selectedProject && !selectedService && !loading && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
