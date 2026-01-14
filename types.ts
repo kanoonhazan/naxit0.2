@@ -45,4 +45,17 @@ export interface Project {
   approach: string;
   fullDescription: string;
   gallery: string[];
+  problem?: {
+    title: string;
+    content: string[];
+  };
+  solution?: {
+    title: string;
+    content: string[];
+  };
+  designDecisions?: string[];
+  resultOutcome?: {
+    title: string;
+    content: string[];
+  };
 }

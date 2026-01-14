@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Project } from '../types';
-import { ArrowLeft, Cpu, Target, Zap, Layout, Globe } from 'lucide-react';
+import { ArrowLeft, Cpu, Target, Zap, Layout, Globe, MessageCircle, ChevronRight, CheckCircle2 } from 'lucide-react';
 import Footer from './Footer';
 
 interface ProjectDetailProps {
@@ -19,6 +19,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
   }, [onBack]);
+
+  const handleWhatsApp = () => {
+    window.open('https://wa.me/94777123456', '_blank');
+  };
 
   return (
     <motion.div
@@ -43,15 +47,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             <span className="text-[10px] font-mono tracking-widest uppercase">Terminate View [ESC]</span>
           </motion.button>
 
-          <motion.a
-            href="#"
+          <motion.button
+            onClick={handleWhatsApp}
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="pointer-events-auto bg-white text-black px-8 py-3 rounded-full text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-3"
           >
-            Live Intel <Globe className="w-4 h-4" />
-          </motion.a>
+            Contact WhatsApp <MessageCircle className="w-4 h-4" />
+          </motion.button>
         </div>
       </div>
 
@@ -62,7 +66,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
           <motion.div
             layoutId={`image-${project.id}`}
             className="absolute inset-0 top-0 z-0">
-            <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-60" />
+            <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
             <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
           </motion.div>
 
@@ -80,34 +84,105 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
               className="text-7xl md:text-[11rem] font-display font-extrabold text-white leading-[0.85] tracking-tighter"
             >
               {project.title.split(' ').map((w, i) => (
-                <span key={i} className="block">{w}</span>
+                <span key={i} className="block">{w === 'Quantum' ? <span className="text-gradient">Quantum</span> : w}</span>
               ))}
             </motion.h1>
           </div>
         </section>
 
-        {/* Narrative */}
+        {/* Narrative Grid */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-32 grid grid-cols-1 lg:grid-cols-12 gap-20">
-          <div className="lg:col-span-8">
-            <div className="flex items-center gap-4 text-naxit-cyan mb-10">
-              <div className="w-10 h-[1px] bg-naxit-cyan" />
-              <span className="font-mono text-[10px] tracking-[0.4em] uppercase">The Directive</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-10 leading-[1.1]">{project.challenge}</h2>
-            <p className="text-gray-400 text-xl font-light leading-relaxed mb-20">
-              {project.fullDescription}
-            </p>
+          <div className="lg:col-span-8 space-y-24">
 
-            <div className="glass p-12 md:p-20 rounded-[3rem] border border-white/5 relative overflow-hidden">
-              <div className="absolute -right-20 -top-20 w-80 h-80 bg-naxit-royal/5 rounded-full blur-[100px]" />
-              <div className="flex items-center gap-4 text-naxit-cyan mb-8">
-                <Zap className="w-5 h-5" />
-                <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Execution Logic</span>
+            {/* Context/Overview */}
+            <div className="space-y-10">
+              <div className="flex items-center gap-4 text-naxit-cyan">
+                <div className="w-10 h-[1px] bg-naxit-cyan" />
+                <span className="font-mono text-[10px] tracking-[0.4em] uppercase">The Directive</span>
               </div>
-              <p className="text-gray-200 leading-relaxed italic text-2xl font-light">
-                "{project.approach}"
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-10 leading-[1.1]">{project.challenge}</h2>
+              <p className="text-gray-400 text-xl font-light leading-relaxed">
+                {project.fullDescription}
               </p>
             </div>
+
+            {/* Problem Section */}
+            {project.problem && (
+              <div className="space-y-10">
+                <div className="flex items-center gap-4 text-naxit-cyan">
+                  <div className="w-10 h-[1px] bg-naxit-cyan/30" />
+                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.problem.title}</span>
+                </div>
+                <div className="space-y-6">
+                  {project.problem.content.map((paragraph, i) => (
+                    <p key={i} className="text-gray-300 text-xl md:text-2xl font-light leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Our Solution Section */}
+            {project.solution && (
+              <div className="space-y-10">
+                <div className="flex items-center gap-4 text-naxit-cyan">
+                  <div className="w-10 h-[1px] bg-naxit-cyan/30" />
+                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.solution.title}</span>
+                </div>
+                <div className="space-y-6">
+                  {project.solution.content.map((line, i) => {
+                    const isBullet = line.length < 100 && i > 0;
+                    return (
+                      <div key={i} className={`flex gap-4 ${isBullet ? 'pl-4' : ''}`}>
+                        {isBullet && <ChevronRight className="w-5 h-5 text-naxit-cyan mt-1 flex-shrink-0" />}
+                        <p className={`${isBullet ? 'text-gray-300' : 'text-gray-200'} text-xl md:text-2xl font-light leading-relaxed`}>
+                          {line}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Key Design Decisions */}
+            {project.designDecisions && (
+              <div className="glass p-12 md:p-20 rounded-[3rem] border border-white/5 relative overflow-hidden">
+                <div className="absolute -right-20 -top-20 w-80 h-80 bg-naxit-royal/5 rounded-full blur-[100px]" />
+                <div className="flex items-center gap-4 text-naxit-cyan mb-12">
+                  <Zap className="w-5 h-5" />
+                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Execution Logic & Decisions</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {project.designDecisions.map((decision, i) => (
+                    <div key={i} className="flex gap-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-naxit-cyan mt-2 flex-shrink-0" />
+                      <p className="text-gray-300 font-light leading-relaxed">
+                        {decision}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Result Outcome Section */}
+            {project.resultOutcome && (
+              <div className="space-y-10">
+                <div className="flex items-center gap-4 text-naxit-cyan">
+                  <div className="w-10 h-[1px] bg-naxit-cyan/30" />
+                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.resultOutcome.title}</span>
+                </div>
+                <div className="space-y-6">
+                  {project.resultOutcome.content.map((paragraph, i) => (
+                    <p key={i} className="text-gray-300 text-xl md:text-2xl font-light leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="lg:col-span-4 space-y-16">
@@ -134,7 +209,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
         </section>
 
         {/* Gallery */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-32">
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-32 border-t border-white/5">
           <div className="flex items-center gap-4 text-naxit-cyan mb-20">
             <Layout className="w-5 h-5" />
             <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Visual Evidence</span>
@@ -146,7 +221,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className={`rounded-[3rem] overflow-hidden ${idx % 3 === 0 ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'}`}
+                className={`rounded-[3rem] overflow-hidden ${idx % 3 === 0 ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'} border border-white/5`}
               >
                 <img
                   src={img}
@@ -159,12 +234,30 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
           </div>
         </section>
 
-        {/* Closing */}
-        <section className="py-60 text-center px-4">
-          <h2 className="text-6xl md:text-9xl font-display font-bold mb-16 tracking-tighter">Ready for <br /><span className="text-gradient">Expansion?</span></h2>
-          <button className="bg-white text-black px-16 py-6 rounded-2xl font-bold hover:scale-105 transition-all text-lg">
-            Initialize Cooperation
-          </button>
+        {/* Closing CTA */}
+        <section className="py-60 text-center px-4 bg-gradient-to-b from-transparent to-black/20">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-6xl md:text-9xl font-display font-bold mb-16 tracking-tighter"
+          >
+            Ready for <br /><span className="text-gradient">Expansion?</span>
+          </motion.h2>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <button
+              onClick={handleWhatsApp}
+              className="group relative flex items-center gap-3 bg-white text-black font-bold py-6 px-12 rounded-2xl hover:scale-105 transition-all text-lg shadow-[0_20px_40px_rgba(255,255,255,0.1)]"
+            >
+              <MessageCircle className="w-6 h-6 fill-black" />
+              <span>Talk to us on WhatsApp</span>
+            </button>
+            <button
+              onClick={onBack}
+              className="glass border border-white/10 px-12 py-6 rounded-2xl font-bold text-gray-400 hover:text-white transition-all text-lg"
+            >
+              Return to Nexus
+            </button>
+          </div>
         </section>
 
         {/* Footer */}

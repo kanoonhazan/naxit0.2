@@ -16,6 +16,39 @@ export const PROJECTS: Project[] = [
     challenge: 'Architecting a 4D navigation system for complex neural data visualization.',
     approach: 'We developed a fluid, motion-first spatial interface that uses dynamic lighting to guide user focus through multi-dimensional datasets.',
     fullDescription: 'Traditional 2D interfaces failed to convey the complexity of Xenon\'s quantum computing datasets. Our team reinvented the workspace, moving into a 3D environment where data is represented as manipulatable geometric clusters.',
+    problem: {
+      title: 'The Problem',
+      content: [
+        'Xenon is a conceptual data platform handling large, complex datasets.',
+        'The challenge was making this data easy to understand and explore without overwhelming users.',
+        'Traditional flat dashboards made it difficult to see patterns and relationships clearly.'
+      ]
+    },
+    solution: {
+      title: 'Our Solution',
+      content: [
+        'We designed a visual-first interface concept that helps users navigate complex data more intuitively.',
+        'Instead of dense tables and charts, information is grouped visually, allowing users to:',
+        'Focus on key data points',
+        'Understand relationships faster',
+        'Explore information step by step',
+        'The interface prioritizes clarity, smooth interaction, and user focus.'
+      ]
+    },
+    designDecisions: [
+      'Clean, distraction-free layout',
+      'Motion used only to guide attention',
+      'Clear visual hierarchy for complex information',
+      'Designed for performance and scalability',
+      'Every element exists to reduce confusion and improve understanding.'
+    ],
+    resultOutcome: {
+      title: 'Result (Concept Outcome)',
+      content: [
+        'This concept demonstrates how complex data can be presented in a way that feels organized, understandable, and professional.',
+        'It showcases NAXIT’s ability to think through real product problems, not just create visuals.'
+      ]
+    },
     gallery: [
       'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2000',
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000',
@@ -33,6 +66,37 @@ export const PROJECTS: Project[] = [
     challenge: 'Reducing latency in real-time predictive modeling for oceanic freight.',
     approach: 'By deploying edge computing nodes on maritime vessels, we removed the 5-second latency barrier that previously hampered real-time adjustments.',
     fullDescription: 'Logistics giants faced massive losses due to unexpected weather shifts. Aethelgard integrates satellite data directly with on-ship AI to predict turbulence and optimize routes in under 50ms.',
+    problem: {
+      title: 'The Problem',
+      content: [
+        'Global logistics companies face extreme unpredictability in trans-oceanic freight routes.',
+        'Delayed data transmission led to massive fuel waste and safety risks.',
+        'Traditional shore-to-ship modeling couldn\'t react fast enough to localized weather shifts.'
+      ]
+    },
+    solution: {
+      title: 'Our Solution',
+      content: [
+        'We implemented an edge-AI system that runs locally on maritime hardware.',
+        'The system processes satellite telemetry in real-time, allowing for:',
+        'Under-50ms route adjustments',
+        '99.2% fuel optimization accuracy',
+        'Autonomous navigation assistance in high-risk zones'
+      ]
+    },
+    designDecisions: [
+      'Low-latency data processing architecture',
+      'Offline-first synchronization protocols',
+      'Ruggedized hardware interface design',
+      'Predictive safety overrides'
+    ],
+    resultOutcome: {
+      title: 'Result (Operational Efficiency)',
+      content: [
+        'Aethelgard set a new benchmark for maritime AI, reducing operational costs by 30% for early adopters.',
+        'It demonstrates NAXIT’s capability in high-stakes engineering and real-time AI processing.'
+      ]
+    },
     gallery: [
       'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000',
       'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&w=2000',
@@ -50,6 +114,37 @@ export const PROJECTS: Project[] = [
     challenge: 'Translating industrial heritage into a digital-native visual language.',
     approach: 'We stripped away the clutter and focused on the core engineering prowess of the firm, using high-end CGI to showcase their physical assets in a digital space.',
     fullDescription: 'Vanguard had incredible history but looked "old" to new investors. We crafted a brand narrative focused on "Precision Over Time," utilizing monochromatic palettes and sharp geometric layouts.',
+    problem: {
+      title: 'The Problem',
+      content: [
+        'A century-old engineering firm was struggling to attract modern venture capital.',
+        'The brand identity felt industrial and dated, failing to communicate their modern technological capabilities.',
+        'Communication gaps between legacy operations and new digital-first investors.'
+      ]
+    },
+    solution: {
+      title: 'Our Solution',
+      content: [
+        'We redesigned the entire visual ecosystem around the concept of "Quantum Heritage."',
+        'Merging traditional precision with digital-native aesthetics through:',
+        'High-fidelity CGI asset creation',
+        'Minimalist typographic systems',
+        'Kinetic brand narratives on digital platforms'
+      ]
+    },
+    designDecisions: [
+      'Monochromatic color theory for authority',
+      'Geometric grid-based layout systems',
+      'Custom font sets for technical clarity',
+      'Interactive digital annual reports'
+    ],
+    resultOutcome: {
+      title: 'Result (Valuation Surge)',
+      content: [
+        'The rebranding directly contributed to a 3.2x surge in firm valuation during the subsequent funding round.',
+        'This proves NAXIT’s ability to bridge the gap between legacy industries and modern digital capital.'
+      ]
+    },
     gallery: [
       'https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=2000',
       'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000',
@@ -67,6 +162,37 @@ export const PROJECTS: Project[] = [
     challenge: 'Deploying high-compute nodes across 42 global zones with zero downtime.',
     approach: 'A Rust-based container orchestrator was custom-built to handle sub-millisecond switching between nodes during high-load peaks.',
     fullDescription: 'Nebula needed a serverless architecture that didn\'t sacrifice the raw performance required for LLM training. We architected a system that behaves like local hardware but scales like the cloud.',
+    problem: {
+      title: 'The Problem',
+      content: [
+        'Standard cloud providers introduced too much latency for localized AI inference.',
+        'Infrastructure scaling often required downtime, unacceptable for real-time applications.',
+        'Data sovereignty issues in specific global regions hindered deployment.'
+      ]
+    },
+    solution: {
+      title: 'Our Solution',
+      content: [
+        'We custom-built a Rust-based edge orchestrator for sub-15ms processing.',
+        'A decentralized infrastructure model that provides:',
+        'Zone-specific data containment',
+        'Zero-downtime hot-swapping of compute nodes',
+        'Native support for heavy neural payloads'
+      ]
+    },
+    designDecisions: [
+      'Memory-safe Rust codebase',
+      'Custom gRPC communication layers',
+      'Automated zone replication',
+      'Encrypted transit for all AI weights'
+    ],
+    resultOutcome: {
+      title: 'Result (Global Scale)',
+      content: [
+        'Nebula now processes millions of inference requests daily with 99.999% uptime.',
+        'It showcases NAXIT’s high-frequency infrastructure and backend engineering prowess.'
+      ]
+    },
     gallery: [
       'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2000',
       'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000',
