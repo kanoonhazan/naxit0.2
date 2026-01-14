@@ -48,7 +48,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         className="pointer-events-auto glass px-5 md:px-6 py-2.5 md:py-3 rounded-full border border-white/10 hover:border-naxit-cyan transition-colors flex items-center gap-3 group w-full md:w-auto justify-center"
                     >
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                        <span className="text-[9px] md:text-[10px] font-mono tracking-widest uppercase">Return to Nexus [ESC]</span>
+                        <span className="text-[9px] md:text-[10px] font-mono tracking-widest uppercase">Return [ESC]</span>
                     </motion.button>
 
                     <motion.button
@@ -58,7 +58,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         transition={{ delay: 0.6 }}
                         className="pointer-events-auto bg-white text-black px-6 md:px-8 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-3 w-full md:w-auto justify-center"
                     >
-                        Quick Intel <MessageCircle className="w-4 h-4" />
+                        Whatsapp <MessageCircle className="w-4 h-4" />
                     </motion.button>
                 </div>
             </div>
@@ -91,7 +91,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1, duration: 1 }}
-                            className="text-5xl md:text-[10rem] font-display font-extrabold text-white leading-[0.85] tracking-tighter"
+                            className="text-5xl md:text-[6rem] font-display font-extrabold text-white leading-[1] tracking-tighter"
                         >
                             {service.title.split(' ').map((w, i) => (
                                 <span key={i} className="block">{w}</span>
@@ -103,7 +103,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                             transition={{ delay: 1.2 }}
                             className="flex flex-col items-center gap-6 md:gap-8 mt-8 md:mt-12"
                         >
-                            <p className="text-gray-400 text-lg md:text-3xl font-light max-w-2xl mx-auto leading-tight italic">
+                            <p className="text-gray-400 text-lg md:text-2xl font-light max-w-2xl mx-auto leading-tight italic">
                                 {service.subtitle}
                             </p>
                             <div className="w-[1px] h-16 md:h-24 bg-gradient-to-b from-naxit-cyan/50 to-transparent" />
@@ -130,7 +130,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                                     <div className="w-12 md:w-16 h-[1px] bg-naxit-cyan" />
                                     <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{service.problemTitle || 'The Problem'}</span>
                                 </div>
-                                <h2 className="text-3xl md:text-7xl font-display font-bold leading-tight md:leading-[1.1] tracking-tight">
+                                <h2 className="text-3xl md:text-4xl font-display font-medium leading-tight md:leading-[1.25] tracking-tight">
                                     {service.problem}
                                 </h2>
                             </div>

@@ -3,36 +3,67 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Map, Layers, Rocket, ChevronRight, ChevronLeft } from 'lucide-react';
 
+// const STEPS = [
+//   {
+//     id: '01',
+//     title: 'Learn',
+//     subtitle: 'Problem Ingestion',
+//     icon: <Search className="w-6 h-6" />,
+//     description: 'We start by understanding the real problem - not just the request. We review your business goals, technical constraints, users, and existing systems to define what success actually looks like.'
+//   },
+//   {
+//     id: '02',
+//     title: 'Strategy',
+//     subtitle: 'System Architecture',
+//     icon: <Map className="w-6 h-6" />,
+//     description: 'Decisions before design. Direction before execution. We map user flows, define system boundaries, choose the right technologies, and align brand direction - so every decision has a reason.'
+//   },
+//   {
+//     id: '03',
+//     title: 'Design & Build',
+//     subtitle: 'High-Fidelity Assembly',
+//     icon: <Layers className="w-6 h-6" />,
+//     description: 'Design that developers can ship without friction. We iterate fast, validate early, and deliver structured, developer-ready assets - logic, components, and tokens, not just visuals.'
+//   },
+//   {
+//     id: '04',
+//     title: 'Launch & Iterate',
+//     subtitle: 'Continuous Evolution',
+//     icon: <Rocket className="w-6 h-6" />,
+//     description: 'Launch is not the finish line. We track performance, gather feedback, and refine where it matters - improving outcomes, not just aesthetics.'
+//   }
+// ];
 const STEPS = [
   {
     id: '01',
-    title: 'Learn',
-    subtitle: 'Problem Ingestion',
+    title: 'Understand',
+    subtitle: 'Your Business & Goal',
     icon: <Search className="w-6 h-6" />,
-    description: 'We start by understanding the real problem - not just the request. We review your business goals, technical constraints, users, and existing systems to define what success actually looks like.'
+    description: 'We start by understanding your business, your customers, and what you actually want to achieve. Not assumptions. Not trends. Just clarity on what will help your business move forward.'
   },
   {
     id: '02',
-    title: 'Strategy',
-    subtitle: 'System Architecture',
+    title: 'Plan',
+    subtitle: 'Right Solution',
     icon: <Map className="w-6 h-6" />,
-    description: 'Decisions before design. Direction before execution. We map user flows, define system boundaries, choose the right technologies, and align brand direction - so every decision has a reason.'
+    description: 'Before designing anything, we decide what makes sense for you. What pages you need, what platforms matter, and what can be skipped. This saves time, money, and confusion.'
   },
   {
     id: '03',
     title: 'Design & Build',
-    subtitle: 'High-Fidelity Assembly',
+    subtitle: 'Clear & Professional',
     icon: <Layers className="w-6 h-6" />,
-    description: 'Design that developers can ship without friction. We iterate fast, validate early, and deliver structured, developer-ready assets - logic, components, and tokens, not just visuals.'
+    description: 'We design and build your solution step by step, keeping everything clean, usable, and professional. You’ll see progress clearly and can give feedback along the way.'
   },
   {
     id: '04',
-    title: 'Launch & Iterate',
-    subtitle: 'Continuous Evolution',
+    title: 'Launch & Improve',
+    subtitle: 'Support After Delivery',
     icon: <Rocket className="w-6 h-6" />,
-    description: 'Launch is not the finish line. We track performance, gather feedback, and refine where it matters - improving outcomes, not just aesthetics.'
+    description: 'Once launched, we make sure everything works as expected. If improvements are needed, we guide you on what matters most — not unnecessary extras.'
   }
 ];
+
 
 const Process: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -140,8 +171,7 @@ const Process: React.FC = () => {
           </div>
           <div className="lg:col-span-5">
             <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-              Predictable process. Measurable progress. People don't buy services — they buy <span className="text-white">clarity and control</span>.
-              Our process is designed to reduce uncertainty, align teams early, and keep delivery moving without surprises.
+              A clear, step-by-step approach that keeps things simple, predictable, and professional. You’ll always know what’s happening and what comes next.
             </p>
           </div>
         </div>
@@ -276,15 +306,15 @@ const Process: React.FC = () => {
             <Rocket className="w-10 h-10 text-naxit-cyan" />
           </motion.div>
 
-          <h4 className="text-[10px] font-mono text-naxit-cyan tracking-[0.5em] uppercase mb-6">The Synthesis</h4>
+          <h4 className="text-[10px] font-mono text-naxit-cyan tracking-[0.5em] uppercase mb-6">The Result</h4>
           <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-8 max-w-2xl leading-tight">
-            Result: <span className="text-gradient">Fewer surprises. Faster decisions. Confident launches.</span>
+            <span className="text-gradient">Less confusion. Faster progress. Results that make sense for your business.</span>
           </h2>
 
           <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-naxit-cyan/40 to-transparent mb-8" />
 
           <p className="text-gray-500 font-mono text-xs uppercase tracking-[0.2em]">
-            Protocol Optimization Complete // Ready for Integration
+            Built for Business  // Not Guesswork
           </p>
         </motion.div>
       </div>

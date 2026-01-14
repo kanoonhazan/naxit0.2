@@ -33,8 +33,8 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
 
   const navLinks = [
     { name: 'Home', target: 'hero' },
-    { name: 'Expertise', target: 'services' },
-    { name: 'Portfolio', target: 'portfolio' },
+    { name: 'Services', target: 'services' },
+    { name: 'Work', target: 'portfolio' },
   ];
 
   return (

@@ -79,8 +79,7 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
               {[
                 { name: 'Home', id: 'hero' },
                 { name: 'Services', id: 'services' },
-                { name: 'Matrix', id: 'matrix' },
-                { name: 'Portfolio', id: 'portfolio' },
+                { name: 'Work', id: 'portfolio' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
                 <li key={item.name}>

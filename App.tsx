@@ -102,10 +102,10 @@ const App: React.FC = () => {
               <div className="max-w-7xl mx-auto px-4">
                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />
               </div>
-              <Matrix />
+              {/* <Matrix />
               <div className="max-w-7xl mx-auto px-4">
                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />
-              </div>
+              </div> */}
               <Portfolio onSelectProject={(p) => setSelectedProject(p)} />
               <div className="max-w-7xl mx-auto px-4">
                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" />

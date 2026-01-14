@@ -8,7 +8,7 @@ const SERVICES: Service[] = [
   {
     id: '1',
     title: 'Professional Business Website',
-    description: 'Look professional online. A secure website that helps customers trust you and find your phone number.',
+    description: 'A clean, secure website that helps customers trust your business and contact you easily.',
     icon: <Globe className="w-8 h-8" />,
     tag: 'Website',
     badge: 'Most Popular Service',
@@ -61,7 +61,7 @@ const SERVICES: Service[] = [
   {
     id: '2',
     title: 'Digital Presence Setup',
-    description: 'Be found on Google Maps and Facebook. We set up your online profiles so locals can find you easily.',
+    description: 'We set up your Google and social profiles so local customers can find you with confidence.',
     icon: <Code className="w-8 h-8" />,
     tag: 'Presence',
     badge: 'Essential for Locals',
@@ -105,8 +105,8 @@ const SERVICES: Service[] = [
   },
   {
     id: '3',
-    title: 'UI/UX Design for Startups',
-    description: 'Building an app? Get a professional design blueprint before you spend money on coding.',
+    title: 'UI/UX Design',
+    description: 'Clear, user-focused design before you invest money in development.',
     icon: <Palette className="w-8 h-8" />,
     tag: 'Design',
     badge: 'For Startups & Founders',
@@ -148,8 +148,8 @@ const SERVICES: Service[] = [
   },
   {
     id: '4',
-    title: 'Graphics & Social Media',
-    description: 'Logos, flyers, and social media posts that look professional and build your brand image.',
+    title: 'Social Media Graphics',
+    description: 'Logos, posters, and social media designs that look professional and consistent.',
     icon: <Sparkles className="w-8 h-8" />,
     tag: 'Creative',
     badge: 'Branding & Marketing',
@@ -286,7 +286,7 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
               Our <span className="text-gradient">Services</span>
             </motion.h2>
             <p className="text-gray-400 text-xl font-light">
-              Simple solutions that help your business grow. No tech talk. Just results.
+              Simple digital solutions that help your business look professional, get found, and grow.
             </p>
           </div>
           <div className="hidden md:block">
