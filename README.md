@@ -1,7 +1,7 @@
 # NAXIT - Software Tools for Growth
 
 <div align="center">
-  <img width="1200" height="475" alt="NAXIT Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  <img width="1200" height="475" alt="NAXIT Banner" src="assets/logo.png" />
   <p><strong>Natives Empower Innovation. System Online.</strong></p>
 </div>
 
