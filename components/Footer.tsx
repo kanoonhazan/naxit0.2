@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Linkedin, Instagram, Facebook, MessageCircle, Cpu, Globe } from 'lucide-react';
+import { ArrowUp, Linkedin, Instagram, Facebook, MessageCircle, Cpu, Globe, MapPin } from 'lucide-react';
 
 interface FooterProps {
   onCloseModal?: () => void;
@@ -117,6 +117,7 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
                 { icon: <Linkedin className="w-4 h-4" />, label: 'LI', url: 'https://www.linkedin.com/company/naxitofficial/' },
                 { icon: <Instagram className="w-4 h-4" />, label: 'IG', url: 'https://www.instagram.com/naxitofficial' },
                 { icon: <Facebook className="w-4 h-4" />, label: 'FB', url: 'https://www.facebook.com/naxitofficial' },
+                { icon: <MapPin className="w-4 h-4" />, label: 'GB', url: 'https://share.google/kLF8l3VpKfylUEVqX' },
                 { icon: <MessageCircle className="w-4 h-4" />, label: 'WA', url: 'https://whatsapp.com/channel/0029VaCY8ulCHDyowtpSzx30' }
               ].map((social) => (
                 <a

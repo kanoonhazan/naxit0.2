@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, Loader2, MessageSquare, Phone, Mail } from 'lucide-react';
+import { Send, CheckCircle2, Loader2, MessageSquare, Phone, Mail, MapPin, Star, ExternalLink, BadgeCheck } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
@@ -69,6 +69,55 @@ ${formData.message}
               >
                 Tell us a little about your business and what you need. We’ll guide you honestly and recommend the right next step.
               </motion.p>
+
+              {/* Tactical Intelligence Node (Map & Reviews) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="glass p-4 rounded-[2.5rem] border border-white/5 space-y-4 overflow-hidden"
+              >
+                {/* Embedded Map with Theme Filter */}
+                <div className="relative h-48 w-full rounded-2xl overflow-hidden border border-white/5 mt-1 group">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8828277240355!2d79.90929867479323!3d8.982928491076589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afdd9e633c0c94b%3A0x2f2a54bcb84897b9!2sNAXIT!5e0!3m2!1sen!2slk!4v1768412728561!5m2!1sen!2slk"
+                    className="w-full h-full border-0 grayscale invert opacity-50 group-hover:opacity-100 transition-opacity duration-700"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-naxit-charcoal/80 to-transparent" />
+
+                  {/* Map Label Overlay */}
+                  <div className="absolute top-3 right-3 flex items-center gap-2 px-3 py-1.5 glass rounded-lg border border-white/10">
+                    <BadgeCheck className="w-3 h-3 text-[#4285F4]" />
+                    <span className="text-[8px] font-mono text-gray-400 uppercase tracking-tighter">Verified</span>
+                  </div>
+                </div>
+
+                <div className="px-2 pb-2 space-y-4">
+                  <div className="flex justify-between items-center">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-white font-bold text-sm tracking-tight">NAXIT</span>
+                      </div>
+                      <div className="text-[10px] font-mono text-gray-500 uppercase tracking-wider pl-0.5">Operational Location</div>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 glass rounded-xl border border-white/5 border-naxit-cyan/20">
+                      <Star className="w-3.5 h-3.5 fill-naxit-cyan text-naxit-cyan" />
+                      <span className="text-white font-bold text-xs">5.0</span>
+                    </div>
+                  </div>
+
+                  <a
+                    href="https://share.google/kLF8l3VpKfylUEVqX"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between w-full p-4 glass rounded-2xl border border-naxit-cyan/20 bg-naxit-cyan/5 hover:bg-naxit-cyan hover:text-black transition-all group group-hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+                  >
+                    <span className="text-[10px] font-mono font-bold tracking-[0.1em] uppercase">View our Google Reviews</span>
+                    <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  </a>
+                </div>
+              </motion.div>
             </div>
 
             {/* Founder Authority Node */}
