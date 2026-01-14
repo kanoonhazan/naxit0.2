@@ -241,7 +241,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         className="relative z-10 space-y-10 md:space-y-16"
                     >
                         <h2 className="text-5xl md:text-[9rem] font-display font-extrabold mb-10 md:mb-14 tracking-tighter leading-none">
-                            Ready for <br /><span className="text-gradient">Activation?</span>
+                            Ready to <br /><span className="text-gradient">Start?</span>
                         </h2>
 
                         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
@@ -250,7 +250,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                                 className="group relative flex items-center gap-3 md:gap-4 bg-white text-black font-bold py-5 md:py-6 px-10 md:px-14 rounded-2xl md:rounded-[2rem] hover:scale-105 transition-all text-lg md:text-2xl shadow-[0_20px_80px_rgba(255,255,255,0.15)] w-full md:w-auto justify-center"
                             >
                                 <MessageCircle className="w-6 h-6 md:w-8 md:h-8 fill-black" />
-                                <span>{service.ctaPrimary || 'Initialize Protocol'}</span>
+                                <span>{service.ctaPrimary || 'Message on WhatsApp'}</span>
                             </button>
 
                             {service.ctaSecondary && (

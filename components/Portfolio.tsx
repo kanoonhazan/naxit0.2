@@ -251,20 +251,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
             {project.tagline}
           </p>
 
-          <div className="grid grid-cols-2 gap-6 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+          <div className="grid grid-cols-2 gap-6 opacity-100 translate-y-0 md:translate-y-8 md:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
             <div>
-              <div className="text-[10px] font-mono text-gray-500 mb-2 flex items-center gap-2">
-                <Database className="w-3 h-3" /> THE IMPACT
+              <div className="text-[10px] font-mono text-gray-400 mb-2 flex items-center gap-2">
+                <Database className="w-3 h-3 text-naxit-cyan" /> THE IMPACT
               </div>
               <div className="text-naxit-cyan font-bold text-lg">{project.impact}</div>
             </div>
             <div>
-              <div className="text-[10px] font-mono text-gray-500 mb-2 flex items-center gap-2">
-                <Cpu className="w-3 h-3" /> TECH STACK
+              <div className="text-[10px] font-mono text-gray-400 mb-2 flex items-center gap-2">
+                <Cpu className="w-3 h-3 text-naxit-cyan" /> TECH STACK
               </div>
               <div className="flex flex-wrap gap-2">
                 {project.tech.slice(0, 2).map(t => (
-                  <span key={t} className="text-[10px] bg-white/5 px-2 py-1 rounded border border-white/10">{t}</span>
+                  <span key={t} className="text-[10px] bg-white/5 px-2 py-1 rounded border border-white/10 text-gray-400">{t}</span>
                 ))}
               </div>
             </div>

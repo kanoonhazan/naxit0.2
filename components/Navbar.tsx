@@ -80,6 +80,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
         <button
           className="md:hidden text-white hover:text-naxit-cyan transition-colors"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close Menu" : "Open Menu"}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

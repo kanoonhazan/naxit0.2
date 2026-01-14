@@ -438,8 +438,8 @@ const TiltCard: React.FC<TiltCardProps> = ({ service, index, onClick }) => {
         </p>
       </div>
 
-      <div className="relative z-10 flex items-center gap-3 text-sm font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-        Learn more <ArrowRight className="w-4 h-4" />
+      <div className="relative z-10 flex items-center gap-3 text-sm font-bold opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-0 md:translate-y-4 group-hover:translate-y-0">
+        Learn more <ArrowRight className="w-4 h-4 text-naxit-cyan" />
       </div>
 
       {/* Interactive Light Effect */}

@@ -74,25 +74,31 @@ const Hero: React.FC = () => {
           transition={{ duration: 1.2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-          <button className="group relative px-10 py-5 bg-white text-black font-bold rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95">
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="group relative px-10 py-5 bg-white text-black font-bold rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95"
+          >
             <span className="relative z-10">Launch Your Vision</span>
             <div className="absolute inset-0 bg-naxit-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
           </button>
-          <button className="px-10 py-5 glass rounded-2xl font-medium border border-white/10 hover:border-naxit-cyan/30 transition-all hover:bg-white/5">
+          <button
+            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-10 py-5 glass rounded-2xl font-medium border border-white/10 hover:border-naxit-cyan/30 transition-all hover:bg-white/5"
+          >
             Explore Expertise
           </button>
         </motion.div>
       </div>
 
       {/* Modern Scroll Indicator */}
-      <motion.div
+      <motion.button
+        onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
         animate={{ opacity: [0.2, 0.5, 0.2] }}
         transition={{ duration: 3, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer"
       >
-
         <div className="w-[1px] h-12 bg-gradient-to-b from-naxit-cyan via-white/10 to-transparent" />
-      </motion.div>
+      </motion.button>
     </section>
   );
 };

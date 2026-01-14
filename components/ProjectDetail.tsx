@@ -44,7 +44,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             className="pointer-events-auto glass px-5 md:px-6 py-2.5 md:py-3 rounded-full border border-white/10 hover:border-naxit-cyan transition-colors flex items-center gap-3 group w-full md:w-auto justify-center"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[9px] md:text-[10px] font-mono tracking-widest uppercase">Terminate View [ESC]</span>
+            <span className="text-[9px] md:text-[10px] font-mono tracking-widest uppercase">Return [ESC]</span>
           </motion.button>
 
           <motion.button
@@ -91,7 +91,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
         </section>
 
         {/* Narrative Grid */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16">
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 relative overflow-hidden">
+          {/* Background floating text to fill whitespace */}
+          <div className="hidden lg:block absolute -left-20 top-1/4 text-white/[0.02] text-[15rem] font-display font-black pointer-events-none select-none -rotate-90 origin-center leading-none">
+            SYSTEM
+          </div>
+          <div className="hidden lg:block absolute -right-20 top-2/3 text-white/[0.02] text-[15rem] font-display font-black pointer-events-none select-none rotate-90 origin-center leading-none">
+            PROTOCOL
+          </div>
+
           <div className="lg:col-span-8 space-y-16 md:space-y-20">
 
             {/* Context/Overview */}

@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         <div className="glass p-8 md:p-20 rounded-[3rem] border border-white/5 relative overflow-hidden">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-naxit-royal/10 rounded-full blur-[120px]" />
-          
+
           <AnimatePresence mode="wait">
             {status !== 'success' ? (
               <motion.div
@@ -28,40 +28,40 @@ const Contact: React.FC = () => {
               >
                 <div className="relative z-10 mb-16">
                   <span className="text-naxit-cyan font-mono text-xs tracking-[0.4em] uppercase mb-4 block">Secure Uplink</span>
-                  <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tighter">Ready to <br/><span className="text-gradient">Integrate?</span></h2>
+                  <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tighter">Ready to <br /><span className="text-gradient">Integrate?</span></h2>
                   <p className="text-gray-400 text-lg max-w-md">Our neural network is ready to process your vision. Start the transmission below.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                   <div className="flex flex-col gap-3 group">
-                    <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors">IDENTIFIER</label>
-                    <input 
+                    <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Full Name</label>
+                    <input
                       required
-                      type="text" 
-                      placeholder="John Doe" 
+                      type="text"
+                      placeholder="e.g. Ruwan Perera"
                       className="bg-white/[0.02] border border-white/5 rounded-2xl p-5 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.04]"
                     />
                   </div>
                   <div className="flex flex-col gap-3 group">
-                    <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors">SIGNAL SOURCE</label>
-                    <input 
+                    <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Email Address</label>
+                    <input
                       required
-                      type="email" 
-                      placeholder="john@future.io" 
+                      type="email"
+                      placeholder="name@company.com"
                       className="bg-white/[0.02] border border-white/5 rounded-2xl p-5 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.04]"
                     />
                   </div>
                   <div className="flex flex-col gap-3 md:col-span-2 group">
-                    <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors">MISSION PARAMETERS</label>
-                    <textarea 
+                    <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Your Project Details</label>
+                    <textarea
                       required
                       rows={5}
-                      placeholder="Define your digital objectives..." 
+                      placeholder="Briefly describe what you want to build..."
                       className="bg-white/[0.02] border border-white/5 rounded-2xl p-5 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.04] resize-none"
                     />
                   </div>
                   <div className="md:col-span-2 flex justify-start mt-4">
-                    <button 
+                    <button
                       disabled={status === 'sending'}
                       className="group relative flex items-center gap-3 bg-white text-black font-bold py-5 px-10 rounded-2xl hover:scale-105 transition-all active:scale-95 disabled:opacity-50"
                     >
@@ -70,7 +70,7 @@ const Contact: React.FC = () => {
                       ) : (
                         <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                       )}
-                      <span>Execute Transmission</span>
+                      <span>Send Message</span>
                     </button>
                   </div>
                 </form>
@@ -87,7 +87,7 @@ const Contact: React.FC = () => {
                 </div>
                 <h3 className="text-4xl font-display font-bold mb-4">Transmission Successful</h3>
                 <p className="text-gray-400 max-w-sm">Your data has been indexed. Our primary intelligence will contact you within 24 operational hours.</p>
-                <button 
+                <button
                   onClick={() => setStatus('idle')}
                   className="mt-10 text-xs font-mono text-naxit-cyan tracking-[0.3em] uppercase hover:opacity-100 opacity-60 transition-opacity"
                 >
