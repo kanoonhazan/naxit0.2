@@ -1,7 +1,7 @@
 
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Search, Map, Layers, Rocket, MoveHorizontal, ChevronRight, ChevronLeft } from 'lucide-react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { Search, Map, Layers, Rocket, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const STEPS = [
   {
@@ -36,23 +36,30 @@ const STEPS = [
 
 const Process: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [dragX, setDragX] = useState(0);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   // Calculate constraints based on window width
   const [dragConstraints, setDragConstraints] = useState({ left: -800, right: 0 });
 
+  const getStep = () => {
+    const isMobile = window.innerWidth < 768;
+    const cardWidth = isMobile ? 320 : 450;
+    const gap = 32;
+    return cardWidth + gap;
+  };
   useEffect(() => {
     const calculateConstraints = () => {
       if (containerRef.current) {
-        const contentWidth = 450 * STEPS.length + 32 * (STEPS.length - 1); // Card width + gap
-        const visibleWidth = window.innerWidth;
-        const padding = visibleWidth > 1280 ? (visibleWidth - 1280) / 2 : 16;
+        const step = getStep();
+        const maxIndex = STEPS.length - 1;
+
         setDragConstraints({
-          left: -(contentWidth + padding * 2 - visibleWidth),
+          left: -maxIndex * step,
           right: 0
         });
+
+
       }
     };
 
@@ -61,35 +68,51 @@ const Process: React.FC = () => {
     return () => window.removeEventListener('resize', calculateConstraints);
   }, []);
 
-  // Navigation functions with functional state updates and clamping
-  const scrollLeft = () => {
-    const cardWidth = window.innerWidth > 768 ? 450 : 320;
-    setDragX(prev => {
-      const newX = Math.min(prev + cardWidth + 32, 0);
-      // Ensure we don't exceed the right bound (0)
-      return newX;
-    });
-  };
 
-  const scrollRight = () => {
-    const cardWidth = window.innerWidth > 768 ? 450 : 320;
-    setDragX(prev => {
-      const newX = Math.max(prev - cardWidth - 32, dragConstraints.left);
-      // Ensure we don't exceed the left bound (dragConstraints.left)
-      return newX;
-    });
-  };
+
+  // Navigation functions with functional state updates and clamping
+  const snapToIndex = useCallback((index: number) => {
+    const clamped = Math.min(
+      STEPS.length - 1,
+      Math.max(0, index)
+    );
+
+    setCurrentCardIndex(clamped);
+    setDragX(-clamped * getStep());
+  }, []);
+
+
+
+  const scrollLeft = () => snapToIndex(currentCardIndex - 1);
+  const scrollRight = () => snapToIndex(currentCardIndex + 1);
+
+
+
 
   // Calculate which card is currently centered
-  useEffect(() => {
-    const cardWidth = window.innerWidth > 768 ? 450 : 320;
-    const gap = 32;
-    const index = Math.round(Math.abs(dragX) / (cardWidth + gap));
-    setCurrentCardIndex(Math.min(index, STEPS.length - 1));
-  }, [dragX]);
+  // useEffect(() => {
+  //   const cardWidth = window.innerWidth > 768 ? 450 : 320;
+  //   const gap = 32;
+  //   const index = Math.round(Math.abs(dragX) / (cardWidth + gap));
+  //   setCurrentCardIndex(Math.min(index, STEPS.length - 1));
+  // }, [dragX]);
+  // useEffect(() => {
+  //   const cardWidth = window.innerWidth > 768 ? 450 : 320;
+  //   const gap = 32;
+  //   const step = cardWidth + gap;
+
+  //   const rawIndex = Math.round(Math.abs(dragX) / step);
+  //   const clampedIndex = Math.min(
+  //     STEPS.length - 1,
+  //     Math.max(0, rawIndex)
+  //   );
+
+  //   setCurrentCardIndex(clampedIndex);
+  // }, [dragX]);
+
 
   return (
-    <section id="process" className="py-40 relative overflow-hidden bg-[#080808]">
+    <section id="process" className="py-24 md:py-40 relative overflow-hidden bg-[#080808]">
       {/* Background Decorative Element */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-naxit-cyan/10 to-transparent" />
@@ -132,7 +155,19 @@ const Process: React.FC = () => {
             dragConstraints={dragConstraints}
             className="flex gap-8 px-4 md:px-[calc((100vw-1280px)/2)]"
             animate={{ x: dragX }}
-            onDragEnd={(e, info) => setDragX(info.point.x)}
+            dragElastic={0.08}
+
+            onDragEnd={(e, info) => {
+              const step = getStep();
+              const movedIndex = Math.round(
+                Math.abs(dragX + info.offset.x) / step
+              );
+
+              snapToIndex(movedIndex);
+            }}
+
+
+
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             {STEPS.map((step, i) => {
@@ -145,11 +180,11 @@ const Process: React.FC = () => {
                     scale: isActive ? 1.05 : 1,
                     opacity: isActive ? 1 : 0.7
                   }}
-                  whileHover={{ y: -10, scale: isActive ? 1.08 : 1.03 }}
+                  whileHover={window.innerWidth > 768 ? { y: -10, scale: 1 } : undefined}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   {/* Step Header */}
-                  <div className="flex justify-between items-start mb-16">
+                  <div className="flex justify-between items-start mb-10 md:mb-16">
                     <div className="flex flex-col">
                       <span className="text-naxit-cyan font-mono text-xs tracking-[0.3em] uppercase mb-2">Step {step.id}</span>
                       <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">{step.subtitle}</span>
@@ -196,17 +231,25 @@ const Process: React.FC = () => {
           >
             <button
               onClick={scrollLeft}
-              className="text-naxit-cyan hover:scale-125 transition-transform cursor-pointer"
-              aria-label="Scroll left"
+              disabled={currentCardIndex === 0}
+              className={`text-naxit-cyan transition-transform ${currentCardIndex === 0
+                ? 'opacity-30 cursor-not-allowed'
+                : 'hover:scale-125 cursor-pointer'
+                }`}
             >
+
               <ChevronLeft className="w-3 h-3 animate-pulse" />
             </button>
             <span className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">Swipe left or right to navigate</span>
             <button
               onClick={scrollRight}
-              className="text-naxit-cyan hover:scale-125 transition-transform cursor-pointer"
-              aria-label="Scroll right"
+              disabled={currentCardIndex === STEPS.length - 1}
+              className={`text-naxit-cyan transition-transform ${currentCardIndex === STEPS.length - 1
+                ? 'opacity-30 cursor-not-allowed'
+                : 'hover:scale-125 cursor-pointer'
+                }`}
             >
+
               <ChevronRight className="w-3 h-3 animate-pulse" />
             </button>
           </motion.div>
@@ -249,8 +292,15 @@ const Process: React.FC = () => {
       {/* Mobile Dot Indicators */}
       <div className="md:hidden flex justify-center mt-12 gap-3">
         {STEPS.map((_, i) => (
-          <div key={i} className="w-1.5 h-1.5 rounded-full bg-naxit-cyan/20" />
+          <div
+            key={i}
+            className={`w-1.5 h-1.5 rounded-full transition-all ${i === currentCardIndex
+              ? 'bg-naxit-cyan scale-125'
+              : 'bg-naxit-cyan/20'
+              }`}
+          />
         ))}
+
       </div>
     </section>
   );

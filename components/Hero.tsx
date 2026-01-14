@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg md:text-1xl text-gray-400 font-light max-w-2xl mx-auto mb-6 leading-relaxed"
         >
-          Crafting high-end digital experiences where Gen-AI intuition meets world-class engineering. We turn local vision into global powerhouses.
+          We design and build the software tools that help Sri Lankan shops, schools, and startups grow without the technical headache.
         </motion.p>
 
         <motion.div
