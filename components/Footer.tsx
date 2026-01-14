@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Twitter, Linkedin, Github, Instagram, Cpu, Globe } from 'lucide-react';
+import { ArrowUp, Linkedin, Instagram, Facebook, MessageCircle, Cpu, Globe } from 'lucide-react';
 
 interface FooterProps {
   onCloseModal?: () => void;
@@ -114,10 +114,10 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
             <h4 className="text-[10px] font-mono text-gray-500 tracking-[0.4em] uppercase mb-8">Social Intel</h4>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: <Twitter className="w-4 h-4" />, label: 'X', url: 'https://twitter.com' },
-                { icon: <Linkedin className="w-4 h-4" />, label: 'LI', url: 'https://linkedin.com' },
-                { icon: <Github className="w-4 h-4" />, label: 'GH', url: 'https://github.com' },
-                { icon: <Instagram className="w-4 h-4" />, label: 'IG', url: 'https://instagram.com' }
+                { icon: <Linkedin className="w-4 h-4" />, label: 'LI', url: 'https://www.linkedin.com/company/naxitofficial/' },
+                { icon: <Instagram className="w-4 h-4" />, label: 'IG', url: 'https://www.instagram.com/naxitofficial' },
+                { icon: <Facebook className="w-4 h-4" />, label: 'FB', url: 'https://www.facebook.com/naxitofficial' },
+                { icon: <MessageCircle className="w-4 h-4" />, label: 'WA', url: 'https://whatsapp.com/channel/0029VaCY8ulCHDyowtpSzx30' }
               ].map((social) => (
                 <a
                   key={social.label}
