@@ -28,7 +28,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             data-lenis-prevent
         >
             {/* Header with Back Button */}
-            <div className="sticky top-0 z-50 bg-naxit-charcoal/80 backdrop-blur-xl border-b border-white/5">
+            <div className="sticky top-0 z-[210] bg-naxit-charcoal/80 backdrop-blur-xl border-b border-white/5">
                 <div className="max-w-7xl mx-auto px-4 py-6 flex items-center gap-4">
                     <button
                         onClick={onBack}
@@ -43,7 +43,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             </div>
 
             {/* Content */}
-            <div className="max-w-4xl mx-auto px-4 py-16">
+            <div className="max-w-4xl mx-auto px-4 pt-24 pb-16">
                 {/* Header */}
                 <div className="text-center mb-16">
                     {service.badge && (

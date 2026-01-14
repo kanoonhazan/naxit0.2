@@ -74,7 +74,8 @@ const App: React.FC = () => {
       </AnimatePresence>
 
       <NeuralBackground />
-      <Navbar onCloseModal={() => setSelectedProject(null)} />
+      {!selectedService && <Navbar onCloseModal={() => setSelectedProject(null)} />}
+
 
       <main className="relative z-10">
         <motion.div
