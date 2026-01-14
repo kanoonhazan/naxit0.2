@@ -34,17 +34,17 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       data-lenis-prevent
     >
       {/* Header Overlay - Floating above content */}
-      <div className="absolute top-0 left-0 right-0 z-[160] w-full pt-[6.5rem] pb-6 px-6 md:pt-[7rem] md:pb-12 md:px-12 pointer-events-none bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[0px]">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="absolute top-0 left-0 right-0 z-[160] w-full pt-20 md:pt-[7rem] pb-6 px-4 md:px-12 pointer-events-none bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[0px]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <motion.button
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
             onClick={onBack}
-            className="pointer-events-auto glass px-6 py-3 rounded-full border border-white/10 hover:border-naxit-cyan transition-colors flex items-center gap-3 group"
+            className="pointer-events-auto glass px-5 md:px-6 py-2.5 md:py-3 rounded-full border border-white/10 hover:border-naxit-cyan transition-colors flex items-center gap-3 group w-full md:w-auto justify-center"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[10px] font-mono tracking-widest uppercase">Terminate View [ESC]</span>
+            <span className="text-[9px] md:text-[10px] font-mono tracking-widest uppercase">Terminate View [ESC]</span>
           </motion.button>
 
           <motion.button
@@ -52,7 +52,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="pointer-events-auto bg-white text-black px-8 py-3 rounded-full text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-3"
+            className="pointer-events-auto bg-white text-black px-6 md:px-8 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-3 w-full md:w-auto justify-center"
           >
             Contact WhatsApp <MessageCircle className="w-4 h-4" />
           </motion.button>
@@ -70,7 +70,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
           </motion.div>
 
-          <div className="relative z-10 text-center max-w-5xl px-4 mt-20 md:mt-0">
+          <div className="relative z-10 text-center max-w-5xl px-4 mt-32 md:mt-20">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -81,7 +81,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             </motion.div>
             <motion.h1
               layoutId={`title-${project.id}`}
-              className="text-7xl md:text-[11rem] font-display font-extrabold text-white leading-[0.85] tracking-tighter"
+              className="text-5xl md:text-[11rem] font-display font-extrabold text-white leading-[0.85] tracking-tighter"
             >
               {project.title.split(' ').map((w, i) => (
                 <span key={i} className="block">{w === 'Quantum' ? <span className="text-gradient">Quantum</span> : w}</span>
@@ -91,31 +91,31 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
         </section>
 
         {/* Narrative Grid */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-32 grid grid-cols-1 lg:grid-cols-12 gap-20">
-          <div className="lg:col-span-8 space-y-24">
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-20">
+          <div className="lg:col-span-8 space-y-16 md:space-y-24">
 
             {/* Context/Overview */}
-            <div className="space-y-10">
+            <div className="space-y-8 md:space-y-10">
               <div className="flex items-center gap-4 text-naxit-cyan">
                 <div className="w-10 h-[1px] bg-naxit-cyan" />
-                <span className="font-mono text-[10px] tracking-[0.4em] uppercase">The Directive</span>
+                <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">The Directive</span>
               </div>
-              <h2 className="text-4xl md:text-6xl font-display font-bold mb-10 leading-[1.1]">{project.challenge}</h2>
-              <p className="text-gray-400 text-xl font-light leading-relaxed">
+              <h2 className="text-3xl md:text-6xl font-display font-bold mb-6 md:mb-10 leading-[1.1]">{project.challenge}</h2>
+              <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
                 {project.fullDescription}
               </p>
             </div>
 
             {/* Problem Section */}
             {project.problem && (
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 <div className="flex items-center gap-4 text-naxit-cyan">
                   <div className="w-10 h-[1px] bg-naxit-cyan/30" />
-                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.problem.title}</span>
+                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{project.problem.title}</span>
                 </div>
                 <div className="space-y-6">
                   {project.problem.content.map((paragraph, i) => (
-                    <p key={i} className="text-gray-300 text-xl md:text-2xl font-light leading-relaxed">
+                    <p key={i} className="text-gray-300 text-lg md:text-2xl font-light leading-relaxed">
                       {paragraph}
                     </p>
                   ))}
@@ -125,10 +125,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
 
             {/* Our Solution Section */}
             {project.solution && (
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 <div className="flex items-center gap-4 text-naxit-cyan">
                   <div className="w-10 h-[1px] bg-naxit-cyan/30" />
-                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.solution.title}</span>
+                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{project.solution.title}</span>
                 </div>
                 <div className="space-y-6">
                   {project.solution.content.map((line, i) => {
@@ -136,7 +136,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                     return (
                       <div key={i} className={`flex gap-4 ${isBullet ? 'pl-4' : ''}`}>
                         {isBullet && <ChevronRight className="w-5 h-5 text-naxit-cyan mt-1 flex-shrink-0" />}
-                        <p className={`${isBullet ? 'text-gray-300' : 'text-gray-200'} text-xl md:text-2xl font-light leading-relaxed`}>
+                        <p className={`${isBullet ? 'text-gray-300' : 'text-gray-200'} text-lg md:text-2xl font-light leading-relaxed`}>
                           {line}
                         </p>
                       </div>
@@ -148,17 +148,17 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
 
             {/* Key Design Decisions */}
             {project.designDecisions && (
-              <div className="glass p-12 md:p-20 rounded-[3rem] border border-white/5 relative overflow-hidden">
+              <div className="glass p-8 md:p-20 rounded-[2.5rem] md:rounded-[3rem] border border-white/5 relative overflow-hidden">
                 <div className="absolute -right-20 -top-20 w-80 h-80 bg-naxit-royal/5 rounded-full blur-[100px]" />
-                <div className="flex items-center gap-4 text-naxit-cyan mb-12">
+                <div className="flex items-center gap-4 text-naxit-cyan mb-8 md:mb-12">
                   <Zap className="w-5 h-5" />
-                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Execution Logic & Decisions</span>
+                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">Execution Logic & Decisions</span>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                   {project.designDecisions.map((decision, i) => (
                     <div key={i} className="flex gap-4">
                       <div className="w-1.5 h-1.5 rounded-full bg-naxit-cyan mt-2 flex-shrink-0" />
-                      <p className="text-gray-300 font-light leading-relaxed">
+                      <p className="text-gray-300 font-light leading-relaxed text-base md:text-lg">
                         {decision}
                       </p>
                     </div>
@@ -169,14 +169,14 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
 
             {/* Result Outcome Section */}
             {project.resultOutcome && (
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 <div className="flex items-center gap-4 text-naxit-cyan">
                   <div className="w-10 h-[1px] bg-naxit-cyan/30" />
-                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.resultOutcome.title}</span>
+                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{project.resultOutcome.title}</span>
                 </div>
                 <div className="space-y-6">
                   {project.resultOutcome.content.map((paragraph, i) => (
-                    <p key={i} className="text-gray-300 text-xl md:text-2xl font-light leading-relaxed">
+                    <p key={i} className="text-gray-300 text-lg md:text-2xl font-light leading-relaxed">
                       {paragraph}
                     </p>
                   ))}
@@ -185,11 +185,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             )}
           </div>
 
-          <div className="lg:col-span-4 space-y-16">
-            <div className="glass p-12 rounded-[2.5rem] border border-naxit-cyan/10 bg-gradient-to-br from-naxit-royal/10 to-transparent">
-              <div className="text-[10px] font-mono text-gray-500 mb-8 tracking-widest uppercase">System Impact</div>
-              <div className="text-7xl font-display font-bold text-gradient mb-4">{project.impact}</div>
-              <p className="text-gray-500 text-sm leading-relaxed">Performance benchmark exceeded during operational phase.</p>
+          <div className="lg:col-span-4 space-y-12 md:space-y-16">
+            <div className="glass p-10 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border border-naxit-cyan/10 bg-gradient-to-br from-naxit-royal/10 to-transparent">
+              <div className="text-[9px] md:text-[10px] font-mono text-gray-500 mb-6 md:mb-8 tracking-widest uppercase">System Impact</div>
+              <div className="text-5xl md:text-7xl font-display font-bold text-gradient mb-4">{project.impact}</div>
+              <p className="text-gray-500 text-xs md:text-sm leading-relaxed">Performance benchmark exceeded during operational phase.</p>
             </div>
 
             <div>
@@ -235,25 +235,25 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
         </section>
 
         {/* Closing CTA */}
-        <section className="py-60 text-center px-4 bg-gradient-to-b from-transparent to-black/20">
+        <section className="py-40 md:py-60 text-center px-4 bg-gradient-to-b from-transparent to-black/20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-9xl font-display font-bold mb-16 tracking-tighter"
+            className="text-5xl md:text-9xl font-display font-bold mb-12 md:mb-16 tracking-tighter"
           >
             Ready for <br /><span className="text-gradient">Expansion?</span>
           </motion.h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <button
               onClick={handleWhatsApp}
-              className="group relative flex items-center gap-3 bg-white text-black font-bold py-6 px-12 rounded-2xl hover:scale-105 transition-all text-lg shadow-[0_20px_40px_rgba(255,255,255,0.1)]"
+              className="group relative flex items-center gap-3 bg-white text-black font-bold py-5 md:py-6 px-10 md:px-12 rounded-2xl hover:scale-105 transition-all text-base md:text-lg shadow-[0_20px_40px_rgba(255,255,255,0.1)] w-full md:w-auto justify-center"
             >
               <MessageCircle className="w-6 h-6 fill-black" />
               <span>Talk to us on WhatsApp</span>
             </button>
             <button
               onClick={onBack}
-              className="glass border border-white/10 px-12 py-6 rounded-2xl font-bold text-gray-400 hover:text-white transition-all text-lg"
+              className="glass border border-white/10 px-10 md:px-12 py-5 md:py-6 rounded-2xl font-bold text-gray-400 hover:text-white transition-all text-base md:text-lg w-full md:w-auto justify-center"
             >
               Return to Nexus
             </button>

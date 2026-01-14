@@ -147,7 +147,7 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
         {/* Bottom Legal Bar */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex gap-10 font-mono text-[9px] tracking-[0.2em] text-gray-600 uppercase">
-            <span className="text-gray-400">© 2024 NAXIT INC.</span>
+            <span className="text-gray-400">© 2026 NAXIT INC.</span>
             <a href="#" className="hover:text-naxit-cyan transition-colors">Privacy Protocol</a>
             <a href="#" className="hover:text-naxit-cyan transition-colors">Terms of Service</a>
           </div>
