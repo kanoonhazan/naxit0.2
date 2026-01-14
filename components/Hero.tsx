@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouse);
   }, []);
 
-  const titleWords = "Natives Empower Innovation".split(" ");
+  const titleWords = "The Digital Engine for Local Business.".split(" ");
 
   return (
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-32 pb-28">
@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
           Intelligence Unleashed
         </motion.div>
 
-        <h1 className="text-6xl md:text-[8rem] font-display font-extrabold leading-[0.9] mb-12 tracking-tighter text-white overflow-hidden">
+        <h1 className="text-6xl md:text-[8rem] font-display font-extrabold leading-[1.1] mb-6 tracking-tighter text-white overflow-hidden">
           {titleWords.map((word, i) => (
             <span key={i} className="inline-block overflow-hidden mr-4">
               <motion.span
@@ -63,7 +63,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg md:text-2xl text-gray-400 font-light max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-lg md:text-1xl text-gray-400 font-light max-w-2xl mx-auto mb-6 leading-relaxed"
         >
           Crafting high-end digital experiences where Gen-AI intuition meets world-class engineering. We turn local vision into global powerhouses.
         </motion.p>

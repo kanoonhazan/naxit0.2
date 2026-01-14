@@ -216,7 +216,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                 </motion.div>
 
                 {/* Footer */}
-                <Footer />
+                <Footer onCloseModal={onBack} />
             </div>
         </motion.div>
     );

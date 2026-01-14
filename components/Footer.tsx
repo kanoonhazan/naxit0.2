@@ -20,22 +20,24 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
     }, 100);
   };
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
     e.preventDefault();
 
-    // Close any open modal first
+    // Close ServiceDetail FIRST
     if (onCloseModal) {
       onCloseModal();
     }
 
-    // Wait for modal to close, then scroll
+    // Wait for modal to unmount, then scroll the real page
     setTimeout(() => {
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
+      const el = document.getElementById(targetId);
+      el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300); // match your exit animation duration
   };
+
 
   return (
     <footer className="relative pt-20 pb-10 px-4 border-t border-white/5 bg-naxit-charcoal overflow-hidden">
