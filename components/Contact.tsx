@@ -5,11 +5,31 @@ import { Send, CheckCircle2, Loader2, MessageSquare, Phone, Mail } from 'lucide-
 
 const Contact: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    service: 'Professional Business Website',
+    message: ''
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    setTimeout(() => setStatus('success'), 2000);
+
+    // Construct WhatsApp message
+    const whatsappMessage = `Hi NAXIT, my name is ${formData.name}.
+
+*Service Required:* ${formData.service}
+*Project Intel:* ${formData.message}
+
+*Contact Email:* ${formData.email || 'Not provided'}`;
+
+    const whatsappUrl = `https://wa.me/94758089209?text=${encodeURIComponent(whatsappMessage)}`;
+
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank');
+      setStatus('success');
+    }, 1500);
   };
 
   return (
@@ -81,9 +101,9 @@ const Contact: React.FC = () => {
             {/* Communication Hub (Top Stack) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { label: 'Chat', value: 'WhatsApp', href: 'https://wa.me/94758089209', icon: <MessageSquare className="w-5 h-5" /> },
-                { label: 'Connect', value: '058 089 209', href: 'tel:058089209', icon: <Phone className="w-5 h-5" /> },
-                { label: 'Index', value: 'Email Inbox', href: 'mailto:naxitofficial@gmail.com', icon: <Mail className="w-5 h-5" /> }
+                { label: 'Chat on WhatsApp', value: 'WhatsApp', href: 'https://wa.me/94758089209', icon: <MessageSquare className="w-5 h-5" /> },
+                { label: 'Call Us Directly', value: '075 8089 209', href: 'tel:0758089209', icon: <Phone className="w-5 h-5" /> },
+                { label: 'Email Us', value: 'Email Inbox', href: 'mailto:naxitofficial@gmail.com', icon: <Mail className="w-5 h-5" /> }
               ].map((node, i) => (
                 <motion.a
                   key={node.label}
@@ -122,9 +142,9 @@ const Contact: React.FC = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                   >
-                    <div className="relative z-10 mb-12">
+                    <div className="relative z-10 mb-12 text-white">
                       <div className="text-naxit-cyan font-mono text-[10px] tracking-[0.5em] uppercase mb-4">Transmission Gateway</div>
-                      <h3 className="text-4xl md:text-6xl font-display font-bold tracking-tight text-white leading-tight">Initialize Your <br /><span className="text-gradient">Protocol</span></h3>
+                      <h3 className="text-4xl md:text-6xl font-display font-bold tracking-tight leading-tight">Initialize Your <br /><span className="text-gradient">Protocol</span></h3>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
@@ -134,15 +154,32 @@ const Contact: React.FC = () => {
                           <input
                             required
                             type="text"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             placeholder="Ruwan Perera"
                             className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-700"
                           />
                         </div>
                         <div className="flex flex-col gap-3 group">
-                          <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Email Address</label>
-                          <input
+                          <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Select Service</label>
+                          <select
                             required
+                            value={formData.service}
+                            onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                            className="bg-naxit-charcoal border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] text-white appearance-none cursor-pointer"
+                          >
+                            <option value="Professional Business Website">Professional Business Website</option>
+                            <option value="Digital Presence Setup">Digital Presence Setup</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="Social Media Graphics">Social Media Graphics</option>
+                          </select>
+                        </div>
+                        <div className="flex flex-col gap-3 group md:col-span-2">
+                          <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Email Address (Optional)</label>
+                          <input
                             type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             placeholder="name@company.com"
                             className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-700"
                           />
@@ -150,11 +187,13 @@ const Contact: React.FC = () => {
                       </div>
 
                       <div className="flex flex-col gap-3 group text-white">
-                        <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Mission Parameters</label>
+                        <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Your Business / Project</label>
                         <textarea
                           required
                           rows={4}
-                          placeholder="Briefly tell us what you need..."
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                          placeholder="Briefly tell us what you need (website, online setup, design, etc.)"
                           className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] resize-none placeholder:text-gray-700"
                         />
                       </div>
@@ -188,7 +227,7 @@ const Contact: React.FC = () => {
                       <CheckCircle2 className="w-12 h-12 text-naxit-cyan" />
                     </div>
                     <h3 className="text-4xl md:text-5xl font-display font-bold mb-6 text-white tracking-tight leading-tight">Transmission <br /> Successful.</h3>
-                    <p className="text-gray-400 text-lg max-w-sm leading-relaxed mb-12 font-light">Your protocol has been indexed. Our lead architect will contact you within 24 hours.</p>
+                    <p className="text-gray-400 text-lg max-w-sm leading-relaxed mb-12 font-light">Your protocol has been indexed. Redirecting you to WhatsApp for the final uplink.</p>
                     <button
                       onClick={() => setStatus('idle')}
                       className="text-xs font-mono text-naxit-cyan tracking-[0.4em] uppercase border-b border-naxit-cyan/30 pb-1 hover:text-white hover:border-white transition-colors"
