@@ -19,10 +19,11 @@ const Contact: React.FC = () => {
     // Construct WhatsApp message
     const whatsappMessage = `Hi NAXIT, my name is ${formData.name}.
 
-*Service Required:* ${formData.service}
-*Project Intel:* ${formData.message}
+*Needed Service:* ${formData.service}
 
-*Contact Email:* ${formData.email || 'Not provided'}`;
+${formData.message}
+
+*Contact:* ${formData.email || 'contact through this whatsapp.'}`;
 
     const whatsappUrl = `https://wa.me/94758089209?text=${encodeURIComponent(whatsappMessage)}`;
 
