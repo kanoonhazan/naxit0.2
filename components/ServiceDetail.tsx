@@ -66,7 +66,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             {/* Content Container */}
             <div className="relative">
                 {/* Hero Section */}
-                <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
+                <section className="relative min-h-[70vh] md:h-[85vh] flex items-center justify-center overflow-hidden">
                     {/* Background Decorative Element */}
                     <div className="absolute inset-0 z-0">
                         <div className="absolute inset-0 bg-gradient-to-br from-naxit-royal/20 via-transparent to-naxit-cyan/10" />
@@ -78,12 +78,12 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         <div className="absolute top-2/3 left-1/2 w-1.5 h-1.5 bg-white/20 rounded-full animate-pulse delay-1000" />
                     </div>
 
-                    <div className="relative z-10 text-center max-w-5xl px-4 mt-32 md:mt-20">
+                    <div className="relative z-10 text-center max-w-5xl px-4 mt-24 md:mt-32">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
-                            className="text-naxit-cyan font-mono text-xs md:text-sm tracking-[0.5em] uppercase mb-8"
+                            className="text-naxit-cyan font-mono text-xs md:text-sm tracking-[0.5em] uppercase mb-6 md:mb-8"
                         >
                             {service.badge || 'Service Protocol'} // {service.tag}
                         </motion.div>
@@ -101,12 +101,12 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.2 }}
-                            className="flex flex-col items-center gap-6 md:gap-8 mt-8 md:mt-12"
+                            className="flex flex-col items-center gap-6 md:gap-8 mt-6 md:mt-10"
                         >
                             <p className="text-gray-400 text-lg md:text-2xl font-light max-w-2xl mx-auto leading-tight italic">
                                 {service.subtitle}
                             </p>
-                            <div className="w-[1px] h-16 md:h-24 bg-gradient-to-b from-naxit-cyan/50 to-transparent" />
+                            <div className="w-[1px] h-12 md:h-20 bg-gradient-to-b from-naxit-cyan/50 to-transparent" />
                         </motion.div>
                     </div>
                 </section>
@@ -121,11 +121,11 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         PROTOCOL
                     </div>
 
-                    <div className="lg:col-span-8 space-y-24 md:space-y-40">
+                    <div className="lg:col-span-8 space-y-20 md:space-y-28">
 
                         {/* Problem Section */}
                         {service.problem && (
-                            <div className="space-y-8 md:space-y-12">
+                            <div className="space-y-6 md:space-y-10">
                                 <div className="flex items-center gap-4 md:gap-6 text-naxit-cyan">
                                     <div className="w-12 md:w-16 h-[1px] bg-naxit-cyan" />
                                     <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{service.problemTitle || 'The Problem'}</span>
@@ -138,19 +138,19 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
 
                         {/* Inclusions / Solution Section */}
                         {service.inclusions && service.inclusions.length > 0 && (
-                            <div className="space-y-12 md:space-y-20">
+                            <div className="space-y-10 md:space-y-16">
                                 <div className="flex items-center gap-4 md:gap-6 text-naxit-cyan">
                                     <div className="w-12 md:w-16 h-[1px] bg-naxit-cyan" />
                                     <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{service.inclusionsTitle || 'The Neural Stack'}</span>
                                 </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                                     {service.inclusions.map((inclusion, index) => (
-                                        <div key={index} className="glass p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border border-white/5 hover:border-naxit-cyan/30 transition-all group relative overflow-hidden">
+                                        <div key={index} className="glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border border-white/5 hover:border-naxit-cyan/30 transition-all group relative overflow-hidden">
                                             <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-naxit-cyan/5 rounded-full blur-3xl -mr-12 md:-mr-16 -mt-12 md:-mt-16 group-hover:bg-naxit-cyan/10 transition-colors" />
-                                            <div className="w-12 h-12 md:w-14 md:h-14 bg-naxit-cyan/10 border border-naxit-cyan/30 rounded-2xl flex items-center justify-center mb-6 md:mb-10 group-hover:bg-naxit-cyan group-hover:text-black transition-all">
+                                            <div className="w-12 h-12 md:w-14 md:h-14 bg-naxit-cyan/10 border border-naxit-cyan/30 rounded-2xl flex items-center justify-center mb-6 md:mb-8 group-hover:bg-naxit-cyan group-hover:text-black transition-all">
                                                 <Check className="w-6 h-6 md:w-7 md:h-7" />
                                             </div>
-                                            <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 tracking-tight">{inclusion.title}</h3>
+                                            <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 tracking-tight">{inclusion.title}</h3>
                                             <p className="text-gray-400 text-base md:text-lg leading-relaxed">{inclusion.description}</p>
                                         </div>
                                     ))}
@@ -179,13 +179,13 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
 
                         {/* Results Section */}
                         {service.result && (
-                            <div className="glass p-10 md:p-32 rounded-[2.5rem] md:rounded-[4rem] border border-naxit-cyan/20 relative overflow-hidden bg-gradient-to-br from-naxit-cyan/[0.05] to-transparent">
+                            <div className="glass p-10 md:p-24 rounded-[2.5rem] md:rounded-[3.5rem] border border-naxit-cyan/20 relative overflow-hidden bg-gradient-to-br from-naxit-cyan/[0.05] to-transparent">
                                 <div className="absolute -right-40 -top-40 w-[500px] h-[500px] bg-naxit-cyan/10 rounded-full blur-[150px]" />
-                                <div className="flex items-center gap-4 md:gap-6 text-naxit-cyan mb-10 md:mb-16">
+                                <div className="flex items-center gap-4 md:gap-6 text-naxit-cyan mb-8 md:mb-12">
                                     <Zap className="w-5 h-5 md:w-6 md:h-6" />
                                     <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{service.resultTitle || 'The Outcome'}</span>
                                 </div>
-                                <p className="text-gray-100 leading-[1.3] italic text-2xl md:text-6xl font-display font-medium tracking-tight">
+                                <p className="text-gray-100 leading-[1.3] italic text-2xl md:text-5xl font-display font-medium tracking-tight">
                                     "{service.result}"
                                 </p>
                             </div>
@@ -232,22 +232,22 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                 </section>
 
                 {/* Closing CTA */}
-                <section className="py-40 md:py-80 text-center px-4 relative overflow-hidden">
+                <section className="py-24 md:py-48 text-center px-4 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-naxit-cyan/[0.02] to-black" />
 
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="relative z-10 space-y-12 md:y-20"
+                        className="relative z-10 space-y-10 md:space-y-16"
                     >
-                        <h2 className="text-5xl md:text-[12rem] font-display font-extrabold mb-12 md:mb-16 tracking-tighter leading-none">
+                        <h2 className="text-5xl md:text-[9rem] font-display font-extrabold mb-10 md:mb-14 tracking-tighter leading-none">
                             Ready for <br /><span className="text-gradient">Activation?</span>
                         </h2>
 
                         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
                             <button
                                 onClick={handleWhatsApp}
-                                className="group relative flex items-center gap-3 md:gap-4 bg-white text-black font-bold py-5 md:py-8 px-8 md:px-16 rounded-2xl md:rounded-[2.5rem] hover:scale-105 transition-all text-lg md:text-2xl shadow-[0_20px_80px_rgba(255,255,255,0.15)] w-full md:w-auto justify-center"
+                                className="group relative flex items-center gap-3 md:gap-4 bg-white text-black font-bold py-5 md:py-6 px-10 md:px-14 rounded-2xl md:rounded-[2rem] hover:scale-105 transition-all text-lg md:text-2xl shadow-[0_20px_80px_rgba(255,255,255,0.15)] w-full md:w-auto justify-center"
                             >
                                 <MessageCircle className="w-6 h-6 md:w-8 md:h-8 fill-black" />
                                 <span>{service.ctaPrimary || 'Initialize Protocol'}</span>
@@ -256,7 +256,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                             {service.ctaSecondary && (
                                 <button
                                     onClick={handleCall}
-                                    className="glass border border-white/10 px-8 md:px-16 py-5 md:py-8 rounded-2xl md:rounded-[2.5rem] font-bold text-gray-300 hover:text-white hover:bg-white/5 transition-all text-lg md:text-2xl w-full md:w-auto justify-center"
+                                    className="glass border border-white/10 px-10 md:px-14 py-5 md:py-6 rounded-2xl md:rounded-[2rem] font-bold text-gray-300 hover:text-white hover:bg-white/5 transition-all text-lg md:text-2xl w-full md:w-auto justify-center"
                                 >
                                     <Phone className="w-6 h-6 md:w-7 md:h-7" />
                                     <span>{service.ctaSecondary}</span>
@@ -264,7 +264,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                             )}
                         </div>
 
-                        <p className="text-gray-500 font-mono text-[9px] md:text-[10px] tracking-[0.5em] uppercase pt-16 md:pt-20">
+                        <p className="text-gray-500 font-mono text-[9px] md:text-[10px] tracking-[0.5em] uppercase pt-12 md:pt-16 border-t border-white/5 w-fit mx-auto mt-20">
                             © 2026 NAXIT DEFENSE SYSTEMS // SYSTEM ONLINE
                         </p>
                     </motion.div>

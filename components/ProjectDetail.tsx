@@ -62,7 +62,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       {/* Content Container */}
       <div className="relative">
         {/* Hero */}
-        <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[70vh] md:h-[85vh] flex items-center justify-center overflow-hidden">
           <motion.div
             layoutId={`image-${project.id}`}
             className="absolute inset-0 top-0 z-0">
@@ -91,8 +91,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
         </section>
 
         {/* Narrative Grid */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-20">
-          <div className="lg:col-span-8 space-y-16 md:space-y-24">
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16">
+          <div className="lg:col-span-8 space-y-16 md:space-y-20">
 
             {/* Context/Overview */}
             <div className="space-y-8 md:space-y-10">
@@ -235,11 +235,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
         </section>
 
         {/* Closing CTA */}
-        <section className="py-40 md:py-60 text-center px-4 bg-gradient-to-b from-transparent to-black/20">
+        <section className="py-24 md:py-48 text-center px-4 bg-gradient-to-b from-transparent to-black/20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-9xl font-display font-bold mb-12 md:mb-16 tracking-tighter"
+            className="text-5xl md:text-8xl font-display font-bold mb-10 md:mb-14 tracking-tighter"
           >
             Ready for <br /><span className="text-gradient">Expansion?</span>
           </motion.h2>
