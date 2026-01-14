@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Check, MessageCircle, Phone } from 'lucide-react';
 import { Service } from '../types';
+import Footer from './Footer';
 
 interface ServiceDetailProps {
     service: Service;
@@ -213,6 +214,9 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         )}
                     </div>
                 </motion.div>
+
+                {/* Footer */}
+                <Footer />
             </div>
         </motion.div>
     );
