@@ -80,12 +80,11 @@ const App: React.FC = () => {
       <main className="relative z-10">
         <motion.div
           animate={{
-            scale: selectedProject ? 0.95 : 1,
-            filter: selectedProject ? 'blur(10px) brightness(0.5)' : 'blur(0px) brightness(1)',
+            scale: (selectedProject || selectedService) ? 0.95 : 1,
+            filter: (selectedProject || selectedService) ? 'blur(10px) brightness(0.5)' : 'blur(0px) brightness(1)',
           }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
-          style={{ display: selectedService ? 'none' : 'block' }}
         >
           <Hero />
 

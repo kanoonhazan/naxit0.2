@@ -1,7 +1,7 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Check, MessageCircle, Phone } from 'lucide-react';
+import { ArrowLeft, Check, MessageCircle, Phone, Cpu, Zap, Target, Layout, ChevronRight } from 'lucide-react';
 import { Service } from '../types';
 import Footer from './Footer';
 
@@ -11,6 +11,15 @@ interface ServiceDetailProps {
 }
 
 const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
+    // Listen for escape key
+    useEffect(() => {
+        const handleEsc = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onBack();
+        };
+        window.addEventListener('keydown', handleEsc);
+        return () => window.removeEventListener('keydown', handleEsc);
+    }, [onBack]);
+
     const handleWhatsApp = () => {
         window.open('https://wa.me/94777123456', '_blank');
     };
@@ -21,199 +30,196 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
 
     return (
         <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed inset-0 z-[200] bg-naxit-charcoal overflow-y-auto"
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[200] bg-naxit-charcoal/95 backdrop-blur-3xl overflow-y-auto cursor-auto"
             data-lenis-prevent
         >
-            {/* Header with Back Button */}
-            <div className="sticky top-0 z-[210] bg-naxit-charcoal/80 backdrop-blur-xl border-b border-white/5">
-                <div className="max-w-7xl mx-auto px-4 py-6 flex items-center gap-4">
-                    <button
+            {/* Header Overlay - Floating above content */}
+            <div className="absolute top-0 left-0 right-0 z-[210] w-full pt-[6.5rem] pb-6 px-6 md:pt-[7rem] md:pb-12 md:px-12 pointer-events-none bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[0px]">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <motion.button
+                        initial={{ x: -20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.5 }}
                         onClick={onBack}
-                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
+                        className="pointer-events-auto glass px-6 py-3 rounded-full border border-white/10 hover:border-naxit-cyan transition-colors flex items-center gap-3 group"
                     >
-                        <div className="w-10 h-10 glass rounded-full flex items-center justify-center group-hover:bg-white/10 transition-all">
-                            <ArrowLeft className="w-5 h-5" />
-                        </div>
-                        <span className="hidden sm:inline font-medium">Back to Services</span>
-                    </button>
+                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                        <span className="text-[10px] font-mono tracking-widest uppercase">Return to Nexus [ESC]</span>
+                    </motion.button>
+
+                    <motion.button
+                        onClick={handleWhatsApp}
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.6 }}
+                        className="pointer-events-auto bg-white text-black px-8 py-3 rounded-full text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-3"
+                    >
+                        Quick Intel <MessageCircle className="w-4 h-4" />
+                    </motion.button>
                 </div>
             </div>
 
-            {/* Content */}
-            <div className="max-w-4xl mx-auto px-4 pt-24 pb-16">
-                {/* Header */}
-                <div className="text-center mb-16">
-                    {service.badge && (
+            {/* Content Container */}
+            <div className="relative">
+                {/* Hero Section */}
+                <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
+                    {/* Background Decorative Element */}
+                    <div className="absolute inset-0 z-0">
+                        <div className="absolute inset-0 bg-gradient-to-br from-naxit-royal/20 via-transparent to-naxit-cyan/10" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-naxit-royal/5 blur-[150px] rounded-full" />
+                    </div>
+
+                    <div className="relative z-10 text-center max-w-5xl px-4 mt-20 md:mt-0">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="inline-block px-4 py-2 bg-naxit-cyan/10 border border-naxit-cyan/30 rounded-full text-naxit-cyan text-sm font-mono tracking-wider uppercase mb-6"
+                            transition={{ delay: 0.8 }}
+                            className="text-naxit-cyan font-mono text-xs md:text-sm tracking-[0.5em] uppercase mb-8"
                         >
-                            {service.badge}
+                            {service.badge || 'Service Protocol'} // {service.tag}
                         </motion.div>
-                    )}
-
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight"
-                    >
-                        {service.title}
-                    </motion.h1>
-
-                    {service.subtitle && (
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4 }}
-                            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto"
+                            transition={{ delay: 1, duration: 1 }}
+                            className="text-6xl md:text-[10rem] font-display font-extrabold text-white leading-[0.85] tracking-tighter"
+                        >
+                            {service.title.split(' ').map((w, i) => (
+                                <span key={i} className="block">{w}</span>
+                            ))}
+                        </motion.h1>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.2 }}
+                            className="text-gray-400 text-xl md:text-2xl font-light max-w-2xl mx-auto mt-12"
                         >
                             {service.subtitle}
                         </motion.p>
-                    )}
-                </div>
+                    </div>
+                </section>
 
-                {/* Problem Section */}
-                {service.problem && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="glass p-8 md:p-12 rounded-3xl mb-12"
-                    >
-                        <h2 className="text-2xl md:text-3xl font-display font-bold mb-6">
-                            {service.problemTitle || 'Why do you need this?'}
-                        </h2>
-                        <p className="text-gray-300 text-lg leading-relaxed">
-                            {service.problem}
-                        </p>
-                    </motion.div>
-                )}
+                {/* Narrative Grid */}
+                <section className="max-w-7xl mx-auto px-6 md:px-12 py-32 grid grid-cols-1 lg:grid-cols-12 gap-20">
+                    <div className="lg:col-span-8 space-y-32">
 
-                {/* Target Audience */}
-                {service.targetAudience && service.targetAudience.length > 0 && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
-                        className="mb-12"
-                    >
-                        <h2 className="text-2xl md:text-3xl font-display font-bold mb-8">
-                            {service.targetAudienceTitle || 'Who is this for?'}
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {service.targetAudience.map((audience, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.7 + index * 0.05 }}
-                                    className="flex items-center gap-3 glass p-4 rounded-2xl hover:bg-white/5 transition-colors"
-                                >
-                                    <div className="w-2 h-2 bg-naxit-cyan rounded-full flex-shrink-0" />
-                                    <span className="text-gray-300">{audience}</span>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
+                        {/* Problem Section */}
+                        {service.problem && (
+                            <div className="space-y-10">
+                                <div className="flex items-center gap-4 text-naxit-cyan">
+                                    <div className="w-10 h-[1px] bg-naxit-cyan" />
+                                    <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{service.problemTitle || 'The Problem'}</span>
+                                </div>
+                                <h2 className="text-3xl md:text-5xl font-display font-bold leading-tight decoration-naxit-cyan/30 underline-offset-8">
+                                    {service.problem}
+                                </h2>
+                            </div>
+                        )}
 
-                {/* Inclusions */}
-                {service.inclusions && service.inclusions.length > 0 && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8 }}
-                        className="mb-12"
-                    >
-                        <h2 className="text-2xl md:text-3xl font-display font-bold mb-8">
-                            {service.inclusionsTitle || 'What is included?'}
-                        </h2>
-                        <div className="space-y-6">
-                            {service.inclusions.map((inclusion, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.9 + index * 0.1 }}
-                                    className="glass p-6 md:p-8 rounded-2xl hover:border-naxit-cyan/30 transition-all group"
-                                >
-                                    <div className="flex items-start gap-4">
-                                        <div className="w-8 h-8 bg-naxit-cyan/10 border border-naxit-cyan/30 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-naxit-cyan group-hover:border-naxit-cyan transition-all">
-                                            <Check className="w-4 h-4 text-naxit-cyan group-hover:text-black transition-colors" />
+                        {/* Inclusions / Solution Section */}
+                        {service.inclusions && service.inclusions.length > 0 && (
+                            <div className="space-y-16">
+                                <div className="flex items-center gap-4 text-naxit-cyan">
+                                    <div className="w-10 h-[1px] bg-naxit-cyan" />
+                                    <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{service.inclusionsTitle || 'The Neural Stack'}</span>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    {service.inclusions.map((inclusion, index) => (
+                                        <div key={index} className="glass p-10 rounded-[2.5rem] border border-white/5 hover:border-naxit-cyan/20 transition-all group">
+                                            <div className="w-10 h-10 bg-naxit-cyan/10 border border-naxit-cyan/30 rounded-xl flex items-center justify-center mb-6 group-hover:bg-naxit-cyan group-hover:text-black transition-all">
+                                                <Check className="w-5 h-5" />
+                                            </div>
+                                            <h3 className="text-xl font-bold mb-4">{inclusion.title}</h3>
+                                            <p className="text-gray-400 text-sm leading-relaxed">{inclusion.description}</p>
                                         </div>
-                                        <div className="flex-1">
-                                            <h3 className="text-xl font-bold mb-2">{inclusion.title}</h3>
-                                            <p className="text-gray-400 leading-relaxed">{inclusion.description}</p>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Results Section */}
+                        {service.result && (
+                            <div className="glass p-12 md:p-20 rounded-[3rem] border border-naxit-cyan/20 relative overflow-hidden bg-gradient-to-br from-naxit-cyan/[0.03] to-transparent">
+                                <div className="absolute -right-20 -top-20 w-80 h-80 bg-naxit-cyan/10 rounded-full blur-[100px]" />
+                                <div className="flex items-center gap-4 text-naxit-cyan mb-12">
+                                    <Zap className="w-5 h-5" />
+                                    <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{service.resultTitle || 'The Outcome'}</span>
+                                </div>
+                                <p className="text-gray-200 leading-relaxed italic text-2xl md:text-3xl font-light">
+                                    "{service.result}"
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Sidebar */}
+                    <div className="lg:col-span-4 space-y-16">
+                        {/* Target Audience Sidebar */}
+                        {service.targetAudience && service.targetAudience.length > 0 && (
+                            <div className="glass p-10 rounded-[2.5rem] border border-naxit-cyan/10 bg-gradient-to-br from-naxit-royal/10 to-transparent">
+                                <div className="flex items-center gap-3 text-naxit-cyan mb-8">
+                                    <Target className="w-5 h-5" />
+                                    <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{service.targetAudienceTitle || 'Target Sectors'}</span>
+                                </div>
+                                <div className="space-y-4">
+                                    {service.targetAudience.map((audience, index) => (
+                                        <div key={index} className="flex items-center gap-3 text-gray-300">
+                                            <div className="w-1 h-1 rounded-full bg-naxit-cyan" />
+                                            <span className="text-sm font-medium">{audience}</span>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            ))}
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Status Sidebar */}
+                        <div className="glass p-10 rounded-[2.5rem] border border-white/5">
+                            <div className="flex items-center gap-3 text-gray-500 mb-8 font-mono text-[9px] tracking-widest uppercase">
+                                <Cpu className="w-4 h-4" />
+                                Operational Status
+                            </div>
+                            <p className="text-gray-400 text-sm mb-6">This service is currently at peak efficiency for new local deployments.</p>
+                            <div className="flex items-center gap-3 text-naxit-cyan font-mono text-[10px]">
+                                <span className="flex h-2 w-2 rounded-full bg-naxit-cyan animate-pulse" />
+                                LIVE // SEATS AVAILABLE
+                            </div>
                         </div>
-                    </motion.div>
-                )}
+                    </div>
+                </section>
 
-                {/* Result Section */}
-                {service.result && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.2 }}
-                        className="glass p-8 md:p-12 rounded-3xl mb-12 border-2 border-naxit-cyan/20"
+                {/* Closing CTA */}
+                <section className="py-60 text-center px-4 bg-gradient-to-b from-transparent to-black/20">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="text-6xl md:text-9xl font-display font-bold mb-16 tracking-tighter"
                     >
-                        <h2 className="text-2xl md:text-3xl font-display font-bold mb-6">
-                            {service.resultTitle || 'The Result'}
-                        </h2>
-                        <p className="text-gray-300 text-lg leading-relaxed">
-                            {service.result}
-                        </p>
-                    </motion.div>
-                )}
-
-                {/* CTA Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.3 }}
-                    className="text-center glass p-8 md:p-12 rounded-3xl mb-16"
-                >
-                    {service.ctaText && (
-                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-                            {service.ctaText}
-                        </h2>
-                    )}
-                    {service.ctaSubtext && (
-                        <p className="text-gray-400 mb-8 text-lg">
-                            {service.ctaSubtext}
-                        </p>
-                    )}
-
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        Ready for <br /><span className="text-gradient">Activation?</span>
+                    </motion.h2>
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                         <button
                             onClick={handleWhatsApp}
-                            className="group relative flex items-center gap-3 bg-naxit-cyan text-black font-bold py-5 px-8 rounded-2xl hover:scale-105 transition-all active:scale-95 w-full sm:w-auto"
+                            className="group relative flex items-center gap-3 bg-white text-black font-bold py-6 px-12 rounded-2xl hover:scale-105 transition-all text-lg shadow-[0_20px_40px_rgba(255,255,255,0.1)]"
                         >
-                            <MessageCircle className="w-5 h-5" />
-                            <span>{service.ctaPrimary || 'Get a Quote on WhatsApp'}</span>
+                            <MessageCircle className="w-6 h-6 fill-black" />
+                            <span>{service.ctaPrimary || 'Initialize via WhatsApp'}</span>
                         </button>
 
                         {service.ctaSecondary && (
                             <button
                                 onClick={handleCall}
-                                className="group relative flex items-center gap-3 glass border border-white/10 font-bold py-5 px-8 rounded-2xl hover:bg-white/5 transition-all w-full sm:w-auto"
+                                className="glass border border-white/10 px-12 py-6 rounded-2xl font-bold text-gray-400 hover:text-white transition-all text-lg"
                             >
                                 <Phone className="w-5 h-5" />
                                 <span>{service.ctaSecondary}</span>
                             </button>
                         )}
                     </div>
-                </motion.div>
+                </section>
 
                 {/* Footer */}
                 <Footer onCloseModal={onBack} />
