@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 
 export interface Service {
   id: string;
+  slug: string;
   title: string;
   description: string;
   icon: ReactNode;
