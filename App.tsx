@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import { Helmet } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 
 import Preloader from './components/Preloader';
 import NeuralBackground from './components/NeuralBackground';
@@ -39,6 +40,7 @@ const AppContent: React.FC = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/services/:slug" element={<ServicePage />} />
       </Routes>
+      <Analytics />
     </div>
   );
 };
