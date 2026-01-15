@@ -6,9 +6,13 @@ import App from './App';
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error("Root element not found");
 
+import { HelmetProvider } from 'react-helmet-async';
+
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </React.StrictMode>
 );

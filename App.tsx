@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
+import { Helmet } from 'react-helmet-async';
 
 import Preloader from './components/Preloader';
 import NeuralBackground from './components/NeuralBackground';
@@ -30,6 +31,9 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="relative selection:bg-naxit-cyan selection:text-naxit-charcoal bg-naxit-charcoal min-h-screen">
+      <Helmet>
+        <html lang="en-LK" />
+      </Helmet>
       <NeuralBackground />
       <Routes>
         <Route path="/" element={<LandingPage />} />

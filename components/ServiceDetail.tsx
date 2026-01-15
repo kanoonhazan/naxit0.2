@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Check, MessageCircle, Phone, Cpu, Zap, Target, Layout, ChevronRight, BarChart3, ShieldCheck, Clock } from 'lucide-react';
 import { Service } from '../types';
@@ -37,6 +38,15 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             className="fixed inset-0 z-[200] bg-naxit-charcoal/95 backdrop-blur-3xl overflow-y-auto cursor-auto"
             data-lenis-prevent
         >
+            <Helmet>
+                <title>{service.title} | Naxit</title>
+                <meta name="description" content={service.description} />
+                <link rel="canonical" href={`https://www.naxitofficial.de/services/${service.slug}`} />
+                <meta property="og:title" content={`${service.title} | Naxit`} />
+                <meta property="og:description" content={service.description} />
+                <meta property="og:url" content={`https://www.naxitofficial.de/services/${service.slug}`} />
+            </Helmet>
+
             {/* Header Overlay - Floating above content */}
             <div className="absolute top-0 left-0 right-0 z-[210] w-full pt-20 md:pt-[7rem] pb-6 px-4 md:px-12 pointer-events-none bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[0px]">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">

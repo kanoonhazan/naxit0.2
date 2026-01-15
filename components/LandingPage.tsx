@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Navbar from './Navbar';
 import Hero from './Hero';
 import LogoCloud from './LogoCloud';
@@ -39,6 +40,11 @@ const LandingPage: React.FC = () => {
 
     return (
         <div className="relative">
+            <Helmet>
+                <title>Naxit | Best Web Design & Digital Agency in Sri Lanka</title>
+                <meta name="description" content="Naxit is a leading digital agency in Sri Lanka specializing in Premium Website Design, UI/UX, and Digital Presence setup for local and global businesses." />
+                <link rel="canonical" href="https://www.naxitofficial.de/" />
+            </Helmet>
             <Navbar onCloseModal={() => setSelectedProject(null)} />
 
             <main className="relative z-10">

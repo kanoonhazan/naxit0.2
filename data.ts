@@ -8,53 +8,53 @@ export const SERVICES: Service[] = [
         id: '1',
         title: 'Professional Business Website',
         slug: 'website-design-sri-lanka',
-        description: 'A clean, secure website that helps customers trust your business and contact you easily.',
+        description: 'Top-tier website design services for Sri Lankan businesses. A clean, secure website that helps local customers trust your business.',
         icon: React.createElement(Globe, { className: "w-8 h-8" }),
-        tag: 'Website',
-        badge: 'Most Popular',
-        subtitle: 'Look professional online. Be easy to find. Make it simple for customers to contact you.',
-        problemTitle: 'Why is this important?',
-        problem: 'Many good businesses lose customers because they are hard to find online or look outdated on mobile phones. When people can’t quickly see your services, location, or contact details, they often move on to another business.',
+        tag: 'Web Design',
+        badge: 'Popular in Sri Lanka',
+        subtitle: 'Professional website design in Sri Lanka. Look professional online, be easy to find, and grow your local business.',
+        problemTitle: 'Why do you need this?',
+        problem: 'Many good businesses in Sri Lanka lose customers because they are hard to find online. If customers in Colombo, Kandy, or your local area can’t find you on Google, they go to your competitors.',
         targetAudienceTitle: 'Who is this for?',
         targetAudience: [
-            'Local Shops & Stores',
+            'Sri Lankan Retail Shops',
             'Tuition Classes & Academies',
-            'Consultants & Service Providers',
-            'Medical Centers & Pharmacies',
-            'Restaurants & Bakeries',
-            'Construction & Trade Businesses'
+            'Law Firms & Consultancies',
+            'Medical Centers in Sri Lanka',
+            'Restaurants & Hotels',
+            'Construction Companies'
         ],
         inclusionsTitle: 'What is included?',
         inclusions: [
             {
-                title: 'Professional Website Design',
-                description: 'A clean, easy-to-understand layout that clearly shows your services and contact details.'
+                title: 'Professional Design',
+                description: 'A dedicated design tailored for the Sri Lankan market that shows your services clearly.'
             },
             {
-                title: 'Mobile-Friendly Layout',
-                description: 'Your website will work smoothly on all phones and tablets.'
+                title: 'Mobile Friendly',
+                description: 'Optimized for all devices, ensuring your site looks great on every smartphone in Sri Lanka.'
             },
             {
-                title: 'Domain Setup (.com or .lk)',
-                description: 'We help you set up your official website address.'
+                title: '.COM or .LK Domain',
+                description: 'We register your official internet address (e.g., www.yourbusiness.lk).'
             },
             {
-                title: 'Google Maps Listing',
-                description: 'Your business location is set up so customers can easily find directions.'
+                title: 'Google Maps Setup',
+                description: 'We verify your location on Google Maps so local customers can drive to you easily.'
             },
             {
                 title: 'Hosting & Security',
-                description: 'Fast hosting with basic security and HTTPS included.'
+                description: 'Fast, secure hosting with HTTPS included to keep your data safe.'
             },
             {
-                title: 'WhatsApp Contact Button',
-                description: 'Customers can message you instantly with one tap.'
+                title: 'WhatsApp Button',
+                description: 'A direct link for Sri Lankan customers to message you immediately via WhatsApp.'
             }
         ],
         resultTitle: 'The Result',
-        result: 'Your business looks professional and reliable online. Customers can easily find you, understand what you offer, and contact you with confidence.',
+        result: 'A high-performing website that ranks well in Sri Lanka. Your business looks professional, and local customers trust you enough to call.',
         ctaText: 'Get your business online',
-        ctaSubtext: 'Typical delivery: 5–7 working days.',
+        ctaSubtext: 'Projects typically take 5-7 days.',
         ctaPrimary: 'Get a Quote on WhatsApp',
         ctaSecondary: ''
     },
@@ -62,45 +62,45 @@ export const SERVICES: Service[] = [
         id: '2',
         title: 'Digital Presence Setup',
         slug: 'digital-presence-sri-lanka',
-        description: 'We set up your online profiles so local customers can find and trust your business.',
+        description: 'Complete digital presence setup for Sri Lankan businesses. We help you dominate local search results.',
         icon: React.createElement(Code, { className: "w-8 h-8" }),
-        tag: 'Presence',
-        badge: 'Essential',
-        subtitle: 'Show up clearly on Google and social media.',
-        problemTitle: 'The problem',
-        problem: 'Customers often search on Google or Facebook before visiting a business. If your information is missing, inconsistent, or outdated, they may choose another option without contacting you.',
+        tag: 'SEO & Presence',
+        badge: 'Essential for Locals',
+        subtitle: 'Be visible when customers in Sri Lanka search for your services.',
+        problemTitle: 'The Problem',
+        problem: 'When Sri Lankan customers search "near me" or check Facebook, they need to find you. If your shop doesn\'t appear on Google Maps or looks inactive, you are losing sales to the shop next door.',
         targetAudienceTitle: 'Who is this for?',
         targetAudience: [
             'Restaurants & Cafes',
-            'Salons & Barbers',
+            'Salons & Spas',
             'Medical Centers',
-            'Vehicle Service Stations',
-            'Retail Shops',
-            'Home-Based Businesses'
+            'Service Stations',
+            'Local Retailers',
+            'Home Bakers'
         ],
         inclusionsTitle: 'What is included?',
         inclusions: [
             {
-                title: 'Google Business Profile Setup',
-                description: 'Accurate business details, location, working hours, and photos.'
+                title: 'Google Maps Verification',
+                description: 'We claim your business location and help you verify completely on Google Maps.'
             },
             {
                 title: 'Facebook Page Setup',
-                description: 'Professional page layout with correct contact details and messaging.'
+                description: 'A professional cover photo, automated greeting messages, and correct contact info setup.'
             },
             {
-                title: 'WhatsApp Business Setup',
-                description: 'Business profile, auto-replies, and quick responses.'
+                title: 'WhatsApp for Business',
+                description: 'Setup auto-replies, business catalog, and quick response messages.'
             },
             {
-                title: 'Basic Local SEO',
-                description: 'Your business name and services are set up correctly for local searches.'
+                title: 'Local SEO Strategy',
+                description: 'We ensure your business name appears correctly when people search for your services in your city.'
             }
         ],
         resultTitle: 'The Result',
-        result: 'When people search for your service nearby, your business appears clearly and looks active and trustworthy.',
-        ctaText: 'Get found online',
-        ctaSubtext: 'Quick setup in 2–3 working days.',
+        result: 'When a customer searches "open now" in your area, you show up. You look active, open, and ready for business in Sri Lanka.',
+        ctaText: 'Get found online today',
+        ctaSubtext: 'Quick setup in 2-3 days.',
         ctaPrimary: 'Chat with us',
         ctaSecondary: ''
     },
@@ -108,88 +108,88 @@ export const SERVICES: Service[] = [
         id: '3',
         title: 'UI/UX Design',
         slug: 'ui-ux-design-sri-lanka',
-        description: 'Clear, user-focused design before you invest money in development.',
+        description: 'World-class UI/UX design for Sri Lankan startups. Clear, user-focused design before you code.',
         icon: React.createElement(Palette, { className: "w-8 h-8" }),
-        tag: 'Design',
+        tag: 'UI/UX Design',
         badge: 'For Startups',
-        subtitle: 'Turn your idea into a clear, usable design.',
-        problemTitle: 'The problem',
-        problem: 'Without proper design, apps often become confusing or expensive to fix later. Developers and designers may interpret ideas differently, leading to wasted time and money.',
+        subtitle: 'Turn your idea into a professional design with a leading UI/UX design company in Sri Lanka.',
+        problemTitle: 'The Problem',
+        problem: 'You explain your app idea to developers, but they build something hard to use. As a premier UI/UX design agency, we solve this by creating clear blueprints before you spend money on coding.',
         targetAudienceTitle: 'Who is this for?',
         targetAudience: [
-            'Startup Founders',
+            'Tech Startup Founders',
             'Entrepreneurs with App Ideas',
-            'Businesses building internal tools',
-            'Teams working with developers'
+            'Software Companies',
+            'Enterprises in Sri Lanka'
         ],
         inclusionsTitle: 'What is included?',
         inclusions: [
             {
-                title: 'User Flow Planning',
-                description: 'We map how users move through the product step by step.'
+                title: 'User Flow Diagrams',
+                description: 'We map out exactly how a user moves through your app, screen by screen.'
             },
             {
                 title: 'Wireframes',
-                description: 'Simple layouts that focus on structure and functionality.'
+                description: 'Blueprints of the app structure focusing on functionality and user experience.'
             },
             {
-                title: 'High-Fidelity UI Design',
-                description: 'Detailed, polished screens showing the final look.'
+                title: 'High-Fidelity UI',
+                description: 'Beautiful, full-color designs that show exactly what the final app will look like.'
             },
             {
                 title: 'Clickable Prototype',
-                description: 'An interactive demo you can test before development.'
+                description: 'A simulation of your app that investors and developers can test on their phones.'
             }
         ],
         resultTitle: 'The Result',
-        result: 'You receive clear design files that developers can follow easily, reducing confusion and rework.',
+        result: 'You get a complete design file from a top UI/UX design company in Sri Lanka. Developers know exactly what to build, and investors are impressed.',
         ctaText: 'Visualize your idea',
-        ctaSubtext: 'Flexible packages based on project size.',
-        ctaPrimary: 'Discuss My Idea',
+        ctaSubtext: 'Packages start from simple prototypes to full systems.',
+        ctaPrimary: 'Discuss my Idea',
         ctaSecondary: ''
     },
     {
         id: '4',
         title: 'Social Media Graphics',
         slug: 'brand-identity-sri-lanka',
-        description: 'Professional visuals that keep your brand consistent and trustworthy.',
+        description: 'Premium brand identity design for ambitious Sri Lankan businesses. Logos and visuals that build trust.',
         icon: React.createElement(Sparkles, { className: "w-8 h-8" }),
-        tag: 'Creative',
-        badge: 'Branding',
-        subtitle: 'Simple, professional designs that represent your business well.',
-        problemTitle: 'The problem',
-        problem: 'Inconsistent or low-quality visuals can make a business look unprofessional. First impressions online strongly influence whether customers trust you.',
+        tag: 'Branding',
+        badge: 'Strategic Design',
+        subtitle: 'Look big, even if you are small. Professional branding from a leading Brand Identity Agency in Sri Lanka.',
+        problemTitle: 'The Problem',
+        problem: 'Posting blurry photos or having a messy logo makes customers think your product quality is low. In the competitive Sri Lankan market, first impressions matter more than ever.',
         targetAudienceTitle: 'Who is this for?',
         targetAudience: [
-            'Retail & Clothing Stores',
-            'Tuition Classes',
+            'Clothing Brands',
+            'Educational Institutes',
             'Food & Beverage Brands',
-            'Real Estate Agents',
-            'Event Organizers'
+            'Real Estate Companies',
+            'Event Planners'
         ],
         inclusionsTitle: 'What is included?',
         inclusions: [
             {
                 title: 'Logo Design',
-                description: 'A clean, professional logo with all necessary file formats.'
+                description: 'A unique, professional logo that stands out. Delivered in all valid formats.'
             },
             {
-                title: 'Social Media Templates',
-                description: 'Reusable designs for Facebook and Instagram posts.'
+                title: 'Social Media Posts',
+                description: 'Beautiful templates for your Facebook and Instagram posts that you can reuse.'
             },
             {
-                title: 'Print Design',
-                description: 'Business cards, flyers, banners, and other materials.'
+                title: 'Print Materials',
+                description: 'Design for business cards, flyers, banners, and letterheads ready for printing.'
             },
             {
-                title: 'Photo Enhancement',
-                description: 'Basic editing to improve product and promotional images.'
+                title: 'Brand Guidelines',
+                description: 'A guide on how to use your colors and fonts to keep your brand consistent.'
             }
         ],
         resultTitle: 'The Result',
-        result: 'Your business presents a consistent, professional image across online and offline materials.',
+        result: 'A consistent, trustworthy look across your shop board, business card, and online profiles. Sri Lankan customers take you seriously.',
         ctaText: 'Upgrade your brand',
-        ctaSubtext: 'One-time or monthly support options available.',
+        ctaSubtext: 'Fast turnaround times.',
         ctaPrimary: 'Get a Quote',
         ctaSecondary: ''
     }
