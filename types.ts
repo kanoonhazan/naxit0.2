@@ -36,6 +36,7 @@ export interface NavItem {
 
 export interface Project {
   id: string;
+  slug: string;
   title: string;
   category: 'Design' | 'Strategy' | 'Engineering' | 'AI';
   tagline: string;

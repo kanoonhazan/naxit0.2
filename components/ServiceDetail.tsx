@@ -31,12 +31,11 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
 
     return (
         <motion.div
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[200] bg-naxit-charcoal/95 backdrop-blur-3xl overflow-y-auto cursor-auto"
-            data-lenis-prevent
+            className="min-h-screen bg-naxit-charcoal overflow-y-auto cursor-auto"
         >
             <Helmet>
                 <title>{service.title} | Naxit</title>

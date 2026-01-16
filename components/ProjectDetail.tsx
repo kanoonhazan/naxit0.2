@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Project } from '../types';
 import { ArrowLeft, Cpu, Target, Zap, Layout, Globe, MessageCircle, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import Footer from './Footer';
 
 interface ProjectDetailProps {
@@ -26,13 +27,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
 
   return (
     <motion.div
-      initial={{ y: '100%' }}
-      animate={{ y: 0 }}
-      exit={{ y: '100%' }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-0 z-[150] bg-naxit-charcoal/95 backdrop-blur-3xl overflow-y-auto cursor-auto"
-      data-lenis-prevent
+      className="min-h-screen bg-naxit-charcoal overflow-y-auto cursor-auto"
     >
+      <Helmet>
+        <title>{project.title} | Naxit Portfolio</title>
+        <meta name="description" content={project.tagline} />
+        <meta property="og:title" content={`${project.title} | Naxit Portfolio`} />
+        <meta property="og:description" content={project.tagline} />
+        <meta property="og:image" content={project.image} />
+      </Helmet>
       {/* Header Overlay - Floating above content */}
       <div className="absolute top-0 left-0 right-0 z-[160] w-full pt-20 md:pt-[7rem] pb-6 px-4 md:px-12 pointer-events-none bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[0px]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">

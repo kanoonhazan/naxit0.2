@@ -16,7 +16,6 @@ import NeuralBackground from './NeuralBackground'; // Assuming this is global ba
 import { Project, Service } from '../types';
 
 const LandingPage: React.FC = () => {
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const navigate = useNavigate();
 
     const { scrollYProgress } = useScroll();
@@ -27,16 +26,7 @@ const LandingPage: React.FC = () => {
     });
     const height = useTransform(scaleY, [0, 1], ["0%", "100%"]);
 
-    // Prevent main scroll when project detail is open
-    useEffect(() => {
-        if (selectedProject) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto'; // Re-enable scroll when strictly on landing page with no modal
-        }
-        // Cleanup
-        return () => { document.body.style.overflow = 'auto'; };
-    }, [selectedProject]);
+
 
     return (
         <div className="relative">
@@ -45,15 +35,10 @@ const LandingPage: React.FC = () => {
                 <meta name="description" content="Naxit is a leading digital agency in Sri Lanka specializing in Premium Website Design, UI/UX, and Digital Presence setup for local and global businesses." />
                 <link rel="canonical" href="https://www.naxitofficial.de/" />
             </Helmet>
-            <Navbar onCloseModal={() => setSelectedProject(null)} />
+            <Navbar onCloseModal={() => { }} />
 
             <main className="relative z-10">
                 <motion.div
-                    animate={{
-                        scale: selectedProject ? 0.95 : 1,
-                        filter: selectedProject ? 'blur(10px) brightness(0.5)' : 'blur(0px) brightness(1)',
-                    }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="relative"
                 >
                     <Hero />
@@ -73,43 +58,33 @@ const LandingPage: React.FC = () => {
                                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />
                             </div>
 
-                            <Portfolio onSelectProject={(p) => setSelectedProject(p)} />
+                            <Portfolio onSelectProject={(p) => navigate(`/portfolio/${p.slug}`)} />
                             <div className="max-w-7xl mx-auto px-4">
                                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" />
                             </div>
                             <Contact />
-                            <Footer onCloseModal={() => setSelectedProject(null)} />
+                            <Footer onCloseModal={() => { }} />
                         </div>
                     </div>
                 </motion.div>
 
-                <AnimatePresence>
-                    {selectedProject && (
-                        <ProjectDetail
-                            key="detail"
-                            project={selectedProject}
-                            onBack={() => setSelectedProject(null)}
-                        />
-                    )}
-                </AnimatePresence>
+
             </main>
 
             {/* Vertical Progress Indicator */}
-            {!selectedProject && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="fixed right-10 top-1/2 -translate-y-1/2 z-[100] hidden xl:flex flex-col items-center gap-8"
-                >
-                    <div className="text-[10px] font-mono text-gray-600 rotate-90 tracking-[0.4em] mb-4">JOURNEY</div>
-                    <div className="w-[1px] h-32 bg-white/5 relative">
-                        <motion.div
-                            className="absolute top-0 left-0 w-full bg-naxit-cyan shadow-[0_0_8px_#00d4ff]"
-                            style={{ height }}
-                        />
-                    </div>
-                </motion.div>
-            )}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="fixed right-10 top-1/2 -translate-y-1/2 z-[100] hidden xl:flex flex-col items-center gap-8"
+            >
+                <div className="text-[10px] font-mono text-gray-600 rotate-90 tracking-[0.4em] mb-4">JOURNEY</div>
+                <div className="w-[1px] h-32 bg-white/5 relative">
+                    <motion.div
+                        className="absolute top-0 left-0 w-full bg-naxit-cyan shadow-[0_0_8px_#00d4ff]"
+                        style={{ height }}
+                    />
+                </div>
+            </motion.div>
         </div>
     );
 };
