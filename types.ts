@@ -38,7 +38,8 @@ export interface Project {
   id: string;
   slug: string;
   title: string;
-  category: 'Design' | 'Strategy' | 'Engineering' | 'AI';
+  category: 'Website Design' | 'UI/UX Design' | 'Digital Branding' | 'Graphic Design';
+  featured?: boolean;
   tagline: string;
   image: string;
   impact: string;

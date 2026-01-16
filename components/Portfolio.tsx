@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '../types';
 import { PROJECTS } from '../data';
-import { ExternalLink, Database, Cpu } from 'lucide-react';
+import { ExternalLink, Database, Cpu, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 
-const CATEGORIES = ['All', 'Design', 'AI', 'Strategy', 'Engineering'] as const;
+const CATEGORIES = ['All', 'Website Design', 'UI/UX Design', 'Digital Branding', 'Graphic Design'] as const;
 
 /* =======================
    PROJECT CARD
@@ -118,13 +119,9 @@ interface PortfolioProps {
 }
 
 const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
-  const [activeCategory, setActiveCategory] =
-    useState<typeof CATEGORIES[number]>('All');
+  const navigate = useNavigate();
 
-  const filteredProjects =
-    activeCategory === 'All'
-      ? PROJECTS
-      : PROJECTS.filter((p) => p.category === activeCategory);
+  const featuredProjects = PROJECTS.filter(p => p.featured).slice(0, 4);
 
   return (
     <section id="portfolio" className="py-28 md:py-40 px-4 relative">
@@ -138,33 +135,15 @@ const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
             <h2 className="text-6xl sm:text-8xl md:text-6xl lg:text-8xl
                            font-display font-bold tracking-tighter">
               Selected <br />
-              <span className="text-gradient">Masterworks</span>
+              <span className="text-gradient">Featured Works</span>
             </h2>
-          </div>
-
-          {/* Filters */}
-          <div className="flex flex-wrap gap-2 glass p-2 rounded-2xl border border-white/5">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3
-                            rounded-xl text-xs sm:text-sm font-medium transition-all
-                            ${activeCategory === cat
-                    ? 'bg-naxit-royal text-white shadow-[0_0_20px_rgba(0,85,255,0.4)]'
-                    : 'text-gray-500 hover:text-white hover:bg-white/5'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
           </div>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {featuredProjects.map((project) => (
               <ProjectCard
                 key={project.id}
                 project={project}
@@ -172,6 +151,17 @@ const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
               />
             ))}
           </AnimatePresence>
+        </div>
+
+        {/* See All Button */}
+        <div className="mt-16 text-center">
+          <button
+            onClick={() => navigate('/portfolio')}
+            className="group inline-flex items-center gap-4 bg-white/5 border border-white/10 px-8 py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300"
+          >
+            <span>View All Masterworks</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
     </section>

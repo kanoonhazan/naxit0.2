@@ -12,6 +12,7 @@ import NeuralBackground from './components/NeuralBackground';
 import LandingPage from './components/LandingPage';
 import ServicePage from './components/ServicePage';
 import ProjectPage from './components/ProjectPage';
+import PortfolioPage from './components/PortfolioPage';
 
 const AppContent: React.FC = () => {
   useEffect(() => {
@@ -41,6 +42,7 @@ const AppContent: React.FC = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/services/:slug" element={<ServicePage />} />
         <Route path="/portfolio/:slug" element={<ProjectPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
       <Analytics />
     </div>
