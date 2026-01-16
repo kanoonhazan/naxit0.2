@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ExternalLink, Database, Cpu } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { PROJECTS } from '../data';
+import { useProjects } from '../context/ProjectContext';
 import { Project } from '../types';
 
 const CATEGORIES = ['All', 'Website Design', 'UI/UX Design', 'Digital Branding', 'Graphic Design'] as const;
@@ -65,6 +65,7 @@ const ProjectCard: React.FC<{ project: Project; onClick: () => void }> = ({ proj
 
 const PortfolioPage: React.FC = () => {
     const navigate = useNavigate();
+    const { projects } = useProjects();
     const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>('All');
 
     useEffect(() => {
@@ -72,8 +73,8 @@ const PortfolioPage: React.FC = () => {
     }, []);
 
     const filteredProjects = activeCategory === 'All'
-        ? PROJECTS
-        : PROJECTS.filter(p => p.category === activeCategory);
+        ? projects
+        : projects.filter(p => p.category === activeCategory);
 
     return (
         <div className="min-h-screen bg-naxit-charcoal">
@@ -110,8 +111,8 @@ const PortfolioPage: React.FC = () => {
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
                                     className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${activeCategory === cat
-                                            ? 'bg-naxit-royal text-white shadow-[0_0_20px_rgba(0,85,255,0.4)]'
-                                            : 'text-gray-500 hover:text-white hover:bg-white/5'
+                                        ? 'bg-naxit-royal text-white shadow-[0_0_20px_rgba(0,85,255,0.4)]'
+                                        : 'text-gray-500 hover:text-white hover:bg-white/5'
                                         }`}
                                 >
                                     {cat}

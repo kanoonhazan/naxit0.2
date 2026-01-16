@@ -13,6 +13,8 @@ import LandingPage from './components/LandingPage';
 import ServicePage from './components/ServicePage';
 import ProjectPage from './components/ProjectPage';
 import PortfolioPage from './components/PortfolioPage';
+import Admin from './components/Admin';
+import { ProjectProvider } from './context/ProjectContext';
 
 const AppContent: React.FC = () => {
   useEffect(() => {
@@ -38,12 +40,15 @@ const AppContent: React.FC = () => {
         <html lang="en-LK" />
       </Helmet>
       <NeuralBackground />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/services/:slug" element={<ServicePage />} />
-        <Route path="/portfolio/:slug" element={<ProjectPage />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
-      </Routes>
+      <ProjectProvider>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/services/:slug" element={<ServicePage />} />
+          <Route path="/portfolio/:slug" element={<ProjectPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </ProjectProvider>
       <Analytics />
     </div>
   );

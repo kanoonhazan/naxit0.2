@@ -2,23 +2,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProjectDetail from './ProjectDetail';
-import { PROJECTS } from '../data';
+import { useProjects } from '../context/ProjectContext';
 import { Project } from '../types';
 
 const ProjectPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
     const [project, setProject] = useState<Project | null>(null);
+    const { getProjectBySlug } = useProjects();
 
     useEffect(() => {
-        const foundProject = PROJECTS.find(p => p.slug === slug);
+        const foundProject = getProjectBySlug(slug || '');
         if (foundProject) {
             setProject(foundProject);
         } else {
             // Handle not found - for now redirect to home
             navigate('/', { replace: true });
         }
-    }, [slug, navigate]);
+    }, [slug, navigate, getProjectBySlug]);
 
     if (!project) return null; // Or a loading spinner
 

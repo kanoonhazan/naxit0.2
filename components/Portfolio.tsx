@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '../types';
-import { PROJECTS } from '../data';
+import { useProjects } from '../context/ProjectContext';
 import { ExternalLink, Database, Cpu, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -120,8 +120,9 @@ interface PortfolioProps {
 
 const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
   const navigate = useNavigate();
+  const { getFeaturedProjects } = useProjects();
 
-  const featuredProjects = PROJECTS.filter(p => p.featured).slice(0, 4);
+  const featuredProjects = getFeaturedProjects();
 
   return (
     <section id="portfolio" className="py-28 md:py-40 px-4 relative">
