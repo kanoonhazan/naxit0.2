@@ -314,7 +314,7 @@ const Process: React.FC = () => {
           <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-naxit-cyan/40 to-transparent mb-8" />
 
           <p className="text-gray-500 font-mono text-xs uppercase tracking-[0.2em]">
-            Built for Business  // Not Guesswork
+            Built for Business | Not Guesswork
           </p>
         </motion.div>
       </div>

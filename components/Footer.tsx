@@ -67,7 +67,7 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
                 <div className="w-2 h-2 rounded-full bg-naxit-cyan relative" />
               </div>
               <div className="font-mono text-[10px] tracking-widest text-gray-400 uppercase">
-                System Status: <span className="text-naxit-cyan">Operational // Nominal</span>
+                Location Base: <span className="text-naxit-cyan">Mannar | Sri Lanka</span>
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
           <div className="lg:col-span-3">
             <h4 className="text-[10px] font-mono text-gray-500 tracking-[0.4em] uppercase mb-8">Expertise</h4>
             <ul className="space-y-4">
-              {['UI/UX Research', 'React Ecosystems', 'Brand Architecture', 'Motion Design', 'AI Integration'].map((item) => (
+              {['UI/UX Design', 'Website Design', 'Graphic Design', 'Branding', 'Digital Works'].map((item) => (
                 <li key={item} className="text-gray-400 text-sm flex items-center gap-3 hover:text-naxit-cyan transition-colors cursor-default group">
                   <div className="w-1 h-1 rounded-full bg-naxit-royal group-hover:bg-naxit-cyan transition-colors" />
                   {item}
