@@ -1,8 +1,11 @@
 
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '../types';
-import { ArrowLeft, Cpu, Target, Zap, Layout, Globe, MessageCircle, ChevronRight, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowLeft, Cpu, Target, Zap, Layout, Globe, MessageCircle,
+  ChevronRight, ChevronLeft, CheckCircle2, X, ZoomIn, ZoomOut, Maximize2
+} from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import Footer from './Footer';
 
@@ -12,17 +15,66 @@ interface ProjectDetailProps {
 }
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
-  // Listen for escape key
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  // Listen for escape key and navigation
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onBack();
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (selectedImageIndex !== null) {
+          setSelectedImageIndex(null);
+          setZoom(1);
+        } else {
+          onBack();
+        }
+      }
+      if (selectedImageIndex !== null) {
+        if (e.key === 'ArrowRight') handleNext();
+        if (e.key === 'ArrowLeft') handlePrev();
+      }
     };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [onBack]);
+
+    if (selectedImageIndex !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [onBack, selectedImageIndex]);
 
   const handleWhatsApp = () => {
     window.open('https://wa.me/94758089209', '_blank');
+  };
+
+  const handleNext = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((selectedImageIndex + 1) % project.gallery.length);
+    setZoom(1);
+  };
+
+  const handlePrev = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((selectedImageIndex - 1 + project.gallery.length) % project.gallery.length);
+    setZoom(1);
+  };
+
+  const handleZoomIn = () => {
+    setZoom(prev => Math.min(prev + 0.5, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoom(prev => Math.max(prev - 0.5, 1));
+  };
+
+  const toggleZoom = () => {
+    setZoom(prev => prev > 1 ? 1 : 2);
   };
 
   return (
@@ -239,18 +291,145 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className={`rounded-[3rem] overflow-hidden ${idx % 3 === 0 ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'} border border-white/5`}
+                onClick={() => setSelectedImageIndex(idx)}
+                className={`rounded-[3rem] overflow-hidden ${idx % 3 === 0 ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'} border border-white/5 cursor-pointer group relative`}
               >
                 <img
                   src={img}
                   alt="Visual artifact"
                   loading="lazy"
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-naxit-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <Maximize2 className="w-10 h-10 text-white" />
+                </div>
               </motion.div>
             ))}
           </div>
         </section>
+
+        {/* Full View Modal */}
+        <AnimatePresence>
+          {selectedImageIndex !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[2000] bg-black/98 backdrop-blur-2xl flex flex-col items-center justify-center p-2 md:p-8 cursor-zoom-out"
+              onClick={() => { setSelectedImageIndex(null); setZoom(1); }}
+            >
+              <div
+                className="absolute top-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4 z-[2001]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="text-white/40 font-mono text-[8px] md:text-[10px] tracking-widest uppercase text-center md:text-left order-2 md:order-1">
+                  {project.title} <span className="hidden md:inline">/</span> <br className="md:hidden" /> Artifact {selectedImageIndex + 1} of {project.gallery.length}
+                </div>
+                <div className="flex items-center gap-2 md:gap-4 order-1 md:order-2 w-full md:w-auto justify-between md:justify-end">
+                  <div className="flex items-center bg-white/5 rounded-full p-1 border border-white/10 glass shrink-0">
+                    <button
+                      onClick={handleZoomOut}
+                      disabled={zoom <= 1}
+                      className="p-2 rounded-full text-white hover:text-naxit-cyan disabled:opacity-30 disabled:hover:text-white transition-all"
+                      title="Zoom Out"
+                    >
+                      <ZoomOut className="w-4 h-4" />
+                    </button>
+                    <div className="px-1 md:px-2 text-[9px] md:text-[10px] font-mono text-white/60 min-w-[2.5rem] md:min-w-[3.5rem] text-center">
+                      {(zoom * 100).toFixed(0)}%
+                    </div>
+                    <button
+                      onClick={handleZoomIn}
+                      disabled={zoom >= 3}
+                      className="p-2 rounded-full text-white hover:text-naxit-cyan disabled:opacity-30 disabled:hover:text-white transition-all"
+                      title="Zoom In"
+                    >
+                      <ZoomIn className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => { setSelectedImageIndex(null); setZoom(1); }}
+                    className="p-2.5 md:p-3 rounded-full glass border border-white/10 text-white hover:text-red-500 hover:border-red-500/50 transition-all shrink-0"
+                    title="Close"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className="relative w-full h-full flex items-center justify-center overflow-hidden touch-none"
+                ref={containerRef}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                  className="absolute left-2 md:left-8 z-[2005] p-3 md:p-4 rounded-full glass border border-white/10 text-white hover:text-naxit-cyan hover:border-naxit-cyan transition-all group backdrop-blur-md bg-black/20"
+                >
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 group-hover:-translate-x-1 transition-transform" />
+                </button>
+
+                <motion.div
+                  key={selectedImageIndex}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{
+                    opacity: 1,
+                    scale: zoom,
+                    cursor: zoom > 1 ? 'grab' : 'zoom-in'
+                  }}
+                  transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                  className="w-full h-full flex items-center justify-center p-2 md:p-4 touch-none"
+                >
+                  <motion.img
+                    key={`img-${selectedImageIndex}`}
+                    drag={zoom > 1}
+                    dragConstraints={containerRef}
+                    dragElastic={0.2}
+                    dragMomentum={true}
+                    dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+                    src={project.gallery[selectedImageIndex]}
+                    alt="Gallery artifact full view"
+                    className="max-w-[95vw] max-h-[75vh] md:max-h-[80vh] object-contain shadow-2xl select-none pointer-events-auto"
+                    style={{
+                      cursor: zoom > 1 ? 'grab' : 'zoom-in',
+                      touchAction: 'none'
+                    }}
+                    onDragStart={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      if (zoom === 1) {
+                        e.stopPropagation();
+                        toggleZoom();
+                      } else {
+                        e.stopPropagation();
+                      }
+                    }}
+                  />
+                </motion.div>
+
+                <button
+                  onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                  className="absolute right-2 md:right-8 z-[2005] p-3 md:p-4 rounded-full glass border border-white/10 text-white hover:text-naxit-cyan hover:border-naxit-cyan transition-all group backdrop-blur-md bg-black/20"
+                >
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+
+              <div
+                className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 hidden md:flex gap-2 z-[2001]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {project.gallery.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImageIndex(i)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all ${i === selectedImageIndex ? 'bg-naxit-cyan w-8' : 'bg-white/20 hover:bg-white/40'
+                      }`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Closing CTA */}
         <section className="py-24 md:py-48 text-center px-4 bg-gradient-to-b from-transparent to-black/20">
