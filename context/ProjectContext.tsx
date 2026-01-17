@@ -24,15 +24,22 @@ export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children })
 
             if (error) throw error;
             if (data && data.length > 0) {
-                // Map snake_case from DB to camelCase for the app if needed, 
-                // but let's assume we use the same names for simplicity or map them.
-                // The Project interface uses camelCase: fullDescription, designDecisions, resultOutcome.
-                setProjects(data.map(p => ({
+                const mappedProjects = data.map(p => ({
                     ...p,
                     fullDescription: p.full_description,
                     designDecisions: p.design_decisions,
                     resultOutcome: p.result_outcome
-                })));
+                }));
+
+                setProjects(mappedProjects);
+                // Sync with local storage for offline fallback
+                localStorage.setItem('naxit_projects', JSON.stringify(mappedProjects));
+            } else {
+                // If DB is empty but we have local storage, use it
+                const savedProjects = localStorage.getItem('naxit_projects');
+                if (savedProjects) {
+                    setProjects(JSON.parse(savedProjects));
+                }
             }
         } catch (err) {
             console.error('Error fetching projects from Supabase:', err);

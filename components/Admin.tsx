@@ -108,11 +108,19 @@ const Admin: React.FC = () => {
         }
     };
 
-    const handleSyncStaticData = async () => {
-        if (!window.confirm('This will upload all existing static projects to Supabase. Continue?')) return;
+    const handleSyncAllData = async () => {
+        if (!window.confirm('This will synchronize your projects. NEW projects from deployment will be preserved, and STATIC projects from code will be uploaded if missing. Continue?')) return;
         setIsSyncing(true);
         try {
-            const projectsToSync = INITIAL_PROJECTS.map(p => ({
+            // 1. Fetch current projects from Supabase to check what's already there
+            const { data: remoteProjects, error: fetchError } = await supabase
+                .from('projects')
+                .select('*');
+
+            if (fetchError) throw fetchError;
+
+            // 2. Prepare static projects from data.ts
+            const staticProjectsMapped = INITIAL_PROJECTS.map(p => ({
                 id: p.id,
                 slug: p.slug,
                 title: p.title,
@@ -132,15 +140,48 @@ const Admin: React.FC = () => {
                 result_outcome: p.resultOutcome
             }));
 
-            const { error } = await supabase.from('projects').upsert(projectsToSync);
-            if (error) throw error;
-            alert('Sync complete!');
+            // 3. Merge Logic: 
+            // - We keep all remote projects (they are considered authoritative).
+            // - We add static projects ONLY if their ID doesn't exist in remote.
+            // This prevents overwriting newer remote updates with old static data.
+            const remoteIds = new Set(remoteProjects?.map(p => p.id) || []);
+            const mergedProjects = [...(remoteProjects || [])];
+
+            staticProjectsMapped.forEach(sp => {
+                if (!remoteIds.has(sp.id)) {
+                    mergedProjects.push(sp);
+                }
+            });
+
+            // 4. Upsert the merged set back to Supabase
+            const { error: upsertError } = await supabase.from('projects').upsert(mergedProjects);
+            if (upsertError) throw upsertError;
+
+            alert(`Sync complete! Total cloud projects: ${mergedProjects.length}`);
             refreshProjects();
         } catch (err: any) {
+            console.error('Sync failed:', err);
             alert('Sync failed: ' + err.message);
         } finally {
             setIsSyncing(false);
         }
+    };
+
+    const handleDownloadData = () => {
+        // Prepare the data to match the data.ts format
+        const projectsToExport = projects.map(p => ({
+            ...p,
+            // Ensure any UI-specific or extra fields are cleaned if necessary
+        }));
+
+        const dataStr = "export const PROJECTS = " + JSON.stringify(projectsToExport, null, 4) + ";";
+        const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+        const exportFileDefaultName = 'projects_data.ts';
+
+        const linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
     };
 
     const filteredProjects = projects.filter(p =>
@@ -210,11 +251,18 @@ const Admin: React.FC = () => {
 
                     <div className="flex items-center gap-4">
                         <button
-                            onClick={handleSyncStaticData}
+                            onClick={handleSyncAllData}
                             disabled={isSyncing}
                             className={`glass border border-white/10 px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${isSyncing ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/5'}`}
                         >
-                            <Save className="w-4 h-4" /> {isSyncing ? 'SYNCING...' : 'SYNC STATIC DATA'}
+                            <Save className="w-4 h-4" /> {isSyncing ? 'SYNCING...' : 'SYNC ALL DATA'}
+                        </button>
+                        <button
+                            onClick={handleDownloadData}
+                            className="glass border border-white/10 px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/5"
+                            title="Download project data to update data.ts"
+                        >
+                            <ExternalLink className="w-4 h-4" /> EXPORT DATA
                         </button>
                         <button
                             onClick={() => { setIsAdding(true); setEditingProject({} as Project); }}
@@ -341,7 +389,8 @@ const Admin: React.FC = () => {
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="glass w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[3rem] border border-white/10 relative z-10"
+                            className="glass w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[3rem] border border-white/10 relative z-10 custom-scrollbar"
+                            data-lenis-prevent
                         >
                             <div className="sticky top-0 z-20 glass bg-black/60 backdrop-blur-xl border-b border-white/10 px-8 py-6 flex items-center justify-between">
                                 <div>
