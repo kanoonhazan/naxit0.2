@@ -48,13 +48,13 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
 
             {/* Header Overlay - Floating above content */}
             <div className="absolute top-0 left-0 right-0 z-[210] w-full pt-20 md:pt-[7rem] pb-6 px-4 md:px-12 pointer-events-none bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[0px]">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="max-w-7xl mx-auto flex flex-row justify-between items-center gap-4">
                     <motion.button
                         initial={{ x: -20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.5 }}
                         onClick={onBack}
-                        className="pointer-events-auto glass px-5 md:px-6 py-2.5 md:py-3 rounded-full border border-white/10 hover:border-naxit-cyan transition-colors flex items-center gap-3 group w-full md:w-auto justify-center"
+                        className="pointer-events-auto glass px-4 md:px-6 py-2.5 md:py-3 rounded-full border border-white/10 hover:border-naxit-cyan transition-colors flex items-center gap-2 md:gap-3 group flex-1 md:flex-initial justify-center"
                     >
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         <span className="text-[9px] md:text-[10px] font-mono tracking-widest uppercase">Return [ESC]</span>
@@ -65,7 +65,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         initial={{ x: 20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.6 }}
-                        className="pointer-events-auto bg-white text-black px-6 md:px-8 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-3 w-full md:w-auto justify-center"
+                        className="pointer-events-auto bg-white text-black px-4 md:px-8 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-2 md:gap-3 flex-1 md:flex-initial justify-center"
                     >
                         Whatsapp <MessageCircle className="w-4 h-4" />
                     </motion.button>
@@ -76,31 +76,26 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             <div className="relative">
                 {/* Hero Section */}
                 <section className="relative min-h-[70vh] md:h-[85vh] flex items-center justify-center overflow-hidden">
-                    {/* Background Decorative Element */}
-                    <div className="absolute inset-0 z-0">
-                        <div className="absolute inset-0 bg-gradient-to-br from-naxit-royal/20 via-transparent to-naxit-cyan/10" />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-naxit-royal/10 blur-[150px] rounded-full" />
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1 }}
+                        className="absolute inset-0 z-0">
+                        <img src={service.image || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000'} alt={service.title} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
+                    </motion.div>
 
-                        {/* Abstract Neural Nodes in Background */}
-                        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-naxit-cyan rounded-full animate-pulse blur-[1px]" />
-                        <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-naxit-royal rounded-full animate-pulse delay-700 blur-[1px]" />
-                        <div className="absolute top-2/3 left-1/2 w-1.5 h-1.5 bg-white/20 rounded-full animate-pulse delay-1000" />
-                    </div>
-
-                    <div className="relative z-10 text-center max-w-5xl px-4 mt-24 md:mt-32">
+                    <div className="relative z-10 text-center max-w-5xl px-4 mt-32 md:mt-20">
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ delay: 0.8 }}
-                            className="text-naxit-cyan font-mono text-xs md:text-sm tracking-[0.5em] uppercase mb-6 md:mb-8"
+                            className="text-naxit-cyan font-mono text-xs tracking-[0.5em] uppercase mb-8"
                         >
-                            {service.badge || 'Service Protocol'} // {service.tag}
+                            {service.badge || 'Service Protocol'} / {service.tag}
                         </motion.div>
                         <motion.h1
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1, duration: 1 }}
-                            className="text-5xl md:text-[6rem] font-display font-extrabold text-white leading-[1] tracking-tighter"
+                            className="text-5xl md:text-[8rem] font-display font-extrabold text-white leading-[0.85] tracking-tighter"
                         >
                             {service.title.split(' ').map((w, i) => (
                                 <span key={i} className="block">{w}</span>
@@ -109,13 +104,12 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 1.2 }}
-                            className="flex flex-col items-center gap-6 md:gap-8 mt-6 md:mt-10"
+                            transition={{ delay: 1 }}
+                            className="mt-10"
                         >
-                            <p className="text-gray-400 text-lg md:text-2xl font-light max-w-2xl mx-auto leading-tight italic">
+                            <p className="text-gray-400 text-lg md:text-2xl font-light max-w-2xl mx-auto leading-relaxed">
                                 {service.subtitle}
                             </p>
-                            <div className="w-[1px] h-12 md:h-20 bg-gradient-to-b from-naxit-cyan/50 to-transparent" />
                         </motion.div>
                     </div>
                 </section>

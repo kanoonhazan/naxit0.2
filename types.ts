@@ -7,6 +7,7 @@ export interface Service {
   title: string;
   description: string;
   icon: ReactNode;
+  image?: string;
   tag: string;
   badge?: string;
   subtitle?: string;
