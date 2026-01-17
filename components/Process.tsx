@@ -205,13 +205,13 @@ const Process: React.FC = () => {
               return (
                 <motion.div
                   key={step.id}
-                  className="min-w-[320px] md:min-w-[450px] glass p-10 rounded-[3rem] border border-white/5 relative group transition-colors hover:border-naxit-cyan/20"
+                  className="min-w-[320px] md:min-w-[450px] glass p-10 rounded-[3rem] border border-white/5 relative group transition-all duration-700 hover:border-naxit-cyan/20 gpu-accel"
                   animate={{
                     scale: isActive ? 1.05 : 1,
                     opacity: isActive ? 1 : 0.7
                   }}
-                  whileHover={window.innerWidth > 768 ? { y: -10, scale: 1 } : undefined}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  whileHover={window.innerWidth > 768 ? { y: -10 } : undefined}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {/* Step Header */}
                   <div className="flex justify-between items-start mb-10 md:mb-16">

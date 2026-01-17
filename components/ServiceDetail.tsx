@@ -77,10 +77,11 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                 {/* Hero Section */}
                 <section className="relative min-h-[70vh] md:h-[85vh] flex items-center justify-center overflow-hidden">
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1 }}
-                        className="absolute inset-0 z-0">
+                        initial={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+                        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute inset-0 z-0 gpu-accel"
+                    >
                         <img src={service.image || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000'} alt={service.title} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
                         <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
                     </motion.div>
@@ -276,7 +277,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                 {/* Footer */}
                 <Footer onCloseModal={onBack} />
             </div>
-        </motion.div>
+        </motion.div >
     );
 };
 

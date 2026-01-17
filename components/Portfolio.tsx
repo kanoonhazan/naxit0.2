@@ -28,7 +28,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
       onClick={() => onSelect(project)}
       className="group relative h-[420px] md:h-[520px] lg:h-[600px]
                  rounded-3xl md:rounded-[2.5rem]
-                 overflow-hidden glass border border-white/5 cursor-pointer"
+                 overflow-hidden glass border border-white/5 cursor-pointer gpu-accel"
     >
       {/* Background */}
       <div className="absolute inset-0">
@@ -158,7 +158,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
         <div className="mt-16 text-center">
           <button
             onClick={() => navigate('/portfolio')}
-            className="group inline-flex items-center gap-4 bg-white/5 border border-white/10 px-8 py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300"
+            className="group inline-flex items-center gap-4 bg-white/5 border border-white/10 px-8 py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
           >
             <span>View All Masterworks</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

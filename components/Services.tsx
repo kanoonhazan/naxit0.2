@@ -50,7 +50,7 @@ const TiltCard: React.FC<TiltCardProps> = ({ service, index, onClick }) => {
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="glass p-8 rounded-[2rem] group glass-hover transition-colors duration-500 flex flex-col justify-between min-h-[400px] relative overflow-hidden cursor-pointer"
+      className="glass p-8 rounded-[2rem] group glass-hover transition-all duration-700 flex flex-col justify-between min-h-[400px] relative overflow-hidden cursor-pointer gpu-accel"
     >
       <div className="relative z-10" style={{ transform: "translateZ(50px)" }}>
         <div className="mb-8 p-4 bg-naxit-royal/10 border border-naxit-royal/20 rounded-2xl w-fit text-naxit-cyan group-hover:bg-naxit-cyan group-hover:text-black transition-all duration-500">

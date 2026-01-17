@@ -1,7 +1,6 @@
-
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import { Helmet } from 'react-helmet-async';
@@ -17,17 +16,28 @@ import Admin from './components/Admin';
 import { ProjectProvider } from './context/ProjectContext';
 
 const AppContent: React.FC = () => {
+  const location = useLocation();
+
   useEffect(() => {
     console.log("NAXIT - Natives Empower Innovation. System Online.");
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      autoRaf: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.5,
+      infinite: false,
     });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();
@@ -35,22 +45,63 @@ const AppContent: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative selection:bg-naxit-cyan selection:text-naxit-charcoal bg-naxit-charcoal min-h-screen">
+    <div className="relative bg-naxit-charcoal min-h-screen selection:bg-naxit-cyan selection:text-naxit-charcoal overflow-x-hidden">
       <Helmet>
         <html lang="en-LK" />
       </Helmet>
       <NeuralBackground />
       <ProjectProvider>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/services/:slug" element={<ServicePage />} />
-          <Route path="/portfolio/:slug" element={<ProjectPage />} />
-          <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <div key={location.pathname}>
+            <Routes location={location}>
+              <Route path="/" element={
+                <PageWrapper>
+                  <LandingPage />
+                </PageWrapper>
+              } />
+              <Route path="/services/:slug" element={
+                <PageWrapper>
+                  <ServicePage />
+                </PageWrapper>
+              } />
+              <Route path="/portfolio/:slug" element={
+                <PageWrapper>
+                  <ProjectPage />
+                </PageWrapper>
+              } />
+              <Route path="/portfolio" element={
+                <PageWrapper>
+                  <PortfolioPage />
+                </PageWrapper>
+              } />
+              <Route path="/admin" element={
+                <PageWrapper>
+                  <Admin />
+                </PageWrapper>
+              } />
+            </Routes>
+          </div>
+        </AnimatePresence>
       </ProjectProvider>
       <Analytics />
     </div>
+  );
+};
+
+const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -15 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.div>
   );
 };
 

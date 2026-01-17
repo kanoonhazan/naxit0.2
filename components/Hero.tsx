@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, letterSpacing: '1em' }}
           animate={{ opacity: 1, letterSpacing: '0.4em' }}
           transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-block text-naxit-cyan font-display text-sm md:text-base uppercase mb-6"
+          className="inline-block text-naxit-cyan font-display text-sm md:text-base uppercase mb-6 gpu-accel"
         >
           Intelligence Unleashed
         </motion.div>
@@ -50,8 +50,8 @@ const Hero: React.FC = () => {
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
-                transition={{ duration: 1, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={`inline-block ${i === 2 ? 'text-gradient' : ''}`}
+                transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className={`inline-block gpu-accel ${i === 2 ? 'text-gradient' : ''}`}
               >
                 {word}
               </motion.span>
@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
         >
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group relative px-10 py-5 bg-white text-black font-bold rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95"
+            className="group relative px-10 py-5 bg-white text-black font-bold rounded-2xl overflow-hidden active:scale-95 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_20px_40px_rgba(0,212,255,0.2)]"
           >
             <span className="relative z-10">Launch Your Vision</span>
             <div className="absolute inset-0 bg-naxit-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
