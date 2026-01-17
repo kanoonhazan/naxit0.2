@@ -19,34 +19,20 @@ import {
 import { Project } from '../types';
 import { PROJECTS as INITIAL_PROJECTS } from '../data';
 
-const ADMIN_PASSWORD = 'naxit-admin-2026'; // Simple password as requested
+import { supabase } from '../supabase';
+import { useProjects } from '../context/ProjectContext';
+
+const ADMIN_PASSWORD = 'naxit-admin-2026';
 
 const Admin: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [projects, setProjects] = useState<Project[]>([]);
+    const { projects, refreshProjects } = useProjects();
     const [editingProject, setEditingProject] = useState<Project | null>(null);
     const [isAdding, setIsAdding] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-
-    // Load projects from localStorage if they exist, otherwise use default
-    useEffect(() => {
-        const savedProjects = localStorage.getItem('naxit_projects');
-        if (savedProjects) {
-            setProjects(JSON.parse(savedProjects));
-        } else {
-            setProjects(INITIAL_PROJECTS);
-        }
-    }, []);
-
-    // Save to localStorage whenever projects change
-    useEffect(() => {
-        if (projects.length > 0) {
-            localStorage.setItem('naxit_projects', JSON.stringify(projects));
-            window.dispatchEvent(new Event('projectsUpdated'));
-        }
-    }, [projects]);
+    const [isSyncing, setIsSyncing] = useState(false);
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
@@ -58,32 +44,43 @@ const Admin: React.FC = () => {
         }
     };
 
-    const handleDelete = (id: string) => {
+    const handleDelete = async (id: string) => {
         if (window.confirm('Are you sure you want to delete this project?')) {
-            setProjects(projects.filter(p => p.id !== id));
+            const { error } = await supabase
+                .from('projects')
+                .delete()
+                .eq('id', id);
+
+            if (error) alert('Error deleting: ' + error.message);
+            else refreshProjects();
         }
     };
 
-    const handleToggleFeatured = (id: string) => {
-        const featuredCount = projects.filter(p => p.featured).length;
+    const handleToggleFeatured = async (id: string) => {
         const project = projects.find(p => p.id === id);
+        if (!project) return;
 
-        if (!project?.featured && featuredCount >= 4) {
+        const featuredCount = projects.filter(p => p.featured).length;
+        if (!project.featured && featuredCount >= 4) {
             alert('Maximum of 4 featured projects allowed.');
             return;
         }
 
-        setProjects(projects.map(p =>
-            p.id === id ? { ...p, featured: !p.featured } : p
-        ));
+        const { error } = await supabase
+            .from('projects')
+            .update({ featured: !project.featured })
+            .eq('id', id);
+
+        if (error) alert('Error updating: ' + error.message);
+        else refreshProjects();
     };
 
-    const handleSaveProject = (e: React.FormEvent) => {
+    const handleSaveProject = async (e: React.FormEvent) => {
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
 
-        const projectData: any = {
-            id: editingProject?.id || `0${projects.length + 1}`,
+        const projectData = {
+            id: editingProject?.id || `0${projects.length + 1}_${Date.now()}`,
             slug: formData.get('slug') as string,
             title: formData.get('title') as string,
             category: formData.get('category') as any,
@@ -94,18 +91,56 @@ const Admin: React.FC = () => {
             tech: (formData.get('tech') as string).split(',').map(t => t.trim()),
             challenge: formData.get('challenge') as string,
             approach: formData.get('approach') as string,
-            fullDescription: formData.get('fullDescription') as string,
+            full_description: formData.get('fullDescription') as string,
             gallery: (formData.get('gallery') as string).split(',').map(t => t.trim()),
         };
 
-        if (isAdding) {
-            setProjects([...projects, projectData]);
-        } else {
-            setProjects(projects.map(p => p.id === projectData.id ? projectData : p));
-        }
+        const { error } = isAdding
+            ? await supabase.from('projects').insert([projectData])
+            : await supabase.from('projects').update(projectData).eq('id', projectData.id);
 
-        setEditingProject(null);
-        setIsAdding(false);
+        if (error) {
+            alert('Error saving: ' + error.message);
+        } else {
+            setEditingProject(null);
+            setIsAdding(false);
+            refreshProjects();
+        }
+    };
+
+    const handleSyncStaticData = async () => {
+        if (!window.confirm('This will upload all existing static projects to Supabase. Continue?')) return;
+        setIsSyncing(true);
+        try {
+            const projectsToSync = INITIAL_PROJECTS.map(p => ({
+                id: p.id,
+                slug: p.slug,
+                title: p.title,
+                category: p.category,
+                featured: p.featured || false,
+                tagline: p.tagline,
+                image: p.image,
+                impact: p.impact,
+                tech: p.tech,
+                challenge: p.challenge,
+                approach: p.approach,
+                full_description: p.fullDescription,
+                gallery: p.gallery,
+                problem: p.problem,
+                solution: p.solution,
+                design_decisions: p.designDecisions,
+                result_outcome: p.resultOutcome
+            }));
+
+            const { error } = await supabase.from('projects').upsert(projectsToSync);
+            if (error) throw error;
+            alert('Sync complete!');
+            refreshProjects();
+        } catch (err: any) {
+            alert('Sync failed: ' + err.message);
+        } finally {
+            setIsSyncing(false);
+        }
     };
 
     const filteredProjects = projects.filter(p =>
@@ -174,6 +209,13 @@ const Admin: React.FC = () => {
                     </div>
 
                     <div className="flex items-center gap-4">
+                        <button
+                            onClick={handleSyncStaticData}
+                            disabled={isSyncing}
+                            className={`glass border border-white/10 px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${isSyncing ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/5'}`}
+                        >
+                            <Save className="w-4 h-4" /> {isSyncing ? 'SYNCING...' : 'SYNC STATIC DATA'}
+                        </button>
                         <button
                             onClick={() => { setIsAdding(true); setEditingProject({} as Project); }}
                             className="bg-naxit-royal hover:bg-naxit-cyan text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2"
