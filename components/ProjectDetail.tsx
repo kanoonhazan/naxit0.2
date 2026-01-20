@@ -177,6 +177,21 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
               </p>
             </div>
 
+            {/* Approach */}
+            {project.approach && (
+              <div className="space-y-8 md:space-y-10">
+                <div className="flex items-center gap-4 text-naxit-cyan">
+                  <div className="w-10 h-[1px] bg-naxit-cyan/30" />
+                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">Strategic Approach</span>
+                </div>
+                <div className="glass p-8 md:p-12 rounded-[2rem] border border-white/5 bg-white/[0.02]">
+                  <p className="text-gray-300 text-lg md:text-2xl font-light leading-relaxed">
+                    {project.approach}
+                  </p>
+                </div>
+              </div>
+            )}
+
             {/* Problem Section */}
             {project.problem && (
               <div className="space-y-8 md:space-y-10">

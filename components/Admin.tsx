@@ -93,7 +93,20 @@ const Admin: React.FC = () => {
             challenge: formData.get('challenge') as string,
             approach: formData.get('approach') as string,
             full_description: formData.get('fullDescription') as string,
-            gallery: (formData.get('gallery') as string).split(',').map(t => t.trim()),
+            gallery: (formData.get('gallery') as string).split(',').map(t => t.trim()).filter(Boolean),
+            problem: {
+                title: formData.get('problemTitle') as string || 'The Problem',
+                content: (formData.get('problemContent') as string).split('\n').map(l => l.trim()).filter(l => l.length > 0)
+            },
+            solution: {
+                title: formData.get('solutionTitle') as string || 'Our Solution',
+                content: (formData.get('solutionContent') as string).split('\n').map(l => l.trim()).filter(l => l.length > 0)
+            },
+            design_decisions: (formData.get('designDecisions') as string).split('\n').map(l => l.trim()).filter(l => l.length > 0),
+            result_outcome: {
+                title: formData.get('resultOutcomeTitle') as string || 'Result (Project Outcome)',
+                content: (formData.get('resultOutcomeContent') as string).split('\n').map(l => l.trim()).filter(l => l.length > 0)
+            }
         };
 
         const { error } = isAdding
@@ -457,12 +470,42 @@ const Admin: React.FC = () => {
                                         <textarea name="challenge" defaultValue={editingProject.challenge} rows={3} className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan resize-none" />
                                     </div>
                                     <div className="space-y-4">
+                                        <label className="block text-[10px] font-mono text-gray-500 uppercase tracking-widest pl-2">Our Approach</label>
+                                        <textarea name="approach" defaultValue={editingProject.approach} rows={3} className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan resize-none" />
+                                    </div>
+                                    <div className="space-y-4">
                                         <label className="block text-[10px] font-mono text-gray-500 uppercase tracking-widest pl-2">Full Narrative</label>
                                         <textarea name="fullDescription" defaultValue={editingProject.fullDescription} rows={5} className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan resize-none" />
                                     </div>
                                     <div className="space-y-4">
                                         <label className="block text-[10px] font-mono text-gray-500 uppercase tracking-widest pl-2">Tech Stack (Comma separated)</label>
                                         <input name="tech" defaultValue={editingProject.tech?.join(', ')} placeholder="React, Tailwind, Framer" className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan" />
+                                    </div>
+
+                                    {/* Detailed Sections */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-white/5">
+                                        <div className="space-y-4">
+                                            <h4 className="text-xs font-bold text-naxit-cyan uppercase tracking-widest">Problem Section</h4>
+                                            <input name="problemTitle" defaultValue={editingProject.problem?.title} placeholder="Section Title (e.g. The Problem)" className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan text-sm" />
+                                            <textarea name="problemContent" defaultValue={editingProject.problem?.content?.join('\n')} rows={4} placeholder="Content points (one per line)..." className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan resize-none text-sm" />
+                                        </div>
+                                        <div className="space-y-4">
+                                            <h4 className="text-xs font-bold text-naxit-cyan uppercase tracking-widest">Solution Section</h4>
+                                            <input name="solutionTitle" defaultValue={editingProject.solution?.title} placeholder="Section Title (e.g. Our Solution)" className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan text-sm" />
+                                            <textarea name="solutionContent" defaultValue={editingProject.solution?.content?.join('\n')} rows={4} placeholder="Content points (one per line)..." className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan resize-none text-sm" />
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-white/5">
+                                        <div className="space-y-4">
+                                            <h4 className="text-xs font-bold text-naxit-cyan uppercase tracking-widest">Design Decisions</h4>
+                                            <textarea name="designDecisions" defaultValue={editingProject.designDecisions?.join('\n')} rows={6} placeholder="Decisions (one per line)..." className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan resize-none text-sm" />
+                                        </div>
+                                        <div className="space-y-4">
+                                            <h4 className="text-xs font-bold text-naxit-cyan uppercase tracking-widest">Result & Outcome</h4>
+                                            <input name="resultOutcomeTitle" defaultValue={editingProject.resultOutcome?.title} placeholder="Section Title (e.g. The Result)" className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan text-sm" />
+                                            <textarea name="resultOutcomeContent" defaultValue={editingProject.resultOutcome?.content?.join('\n')} rows={4} placeholder="Outcome points (one per line)..." className="w-full glass bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-naxit-cyan resize-none text-sm" />
+                                        </div>
                                     </div>
                                 </div>
 
