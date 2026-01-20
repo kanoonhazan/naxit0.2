@@ -4,6 +4,7 @@ import { Project } from '../types';
 import { useProjects } from '../context/ProjectContext';
 import { ExternalLink, Database, Cpu, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { getOptimizedImage } from '../utils';
 
 
 const CATEGORIES = ['All', 'Website Design', 'UI/UX Design', 'Digital Branding', 'Graphic Design'] as const;
@@ -33,7 +34,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
       {/* Background */}
       <div className="absolute inset-0">
         <motion.img
-          src={project.image}
+          src={getOptimizedImage(project.image, 800)}
           alt={project.title}
           loading="lazy"
           className="w-full h-full object-cover opacity-50 grayscale

@@ -7,6 +7,7 @@ import {
   ChevronRight, ChevronLeft, CheckCircle2, X, ZoomIn, ZoomOut, Maximize2
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { getOptimizedImage } from '../utils';
 import Footer from './Footer';
 
 interface ProjectDetailProps {
@@ -128,7 +129,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 top-0 z-0 gpu-accel">
-            <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
+            <img src={getOptimizedImage(project.image)} alt={project.title} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
             <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
           </motion.div>
 
@@ -295,7 +296,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                 className={`rounded-[3rem] overflow-hidden ${idx % 3 === 0 ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'} border border-white/5 cursor-pointer group relative`}
               >
                 <img
-                  src={img}
+                  src={getOptimizedImage(img, 800)}
                   alt="Visual artifact"
                   loading="lazy"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
@@ -387,7 +388,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                     dragElastic={0.2}
                     dragMomentum={true}
                     dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-                    src={project.gallery[selectedImageIndex]}
+                    src={getOptimizedImage(project.gallery[selectedImageIndex])}
                     alt="Gallery artifact full view"
                     className="max-w-[95vw] max-h-[75vh] md:max-h-[80vh] object-contain shadow-2xl select-none pointer-events-auto"
                     style={{

@@ -21,6 +21,7 @@ import { PROJECTS as INITIAL_PROJECTS } from '../data';
 
 import { supabase } from '../supabase';
 import { useProjects } from '../context/ProjectContext';
+import { getOptimizedImage } from '../utils';
 
 const ADMIN_PASSWORD = 'naxit-admin-2026';
 
@@ -202,7 +203,7 @@ const Admin: React.FC = () => {
                         <div className="w-16 h-16 bg-naxit-royal/20 rounded-2xl flex items-center justify-center mb-4 border border-naxit-cyan/30">
                             <Lock className="w-8 h-8 text-naxit-cyan" />
                         </div>
-                        <h1 className="text-3xl font-display font-bold text-white uppercase tracking-widest">Admin Nexus</h1>
+                        <h1 className="text-3xl font-display font-bold text-white uppercase tracking-widest">Admin Naxit</h1>
                         <p className="text-gray-500 text-xs font-mono tracking-widest mt-2">SECURE PROTOCOL ACCESS</p>
                     </div>
 
@@ -319,7 +320,7 @@ const Admin: React.FC = () => {
                                 className="glass rounded-[2rem] border border-white/5 overflow-hidden group hover:border-white/20 transition-all flex flex-col"
                             >
                                 <div className="relative h-48 overflow-hidden">
-                                    <img src={project.image} alt="" className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
+                                    <img src={getOptimizedImage(project.image, 400)} alt="" className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal to-transparent" />
                                     <div className="absolute top-4 left-4 flex gap-2">
                                         <button

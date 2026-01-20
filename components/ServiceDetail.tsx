@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Check, MessageCircle, Phone, Cpu, Zap, Target, Layout, ChevronRight, BarChart3, ShieldCheck, Clock } from 'lucide-react';
 import { Service } from '../types';
+import { getOptimizedImage } from '../utils';
 import Footer from './Footer';
 
 interface ServiceDetailProps {
@@ -82,7 +83,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                         className="absolute inset-0 z-0 gpu-accel"
                     >
-                        <img src={service.image || 'https://wuwzcvobruampagkumre.supabase.co/storage/v1/object/public/public-assets/Branding%20digitalization%20/branding-digitalization'} alt={service.title} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
+                        <img src={getOptimizedImage(service.image || 'https://wuwzcvobruampagkumre.supabase.co/storage/v1/object/public/public-assets/Branding%20digitalization%20/branding-digitalization')} alt={service.title} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
                         <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
                     </motion.div>
 

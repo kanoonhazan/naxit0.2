@@ -202,56 +202,63 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
     {
         id: '01',
-        slug: 'xenon-quantum-interface',
-        title: 'Xenon Quantum Interface',
+        slug: 'yumdrop-food-delivery-ux',
+        title: 'YumDrop – Food Delivery App UX',
         category: 'UI/UX Design',
         featured: true,
-        tagline: 'Redefining human-AI interaction through spatial computing.',
-        image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2000&auto=format&fit=crop',
-        impact: '+140% User Depth',
-        tech: ['React Three Fiber', 'WebGPU', 'Framer Motion'],
-        challenge: 'Architecting a 4D navigation system for complex neural data visualization.',
-        approach: 'We developed a fluid, motion-first spatial interface that uses dynamic lighting to guide user focus through multi-dimensional datasets.',
-        fullDescription: 'Traditional 2D interfaces failed to convey the complexity of Xenon\'s quantum computing datasets. Our team reinvented the workspace, moving into a 3D environment where data is represented as manipulatable geometric clusters.',
+        tagline: 'Improving order placement and real-time delivery tracking.',
+        image: '/projects/yumdrop/cover.png',
+        impact: 'Clearer ordering, fewer errors, better delivery visibility',
+        tech: ['UX Research', 'Wireframing', 'Prototyping', 'Usability Testing'],
+        challenge: 'Users struggled with complex ordering steps, unclear checkout, and unreliable delivery tracking.',
+        approach: 'We studied user behavior, identified key friction points, and redesigned the ordering and tracking experience with clarity and simplicity as priorities.',
+        fullDescription: 'YumDrop is a food delivery platform project completed as part of an internship assignment at Dilimatrix. The focus was on improving the user experience of order placement and real-time delivery tracking, aligning user needs with business goals such as order completion and customer satisfaction.',
+
         problem: {
             title: 'The Problem',
             content: [
-                'Xenon is a conceptual data platform handling large, complex datasets.',
-                'The challenge was making this data easy to understand and explore without overwhelming users.',
-                'Traditional flat dashboards made it difficult to see patterns and relationships clearly.'
+                'Users found it difficult to discover products and navigate menus.',
+                'The checkout process was long and confusing, leading to order errors.',
+                'Delivery tracking lacked real-time updates and clear time estimates.',
+                'These issues caused frustration and reduced user confidence.'
             ]
         },
+
         solution: {
             title: 'Our Solution',
             content: [
-                'We designed a visual-first interface concept that helps users navigate complex data more intuitively.',
-                'Instead of dense tables and charts, information is grouped visually, allowing users to:',
-                'Focus on key data points',
-                'Understand relationships faster',
-                'Explore information step by step',
-                'The interface prioritizes clarity, smooth interaction, and user focus.'
+                'Simplified menu navigation and product discovery.',
+                'Streamlined checkout with clearer steps and fewer required inputs.',
+                'Instant order confirmation to reduce uncertainty.',
+                'Improved delivery tracking with real-time status updates and clearer time estimates.'
             ]
         },
+
         designDecisions: [
-            'Clean, distraction-free layout',
-            'Motion used only to guide attention',
-            'Clear visual hierarchy for complex information',
-            'Designed for performance and scalability',
-            'Every element exists to reduce confusion and improve understanding.'
+            'Guest checkout to reduce friction',
+            'Clear separation of mandatory and optional fields',
+            'Progress indicators during checkout',
+            'Simplified icons and labels for delivery tracking',
+            'Focus on clarity over visual complexity'
         ],
+
         resultOutcome: {
-            title: 'Result (Concept Outcome)',
+            title: 'Result (Project Outcome)',
             content: [
-                'This concept demonstrates how complex data can be presented in a way that feels organized, understandable, and professional.',
-                'It showcases NAXIT’s ability to think through real product problems, not just create visuals.'
+                'Users could place orders faster with fewer mistakes.',
+                'Delivery status was easier to understand, improving user confidence.',
+                'The redesign supported better order completion and customer satisfaction.',
+                'The project demonstrated a user-centered design approach aligned with business goals.'
             ]
         },
+
         gallery: [
-            'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2000',
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000',
-            'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000'
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768917577/Page_17_aicqlg.png',
+            '/projects/yumdrop/screen-2.png',
+            '/projects/yumdrop/screen-3.png'
         ]
-    },
+    }
+    ,
     {
         id: '02',
         slug: 'aethelgard-ai-core',
