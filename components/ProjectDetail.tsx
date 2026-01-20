@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { Project } from '../types';
 import {
   ArrowLeft, Cpu, Target, Zap, Layout, Globe, MessageCircle,
@@ -17,8 +17,41 @@ interface ProjectDetailProps {
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [zoom, setZoom] = useState(1);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const thumbScrollRef = React.useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
+
+  // Auto-center active thumbnail
+  useEffect(() => {
+    if (!thumbScrollRef.current) return;
+
+    const containerWidth = thumbScrollRef.current.offsetWidth;
+    const isMobile = window.innerWidth < 768;
+
+    // Widths based on tailwind classes (px)
+    const gap = isMobile ? 12 : 20; // gap-3 : gap-5
+    const activeWidth = isMobile ? 128 : 192; // w-32 : w-48
+    const inactiveWidth = isMobile ? 80 : 112; // w-20 : w-28
+
+    // Calculate how far into the strip the center of the current slide is
+    const activeItemCenterPos = (currentSlide * (inactiveWidth + gap)) + (activeWidth / 2);
+
+    // Position to slide the ribbon so the activeItemCenterPos is at containerWidth/2
+    const targetX = (containerWidth / 2) - activeItemCenterPos;
+
+    // Total content width for constraints
+    const totalContentWidth = (project.gallery.length - 1) * (inactiveWidth + gap) + activeWidth;
+
+    const minX = containerWidth - totalContentWidth - 100; // leeway for padding
+    const maxX = 100;
+
+    controls.start({
+      x: targetX, // Allow it to go slightly out of bounds if needed to center
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    });
+  }, [currentSlide, controls, project.gallery.length]);
 
   // Listen for escape key and navigation
   useEffect(() => {
@@ -64,6 +97,14 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
     if (selectedImageIndex === null) return;
     setSelectedImageIndex((selectedImageIndex - 1 + project.gallery.length) % project.gallery.length);
     setZoom(1);
+  };
+
+  const slideNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % project.gallery.length);
+  };
+
+  const slidePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + project.gallery.length) % project.gallery.length);
   };
 
   const handleZoomIn = () => {
@@ -294,33 +335,144 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
           </div>
         </section>
 
-        {/* Gallery */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-32 border-t border-white/5">
-          <div className="flex items-center gap-4 text-naxit-cyan mb-20">
-            <Layout className="w-5 h-5" />
-            <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Visual Evidence</span>
+        {/* Cinematic Gallery Stage - Optimized Vertical Flow */}
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-6 md:py-10 border-t border-white/5 h-screen max-h-[950px] flex flex-col justify-between overflow-hidden">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-4">
+            <div>
+              <div className="flex items-center gap-4 text-naxit-cyan mb-4">
+                <Layout className="w-5 h-5" />
+                <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Visual Artifacts</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-display font-bold">Execution <span className="text-gradient">Gallery</span></h2>
+            </div>
+
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Collection</span>
+              <div className="text-xl font-display font-bold text-white">
+                {currentSlide + 1} <span className="text-gray-600 text-sm">/ {project.gallery.length}</span>
+              </div>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {project.gallery.map((img, idx) => (
+
+          {/* Main Stage - Enlarged Preview */}
+          <div className="relative flex-grow aspect-video md:aspect-video rounded-[3rem] overflow-hidden border border-white/5 bg-black/40 group">
+            <motion.div
+              className="absolute inset-0 flex touch-pan-y"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.x > 100) slidePrev();
+                else if (info.offset.x < -100) slideNext();
+              }}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 flex items-center justify-center p-4 cursor-pointer"
+                  onClick={() => setSelectedImageIndex(currentSlide)}
+                >
+                  {/* Dynamic Backdrop */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <img
+                      src={getOptimizedImage(project.gallery[currentSlide], 100)}
+                      alt=""
+                      className="w-full h-full object-cover blur-[100px] opacity-20 scale-150"
+                    />
+                  </div>
+
+                  {/* High-Res Focus Image */}
+                  <div className="relative h-full w-full flex items-center justify-center z-10">
+                    <img
+                      src={getOptimizedImage(project.gallery[currentSlide], 1600)}
+                      alt={`Gallery view ${currentSlide + 1}`}
+                      className="max-w-full max-h-full object-contain shadow-[0_30px_60px_rgba(0,0,0,0.5)] rounded-2xl md:rounded-[2rem]"
+                    />
+                  </div>
+
+                  {/* Interaction Overlay */}
+                  <div className="absolute inset-0 bg-transparent group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
+                    <div className="glass p-5 rounded-full border border-white/20 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                      <Maximize2 className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Pagination Line */}
+            <div className="absolute bottom-0 left-0 h-1 bg-white/5 w-full z-30">
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                onClick={() => setSelectedImageIndex(idx)}
-                className={`rounded-[3rem] overflow-hidden ${idx % 3 === 0 ? 'md:col-span-2 aspect-[21/9]' : 'aspect-square'} border border-white/5 cursor-pointer group relative`}
+                className="h-full bg-naxit-cyan shadow-[0_0_10px_rgba(0,187,255,0.8)]"
+                initial={false}
+                animate={{ width: `${((currentSlide + 1) / project.gallery.length) * 100}%` }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
+          </div>
+
+          {/* Draggable Thumbnail Ribbon with Fixed Controls */}
+          <div className="mt-8 flex items-center gap-4">
+            <button
+              onClick={(e) => { e.stopPropagation(); slidePrev(); }}
+              className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center text-white hover:border-naxit-cyan hover:text-naxit-cyan transition-all active:scale-90 flex-shrink-0"
+              title="Previous Slide"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            <div className="relative flex-grow overflow-hidden rounded-2xl h-24 md:h-28" ref={thumbScrollRef}>
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-naxit-charcoal to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-naxit-charcoal to-transparent z-10 pointer-events-none" />
+
+              <motion.div
+                drag="x"
+                dragConstraints={thumbScrollRef}
+                animate={controls}
+                className="flex gap-3 md:gap-5 py-4 cursor-grab active:cursor-grabbing min-w-max h-full items-center"
               >
-                <img
-                  src={getOptimizedImage(img, 800)}
-                  alt="Visual artifact"
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-naxit-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Maximize2 className="w-10 h-10 text-white" />
-                </div>
+                {project.gallery.map((img, idx) => (
+                  <motion.button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`group relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex-shrink-0 ${idx === currentSlide
+                      ? 'w-32 md:w-48 opacity-100'
+                      : 'w-20 md:w-28 opacity-30 hover:opacity-100'
+                      }`}
+                  >
+                    <div className={`aspect-[16/9] rounded-xl overflow-hidden border transition-all duration-700 ${idx === currentSlide
+                      ? 'border-naxit-cyan shadow-[0_0_20px_rgba(0,187,255,0.4)] h-16 md:h-20'
+                      : 'border-white/5 group-hover:border-white/20 h-12 md:h-16'
+                      }`}>
+                      <img
+                        src={getOptimizedImage(img, 400)}
+                        alt=""
+                        className="w-full h-full object-cover pointer-events-none"
+                      />
+                    </div>
+                    {idx === currentSlide && (
+                      <motion.div
+                        layoutId="active-thumb-indicator"
+                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-naxit-cyan rounded-full shadow-[0_0_10px_rgba(0,187,255,1)]"
+                      />
+                    )}
+                  </motion.button>
+                ))}
               </motion.div>
-            ))}
+            </div>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); slideNext(); }}
+              className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center text-white hover:border-naxit-cyan hover:text-naxit-cyan transition-all active:scale-90 flex-shrink-0"
+              title="Next Slide"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </section>
 
