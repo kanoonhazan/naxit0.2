@@ -49,7 +49,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
 
     controls.start({
       x: targetX, // Allow it to go slightly out of bounds if needed to center
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.15, ease: [0.16, 1, 0.3, 1] }
     });
   }, [currentSlide, controls, project.gallery.length]);
 
@@ -423,13 +423,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                 else if (info.offset.x < -100) slideNext();
               }}
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="popLayout">
                 <motion.div
                   key={currentSlide}
-                  initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, filter: 'blur(5px)' }}
+                  animate={{ opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, filter: 'blur(5px)' }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute inset-0 flex items-center justify-center p-4 cursor-pointer"
                   onClick={() => setSelectedImageIndex(currentSlide)}
                 >
@@ -467,7 +467,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                 className="h-full bg-naxit-cyan shadow-[0_0_10px_rgba(0,187,255,0.8)]"
                 initial={false}
                 animate={{ width: `${((currentSlide + 1) / project.gallery.length) * 100}%` }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
               />
             </div>
           </div>
