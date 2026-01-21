@@ -24,7 +24,7 @@ const ProjectCard: React.FC<{ project: Project; onClick: () => void }> = ({ proj
         <div className="absolute inset-0">
             <motion.img
                 src={project.image}
-                alt={project.title}
+                alt={`${project.title} - Featured Project in Mannar, Sri Lanka`}
                 className="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-all duration-1000"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-naxit-charcoal/40 to-transparent" />

@@ -72,12 +72,12 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
   useEffect(() => {
     const sequence = [
-      { p: 15, t: 'Calibrating Visual Shaders...' },
-      { p: 35, t: 'Synchronizing Asset Nodes...' },
-      { p: 55, t: 'Establishing Secure Uplink...' },
-      { p: 75, t: 'Optimizing Global Delivery...' },
-      { p: 95, t: 'Buffering Neural Cache...' },
-      { p: 100, t: 'NAXIT System Online.' }
+      { p: 15, t: 'Initializing Systems...' },
+      { p: 35, t: 'Loading Brand Assets...' },
+      { p: 55, t: 'Optimizing Visual Nodes...' },
+      { p: 75, t: 'Syncing Local Resources...' },
+      { p: 95, t: 'Finalizing Deployment...' },
+      { p: 100, t: 'NAXIT is Ready.' }
     ];
 
     let current = 0;

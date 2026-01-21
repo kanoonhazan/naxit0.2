@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
         <a href="#hero" onClick={(e) => handleScroll(e, 'hero')}>
           <img
             src="/assets/logo.png"
-            alt="NAXIT Logo"
+            alt="NAXIT Micro Agency - Best Digital Solutions in Mannar, Sri Lanka"
             className="h-8 cursor-pointer hover:opacity-80 transition-opacity"
           />
         </a>

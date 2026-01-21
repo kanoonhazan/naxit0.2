@@ -170,7 +170,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 top-0 z-0 gpu-accel">
-            <img src={getOptimizedImage(project.image)} alt={project.title} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
+            <img src={getOptimizedImage(project.image)} alt={`${project.title} - Project Hero in Mannar, Sri Lanka`} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
             <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
           </motion.div>
 
@@ -437,7 +437,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                   <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <img
                       src={getOptimizedImage(project.gallery[currentSlide], 100)}
-                      alt=""
+                      alt={`${project.title} background - Mannar Digital Art`}
                       className="w-full h-full object-cover blur-[100px] opacity-20 scale-150"
                     />
                   </div>
@@ -446,7 +446,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                   <div className="relative h-full w-full flex items-center justify-center z-10">
                     <img
                       src={getOptimizedImage(project.gallery[currentSlide], 1600)}
-                      alt={`Gallery view ${currentSlide + 1}`}
+                      alt={`${project.title} Exhibit ${currentSlide + 1} - Mannar, Sri Lanka`}
                       className="max-w-full max-h-full object-contain shadow-[0_30px_60px_rgba(0,0,0,0.5)] rounded-2xl md:rounded-[2rem]"
                     />
                   </div>
@@ -509,7 +509,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                       }`}>
                       <img
                         src={getOptimizedImage(img, 400)}
-                        alt=""
+                        alt={`${project.title} thumbnail - Digital Design Sri Lanka`}
                         className="w-full h-full object-cover pointer-events-none"
                       />
                     </div>

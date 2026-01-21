@@ -333,7 +333,7 @@ const Admin: React.FC = () => {
                                 className="glass rounded-[2rem] border border-white/5 overflow-hidden group hover:border-white/20 transition-all flex flex-col"
                             >
                                 <div className="relative h-48 overflow-hidden">
-                                    <img src={getOptimizedImage(project.image, 400)} alt="" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700" />
+                                    <img src={getOptimizedImage(project.image, 400)} alt={`${project.title} - Admin Dashboard Preview Mannar, Sri Lanka`} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal to-transparent" />
                                     <div className="absolute top-4 left-4 flex gap-2">
                                         <button

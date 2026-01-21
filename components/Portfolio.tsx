@@ -35,7 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
       <div className="absolute inset-0">
         <motion.img
           src={getOptimizedImage(project.image, 800)}
-          alt={project.title}
+          alt={`${project.title} - Creative Portfolio in Mannar, Sri Lanka`}
           loading="lazy"
           className="w-full h-full object-cover opacity-70
                      group-hover:scale-110

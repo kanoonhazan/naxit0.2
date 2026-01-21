@@ -130,7 +130,7 @@ ${formData.message}
                 <div className="relative shrink-0">
                   <div className="w-[72px] h-[72px] rounded-full bg-gradient-to-br from-naxit-royal/30 to-naxit-cyan/30 p-[1px]">
                     <div className="w-full h-full rounded-full bg-naxit-charcoal flex items-center justify-center overflow-hidden">
-                      <img src="/assets/Kanoon Hazan.png" alt="Hazan K." className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                      <img src="/assets/Kanoon Hazan.png" alt="Hazan K. - Founder of NAXIT Mannar, Sri Lanka" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                     </div>
                   </div>
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-naxit-cyan rounded-full border-2 border-naxit-charcoal" />

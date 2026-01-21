@@ -355,102 +355,106 @@ export const PROJECTS: Project[] = [
 
     {
         id: '03',
-        slug: 'vanguard-brand-identity',
-        title: 'Vanguard Brand Identity',
-        category: 'Digital Branding',
-        featured: false,
-        tagline: 'A legacy-first digital rebirth for a century-old firm.',
-        image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop',
-        impact: '3.2x Valuation',
-        tech: ['Strategic Design', 'Visual Narratives', 'CGI'],
-        challenge: 'Translating industrial heritage into a digital-native visual language.',
-        approach: 'We stripped away the clutter and focused on the core engineering prowess of the firm, using high-end CGI to showcase their physical assets in a digital space.',
-        fullDescription: 'Vanguard had incredible history but looked "old" to new investors. We crafted a brand narrative focused on "Precision Over Time," utilizing monochromatic palettes and sharp geometric layouts.',
+        slug: 'lanka-wraps-vehicle-branding',
+        title: 'Lanka Wraps',
+        category: 'Graphic Design',
+        featured: true,
+        tagline: 'Premium vehicle branding and custom sticker solutions in Mannar.',
+        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000&auto=format&fit=crop',
+        impact: 'Maximum Road Presence',
+        tech: ['Print Design', 'Brand Strategy', 'Illustration'],
+        challenge: 'The client needed a vibrant, durable visual identity for their vehicle wrapping business that stands out on the road.',
+        approach: 'We created a high-contrast logo and a set of custom livery designs optimized for large-scale vehicle printing in Sri Lanka.',
+        fullDescription: 'Lanka Wraps is a premier vehicle branding service based in Mannar. We collaborated to define a bold visual language that works across different vehicle types, ensuring their clients get maximum visibility while maintaining a professional look.',
         gallery: [
-            'https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=2000',
-            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000',
-            'https://images.unsplash.com/photo-1600880212319-7524391cfc1e?q=80&w=2000'
+            'https://images.unsplash.com/photo-1611080626919-7cf5a9bcab53?q=80&w=2000',
+            'https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?q=80&w=2000',
+            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000'
         ],
         problem: {
             title: 'The Problem',
             content: [
-                'A century-old engineering firm was struggling to attract modern venture capital.',
-                'The brand identity felt industrial and dated, failing to communicate their modern technological capabilities.',
-                'Communication gaps between legacy operations and new digital-first investors.'
+                'Local vehicle wrapping businesses often look generic and fail to stand out.',
+                'Designs need to be scalable from small cars to large delivery trucks.',
+                'The branding must be legible from a distance and in motion.',
+                'A need for a durable, professional identity that builds trust with corporate clients.'
             ]
         },
         solution: {
             title: 'Our Solution',
             content: [
-                'We redesigned the entire visual ecosystem around the concept of "Quantum Heritage."',
-                'Merging traditional precision with digital-native aesthetics through:',
-                'High-fidelity CGI asset creation',
-                'Minimalist typographic systems',
-                'Kinetic brand narratives on digital platforms'
+                'We developed a kinetic brand identity that looks great at 60mph.',
+                'Created a custom color palette optimized for vinyl printing.',
+                'Designed a modular logo system for various placement scenarios.',
+                'Produced full-scale mockups to visualize the branding on multiple vehicle models.'
             ]
         },
         designDecisions: [
-            'Monochromatic color theory for authority',
-            'Geometric grid-based layout systems',
-            'Custom font sets for technical clarity',
-            'Interactive digital annual reports'
+            'High-contrast typography for mobility',
+            'Saturated color schemes for sunlight visibility',
+            'Weather-resistant visual elements',
+            'Strategic contact info placement on rear and side panels'
         ],
         resultOutcome: {
-            title: 'Result (Valuation Surge)',
+            title: 'Result (Brand Growth)',
             content: [
-                'The rebranding directly contributed to a 3.2x surge in firm valuation during the subsequent funding round.',
-                'This proves NAXIT’s ability to bridge the gap between legacy industries and modern digital capital.'
+                'Lanka Wraps saw a significant increase in inquiries after the rebrand.',
+                'The business successfully landed three major corporate fleet contracts.',
+                'Their vehicles are now easily recognizable across Mannar and surrounding areas.',
+                'The project established them as a premium service provider in the local market.'
             ]
         }
     },
 
     {
         id: '04',
-        slug: 'nebula-cloud-infrastructure',
-        title: 'Nebula Cloud Infrastructure',
-        category: 'Graphic Design',
+        slug: 'amaanah-charity-portal',
+        title: 'Amaanah',
+        category: 'Website Design',
         featured: true,
-        tagline: 'Edge computing redefined for low-latency neural processing.',
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop',
-        impact: '15ms Latency',
-        tech: ['Rust', 'Kubernetes', 'gRPC'],
-        challenge: 'Deploying high-compute nodes across 42 global zones with zero downtime.',
-        approach: 'A Rust-based container orchestrator was custom-built to handle sub-millisecond switching between nodes during high-load peaks.',
-        fullDescription: 'Nebula needed a serverless architecture that didn\'t sacrifice the raw performance required for LLM training. We architected a system that behaves like local hardware but scales like the cloud.',
+        tagline: 'A transparent donation platform for local community projects.',
+        image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2000&auto=format&fit=crop',
+        impact: 'Transparent Local Giving',
+        tech: ['Web Development', 'Payment Integration', 'UI/UX'],
+        challenge: 'Local community organizers lacked a central, trusted platform to raise funds for small-scale development projects in Mannar.',
+        approach: 'We built a secure, easy-to-use donation portal with real-time progress tracking to ensure complete transparency for donors.',
+        fullDescription: 'Amaanah is a dedicated platform designed to bridge the gap between donors and community-led initiatives. By focusing on transparency and ease of use, we helped the organization build trust and increase participation in local welfare projects.',
         gallery: [
-            'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2000',
-            'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000',
-            'https://images.unsplash.com/photo-1504384308090-c89e1207a8f0?q=80&w=2000'
+            'https://images.unsplash.com/photo-1469571486292-0ba58a3f019a?q=80&w=2000',
+            'https://images.unsplash.com/photo-1493123314175-ce99788bb860?q=80&w=2000',
+            'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2000'
         ],
         problem: {
             title: 'The Problem',
             content: [
-                'Standard cloud providers introduced too much latency for localized AI inference.',
-                'Infrastructure scaling often required downtime, unacceptable for real-time applications.',
-                'Data sovereignty issues in specific global regions hindered deployment.'
+                'Lack of trust in traditional offline donation methods.',
+                'Difficulty in tracking how funds are utilized for specific projects.',
+                'Limited reach beyond the immediate local community.',
+                'Complex donation processes that discourage potential contributors.'
             ]
         },
         solution: {
             title: 'Our Solution',
             content: [
-                'We custom-built a Rust-based edge orchestrator for sub-15ms processing.',
-                'A decentralized infrastructure model that provides:',
-                'Zone-specific data containment',
-                'Zero-downtime hot-swapping of compute nodes',
-                'Native support for heavy neural payloads'
+                'Developed a real-time "Impact Tracker" for every project.',
+                'Integrated secure and local payment methods for seamless giving.',
+                'Designed a donor dashboard to track lifetime contributions.',
+                'Implemented social sharing tools to expand project reach.'
             ]
         },
         designDecisions: [
-            'Memory-safe Rust codebase',
-            'Custom gRPC communication layers',
-            'Automated zone replication',
-            'Encrypted transit for all AI weights'
+            'Trust-oriented color palette (Blues and Navys)',
+            'Priority on mobile-first accessibility',
+            'Minimalist forms to reduce dropout rates',
+            'Image-heavy layouts to show real-world impact'
         ],
         resultOutcome: {
-            title: 'Result (Global Scale)',
+            title: 'Result (Community Impact)',
             content: [
-                'Nebula now processes millions of inference requests daily with 99.999% uptime.',
-                'It showcases NAXIT’s high-frequency infrastructure and backend engineering prowess.'
+                'The platform facilitated a 40% increase in monthly donations.',
+                'Successfully funded 12 local development projects in the first quarter.',
+                'High donor retention rate due to improved transparency features.',
+                'Recognized as a leading digital initiative for social good in the region.'
             ]
         }
     },

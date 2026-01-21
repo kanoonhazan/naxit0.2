@@ -52,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
             <div className="flex items-center gap-3 mb-6">
               <img
                 src="/assets/logo.png"
-                alt="NAXIT Logo"
+                alt="NAXIT Micro Agency - Innovation Partner in Mannar, Sri Lanka"
                 className="h-10 w-auto"
               />
             </div>

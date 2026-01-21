@@ -60,7 +60,7 @@ const LogoCloud: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-[10px] font-mono text-naxit-cyan/40 tracking-[0.5em] uppercase"
         >
-          Trusted by Brands
+          Brands we've helped grow
         </motion.div>
       </div>
 
@@ -81,7 +81,7 @@ const LogoCloud: React.FC = () => {
               <div className="min-w-[280px] flex justify-center">
                 <img
                   src={partner.logo}
-                  alt={partner.name}
+                  alt={`${partner.name} - Trusted Partner in Sri Lanka Digital Ecosystem`}
                   className="h-20 w-auto object-contain opacity-80"
                   draggable={false}
                 />
