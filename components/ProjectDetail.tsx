@@ -218,7 +218,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                   <div className="w-12 h-[1px] bg-naxit-cyan" />
                   <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Context & Objective</span>
                 </div>
-                <h2 className="text-4xl md:text-7xl font-display font-bold leading-[1.05] tracking-tight">{project.challenge}</h2>
+                <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.2] tracking-tight">{project.challenge}</h2>
                 <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
                   {project.fullDescription}
                 </p>
@@ -261,7 +261,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                     </div>
                     <div className="space-y-6 md:space-y-8">
                       {project.problem.content.map((paragraph, i) => (
-                        <p key={i} className="text-gray-400 text-lg md:text-2xl font-light leading-relaxed">
+                        <p key={i} className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
                           {paragraph}
                         </p>
                       ))}
@@ -285,7 +285,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                       {project.solution.content.map((line, i) => (
                         <div key={i} className="flex gap-5 items-start">
                           <ChevronRight className="w-5 h-5 text-naxit-cyan mt-1.5 flex-shrink-0" />
-                          <p className="text-gray-200 text-lg md:text-2xl font-light leading-relaxed">
+                          <p className="text-gray-200 text-lg md:text-xl font-light leading-relaxed">
                             {line}
                           </p>
                         </div>
@@ -311,7 +311,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                       <div className="w-10 h-[1px] bg-naxit-cyan/30" />
                       <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Tactical Deployment</span>
                     </div>
-                    <p className="text-gray-300 text-3xl md:text-5xl font-light leading-[1.1] tracking-tight">
+                    <p className="text-gray-300 text-2xl md:text-4xl font-light leading-[1.2] tracking-tight">
                       {project.approach}
                     </p>
                   </motion.div>
@@ -678,7 +678,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
               onClick={onBack}
               className="glass border border-white/10 px-10 md:px-12 py-5 md:py-6 rounded-2xl font-bold text-gray-400 hover:text-white transition-all text-base md:text-lg w-full md:w-auto justify-center"
             >
-              Return to Nexit
+              Return to Naxit
             </button>
           </div>
         </section>

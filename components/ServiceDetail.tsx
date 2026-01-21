@@ -116,122 +116,153 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                     </div>
                 </section>
 
-                {/* Narrative Grid */}
-                <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 relative overflow-hidden">
-                    {/* Background floating text to fill whitespace */}
-                    <div className="hidden lg:block absolute -left-20 top-1/4 text-white/[0.02] text-[15rem] font-display font-black pointer-events-none select-none -rotate-90 origin-center leading-none">
-                        SYSTEM
+                {/* Content Narrative - Engineered for Spatial Utility */}
+                <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-32 relative overflow-hidden">
+                    {/* Background Decorations */}
+                    <div className="hidden lg:block absolute -left-20 top-1/4 text-white/[0.01] text-[15rem] font-display font-black pointer-events-none select-none -rotate-90 origin-center leading-none">
+                        {service.title.toUpperCase().split(' ')[0]}
                     </div>
-                    <div className="hidden lg:block absolute -right-20 top-2/3 text-white/[0.02] text-[15rem] font-display font-black pointer-events-none select-none rotate-90 origin-center leading-none">
-                        PROTOCOL
+                    <div className="hidden lg:block absolute -right-24 top-2/3 text-white/[0.01] text-[15rem] font-display font-black pointer-events-none select-none rotate-90 origin-center leading-none">
+                        STRATEGY
                     </div>
+                    <div className="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:60px_60px] pointer-events-none" />
 
-                    <div className="lg:col-span-8 space-y-20 md:space-y-28">
-
-                        {/* Problem Section */}
-                        {service.problem && (
-                            <div className="space-y-6 md:space-y-10">
-                                <div className="flex items-center gap-4 md:gap-6 text-naxit-cyan">
-                                    <div className="w-12 md:w-16 h-[1px] bg-naxit-cyan" />
-                                    <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{service.problemTitle || 'The Problem'}</span>
+                    <div className="relative z-10 space-y-24 md:space-y-40">
+                        {/* Phase 1: Context & Ecosystem */}
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="lg:col-span-7 space-y-8 md:space-y-12"
+                            >
+                                <div className="flex items-center gap-4 text-naxit-cyan">
+                                    <div className="w-12 h-[1px] bg-naxit-cyan" />
+                                    <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{service.problemTitle || 'Development Objective'}</span>
                                 </div>
-                                <h2 className="text-3xl md:text-4xl font-display font-medium leading-tight md:leading-[1.25] tracking-tight">
-                                    {service.problem}
+                                <h2 className="text-2xl md:text-4xl font-display font-bold leading-[1.3] tracking-tight text-gray-200">
+                                    {service.problem || service.description}
                                 </h2>
-                            </div>
-                        )}
 
-                        {/* Inclusions / Solution Section */}
-                        {service.inclusions && service.inclusions.length > 0 && (
-                            <div className="space-y-10 md:space-y-16">
-                                <div className="flex items-center gap-4 md:gap-6 text-naxit-cyan">
-                                    <div className="w-12 md:w-16 h-[1px] bg-naxit-cyan" />
-                                    <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{service.inclusionsTitle || 'The Neural Stack'}</span>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-                                    {service.inclusions.map((inclusion, index) => (
-                                        <div key={index} className="glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border border-white/5 hover:border-naxit-cyan/30 transition-all group relative overflow-hidden">
-                                            <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-naxit-cyan/5 rounded-full blur-3xl -mr-12 md:-mr-16 -mt-12 md:-mt-16 group-hover:bg-naxit-cyan/10 transition-colors" />
-                                            <div className="w-12 h-12 md:w-14 md:h-14 bg-naxit-cyan/10 border border-naxit-cyan/30 rounded-2xl flex items-center justify-center mb-6 md:mb-8 group-hover:bg-naxit-cyan group-hover:text-black transition-all">
-                                                <Check className="w-6 h-6 md:w-7 md:h-7" />
-                                            </div>
-                                            <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 tracking-tight">{inclusion.title}</h3>
-                                            <p className="text-gray-400 text-base md:text-lg leading-relaxed">{inclusion.description}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Impact Metrics - New Section to fill whitespace */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-20 border-y border-white/5">
-                            <div className="text-center space-y-4">
-                                <BarChart3 className="w-8 h-8 text-naxit-cyan mx-auto mb-6" />
-                                <div className="text-4xl font-display font-bold">+99%</div>
-                                <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Efficiency Gain</div>
-                            </div>
-                            <div className="text-center space-y-4 border-x border-white/5">
-                                <ShieldCheck className="w-8 h-8 text-naxit-cyan mx-auto mb-6" />
-                                <div className="text-4xl font-display font-bold">Secure</div>
-                                <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Data Integrity</div>
-                            </div>
-                            <div className="text-center space-y-4">
-                                <Clock className="w-8 h-8 text-naxit-cyan mx-auto mb-6" />
-                                <div className="text-4xl font-display font-bold">24/7</div>
-                                <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">System Uptime</div>
-                            </div>
-                        </div>
-
-                        {/* Results Section */}
-                        {service.result && (
-                            <div className="glass p-10 md:p-24 rounded-[2.5rem] md:rounded-[3.5rem] border border-naxit-cyan/20 relative overflow-hidden bg-gradient-to-br from-naxit-cyan/[0.05] to-transparent">
-                                <div className="absolute -right-40 -top-40 w-[500px] h-[500px] bg-naxit-cyan/10 rounded-full blur-[150px]" />
-                                <div className="flex items-center gap-4 md:gap-6 text-naxit-cyan mb-8 md:mb-12">
-                                    <Zap className="w-5 h-5 md:w-6 md:h-6" />
-                                    <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{service.resultTitle || 'The Outcome'}</span>
-                                </div>
-                                <p className="text-gray-100 leading-[1.3] italic text-2xl md:text-5xl font-display font-medium tracking-tight">
-                                    "{service.result}"
-                                </p>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Sidebar */}
-                    <div className="lg:col-span-4 space-y-12 md:space-y-20">
-                        {/* Target Audience Sidebar */}
-                        {service.targetAudience && service.targetAudience.length > 0 && (
-                            <div className="glass p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border border-naxit-cyan/10 bg-gradient-to-br from-naxit-royal/10 to-transparent lg:sticky lg:top-40">
-                                <div className="flex items-center gap-4 text-naxit-cyan mb-8 md:mb-12">
-                                    <Target className="w-5 h-5 md:w-6 md:h-6" />
-                                    <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{service.targetAudienceTitle || 'Impact Sectors'}</span>
-                                </div>
-                                <div className="space-y-4 md:space-y-6">
-                                    {service.targetAudience.map((audience, index) => (
-                                        <div key={index} className="flex items-center gap-4 md:gap-6 text-gray-300 group">
-                                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-naxit-cyan/50 group-hover:bg-naxit-cyan transition-colors" />
-                                            <span className="text-base md:text-lg font-light tracking-wide group-hover:text-white transition-colors">{audience}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className="mt-12 md:mt-20 pt-8 md:pt-12 border-t border-white/5 space-y-8 md:space-y-12">
-                                    {/* Operational Status Integrated Here */}
-                                    <div className="space-y-4 md:space-y-6">
-                                        <div className="flex items-center gap-3 text-gray-500 font-mono text-[9px] md:text-[10px] tracking-widest uppercase">
-                                            <Cpu className="w-4 h-4" />
-                                            Node Priority
-                                        </div>
-                                        <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
-                                            Priority implementation available for the sectors listed above.
-                                        </p>
-                                        <div className="flex items-center gap-3 text-naxit-cyan font-mono text-[9px] md:text-[10px] bg-naxit-cyan/5 border border-naxit-cyan/20 w-fit px-4 py-2 rounded-full">
-                                            <span className="flex h-2 w-2 rounded-full bg-naxit-cyan animate-pulse" />
-                                            ACTIVE // HIGH PRIORITY
-                                        </div>
+                                {/* Metrics Strip Integrated Early for visual weight */}
+                                <div className="grid grid-cols-3 gap-4 pt-12 border-t border-white/5">
+                                    <div className="space-y-2">
+                                        <div className="text-2xl md:text-3xl font-display font-bold">+99%</div>
+                                        <div className="text-[8px] font-mono text-gray-500 uppercase tracking-widest">Efficiency</div>
+                                    </div>
+                                    <div className="space-y-2 border-x border-white/5 px-4">
+                                        <div className="text-2xl md:text-3xl font-display font-bold">L-4</div>
+                                        <div className="text-[8px] font-mono text-gray-500 uppercase tracking-widest">Security</div>
+                                    </div>
+                                    <div className="space-y-2 pl-4">
+                                        <div className="text-2xl md:text-3xl font-display font-bold">24/7</div>
+                                        <div className="text-[8px] font-mono text-gray-500 uppercase tracking-widest">Uptime</div>
                                     </div>
                                 </div>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                className="lg:col-span-5"
+                            >
+                                {service.targetAudience && service.targetAudience.length > 0 && (
+                                    <div className="glass p-10 md:p-14 rounded-[3rem] border border-naxit-cyan/10 bg-gradient-to-br from-naxit-royal/10 to-transparent relative group overflow-hidden">
+                                        <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-naxit-cyan/10 blur-[80px] rounded-full" />
+                                        <div className="relative z-10">
+                                            <div className="flex items-center gap-4 text-naxit-cyan mb-10">
+                                                <Target className="w-5 h-5" />
+                                                <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{service.targetAudienceTitle || 'Target Sectors'}</span>
+                                            </div>
+                                            <div className="space-y-5">
+                                                {service.targetAudience.map((audience, index) => (
+                                                    <div key={index} className="flex items-center gap-4 text-gray-400 group/item">
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-naxit-cyan/30 group-hover/item:bg-naxit-cyan transition-colors shadow-[0_0_8px_rgba(0,187,255,0)] group-hover/item:shadow-[0_0_8px_rgba(0,187,255,1)]" />
+                                                        <span className="text-base md:text-lg font-light tracking-wide group-hover/item:text-white transition-colors">{audience}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <div className="mt-12 pt-8 border-t border-white/5 flex items-center justify-between">
+                                                <div className="flex items-center gap-2 text-naxit-cyan font-mono text-[8px] tracking-widest uppercase bg-naxit-cyan/5 px-3 py-1.5 rounded-full border border-naxit-cyan/20">
+                                                    <span className="flex h-1.5 w-1.5 rounded-full bg-naxit-cyan animate-pulse" />
+                                                    High Density Node
+                                                </div>
+                                                <Cpu className="w-4 h-4 text-gray-600" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </motion.div>
+                        </div>
+
+                        {/* Phase 2: The Neural Stack (Inclusions) */}
+                        {service.inclusions && service.inclusions.length > 0 && (
+                            <div className="space-y-16">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    className="flex items-center gap-6"
+                                >
+                                    <div className="flex flex-col">
+                                        <span className="font-mono text-[10px] text-naxit-cyan tracking-[0.5em] uppercase mb-4">Functional Matrix</span>
+                                        <h3 className="text-4xl md:text-6xl font-display font-bold">{service.inclusionsTitle || 'The Neural Stack'}</h3>
+                                    </div>
+                                    <div className="hidden md:block flex-grow h-[1px] bg-gradient-to-r from-naxit-cyan/30 to-transparent" />
+                                </motion.div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 rounded-[4rem] overflow-hidden border border-white/5">
+                                    {service.inclusions.map((inclusion, index) => (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, scale: 0.95 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: index * 0.1 }}
+                                            className="bg-naxit-charcoal p-10 md:p-14 hover:bg-white/[0.02] transition-all group relative"
+                                        >
+                                            <div className="relative z-10 space-y-8">
+                                                <div className="w-14 h-14 bg-naxit-cyan/10 border border-naxit-cyan/20 rounded-2xl flex items-center justify-center group-hover:bg-naxit-cyan group-hover:text-black group-hover:scale-110 transition-all duration-500">
+                                                    <Check className="w-6 h-6" />
+                                                </div>
+                                                <div className="space-y-4">
+                                                    <h4 className="text-2xl font-bold tracking-tight group-hover:text-naxit-cyan transition-colors">{inclusion.title}</h4>
+                                                    <p className="text-gray-400 text-lg font-light leading-relaxed">{inclusion.description}</p>
+                                                </div>
+                                            </div>
+                                            <div className="absolute bottom-10 right-10 text-white/[0.03] font-mono text-6xl font-black select-none pointer-events-none group-hover:text-naxit-cyan/5 transition-colors">
+                                                {String(index + 1).padStart(2, '0')}
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </div>
                             </div>
+                        )}
+
+                        {/* Phase 3: Strategic Outcome */}
+                        {service.result && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="relative"
+                            >
+                                <div className="absolute inset-0 bg-naxit-cyan/5 blur-[120px] rounded-full scale-150 pointer-events-none" />
+                                <div className="glass p-12 md:p-32 rounded-[4rem] md:rounded-[6rem] border border-naxit-cyan/20 relative overflow-hidden bg-gradient-to-br from-naxit-cyan/[0.08] via-transparent to-transparent text-center">
+                                    <div className="flex flex-col items-center gap-12 relative z-10">
+                                        <div className="flex items-center gap-4 text-naxit-cyan">
+                                            <Zap className="w-6 h-6" />
+                                            <span className="font-mono text-[11px] tracking-[0.5em] uppercase">{service.resultTitle || 'The Outcome'}</span>
+                                        </div>
+                                        <p className="text-gray-100 leading-[1.3] italic text-2xl md:text-4xl font-display font-medium tracking-tight max-w-5xl">
+                                            "{service.result}"
+                                        </p>
+                                        <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-naxit-cyan to-transparent opacity-50" />
+                                        <div className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.6em]">System Response Optimized</div>
+                                    </div>
+                                </div>
+                            </motion.div>
                         )}
                     </div>
                 </section>
@@ -270,7 +301,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         </div>
 
                         <p className="text-gray-500 font-mono text-[9px] md:text-[10px] tracking-[0.5em] uppercase pt-12 md:pt-16 border-t border-white/5 w-fit mx-auto mt-20">
-                            © 2026 NAXIT DEFENSE SYSTEMS // SYSTEM ONLINE
+                            © 2026 NAXIT MICRO AGENCY
                         </p>
                     </motion.div>
                 </section>
