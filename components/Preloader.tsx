@@ -13,23 +13,18 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const criticalImages = useMemo(() => {
     const images: string[] = [];
 
-    // 1. Service Heroes
+    // 1. Service Heroes (All services are visible on home)
     SERVICES.forEach(s => {
-      if (s.image) images.push(getOptimizedImage(s.image, 1600));
+      if (s.image) images.push(getOptimizedImage(s.image, 1200));
     });
 
-    // 2. Project Heroes, Thumbnails, and first 3 Gallery Items
-    PROJECTS.forEach(p => {
-      // Main hero image
-      if (p.image) images.push(getOptimizedImage(p.image, 1600));
+    // 2. Project Heroes (Only featured ones for home page)
+    PROJECTS.filter(p => p.featured).forEach(p => {
+      if (p.image) images.push(getOptimizedImage(p.image, 1200));
 
-      // Gallery assets
+      // Preload only the first 2 gallery items for featured projects
       if (p.gallery && p.gallery.length > 0) {
-        // Preload all thumbnails (used in the ribbon)
-        p.gallery.forEach(img => images.push(getOptimizedImage(img, 400)));
-
-        // Preload first 3 main previews (for instant clicking)
-        p.gallery.slice(0, 3).forEach(img => images.push(getOptimizedImage(img, 1200)));
+        p.gallery.slice(0, 2).forEach(img => images.push(getOptimizedImage(img, 800)));
       }
     });
 
@@ -37,33 +32,30 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   }, []);
 
   useEffect(() => {
-    let loadedCount = 0;
-    const totalImages = criticalImages.length;
-
-    if (totalImages === 0) {
+    if (criticalImages.length === 0) {
       setIsImagesLoaded(true);
       return;
     }
 
     const preloadImages = async () => {
-      const promises = criticalImages.map((src) => {
+      // Create a timeout promise to ensure we don't wait forever
+      const timeoutPromise = new Promise(resolve => setTimeout(() => resolve('timeout'), 8000));
+
+      const imagePromises = criticalImages.map((src) => {
         return new Promise((resolve) => {
           const img = new Image();
           img.src = src;
-          img.onload = () => {
-            loadedCount++;
-            // Update local progress tied to image loading
-            // resolve(src);
-            resolve(true);
-          };
-          img.onerror = () => {
-            loadedCount++;
-            resolve(false);
-          };
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
         });
       });
 
-      await Promise.all(promises);
+      // Special handling: Wait for at least some images, but don't hang if one is slow
+      await Promise.race([
+        Promise.all(imagePromises),
+        timeoutPromise
+      ]);
+
       setIsImagesLoaded(true);
     };
 
