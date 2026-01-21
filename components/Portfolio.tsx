@@ -50,7 +50,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
         <div className="flex justify-between items-start gap-4">
           <div>
             <span className="text-naxit-cyan font-mono text-[10px] tracking-[0.4em] uppercase">
-              {project.id} / {project.category}
+              {project.category}
             </span>
             <h3 className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl
                            font-display font-bold tracking-tight text-white

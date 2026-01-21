@@ -278,7 +278,7 @@ export const PROJECTS: Project[] = [
         tagline: 'Connecting donors and students through a clear, community-driven platform.',
         image:
             'https://res.cloudinary.com/dwdya29vh/image/upload/v1768975147/efc18a05-859a-4e1d-8fe7-89d52ce0e41d.png',
-        impact: 'Clearer connections between donors and students with improved trust and usability',
+        impact: 'Trusted Community Connections',
         tech: [
             'UX Research',
             'Wireframing',
@@ -463,7 +463,7 @@ export const PROJECTS: Project[] = [
         featured: true,
         tagline: 'A bold T-shirt brand identity inspired by classic Jurassic themes.',
         image: 'https://res.cloudinary.com/dwdya29vh/image/upload/v1768973089/TEE_REX_MOCKUP_01_kstxg0.jpg',
-        impact: 'Strong brand recall with a recognizable pop-culture-inspired identity',
+        impact: 'Bold Brand Identity',
         tech: ['Logo Design', 'Brand Identity', 'Illustration'],
         challenge: 'The client wanted a logo inspired by the Jurassic Park theme without directly copying it, while still feeling powerful, fun, and suitable for a T-shirt brand.',
         approach: 'We translated the client’s inspiration into an original logo concept that captures the energy of the Jurassic theme while remaining unique and brand safe.',
