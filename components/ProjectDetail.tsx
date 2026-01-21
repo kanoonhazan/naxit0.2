@@ -194,142 +194,200 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
           </div>
         </section>
 
-        {/* Narrative Grid */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 relative overflow-hidden">
-          {/* Background floating text to fill whitespace */}
-          <div className="hidden lg:block absolute -left-20 top-1/4 text-white/[0.02] text-[15rem] font-display font-black pointer-events-none select-none -rotate-90 origin-center leading-none">
-            SYSTEM
+        {/* Narrative Grid - Re-engineered for optimal spacial utility */}
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-32 relative overflow-hidden">
+          {/* Enhanced Background Decorations to fix void spaces */}
+          <div className="hidden lg:block absolute -left-20 top-1/4 text-white/[0.01] text-[15rem] font-display font-black pointer-events-none select-none -rotate-90 origin-center leading-none">
+            {project.title.toUpperCase()}
           </div>
-          <div className="hidden lg:block absolute -right-20 top-2/3 text-white/[0.02] text-[15rem] font-display font-black pointer-events-none select-none rotate-90 origin-center leading-none">
-            PROTOCOL
+          <div className="hidden lg:block absolute -right-24 top-2/3 text-white/[0.01] text-[15rem] font-display font-black pointer-events-none select-none rotate-90 origin-center leading-none">
+            {project.category.split(' ')[0].toUpperCase()}
           </div>
+          <div className="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:60px_60px] pointer-events-none" />
 
-          <div className="lg:col-span-8 space-y-16 md:space-y-20">
+          <div className="relative z-10 space-y-24 md:space-y-40">
+            {/* Context/Overview + Impact Strip */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="lg:col-span-7 space-y-8 md:space-y-10"
+              >
+                <div className="flex items-center gap-4 text-naxit-cyan">
+                  <div className="w-12 h-[1px] bg-naxit-cyan" />
+                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Context & Objective</span>
+                </div>
+                <h2 className="text-4xl md:text-7xl font-display font-bold leading-[1.05] tracking-tight">{project.challenge}</h2>
+                <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+                  {project.fullDescription}
+                </p>
+              </motion.div>
 
-            {/* Context/Overview */}
-            <div className="space-y-8 md:space-y-10">
-              <div className="flex items-center gap-4 text-naxit-cyan">
-                <div className="w-10 h-[1px] bg-naxit-cyan" />
-                <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">The Directive</span>
-              </div>
-              <h2 className="text-3xl md:text-6xl font-display font-bold mb-6 md:mb-10 leading-[1.1]">{project.challenge}</h2>
-              <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-                {project.fullDescription}
-              </p>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="lg:col-span-5"
+              >
+                <div className="glass p-10 md:p-14 rounded-[3rem] border border-naxit-cyan/20 bg-gradient-to-br from-naxit-cyan/10 to-transparent relative group overflow-hidden">
+                  <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-naxit-cyan/20 blur-[80px] rounded-full group-hover:bg-naxit-cyan/30 transition-colors" />
+                  <div className="relative z-10">
+                    <div className="text-[10px] font-mono text-gray-400 mb-8 tracking-[0.3em] uppercase">System Impact</div>
+                    <div className="text-6xl md:text-8xl font-display font-bold text-gradient mb-6 leading-none">{project.impact}</div>
+                    <div className="h-[1px] w-full bg-white/10 mb-6" />
+                    <p className="text-gray-500 text-[10px] font-mono leading-relaxed uppercase tracking-wider">
+                      Strategic deployment benchmark / operational phase
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Approach */}
-            {project.approach && (
-              <div className="space-y-8 md:space-y-10">
-                <div className="flex items-center gap-4 text-naxit-cyan">
-                  <div className="w-10 h-[1px] bg-naxit-cyan/30" />
-                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">Strategic Approach</span>
-                </div>
-                <div className="glass p-8 md:p-12 rounded-[2rem] border border-white/5 bg-white/[0.02]">
-                  <p className="text-gray-300 text-lg md:text-2xl font-light leading-relaxed">
-                    {project.approach}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Problem Section */}
-            {project.problem && (
-              <div className="space-y-8 md:space-y-10">
-                <div className="flex items-center gap-4 text-naxit-cyan">
-                  <div className="w-10 h-[1px] bg-naxit-cyan/30" />
-                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{project.problem.title}</span>
-                </div>
-                <div className="space-y-6">
-                  {project.problem.content.map((paragraph, i) => (
-                    <p key={i} className="text-gray-300 text-lg md:text-2xl font-light leading-relaxed">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Our Solution Section */}
-            {project.solution && (
-              <div className="space-y-8 md:space-y-10">
-                <div className="flex items-center gap-4 text-naxit-cyan">
-                  <div className="w-10 h-[1px] bg-naxit-cyan/30" />
-                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{project.solution.title}</span>
-                </div>
-                <div className="space-y-6">
-                  {project.solution.content.map((line, i) => {
-                    const isBullet = line.length < 100 && i > 0;
-                    return (
-                      <div key={i} className={`flex gap-4 ${isBullet ? 'pl-4' : ''}`}>
-                        {isBullet && <ChevronRight className="w-5 h-5 text-naxit-cyan mt-1 flex-shrink-0" />}
-                        <p className={`${isBullet ? 'text-gray-300' : 'text-gray-200'} text-lg md:text-2xl font-light leading-relaxed`}>
-                          {line}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Key Design Decisions */}
-            {project.designDecisions && (
-              <div className="glass p-8 md:p-20 rounded-[2.5rem] md:rounded-[3rem] border border-white/5 relative overflow-hidden">
-                <div className="absolute -right-20 -top-20 w-80 h-80 bg-naxit-royal/5 rounded-full blur-[100px]" />
-                <div className="flex items-center gap-4 text-naxit-cyan mb-8 md:mb-12">
-                  <Zap className="w-5 h-5" />
-                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">Execution Logic & Decisions</span>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                  {project.designDecisions.map((decision, i) => (
-                    <div key={i} className="flex gap-4">
-                      <div className="w-1.5 h-1.5 rounded-full bg-naxit-cyan mt-2 flex-shrink-0" />
-                      <p className="text-gray-300 font-light leading-relaxed text-base md:text-lg">
-                        {decision}
-                      </p>
+            {/* Problem & Solution - Integrated Comparison */}
+            {(project.problem || project.solution) && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 rounded-[4rem] overflow-hidden border border-white/10 shadow-2xl">
+                {/* Problem Section */}
+                {project.problem && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="p-10 md:p-20 bg-naxit-charcoal space-y-12"
+                  >
+                    <div className="flex items-center gap-4 text-red-500/60">
+                      <Target className="w-5 h-5" />
+                      <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.problem.title}</span>
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-6 md:space-y-8">
+                      {project.problem.content.map((paragraph, i) => (
+                        <p key={i} className="text-gray-400 text-lg md:text-2xl font-light leading-relaxed">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Solution Section */}
+                {project.solution && (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="p-10 md:p-20 bg-white/[0.03] space-y-12 backdrop-blur-sm"
+                  >
+                    <div className="flex items-center gap-4 text-naxit-cyan">
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.solution.title}</span>
+                    </div>
+                    <div className="space-y-6 md:space-y-8">
+                      {project.solution.content.map((line, i) => (
+                        <div key={i} className="flex gap-5 items-start">
+                          <ChevronRight className="w-5 h-5 text-naxit-cyan mt-1.5 flex-shrink-0" />
+                          <p className="text-gray-200 text-lg md:text-2xl font-light leading-relaxed">
+                            {line}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
               </div>
             )}
 
-            {/* Result Outcome Section */}
-            {project.resultOutcome && (
-              <div className="space-y-8 md:space-y-10">
-                <div className="flex items-center gap-4 text-naxit-cyan">
-                  <div className="w-10 h-[1px] bg-naxit-cyan/30" />
-                  <span className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] uppercase">{project.resultOutcome.title}</span>
-                </div>
-                <div className="space-y-6">
-                  {project.resultOutcome.content.map((paragraph, i) => (
-                    <p key={i} className="text-gray-300 text-lg md:text-2xl font-light leading-relaxed">
-                      {paragraph}
+            {/* Approach & Logic & Tech Stack Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-stretch">
+              {/* Left Column: Strategy */}
+              <div className="lg:col-span-7 space-y-20">
+                {project.approach && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="space-y-8"
+                  >
+                    <div className="flex items-center gap-4 text-naxit-cyan">
+                      <div className="w-10 h-[1px] bg-naxit-cyan/30" />
+                      <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Tactical Deployment</span>
+                    </div>
+                    <p className="text-gray-300 text-3xl md:text-5xl font-light leading-[1.1] tracking-tight">
+                      {project.approach}
                     </p>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+                  </motion.div>
+                )}
 
-          <div className="lg:col-span-4 space-y-12 md:space-y-16">
-            <div className="glass p-10 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border border-naxit-cyan/10 bg-gradient-to-br from-naxit-royal/10 to-transparent">
-              <div className="text-[9px] md:text-[10px] font-mono text-gray-500 mb-6 md:mb-8 tracking-widest uppercase">System Impact</div>
-              <div className="text-5xl md:text-7xl font-display font-bold text-gradient mb-4">{project.impact}</div>
-              <p className="text-gray-500 text-xs md:text-sm leading-relaxed">Performance benchmark exceeded during operational phase.</p>
-            </div>
-
-            <div>
-              <div className="flex items-center gap-4 text-naxit-cyan mb-8">
-                <Cpu className="w-5 h-5" />
-                <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Neural Stack</span>
+                {project.designDecisions && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="glass p-10 md:p-16 rounded-[3.5rem] border border-white/5 bg-gradient-to-br from-white/[0.05] to-transparent relative overflow-hidden shadow-2xl"
+                  >
+                    <div className="absolute top-0 right-0 p-8 opacity-20">
+                      <Zap className="w-12 h-12 text-naxit-cyan" />
+                    </div>
+                    <h4 className="font-mono text-[11px] tracking-[0.4em] uppercase text-naxit-cyan mb-12 flex items-center gap-3">
+                      <Layout className="w-4 h-4" /> Execution Logic
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
+                      {project.designDecisions.map((decision, i) => (
+                        <div key={i} className="flex gap-4 group">
+                          <div className="w-2 h-2 rounded-full bg-naxit-cyan mt-2 flex-shrink-0 group-hover:scale-150 transition-transform shadow-[0_0_12px_rgba(0,187,255,1)]" />
+                          <p className="text-gray-400 font-light leading-relaxed text-base md:text-lg">
+                            {decision}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
               </div>
-              <div className="flex flex-wrap gap-4">
-                {project.tech.map((t) => (
-                  <span key={t} className="px-6 py-3 glass rounded-2xl text-xs font-mono border border-white/10 text-gray-400">
-                    {t}
-                  </span>
-                ))}
+
+              {/* Right Column: Technical & Outcomes */}
+              <div className="lg:col-span-5 h-full">
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="glass p-10 md:p-14 rounded-[3.5rem] border border-white/5 h-full flex flex-col justify-between bg-black/40 backdrop-blur-xl shadow-2xl"
+                >
+                  <div className="space-y-16">
+                    <div className="space-y-10">
+                      <div className="flex items-center gap-4 text-naxit-cyan">
+                        <Cpu className="w-6 h-6" />
+                        <span className="font-mono text-[11px] tracking-[0.4em] uppercase">Neural Stack</span>
+                      </div>
+                      <div className="flex flex-wrap gap-3 md:gap-4">
+                        {project.tech.map((t) => (
+                          <span key={t} className="px-5 py-3 glass rounded-2xl text-xs font-mono border border-white/10 text-gray-400 hover:text-naxit-cyan hover:border-naxit-cyan/50 transition-all cursor-default hover:bg-white/5">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {project.resultOutcome && (
+                      <div className="pt-12 border-t border-white/10 space-y-10">
+                        <div className="flex items-center gap-4 text-naxit-cyan">
+                          <div className="w-8 h-[1px] bg-naxit-cyan" />
+                          <span className="font-mono text-[10px] tracking-[0.4em] uppercase">{project.resultOutcome.title}</span>
+                        </div>
+                        <div className="space-y-8">
+                          {project.resultOutcome.content.map((paragraph, i) => (
+                            <p key={i} className="text-gray-400 text-base md:text-lg font-light leading-relaxed italic border-l-2 border-naxit-cyan/30 pl-8">
+                              "{paragraph}"
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-20 pt-10 border-t border-white/5 text-center">
+                    <span className="font-mono text-[10px] text-white/10 uppercase tracking-[0.6em]">System: High-Performance Operational</span>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -620,7 +678,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
               onClick={onBack}
               className="glass border border-white/10 px-10 md:px-12 py-5 md:py-6 rounded-2xl font-bold text-gray-400 hover:text-white transition-all text-base md:text-lg w-full md:w-auto justify-center"
             >
-              Return to Nexus
+              Return to Nexit
             </button>
           </div>
         </section>
