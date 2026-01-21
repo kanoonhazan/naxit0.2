@@ -13,6 +13,7 @@ import ServicePage from './components/ServicePage';
 import ProjectPage from './components/ProjectPage';
 import PortfolioPage from './components/PortfolioPage';
 import Admin from './components/Admin';
+import NotFound from './components/NotFound';
 import { ProjectProvider } from './context/ProjectContext';
 
 const AppContent: React.FC = () => {
@@ -77,6 +78,11 @@ const AppContent: React.FC = () => {
               <Route path="/admin" element={
                 <PageWrapper>
                   <Admin />
+                </PageWrapper>
+              } />
+              <Route path="*" element={
+                <PageWrapper>
+                  <NotFound />
                 </PageWrapper>
               } />
             </Routes>
