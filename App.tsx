@@ -36,6 +36,24 @@ const PageLoader = () => (
   </div>
 );
 
+const ScrollToHash: React.FC = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [hash]);
+
+  return null;
+};
+
 const AppContent: React.FC = () => {
   const location = useLocation();
 
@@ -69,6 +87,7 @@ const AppContent: React.FC = () => {
       <Helmet>
         <html lang="en-LK" />
       </Helmet>
+      <ScrollToHash />
       <NeuralBackground />
       <ProjectProvider>
         <Suspense fallback={<PageLoader />}>

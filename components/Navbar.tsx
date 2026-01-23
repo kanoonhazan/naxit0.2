@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   onCloseModal?: () => void;
@@ -9,6 +10,8 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, targetId: string) => {
     e.preventDefault();
@@ -17,6 +20,11 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
     // Close any open modal first
     if (onCloseModal) {
       onCloseModal();
+    }
+
+    if (location.pathname !== '/') {
+      navigate(`/#${targetId}`);
+      return;
     }
 
     // Wait a bit for modal to close, then scroll
@@ -45,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
       className="fixed top-6 left-0 right-0 mx-auto w-[95%] md:w-[90%] max-w-[1920px] z-50 border border-white/10 glass bg-black/50 backdrop-blur-md rounded-3xl"
     >
       <div className="w-full mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#hero" onClick={(e) => handleScroll(e, 'hero')}>
+        <a href="/#hero" onClick={(e) => handleScroll(e, 'hero')}>
           <img
             src="/assets/logo.png"
             alt="NAXIT Micro Agency - Best Digital Solutions in Mannar, Sri Lanka"
@@ -58,8 +66,8 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={`#${link.target}`}
-              onClick={(e) => handleScroll(e, 'hero' === link.target ? 'hero' : link.target)}
+              href={`/#${link.target}`}
+              onClick={(e) => handleScroll(e, link.target)}
               className="hover:text-naxit-cyan transition-colors"
             >
               {link.name}
@@ -99,7 +107,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
               {navLinks.map((link) => (
                 <a
                   key={link.name}
-                  href={`#${link.target}`}
+                  href={`/#${link.target}`}
                   onClick={(e) => handleScroll(e, link.target)}
                   className="hover:text-naxit-cyan transition-colors"
                 >
