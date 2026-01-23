@@ -13,22 +13,17 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const criticalImages = useMemo(() => {
     const images: string[] = [];
 
-    // 1. Service Heroes (All services are visible on home)
-    SERVICES.forEach(s => {
-      if (s.image) images.push(getOptimizedImage(s.image, 1200));
+    // 1. Service Heroes (Only first 2 are critical for immediate view)
+    SERVICES.slice(0, 2).forEach(s => {
+      if (s.image) images.push(getOptimizedImage(s.image, 1000));
     });
 
-    // 2. Project Heroes (Only featured ones for home page)
-    PROJECTS.filter(p => p.featured).forEach(p => {
-      if (p.image) images.push(getOptimizedImage(p.image, 1200));
-
-      // Preload only the first 2 gallery items for featured projects
-      if (p.gallery && p.gallery.length > 0) {
-        p.gallery.slice(0, 2).forEach(img => images.push(getOptimizedImage(img, 800)));
-      }
+    // 2. Project Heroes (Only first 2 featured ones)
+    PROJECTS.filter(p => p.featured).slice(0, 2).forEach(p => {
+      if (p.image) images.push(getOptimizedImage(p.image, 1000));
     });
 
-    return [...new Set(images)]; // Remove duplicates
+    return [...new Set(images)];
   }, []);
 
   useEffect(() => {
@@ -64,19 +59,18 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
   useEffect(() => {
     const sequence = [
-      { p: 15, t: 'Initializing Systems...' },
-      { p: 35, t: 'Loading Brand Assets...' },
-      { p: 55, t: 'Optimizing Visual Nodes...' },
-      { p: 75, t: 'Syncing Local Resources...' },
-      { p: 95, t: 'Finalizing Deployment...' },
-      { p: 100, t: 'NAXIT is Ready.' }
+      { p: 20, t: 'Initializing Systems...' },
+      { p: 40, t: 'Loading Brand Assets...' },
+      { p: 65, t: 'Optimizing Nodes...' },
+      { p: 85, t: 'Syncing Resources...' },
+      { p: 100, t: 'Ready.' }
     ];
 
     let current = 0;
     const interval = setInterval(() => {
       if (current < sequence.length) {
-        // Slow down if images aren't loaded yet
-        if (sequence[current].p > 85 && !isImagesLoaded) {
+        // Fast forward if images are already loaded
+        if (sequence[current].p > 80 && !isImagesLoaded) {
           return;
         }
 
@@ -85,9 +79,9 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         current++;
       } else {
         clearInterval(interval);
-        setTimeout(onComplete, 800);
+        setTimeout(onComplete, 500);
       }
-    }, 450);
+    }, 250); // Reduced from 450ms
 
     return () => clearInterval(interval);
   }, [onComplete, isImagesLoaded]);

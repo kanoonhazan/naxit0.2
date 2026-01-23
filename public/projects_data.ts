@@ -1,78 +1,86 @@
 export const PROJECTS = [
     {
-        "id": "05_1768973490134",
-        "slug": "tee-rex-brand-logo",
-        "title": "TEE-REX",
-        "category": "Graphic Design",
+        "id": "01",
+        "slug": "yumdrop-food-delivery-ux",
+        "title": "YumDrop",
+        "category": "UI/UX Design",
         "featured": true,
-        "tagline": "A bold T-shirt brand identity inspired by classic Jurassic themes.",
-        "image": "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973089/TEE_REX_MOCKUP_01_kstxg0.jpg",
-        "impact": "Strong brand recall with a recognizable pop-culture-inspired identity",
-        "tech": [
-            "Logo Design",
-            "Brand Identity",
-            "Illustration"
-        ],
-        "challenge": "The client wanted a logo inspired by the Jurassic Park theme without directly copying it, while still feeling powerful, fun, and suitable for a T-shirt brand.",
-        "approach": "We translated the client’s inspiration into an original logo concept that captures the energy of the Jurassic theme while remaining unique and brand safe.",
-        "full_description": "Tee-Rex is a T-shirt brand concept built around a bold, playful identity inspired by Jurassic-era visuals. The client wanted a logo that instantly communicates strength and attitude, similar to the iconic Jurassic Park style, while clearly representing a modern apparel brand.",
+        "tagline": "Improving order placement and real-time delivery tracking.",
+        "image": "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917873/Page_15_vyezqf.png",
+        "impact": "Clearer ordering, fewer errors, better delivery visibility",
+        "tech": ["UX Research", "Wireframing", "Prototyping", "Usability Testing"],
+        "challenge": "Users struggled with complex ordering steps, unclear checkout, and unreliable delivery tracking.",
+        "approach": "We studied user behavior, identified key friction points, and redesigned the ordering and tracking experience with clarity and simplicity as priorities.",
+        "full_description": "YumDrop is a food delivery platform project completed as part of an internship assignment at Dilimatrix. The focus was on improving the user experience of order placement and real-time delivery tracking, aligning user needs with business goals such as order completion and customer satisfaction.",
         "gallery": [
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973089/TEE_REX_MOCKUP_01_kstxg0.jpg",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973083/TEE_REX_MAIN_LOGO_JPG_lswm5b.jpg",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973070/TEE_REX_02_prbahq.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973068/TEE_REX_03_pjsy6c.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973082/TEE_REX_MOCKUP_04_m7ylj3.jpg"
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917596/Page_2_tul7hh.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917597/Page_3_hg7099.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917651/Page_4_bownno.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917612/Page_5_dlwmzk.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917606/Page_6_al98di.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917636/Page_7_lnjtef.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917549/Page_8_eddr19.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917551/Page_9_ups3sl.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917590/Page_10_adpt2g.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917627/Page_11_yp3aex.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917608/Page_12_imab1d.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917553/Page_13_shucry.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917557/Page_14_v7dc7q.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917873/Page_15_vyezqf.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917664/Page_16_sbqh51.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917577/Page_17_aicqlg.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917570/Page_18_nadvjn.png"
         ],
         "problem": {
             "title": "The Problem",
             "content": [
-                "The client wanted a strong Jurassic Park–inspired look without copying the original movie logo.",
-                "The logo needed to feel bold and memorable on T-shirts.",
-                "The dinosaur character had to clearly connect to clothing, not entertainment or movies.",
-                "The design needed to work well across prints, tags, and social media."
+                "Users found it difficult to discover products and navigate menus.",
+                "The checkout process was long and confusing, leading to order errors.",
+                "Delivery tracking lacked real-time updates and clear time estimates.",
+                "These issues caused frustration and reduced user confidence."
             ]
         },
         "solution": {
             "title": "Our Solution",
             "content": [
-                "Created an original dinosaur illustration inspired by Jurassic-era styling.",
-                "Designed the dinosaur holding a T-shirt to clearly represent the apparel focus.",
-                "Used bold shapes and strong outlines to ensure high visibility on fabric.",
-                "Developed a logo that feels familiar, fun, and brandable without copyright risk.'"
+                "Simplified menu navigation and product discovery.",
+                "Streamlined checkout with clearer steps and fewer required inputs.",
+                "Instant order confirmation to reduce uncertainty.",
+                "Improved delivery tracking with real-time status updates and clearer time estimates."
             ]
         },
         "design_decisions": [
-            "Custom dinosaur illustration for originality",
-            "Strong circular badge structure for easy printing",
-            "High-contrast shapes for fabric visibility",
-            "Typography inspired by adventure themes, adapted for apparel branding",
-            "Designed to scale across T-shirts, labels, and digital platforms"
+            "Guest checkout to reduce friction",
+            "Clear separation of mandatory and optional fields",
+            "Progress indicators during checkout",
+            "Simplified icons and labels for delivery tracking",
+            "Focus on clarity over visual complexity"
         ],
         "result_outcome": {
-            "title": "Result (Design Outcome)",
+            "title": "Result (Concept Outcome)",
             "content": [
-                "A bold and memorable logo that clearly communicates the brand identity.",
-                "Strong visual appeal suitable for T-shirt printing and merchandise.",
-                "A design that feels inspired by pop culture while remaining original.",
-                "The logo sets a strong foundation for future brand expansion."
+                "Users could place orders faster with fewer mistakes.",
+                "Delivery status was easier to understand, improving user confidence.",
+                "The redesign supported better order completion and customer satisfaction.",
+                "The project demonstrated a user-centered design approach aligned with business goals."
             ]
         },
-        "created_at": "2026-01-21T05:31:32.822172+00:00",
-        "fullDescription": "Tee-Rex is a T-shirt brand concept built around a bold, playful identity inspired by Jurassic-era visuals. The client wanted a logo that instantly communicates strength and attitude, similar to the iconic Jurassic Park style, while clearly representing a modern apparel brand.",
+        "created_at": "2026-01-23T00:00:00.000000+00:00",
+        "fullDescription": "YumDrop is a food delivery platform project completed as part of an internship assignment at Dilimatrix. The focus was on improving the user experience of order placement and real-time delivery tracking, aligning user needs with business goals such as order completion and customer satisfaction.",
         "designDecisions": [
-            "Custom dinosaur illustration for originality",
-            "Strong circular badge structure for easy printing",
-            "High-contrast shapes for fabric visibility",
-            "Typography inspired by adventure themes, adapted for apparel branding",
-            "Designed to scale across T-shirts, labels, and digital platforms"
+            "Guest checkout to reduce friction",
+            "Clear separation of mandatory and optional fields",
+            "Progress indicators during checkout",
+            "Simplified icons and labels for delivery tracking",
+            "Focus on clarity over visual complexity"
         ],
         "resultOutcome": {
-            "title": "Result (Design Outcome)",
+            "title": "Result (Concept Outcome)",
             "content": [
-                "A bold and memorable logo that clearly communicates the brand identity.",
-                "Strong visual appeal suitable for T-shirt printing and merchandise.",
-                "A design that feels inspired by pop culture while remaining original.",
-                "The logo sets a strong foundation for future brand expansion."
+                "Users could place orders faster with fewer mistakes.",
+                "Delivery status was easier to understand, improving user confidence.",
+                "The redesign supported better order completion and customer satisfaction.",
+                "The project demonstrated a user-centered design approach aligned with business goals."
             ]
         }
     },
@@ -84,14 +92,8 @@ export const PROJECTS = [
         "featured": true,
         "tagline": "Connecting donors and students through a clear, community-driven platform.",
         "image": "https://res.cloudinary.com/dwdya29vh/image/upload/v1768975147/efc18a05-859a-4e1d-8fe7-89d52ce0e41d.png",
-        "impact": "Clearer connections between donors and students with improved trust and usability",
-        "tech": [
-            "UX Research",
-            "Wireframing",
-            "Prototyping",
-            "Usability Testing",
-            "Accessibility Design"
-        ],
+        "impact": "Trusted Community Connections",
+        "tech": ["UX Research", "Wireframing", "Prototyping", "Usability Testing", "Accessibility Design"],
         "challenge": "Students facing financial difficulties struggle to access support, while donors lack a reliable and transparent way to connect with students who need help.",
         "approach": "We designed a user-centric platform that simplifies discovery, builds trust through transparent profiles, and encourages community engagement through forums and dashboards.",
         "full_description": "EduAid Bridge is a cross-platform product concept designed to connect donors with students in need of financial and educational support. The project focused on creating an intuitive, accessible experience for two very different user groups while fostering trust, transparency, and community participation.",
@@ -154,7 +156,7 @@ export const PROJECTS = [
                 "The design demonstrated how UX can support social impact and real-world challenges."
             ]
         },
-        "created_at": "2026-01-17T10:00:52.732477+00:00",
+        "created_at": "2026-01-23T00:00:00.000000+00:00",
         "fullDescription": "EduAid Bridge is a cross-platform product concept designed to connect donors with students in need of financial and educational support. The project focused on creating an intuitive, accessible experience for two very different user groups while fostering trust, transparency, and community participation.",
         "designDecisions": [
             "Clear separation of donor and student user flows",
@@ -175,229 +177,223 @@ export const PROJECTS = [
     },
     {
         "id": "03",
-        "slug": "vanguard-brand-identity",
-        "title": "Vanguard Brand Identity",
-        "category": "Digital Branding",
-        "featured": false,
-        "tagline": "A legacy-first digital rebirth for a century-old firm.",
-        "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop",
-        "impact": "3.2x Valuation",
-        "tech": [
-            "Strategic Design",
-            "Visual Narratives",
-            "CGI"
-        ],
-        "challenge": "Translating industrial heritage into a digital-native visual language.",
-        "approach": "We stripped away the clutter and focused on the core engineering prowess of the firm, using high-end CGI to showcase their physical assets in a digital space.",
-        "full_description": "Vanguard had incredible history but looked \"old\" to new investors. We crafted a brand narrative focused on \"Precision Over Time,\" utilizing monochromatic palettes and sharp geometric layouts.",
-        "gallery": [
-            "https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=2000",
-            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000",
-            "https://images.unsplash.com/photo-1600880212319-7524391cfc1e?q=80&w=2000"
-        ],
-        "problem": {
-            "title": "The Problem",
-            "content": [
-                "A century-old engineering firm was struggling to attract modern venture capital.",
-                "The brand identity felt industrial and dated, failing to communicate their modern technological capabilities.",
-                "Communication gaps between legacy operations and new digital-first investors."
-            ]
-        },
-        "solution": {
-            "title": "Our Solution",
-            "content": [
-                "We redesigned the entire visual ecosystem around the concept of \"Quantum Heritage.\"",
-                "Merging traditional precision with digital-native aesthetics through:",
-                "High-fidelity CGI asset creation",
-                "Minimalist typographic systems",
-                "Kinetic brand narratives on digital platforms"
-            ]
-        },
-        "design_decisions": [
-            "Monochromatic color theory for authority",
-            "Geometric grid-based layout systems",
-            "Custom font sets for technical clarity",
-            "Interactive digital annual reports"
-        ],
-        "result_outcome": {
-            "title": "Result (Valuation Surge)",
-            "content": [
-                "The rebranding directly contributed to a 3.2x surge in firm valuation during the subsequent funding round.",
-                "This proves NAXIT’s ability to bridge the gap between legacy industries and modern digital capital."
-            ]
-        },
-        "created_at": "2026-01-17T10:00:52.732477+00:00",
-        "fullDescription": "Vanguard had incredible history but looked \"old\" to new investors. We crafted a brand narrative focused on \"Precision Over Time,\" utilizing monochromatic palettes and sharp geometric layouts.",
-        "designDecisions": [
-            "Monochromatic color theory for authority",
-            "Geometric grid-based layout systems",
-            "Custom font sets for technical clarity",
-            "Interactive digital annual reports"
-        ],
-        "resultOutcome": {
-            "title": "Result (Valuation Surge)",
-            "content": [
-                "The rebranding directly contributed to a 3.2x surge in firm valuation during the subsequent funding round.",
-                "This proves NAXIT’s ability to bridge the gap between legacy industries and modern digital capital."
-            ]
-        }
-    },
-    {
-        "id": "01",
-        "slug": "yumdrop-food-delivery-ux",
-        "title": "YumDrop",
-        "category": "UI/UX Design",
+        "slug": "local-brand-logo-design",
+        "title": "Logo Design",
+        "category": "Graphic Design",
         "featured": true,
-        "tagline": "Improving order placement and real-time delivery tracking.",
-        "image": "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917873/Page_15_vyezqf.png",
-        "impact": "Clearer ordering, fewer errors, better delivery visibility",
-        "tech": [
-            "UX Research",
-            "Wireframing",
-            "Prototyping",
-            "Usability Testing"
-        ],
-        "challenge": "Users struggled with complex ordering steps, unclear checkout, and unreliable delivery tracking.",
-        "approach": "By deploying edge computing nodes on maritime vessels, we removed the 5-second latency barrier that previously hampered real-time adjustments.",
-        "full_description": "YumDrop is a food delivery platform project completed as part of an internship assignment at Dilimatrix. The focus was on improving the user experience of order placement and real-time delivery tracking, aligning user needs with business goals such as order completion and customer satisfaction.",
+        "tagline": "A clean, professional logo designed for everyday business use.",
+        "image": "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982795/ALONE_WALKER_0001_qfejhx.jpg",
+        "impact": "Professional Brand Image",
+        "tech": ["Logo Design", "Typography", "Brand Fundamentals"],
+        "challenge": "The client needed a logo that looks professional, works across print and digital, and clearly represents their business without being overly complex.",
+        "approach": "We focused on simplicity, clarity, and versatility, ensuring the logo could be used consistently across shop boards, business cards, social media, and packaging.",
+        "full_description": "This project focused on designing a practical logo for a local business. The goal was to create a mark that feels trustworthy, easy to recognize, and suitable for long-term use across both online and offline platforms.",
         "gallery": [
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917596/Page_2_tul7hh.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917597/Page_3_hg7099.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917651/Page_4_bownno.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917612/Page_5_dlwmzk.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917606/Page_6_al98di.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917636/Page_7_lnjtef.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917549/Page_8_eddr19.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917551/Page_9_ups3sl.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917590/Page_10_adpt2g.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917627/Page_11_yp3aex.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917608/Page_12_imab1d.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917553/Page_13_shucry.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917557/Page_14_v7dc7q.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917873/Page_15_vyezqf.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917664/Page_16_sbqh51.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917577/Page_17_aicqlg.png",
-            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768917570/Page_18_nadvjn.png"
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982877/TEE_REX_MOCKUP_01_l0im97.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982864/Tan_Tonic_Logo_j0zwbn.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982809/IMG_20221108_215119_675_uweroj.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982797/DJ_Blanket_dwn6v5.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982795/ALONE_WALKER_0001_qfejhx.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982760/signature_logo_wx6las.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982757/Logo_ceolal.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982756/logo_01_fcjhec.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982756/Logo_01_s5jycb.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768982754/logo_02_x5h117.png"
         ],
         "problem": {
             "title": "The Problem",
             "content": [
-                "Users found it difficult to discover products and navigate menus.",
-                "The checkout process was long and confusing, leading to order errors.",
-                "Delivery tracking lacked real-time updates and clear time estimates.",
-                "These issues caused frustration and reduced user confidence."
+                "The existing visual identity lacked consistency and professionalism.",
+                "The business needed a logo that could be easily recognized by local customers.",
+                "The logo had to work well on shop signage, printed materials, and social media."
             ]
         },
         "solution": {
             "title": "Our Solution",
             "content": [
-                "Simplified menu navigation and product discovery.",
-                "Streamlined checkout with clearer steps and fewer required inputs.",
-                "Instant order confirmation to reduce uncertainty.",
-                "Improved delivery tracking with real-time status updates and clearer time estimates."
+                "Designed a simple, balanced logo with clear typography.",
+                "Focused on shapes and colors that remain readable at all sizes.",
+                "Ensured the logo works in color, black, and white versions.",
+                "Prepared the logo for both digital and print usage."
             ]
         },
         "design_decisions": [
-            "Guest checkout to reduce friction",
-            "Clear separation of mandatory and optional fields",
-            "Progress indicators during checkout",
-            "Simplified icons and labels for delivery tracking",
-            "Focus on clarity over visual complexity"
+            "Minimal design for long-term usability",
+            "Clear typography for easy recognition",
+            "Scalable layout for signage and social media",
+            "Neutral color palette for versatility",
+            "Avoided trends that age quickly"
         ],
         "result_outcome": {
-            "title": "Result (Concept Outcome)",
+            "title": "Result (Design Outcome)",
             "content": [
-                "Users could place orders faster with fewer mistakes.",
-                "Delivery status was easier to understand, improving user confidence.",
-                "The redesign supported better order completion and customer satisfaction.",
-                "The project demonstrated a user-centered design approach aligned with business goals."
+                "A clean and professional logo suitable for everyday business use.",
+                "Consistent brand appearance across all customer touchpoints.",
+                "A strong foundation for future branding and marketing materials."
             ]
         },
-        "created_at": "2026-01-17T10:00:52.732477+00:00",
-        "fullDescription": "YumDrop is a food delivery platform project completed as part of an internship assignment at Dilimatrix. The focus was on improving the user experience of order placement and real-time delivery tracking, aligning user needs with business goals such as order completion and customer satisfaction.",
+        "created_at": "2026-01-23T00:00:00.000000+00:00",
+        "fullDescription": "This project focused on designing a practical logo for a local business. The goal was to create a mark that feels trustworthy, easy to recognize, and suitable for long-term use across both online and offline platforms.",
         "designDecisions": [
-            "Guest checkout to reduce friction",
-            "Clear separation of mandatory and optional fields",
-            "Progress indicators during checkout",
-            "Simplified icons and labels for delivery tracking",
-            "Focus on clarity over visual complexity"
+            "Minimal design for long-term usability",
+            "Clear typography for easy recognition",
+            "Scalable layout for signage and social media",
+            "Neutral color palette for versatility",
+            "Avoided trends that age quickly"
         ],
         "resultOutcome": {
-            "title": "Result (Concept Outcome)",
+            "title": "Result (Design Outcome)",
             "content": [
-                "Users could place orders faster with fewer mistakes.",
-                "Delivery status was easier to understand, improving user confidence.",
-                "The redesign supported better order completion and customer satisfaction.",
-                "The project demonstrated a user-centered design approach aligned with business goals."
+                "A clean and professional logo suitable for everyday business use.",
+                "Consistent brand appearance across all customer touchpoints.",
+                "A strong foundation for future branding and marketing materials."
             ]
         }
     },
     {
         "id": "04",
-        "slug": "nebula-cloud-infrastructure",
-        "title": "Nebula Cloud Infrastructure",
-        "category": "Graphic Design",
+        "slug": "my-travels-branding",
+        "title": "My Travels",
+        "category": "Digital Branding",
         "featured": true,
-        "tagline": "Edge computing redefined for low-latency neural processing.",
-        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop",
-        "impact": "15ms Latency",
-        "tech": [
-            "Rust",
-            "Kubernetes",
-            "gRPC"
-        ],
-        "challenge": "Deploying high-compute nodes across 42 global zones with zero downtime.",
-        "approach": "A Rust-based container orchestrator was custom-built to handle sub-millisecond switching between nodes during high-load peaks.",
-        "full_description": "Nebula needed a serverless architecture that didn't sacrifice the raw performance required for LLM training. We architected a system that behaves like local hardware but scales like the cloud.",
+        "tagline": "A bold, travel-focused brand identity for a local tours agency.",
+        "image": "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187075/MyTravels_Brand_Kit_component_8_ijdqgy.png",
+        "impact": "Professional Brand Identity",
+        "tech": ["Logo Design", "Brand Identity", "Typography", "Visual System"],
+        "challenge": "The client needed a strong, modern logo and visual identity that clearly represents a travel and tours agency while remaining memorable and easy to recognize.",
+        "approach": "We designed a bold, travel-inspired logo using a clean airplane symbol and strong typography, supported by a consistent color palette and visual system.",
+        "full_description": "My Travels is a travel and tours agency based in Mannar, Sri Lanka. The goal of this project was to create a professional and recognizable brand identity that communicates trust, movement, and exploration while working effectively across digital and physical branding materials.",
         "gallery": [
-            "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2000",
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000",
-            "https://images.unsplash.com/photo-1504384308090-c89e1207a8f0?q=80&w=2000"
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187065/MyTravels_Brand_Kit_component_1_zb8hrj.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187069/MyTravels_Brand_Kit_component_2_x2lv2j.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187067/MyTravels_Brand_Kit_component_7_tu2b6k.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187067/MyTravels_Brand_Kit_component_3_ou62dk.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187065/MyTravels_Brand_Kit_component_6_bjbfcv.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187060/MyTravels_Brand_Kit_component_5_k72sdv.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187070/MyTravels_Brand_Kit_component_11_mgolpb.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187066/MyTravels_Brand_Kit_component_9_t2x2fo.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1769187061/MyTravels_Brand_Kit_component_10_mceyyi.png"
         ],
         "problem": {
             "title": "The Problem",
             "content": [
-                "Standard cloud providers introduced too much latency for localized AI inference.",
-                "Infrastructure scaling often required downtime, unacceptable for real-time applications.",
-                "Data sovereignty issues in specific global regions hindered deployment."
+                "The brand lacked a clear and recognizable visual identity.",
+                "The logo needed to work across social media, print materials, and travel related branding.",
+                "The design had to feel modern, trustworthy, and travel focused."
             ]
         },
         "solution": {
             "title": "Our Solution",
             "content": [
-                "We custom-built a Rust-based edge orchestrator for sub-15ms processing.",
-                "A decentralized infrastructure model that provides:",
-                "Zone-specific data containment",
-                "Zero-downtime hot-swapping of compute nodes",
-                "Native support for heavy neural payloads"
+                "Designed a clean logo featuring an airplane symbol to represent travel and movement.",
+                "Used bold typography to ensure readability and recognition.",
+                "Created a consistent color palette suitable for both digital and print use.",
+                "Developed logo variations for different backgrounds and use cases."
             ]
         },
         "design_decisions": [
-            "Memory-safe Rust codebase",
-            "Custom gRPC communication layers",
-            "Automated zone replication",
-            "Encrypted transit for all AI weights"
+            "Simple airplane icon for instant travel recognition",
+            "Bold typography for clarity and brand recall",
+            "High-contrast red, white, and black color system",
+            "Scalable logo design for social media, merchandise, and print",
+            "Consistent visual style across all brand touchpoints"
         ],
         "result_outcome": {
-            "title": "Result (Global Scale)",
+            "title": "Result (Design Outcome)",
             "content": [
-                "Nebula now processes millions of inference requests daily with 99.999% uptime.",
-                "It showcases NAXIT’s high-frequency infrastructure and backend engineering prowess."
+                "A strong and professional brand identity suitable for a travel agency.",
+                "Consistent visual presence across digital platforms and marketing materials.",
+                "A logo system that is easy to apply and recognizable at any size."
             ]
         },
-        "created_at": "2026-01-17T10:00:52.732477+00:00",
-        "fullDescription": "Nebula needed a serverless architecture that didn't sacrifice the raw performance required for LLM training. We architected a system that behaves like local hardware but scales like the cloud.",
+        "created_at": "2026-01-23T00:00:00.000000+00:00",
+        "fullDescription": "My Travels is a travel and tours agency based in Mannar, Sri Lanka. The goal of this project was to create a professional and recognizable brand identity that communicates trust, movement, and exploration while working effectively across digital and physical branding materials.",
         "designDecisions": [
-            "Memory-safe Rust codebase",
-            "Custom gRPC communication layers",
-            "Automated zone replication",
-            "Encrypted transit for all AI weights"
+            "Simple airplane icon for instant travel recognition",
+            "Bold typography for clarity and brand recall",
+            "High-contrast red, white, and black color system",
+            "Scalable logo design for social media, merchandise, and print",
+            "Consistent visual style across all brand touchpoints"
         ],
         "resultOutcome": {
-            "title": "Result (Global Scale)",
+            "title": "Result (Design Outcome)",
             "content": [
-                "Nebula now processes millions of inference requests daily with 99.999% uptime.",
-                "It showcases NAXIT’s high-frequency infrastructure and backend engineering prowess."
+                "A strong and professional brand identity suitable for a travel agency.",
+                "Consistent visual presence across digital platforms and marketing materials.",
+                "A logo system that is easy to apply and recognizable at any size."
+            ]
+        }
+    },
+    {
+        "id": "05",
+        "slug": "tee-rex-brand-logo",
+        "title": "TEE-REX",
+        "category": "Graphic Design",
+        "featured": true,
+        "tagline": "A bold T-shirt brand identity inspired by classic Jurassic themes.",
+        "image": "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973089/TEE_REX_MOCKUP_01_kstxg0.jpg",
+        "impact": "Bold Brand Identity",
+        "tech": ["Logo Design", "Brand Identity", "Illustration"],
+        "challenge": "The client wanted a logo inspired by the Jurassic Park theme without directly copying it, while still feeling powerful, fun, and suitable for a T-shirt brand.",
+        "approach": "We translated the client’s inspiration into an original logo concept that captures the energy of the Jurassic theme while remaining unique and brand safe.",
+        "full_description": "Tee-Rex is a T-shirt brand concept built around a bold, playful identity inspired by Jurassic-era visuals. The client wanted a logo that instantly communicates strength and attitude, similar to the iconic Jurassic Park style, while clearly representing a modern apparel brand.",
+        "gallery": [
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973089/TEE_REX_MOCKUP_01_kstxg0.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973083/TEE_REX_MAIN_LOGO_JPG_lswm5b.jpg",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973070/TEE_REX_02_prbahq.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973068/TEE_REX_03_pjsy6c.png",
+            "https://res.cloudinary.com/dwdya29vh/image/upload/v1768973082/TEE_REX_MOCKUP_04_m7ylj3.jpg"
+        ],
+        "problem": {
+            "title": "The Problem",
+            "content": [
+                "The client wanted a strong Jurassic Park–inspired look without copying the original movie logo.",
+                "The logo needed to feel bold and memorable on T-shirts.",
+                "The dinosaur character had to clearly connect to clothing, not entertainment or movies.",
+                "The design needed to work well across prints, tags, and social media."
+            ]
+        },
+        "solution": {
+            "title": "Our Solution",
+            "content": [
+                "Created an original dinosaur illustration inspired by Jurassic-era styling.",
+                "Designed the dinosaur holding a T-shirt to clearly represent the apparel focus.",
+                "Used bold shapes and strong outlines to ensure high visibility on fabric.",
+                "Developed a logo that feels familiar, fun, and brandable without copyright risk."
+            ]
+        },
+        "design_decisions": [
+            "Custom dinosaur illustration for originality",
+            "Strong circular badge structure for easy printing",
+            "High-contrast shapes for fabric visibility",
+            "Typography inspired by adventure themes, adapted for apparel branding",
+            "Designed to scale across T-shirts, labels, and digital platforms"
+        ],
+        "result_outcome": {
+            "title": "Result (Design Outcome)",
+            "content": [
+                "A bold and memorable logo that clearly communicates the brand identity.",
+                "Strong visual appeal suitable for T-shirt printing and merchandise.",
+                "A design that feels inspired by pop culture while remaining original.",
+                "The logo sets a strong foundation for future brand expansion."
+            ]
+        },
+        "created_at": "2026-01-23T00:00:00.000000+00:00",
+        "fullDescription": "Tee-Rex is a T-shirt brand concept built around a bold, playful identity inspired by Jurassic-era visuals. The client wanted a logo that instantly communicates strength and attitude, similar to the iconic Jurassic Park style, while clearly representing a modern apparel brand.",
+        "designDecisions": [
+            "Custom dinosaur illustration for originality",
+            "Strong circular badge structure for easy printing",
+            "High-contrast shapes for fabric visibility",
+            "Typography inspired by adventure themes, adapted for apparel branding",
+            "Designed to scale across T-shirts, labels, and digital platforms"
+        ],
+        "resultOutcome": {
+            "title": "Result (Design Outcome)",
+            "content": [
+                "A bold and memorable logo that clearly communicates the brand identity.",
+                "Strong visual appeal suitable for T-shirt printing and merchandise.",
+                "A design that feels inspired by pop culture while remaining original.",
+                "The logo sets a strong foundation for future brand expansion."
             ]
         }
     }

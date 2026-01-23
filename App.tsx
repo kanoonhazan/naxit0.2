@@ -1,34 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
-import { Helmet } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Analytics } from '@vercel/analytics/react';
 
 import Preloader from './components/Preloader';
 import NeuralBackground from './components/NeuralBackground';
-import LandingPage from './components/LandingPage';
-import ServicePage from './components/ServicePage';
-import ProjectPage from './components/ProjectPage';
-import PortfolioPage from './components/PortfolioPage';
-import Admin from './components/Admin';
-import NotFound from './components/NotFound';
 import { ProjectProvider } from './context/ProjectContext';
+
+// Lazy load components for code splitting
+const LandingPage = lazy(() => import('./components/LandingPage'));
+const ServicePage = lazy(() => import('./components/ServicePage'));
+const ProjectPage = lazy(() => import('./components/ProjectPage'));
+const PortfolioPage = lazy(() => import('./components/PortfolioPage'));
+const Admin = lazy(() => import('./components/Admin'));
+const NotFound = lazy(() => import('./components/NotFound'));
+
+// Loading fallback for Suspense - refined for high performance
+const PageLoader = () => (
+  <div className="fixed inset-0 bg-naxit-charcoal flex items-center justify-center z-50">
+    <motion.div
+      animate={{
+        scale: [1, 1.1, 1],
+        opacity: [0.3, 0.7, 0.3],
+      }}
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      className="w-8 h-8 rounded-full border border-naxit-cyan/20 border-t-naxit-cyan"
+    />
+  </div>
+);
 
 const AppContent: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("NAXIT - Natives Empower Innovation. System Online.");
-
+    // Smoother Lenis configuration
     const lenis = new Lenis({
-      duration: 1.5,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1.0,
       touchMultiplier: 1.5,
       infinite: false,
     });
@@ -52,81 +71,53 @@ const AppContent: React.FC = () => {
       </Helmet>
       <NeuralBackground />
       <ProjectProvider>
-        <AnimatePresence mode="wait">
-          <div key={location.pathname}>
-            <Routes location={location}>
-              <Route path="/" element={
-                <PageWrapper>
-                  <LandingPage />
-                </PageWrapper>
-              } />
-              <Route path="/services/:slug" element={
-                <PageWrapper>
-                  <ServicePage />
-                </PageWrapper>
-              } />
-              <Route path="/portfolio/:slug" element={
-                <PageWrapper>
-                  <ProjectPage />
-                </PageWrapper>
-              } />
-              <Route path="/portfolio" element={
-                <PageWrapper>
-                  <PortfolioPage />
-                </PageWrapper>
-              } />
-              <Route path="/admin" element={
-                <PageWrapper>
-                  <Admin />
-                </PageWrapper>
-              } />
-              <Route path="*" element={
-                <PageWrapper>
-                  <NotFound />
-                </PageWrapper>
-              } />
-            </Routes>
-          </div>
-        </AnimatePresence>
+        <Suspense fallback={<PageLoader />}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'linear' }}
+            >
+              <Routes location={location}>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/services/:slug" element={<ServicePage />} />
+                <Route path="/portfolio/:slug" element={<ProjectPage />} />
+                <Route path="/portfolio" element={<PortfolioPage />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </motion.div>
+          </AnimatePresence>
+        </Suspense>
       </ProjectProvider>
       <Analytics />
     </div>
   );
 };
 
-const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -15 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
 const App: React.FC = () => {
-  const [loading, setLoading] = useState(!sessionStorage.getItem('hasVisited'));
+  // Logic: Only show the intensive preloader on the home page for FIRST visit.
+  // Direct links to projects/services skip the visual preloader for "speed first" experience.
+  const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
+  const hasVisited = sessionStorage.getItem('hasVisited');
+
+  const [loading, setLoading] = useState(!hasVisited && isHome);
 
   const handlePreloaderComplete = () => {
     try {
       sessionStorage.setItem('hasVisited', 'true');
-    } catch (e) {
-      // Ignore storage errors
-    }
+    } catch (e) { }
     setLoading(false);
   };
 
   return (
     <Router>
-      <AnimatePresence>
-        {loading && <Preloader key="loader" onComplete={handlePreloaderComplete} />}
+      <AnimatePresence mode="wait">
+        {loading && (
+          <Preloader key="loader" onComplete={handlePreloaderComplete} />
+        )}
       </AnimatePresence>
       {!loading && <AppContent />}
     </Router>

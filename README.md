@@ -64,16 +64,16 @@ This repository contains the source code for the official NAXIT website, built w
 
 ## 📁 Project Structure
 
-```bash
-├── src/
-│   ├── components/       # UI Components (Hero, Services, Process, etc.)
-│   ├── assets/           # Static images and media
-│   ├── types.ts          # Global TypeScript definitions
-│   ├── App.tsx           # Root component and layout logic
-│   └── index.css         # Global styles and Tailwind directives
-├── public/               # Public assets
-└── vite.config.ts        # Vite configuration
-```
+├── components/       # UI Components (Hero, Services, Process, etc.)
+├── assets/           # Static images and media
+├── types.ts          # Global TypeScript definitions
+├── data.ts           # Project and Service data source
+├── App.tsx           # Root component and routing logic
+├── index.tsx         # Entry point
+├── index.css         # Global styles and Tailwind directives
+├── public/           # Public assets (robots.txt, sitemap.xml)
+└── vite.config.ts    # Vite configuration
+
 
 ## 🌐 Deployment
 
