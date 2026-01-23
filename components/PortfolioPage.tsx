@@ -33,7 +33,7 @@ const ProjectCard: React.FC<{ project: Project; onClick: () => void }> = ({ proj
             <div className="flex justify-between items-start">
                 <div>
                     <span className="text-naxit-cyan font-mono text-[10px] tracking-[0.4em] uppercase">
-                        {project.id} / {project.category}
+                        {project.category}
                     </span>
                     <h3 className="mt-2 text-2xl font-display font-bold text-white group-hover:text-naxit-cyan transition-colors">
                         {project.title}

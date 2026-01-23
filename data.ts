@@ -276,22 +276,12 @@ export const PROJECTS: Project[] = [
         category: 'UI/UX Design',
         featured: true,
         tagline: 'Connecting donors and students through a clear, community-driven platform.',
-        image:
-            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768975147/efc18a05-859a-4e1d-8fe7-89d52ce0e41d.png',
+        image: 'https://res.cloudinary.com/dwdya29vh/image/upload/v1768975147/efc18a05-859a-4e1d-8fe7-89d52ce0e41d.png',
         impact: 'Trusted Community Connections',
-        tech: [
-            'UX Research',
-            'Wireframing',
-            'Prototyping',
-            'Usability Testing',
-            'Accessibility Design'
-        ],
-        challenge:
-            'Students facing financial difficulties struggle to access support, while donors lack a reliable and transparent way to connect with students who need help.',
-        approach:
-            'We designed a user-centric platform that simplifies discovery, builds trust through transparent profiles, and encourages community engagement through forums and dashboards.',
-        fullDescription:
-            'EduAid Bridge is a cross-platform product concept designed to connect donors with students in need of financial and educational support.',
+        tech: ['UX Research', 'Wireframing', 'Prototyping', 'Usability Testing', 'Accessibility Design'],
+        challenge: 'Students facing financial difficulties struggle to access support, while donors lack a reliable and transparent way to connect with students who need help.',
+        approach: 'We designed a user-centric platform that simplifies discovery, builds trust through transparent profiles, and encourages community engagement through forums and dashboards.',
+        fullDescription: 'EduAid Bridge is a cross-platform product concept designed to connect donors with students in need of financial and educational support. The project focused on creating an intuitive, accessible experience for two very different user groups while fostering trust, transparency, and community participation.',
         gallery: [
             'https://res.cloudinary.com/dwdya29vh/image/upload/v1768974994/Google-UX-Design-Certificate_-_-Portfolio-Project-3_-_-Case-study-EduAid_page-0001_iebqqx.jpg',
             'https://res.cloudinary.com/dwdya29vh/image/upload/v1768974997/Google-UX-Design-Certificate_-_-Portfolio-Project-3_-_-Case-study-EduAid_page-0002_u6dj4m.jpg',
@@ -340,7 +330,7 @@ export const PROJECTS: Project[] = [
             'Transparent profiles to build trust and informed decision-making',
             'Customizable filters for precise matching',
             'Minimal, distraction-free layouts for better accessibility',
-            'Keyboard navigation and strong color contrast'
+            'Keyboard navigation, screen reader support, and strong color contrast'
         ],
         resultOutcome: {
             title: 'Result (Operational Efficiency)',
@@ -352,109 +342,118 @@ export const PROJECTS: Project[] = [
             ]
         }
     },
-
     {
         id: '03',
-        slug: 'lanka-wraps-vehicle-branding',
-        title: 'Lanka Wraps',
+        slug: 'local-brand-logo-design',
+        title: 'Logo Design',
         category: 'Graphic Design',
         featured: true,
-        tagline: 'Premium vehicle branding and custom sticker solutions in Mannar.',
-        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000&auto=format&fit=crop',
-        impact: 'Maximum Road Presence',
-        tech: ['Print Design', 'Brand Strategy', 'Illustration'],
-        challenge: 'The client needed a vibrant, durable visual identity for their vehicle wrapping business that stands out on the road.',
-        approach: 'We created a high-contrast logo and a set of custom livery designs optimized for large-scale vehicle printing in Sri Lanka.',
-        fullDescription: 'Lanka Wraps is a premier vehicle branding service based in Mannar. We collaborated to define a bold visual language that works across different vehicle types, ensuring their clients get maximum visibility while maintaining a professional look.',
+        tagline: 'A clean, professional logo designed for everyday business use.',
+        image: 'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982795/ALONE_WALKER_0001_qfejhx.jpg',
+        impact: 'Professional Brand Image',
+        tech: ['Logo Design', 'Typography', 'Brand Fundamentals'],
+        challenge: 'The client needed a logo that looks professional, works across print and digital, and clearly represents their business without being overly complex.',
+        approach: 'We focused on simplicity, clarity, and versatility, ensuring the logo could be used consistently across shop boards, business cards, social media, and packaging.',
+        fullDescription: 'This project focused on designing a practical logo for a local business. The goal was to create a mark that feels trustworthy, easy to recognize, and suitable for long-term use across both online and offline platforms.',
         gallery: [
-            'https://images.unsplash.com/photo-1611080626919-7cf5a9bcab53?q=80&w=2000',
-            'https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?q=80&w=2000',
-            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000'
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982877/TEE_REX_MOCKUP_01_l0im97.jpg',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982864/Tan_Tonic_Logo_j0zwbn.jpg',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982809/IMG_20221108_215119_675_uweroj.jpg',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982797/DJ_Blanket_dwn6v5.jpg',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982795/ALONE_WALKER_0001_qfejhx.jpg',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982760/signature_logo_wx6las.jpg',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982757/Logo_ceolal.jpg',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982756/logo_01_fcjhec.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982756/Logo_01_s5jycb.jpg',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1768982754/logo_02_x5h117.png'
         ],
         problem: {
             title: 'The Problem',
             content: [
-                'Local vehicle wrapping businesses often look generic and fail to stand out.',
-                'Designs need to be scalable from small cars to large delivery trucks.',
-                'The branding must be legible from a distance and in motion.',
-                'A need for a durable, professional identity that builds trust with corporate clients.'
+                'The existing visual identity lacked consistency and professionalism.',
+                'The business needed a logo that could be easily recognized by local customers.',
+                'The logo had to work well on shop signage, printed materials, and social media.'
             ]
         },
         solution: {
             title: 'Our Solution',
             content: [
-                'We developed a kinetic brand identity that looks great at 60mph.',
-                'Created a custom color palette optimized for vinyl printing.',
-                'Designed a modular logo system for various placement scenarios.',
-                'Produced full-scale mockups to visualize the branding on multiple vehicle models.'
+                'Designed a simple, balanced logo with clear typography.',
+                'Focused on shapes and colors that remain readable at all sizes.',
+                'Ensured the logo works in color, black, and white versions.',
+                'Prepared the logo for both digital and print usage.'
             ]
         },
         designDecisions: [
-            'High-contrast typography for mobility',
-            'Saturated color schemes for sunlight visibility',
-            'Weather-resistant visual elements',
-            'Strategic contact info placement on rear and side panels'
+            'Minimal design for long-term usability',
+            'Clear typography for easy recognition',
+            'Scalable layout for signage and social media',
+            'Neutral color palette for versatility',
+            'Avoided trends that age quickly'
         ],
         resultOutcome: {
-            title: 'Result (Brand Growth)',
+            title: 'Result (Design Outcome)',
             content: [
-                'Lanka Wraps saw a significant increase in inquiries after the rebrand.',
-                'The business successfully landed three major corporate fleet contracts.',
-                'Their vehicles are now easily recognizable across Mannar and surrounding areas.',
-                'The project established them as a premium service provider in the local market.'
+                'A clean and professional logo suitable for everyday business use.',
+                'Consistent brand appearance across all customer touchpoints.',
+                'A strong foundation for future branding and marketing materials.'
             ]
         }
     },
-
     {
         id: '04',
-        slug: 'amaanah-charity-portal',
-        title: 'Amaanah',
-        category: 'Website Design',
+        slug: 'my-travels-branding',
+        title: 'My Travels',
+        category: 'Digital Branding',
         featured: true,
-        tagline: 'A transparent donation platform for local community projects.',
-        image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2000&auto=format&fit=crop',
-        impact: 'Transparent Local Giving',
-        tech: ['Web Development', 'Payment Integration', 'UI/UX'],
-        challenge: 'Local community organizers lacked a central, trusted platform to raise funds for small-scale development projects in Mannar.',
-        approach: 'We built a secure, easy-to-use donation portal with real-time progress tracking to ensure complete transparency for donors.',
-        fullDescription: 'Amaanah is a dedicated platform designed to bridge the gap between donors and community-led initiatives. By focusing on transparency and ease of use, we helped the organization build trust and increase participation in local welfare projects.',
+        tagline: 'A bold, travel-focused brand identity for a local tours agency.',
+        image: 'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187075/MyTravels_Brand_Kit_component_8_ijdqgy.png',
+        impact: 'Professional Brand Identity',
+        tech: ['Logo Design', 'Brand Identity', 'Typography', 'Visual System'],
+        challenge: 'The client needed a strong, modern logo and visual identity that clearly represents a travel and tours agency while remaining memorable and easy to recognize.',
+        approach: 'We designed a bold, travel-inspired logo using a clean airplane symbol and strong typography, supported by a consistent color palette and visual system.',
+        fullDescription: 'My Travels is a travel and tours agency based in Mannar, Sri Lanka. The goal of this project was to create a professional and recognizable brand identity that communicates trust, movement, and exploration while working effectively across digital and physical branding materials.',
         gallery: [
-            'https://images.unsplash.com/photo-1469571486292-0ba58a3f019a?q=80&w=2000',
-            'https://images.unsplash.com/photo-1493123314175-ce99788bb860?q=80&w=2000',
-            'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2000'
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187065/MyTravels_Brand_Kit_component_1_zb8hrj.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187069/MyTravels_Brand_Kit_component_2_x2lv2j.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187067/MyTravels_Brand_Kit_component_7_tu2b6k.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187067/MyTravels_Brand_Kit_component_3_ou62dk.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187065/MyTravels_Brand_Kit_component_6_bjbfcv.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187060/MyTravels_Brand_Kit_component_5_k72sdv.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187070/MyTravels_Brand_Kit_component_11_mgolpb.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187066/MyTravels_Brand_Kit_component_9_t2x2fo.png',
+            'https://res.cloudinary.com/dwdya29vh/image/upload/v1769187061/MyTravels_Brand_Kit_component_10_mceyyi.png'
         ],
         problem: {
             title: 'The Problem',
             content: [
-                'Lack of trust in traditional offline donation methods.',
-                'Difficulty in tracking how funds are utilized for specific projects.',
-                'Limited reach beyond the immediate local community.',
-                'Complex donation processes that discourage potential contributors.'
+                'The brand lacked a clear and recognizable visual identity.',
+                'The logo needed to work across social media, print materials, and travel related branding.',
+                'The design had to feel modern, trustworthy, and travel focused.'
             ]
         },
         solution: {
             title: 'Our Solution',
             content: [
-                'Developed a real-time "Impact Tracker" for every project.',
-                'Integrated secure and local payment methods for seamless giving.',
-                'Designed a donor dashboard to track lifetime contributions.',
-                'Implemented social sharing tools to expand project reach.'
+                'Designed a clean logo featuring an airplane symbol to represent travel and movement.',
+                'Used bold typography to ensure readability and recognition.',
+                'Created a consistent color palette suitable for both digital and print use.',
+                'Developed logo variations for different backgrounds and use cases.'
             ]
         },
         designDecisions: [
-            'Trust-oriented color palette (Blues and Navys)',
-            'Priority on mobile-first accessibility',
-            'Minimalist forms to reduce dropout rates',
-            'Image-heavy layouts to show real-world impact'
+            'Simple airplane icon for instant travel recognition',
+            'Bold typography for clarity and brand recall',
+            'High-contrast red, white, and black color system',
+            'Scalable logo design for social media, merchandise, and print',
+            'Consistent visual style across all brand touchpoints'
         ],
         resultOutcome: {
-            title: 'Result (Community Impact)',
+            title: 'Result (Design Outcome)',
             content: [
-                'The platform facilitated a 40% increase in monthly donations.',
-                'Successfully funded 12 local development projects in the first quarter.',
-                'High donor retention rate due to improved transparency features.',
-                'Recognized as a leading digital initiative for social good in the region.'
+                'A strong and professional brand identity suitable for a travel agency.',
+                'Consistent visual presence across digital platforms and marketing materials.',
+                'A logo system that is easy to apply and recognizable at any size.'
             ]
         }
     },
