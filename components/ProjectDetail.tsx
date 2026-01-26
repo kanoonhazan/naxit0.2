@@ -17,41 +17,11 @@ interface ProjectDetailProps {
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [zoom, setZoom] = useState(1);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const thumbScrollRef = React.useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
-  // Auto-center active thumbnail
-  useEffect(() => {
-    if (!thumbScrollRef.current) return;
 
-    const containerWidth = thumbScrollRef.current.offsetWidth;
-    const isMobile = window.innerWidth < 768;
-
-    // Widths based on tailwind classes (px)
-    const gap = isMobile ? 12 : 20; // gap-3 : gap-5
-    const activeWidth = isMobile ? 128 : 192; // w-32 : w-48
-    const inactiveWidth = isMobile ? 80 : 112; // w-20 : w-28
-
-    // Calculate how far into the strip the center of the current slide is
-    const activeItemCenterPos = (currentSlide * (inactiveWidth + gap)) + (activeWidth / 2);
-
-    // Position to slide the ribbon so the activeItemCenterPos is at containerWidth/2
-    const targetX = (containerWidth / 2) - activeItemCenterPos;
-
-    // Total content width for constraints
-    const totalContentWidth = (project.gallery.length - 1) * (inactiveWidth + gap) + activeWidth;
-
-    const minX = containerWidth - totalContentWidth - 100; // leeway for padding
-    const maxX = 100;
-
-    controls.start({
-      x: targetX, // Allow it to go slightly out of bounds if needed to center
-      transition: { duration: 0.15, ease: [0.16, 1, 0.3, 1] }
-    });
-  }, [currentSlide, controls, project.gallery.length]);
 
   // Listen for escape key and navigation
   useEffect(() => {
@@ -99,13 +69,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
     setZoom(1);
   };
 
-  const slideNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % project.gallery.length);
-  };
 
-  const slidePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + project.gallery.length) % project.gallery.length);
-  };
 
   const handleZoomIn = () => {
     setZoom(prev => Math.min(prev + 0.5, 3));
@@ -393,146 +357,61 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
           </div>
         </section>
 
-        {/* Cinematic Gallery Stage - Optimized Vertical Flow */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-6 md:py-10 border-t border-white/5 h-screen max-h-[950px] flex flex-col justify-between overflow-hidden">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-4">
-            <div>
-              <div className="flex items-center gap-4 text-naxit-cyan mb-4">
-                <Layout className="w-5 h-5" />
-                <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Visual Artifacts</span>
+        {/* Behance-Style Vertical Gallery Stack */}
+        <section className="bg-black/20 pt-10 pb-20">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+              <div>
+                <div className="flex items-center gap-4 text-naxit-cyan mb-4">
+                  <Layout className="w-5 h-5" />
+                  <span className="font-mono text-[10px] tracking-[0.4em] uppercase">Visual Artifacts</span>
+                </div>
+                <h2 className="text-4xl md:text-7xl font-display font-bold">Execution <span className="text-gradient">Gallery</span></h2>
               </div>
-              <h2 className="text-3xl md:text-5xl font-display font-bold">Execution <span className="text-gradient">Gallery</span></h2>
-            </div>
-
-            <div className="flex flex-col items-end">
-              <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Collection</span>
-              <div className="text-xl font-display font-bold text-white">
-                {currentSlide + 1} <span className="text-gray-600 text-sm">/ {project.gallery.length}</span>
-              </div>
+              <p className="text-gray-500 font-mono text-xs uppercase tracking-[0.2em] max-w-xs text-left md:text-right">
+                High-fidelity captures from the final deployment phase.
+              </p>
             </div>
           </div>
 
-          {/* Main Stage - Enlarged Preview */}
-          <div className="relative flex-grow aspect-video md:aspect-video rounded-[3rem] overflow-hidden border border-white/5 bg-black/40 group">
-            <motion.div
-              className="absolute inset-0 flex touch-pan-y"
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              onDragEnd={(_, info) => {
-                if (info.offset.x > 100) slidePrev();
-                else if (info.offset.x < -100) slideNext();
-              }}
-            >
-              <AnimatePresence mode="popLayout">
-                <motion.div
-                  key={currentSlide}
-                  initial={{ opacity: 0, filter: 'blur(5px)' }}
-                  animate={{ opacity: 1, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, filter: 'blur(5px)' }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute inset-0 flex items-center justify-center p-4 cursor-pointer"
-                  onClick={() => setSelectedImageIndex(currentSlide)}
-                >
-                  {/* Dynamic Backdrop */}
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <img
-                      src={getOptimizedImage(project.gallery[currentSlide], 100)}
-                      alt={`${project.title} background - Mannar Digital Art`}
-                      className="w-full h-full object-cover blur-[100px] opacity-20 scale-150"
-                    />
-                  </div>
-
-                  {/* High-Res Focus Image */}
-                  <div className="relative h-full w-full flex items-center justify-center z-10">
-                    <img
-                      src={getOptimizedImage(project.gallery[currentSlide], 1600)}
-                      alt={`${project.title} Exhibit ${currentSlide + 1} - Mannar, Sri Lanka`}
-                      className="max-w-full max-h-full object-contain shadow-[0_30px_60px_rgba(0,0,0,0.5)] rounded-2xl md:rounded-[2rem]"
-                    />
-                  </div>
-
-                  {/* Interaction Overlay */}
-                  <div className="absolute inset-0 bg-transparent group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
-                    <div className="glass p-5 rounded-full border border-white/20 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                      <Maximize2 className="w-8 h-8 text-white" />
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </motion.div>
-
-            {/* Pagination Line */}
-            <div className="absolute bottom-0 left-0 h-1 bg-white/5 w-full z-30">
+          <div className="space-y-4 md:space-y-0">
+            {project.gallery.map((img, idx) => (
               <motion.div
-                className="h-full bg-naxit-cyan shadow-[0_0_10px_rgba(0,187,255,0.8)]"
-                initial={false}
-                animate={{ width: `${((currentSlide + 1) / project.gallery.length) * 100}%` }}
-                transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </div>
-          </div>
-
-          {/* Draggable Thumbnail Ribbon with Fixed Controls */}
-          <div className="mt-8 flex items-center gap-4">
-            <button
-              onClick={(e) => { e.stopPropagation(); slidePrev(); }}
-              className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center text-white hover:border-naxit-cyan hover:text-naxit-cyan transition-all active:scale-90 flex-shrink-0"
-              title="Previous Slide"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-
-            <div className="relative flex-grow overflow-hidden rounded-2xl h-24 md:h-28" ref={thumbScrollRef}>
-              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-naxit-charcoal to-transparent z-10 pointer-events-none" />
-              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-naxit-charcoal to-transparent z-10 pointer-events-none" />
-
-              <motion.div
-                drag="x"
-                dragConstraints={thumbScrollRef}
-                animate={controls}
-                className="flex gap-3 md:gap-5 py-4 cursor-grab active:cursor-grabbing min-w-max h-full items-center"
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group cursor-zoom-in w-full overflow-hidden"
+                onClick={() => setSelectedImageIndex(idx)}
               >
-                {project.gallery.map((img, idx) => (
-                  <motion.button
-                    key={idx}
-                    onClick={() => setCurrentSlide(idx)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`group relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex-shrink-0 ${idx === currentSlide
-                      ? 'w-32 md:w-48 opacity-100'
-                      : 'w-20 md:w-28 opacity-30 hover:opacity-100'
-                      }`}
-                  >
-                    <div className={`aspect-[16/9] rounded-xl overflow-hidden border transition-all duration-700 ${idx === currentSlide
-                      ? 'border-naxit-cyan shadow-[0_0_20px_rgba(0,187,255,0.4)] h-16 md:h-20'
-                      : 'border-white/5 group-hover:border-white/20 h-12 md:h-16'
-                      }`}>
-                      <img
-                        src={getOptimizedImage(img, 400)}
-                        alt={`${project.title} thumbnail - Digital Design Sri Lanka`}
-                        className="w-full h-full object-cover pointer-events-none"
-                      />
-                    </div>
-                    {idx === currentSlide && (
-                      <motion.div
-                        layoutId="active-thumb-indicator"
-                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-naxit-cyan rounded-full shadow-[0_0_10px_rgba(0,187,255,1)]"
-                      />
-                    )}
-                  </motion.button>
-                ))}
-              </motion.div>
-            </div>
+                {/* Background Glow Effect */}
+                <div className="absolute inset-0 bg-naxit-royal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-[100px] pointer-events-none" />
 
-            <button
-              onClick={(e) => { e.stopPropagation(); slideNext(); }}
-              className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center text-white hover:border-naxit-cyan hover:text-naxit-cyan transition-all active:scale-90 flex-shrink-0"
-              title="Next Slide"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+                <div className="max-w-[1400px] mx-auto overflow-hidden shadow-2xl md:shadow-none group-hover:shadow-[0_40px_100px_rgba(0,0,0,0.6)] transition-shadow duration-700">
+                  <img
+                    src={getOptimizedImage(img, 2000)}
+                    alt={`${project.title} Exhibit ${idx + 1}`}
+                    className="w-full h-auto object-cover scale-[1.01] group-hover:scale-105 transition-transform duration-[2s] ease-out will-change-transform"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                {/* Info Overlay (Visible on hover) */}
+                <div className="absolute bottom-10 left-10 md:left-20 z-10 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 hidden md:block">
+                  <div className="glass px-6 py-4 rounded-2xl border border-white/10 backdrop-blur-md">
+                    <span className="text-naxit-cyan font-mono text-[10px] tracking-widest uppercase block mb-1">Artifact {idx + 1}</span>
+                    <span className="text-white text-sm font-display font-medium uppercase tracking-tighter">View in High Resolution</span>
+                  </div>
+                </div>
+
+                <div className="absolute inset-0 bg-transparent group-hover:bg-black/20 transition-all duration-500 pointer-events-none" />
+              </motion.div>
+            ))}
           </div>
         </section>
+
 
         {/* Full View Modal */}
         <AnimatePresence>

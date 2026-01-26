@@ -83,14 +83,20 @@ const Hero: React.FC = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           <button
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              const el = document.getElementById('contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="group relative px-10 py-5 bg-white text-black font-bold rounded-2xl overflow-hidden active:scale-95 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_20px_40px_rgba(0,212,255,0.2)]"
           >
             <span className="relative z-10">Launch Your Vision</span>
             <div className="absolute inset-0 bg-naxit-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
           </button>
           <button
-            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              const el = document.getElementById('services');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="px-10 py-5 glass rounded-2xl font-medium border border-white/10 hover:border-naxit-cyan/30 transition-all hover:bg-white/5"
           >
             Explore Expertise

@@ -60,13 +60,9 @@ const AppContent: React.FC = () => {
   useEffect(() => {
     // Smoother Lenis configuration
     const lenis = new Lenis({
-      lerp: 0.1, // Smoother, progressive feel
-      duration: 1.5,
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
+      lerp: 0.1,
       wheelMultiplier: 1.0,
-      touchMultiplier: 2.0, // Better response on mobile
+      touchMultiplier: 1.5, // Standard mobile sensitivity
       infinite: false,
     });
 
