@@ -7,31 +7,39 @@ const Hero: React.FC = () => {
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
-  // Mouse Parallax for orbs
-  const mouseX = useSpring(0, { damping: 50 });
-  const mouseY = useSpring(0, { damping: 50 });
 
-  useEffect(() => {
-    const handleMouse = (e: MouseEvent) => {
-      mouseX.set((e.clientX / window.innerWidth - 0.5) * 40);
-      mouseY.set((e.clientY / window.innerHeight - 0.5) * 40);
-    };
-    window.addEventListener('mousemove', handleMouse);
-    return () => window.removeEventListener('mousemove', handleMouse);
-  }, []);
 
   const titleWords = "The Digital Engine for Local Business.".split(" ");
 
   return (
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-32 pb-28">
-      {/* Dynamic Background Orbs */}
+      {/* Subtle Static Background Orbs */}
       <motion.div
-        style={{ y: y1, x: mouseX }}
+        style={{ y: y1 }}
         className="absolute top-1/4 -left-20 w-96 h-96 bg-naxit-royal/10 rounded-full blur-[140px] pointer-events-none"
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.08, 0.12, 0.08],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
       />
       <motion.div
-        style={{ y: useTransform(scrollY, [0, 500], [0, -150]), x: useTransform(mouseX, x => x * -1.5) }}
+        style={{ y: useTransform(scrollY, [0, 500], [0, -150]) }}
         className="absolute bottom-1/4 -right-20 w-80 h-80 bg-naxit-cyan/5 rounded-full blur-[120px] pointer-events-none"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.03, 0.07, 0.03],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1
+        }}
       />
 
       <div className="relative z-10 text-center max-w-6xl">

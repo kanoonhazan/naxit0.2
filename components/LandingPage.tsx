@@ -12,7 +12,7 @@ import Portfolio from './Portfolio';
 import Contact from './Contact';
 import Footer from './Footer';
 import ProjectDetail from './ProjectDetail';
-import NeuralBackground from './NeuralBackground'; // Assuming this is global background
+
 import { Project, Service } from '../types';
 
 const LandingPage: React.FC = () => {

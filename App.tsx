@@ -7,7 +7,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Analytics } from '@vercel/analytics/react';
 
 import Preloader from './components/Preloader';
-import NeuralBackground from './components/NeuralBackground';
+import StaticBackground from './components/StaticBackground';
 import { ProjectProvider } from './context/ProjectContext';
 
 // Lazy load components for code splitting
@@ -88,7 +88,7 @@ const AppContent: React.FC = () => {
         <html lang="en-LK" />
       </Helmet>
       <ScrollToHash />
-      <NeuralBackground />
+      <StaticBackground />
       <ProjectProvider>
         <Suspense fallback={<PageLoader />}>
           <AnimatePresence mode="wait">
