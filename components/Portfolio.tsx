@@ -18,7 +18,7 @@ interface ProjectCardProps {
   onSelect: (p: Project) => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
+const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, onSelect }) => {
   return (
     <motion.div
       layout
@@ -109,7 +109,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
       </div>
     </motion.div>
   );
-};
+});
 
 /* =======================
    PORTFOLIO SECTION

@@ -111,92 +111,59 @@
       background-size: 200% auto;
     }
 
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 9999;
+      animation: grain-shift 1s steps(4) infinite;
+      will-change: background-position;
+    }
+
+    @keyframes grain-shift {
+      0% { background-position: 0 0; }
+      25% { background-position: 50% 50%; }
+      50% { background-position: -25% -25%; }
+      75% { background-position: 15% 35%; }
+      100% { background-position: 0 0; }
+    }
+
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, 0.05) 51%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.2;
+    }
+
     .grid-floor {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 100vh;
+      height: 80vh;
       background-image:
-        linear-gradient(rgba(0, 85, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 85, 255, 0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
+        linear-gradient(rgba(0, 85, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 85, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
       mask-image: linear-gradient(to top, black, transparent);
-      transform: perspective(1000px) rotateX(60deg) scale(2);
+      transform: perspective(800px) rotateX(60deg) scale(1.5);
       transform-origin: bottom;
       pointer-events: none;
       z-index: 1;
+      opacity: 0.5;
     }
 
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-      background-size: 100% 4px;
-      pointer-events: none;
-      z-index: 9998;
-      opacity: 0.3;
-    }
-
-    @keyframes grain {
-
-      0%,
-      100% {
-        transform: translate(0, 0)
-      }
-
-      10% {
-        transform: translate(-5%, -10%)
-      }
-
-      20% {
-        transform: translate(-15%, 5%)
-      }
-
-      30% {
-        transform: translate(7%, -25%)
-      }
-
-      40% {
-        transform: translate(-5%, 25%)
-      }
-
-      50% {
-        transform: translate(-15%, 10%)
-      }
-
-      60% {
-        transform: translate(15%, 0%)
-      }
-
-      70% {
-        transform: translate(0%, 15%)
-      }
-
-      80% {
-        transform: translate(3%, 35%)
-      }
-
-      90% {
-        transform: translate(-10%, 10%)
-      }
-    }
-
-    .grain-overlay {
-      position: fixed;
-      top: -150%;
-      left: -150%;
-      width: 400%;
-      height: 400%;
-      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-      opacity: 0.05;
-      pointer-events: none;
-      z-index: 9999;
-      animation: grain 8s steps(10) infinite;
-    }
   </style>
   <script type="importmap">
 {

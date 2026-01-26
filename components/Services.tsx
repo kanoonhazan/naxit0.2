@@ -13,7 +13,7 @@ interface TiltCardProps {
 }
 
 // Using React.FC to properly handle React-internal props like key and children
-const TiltCard: React.FC<TiltCardProps> = ({ service, index, onClick }) => {
+const TiltCard: React.FC<TiltCardProps> = React.memo(({ service, index, onClick }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -79,7 +79,7 @@ const TiltCard: React.FC<TiltCardProps> = ({ service, index, onClick }) => {
       />
     </motion.div>
   );
-};
+});
 
 interface ServicesProps {
   onSelectService?: (service: Service) => void;

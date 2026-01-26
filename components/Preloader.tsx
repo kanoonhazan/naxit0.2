@@ -79,9 +79,9 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         current++;
       } else {
         clearInterval(interval);
-        setTimeout(onComplete, 500);
+        setTimeout(onComplete, 300);
       }
-    }, 250); // Reduced from 450ms
+    }, 180); // Reduced from 250ms
 
     return () => clearInterval(interval);
   }, [onComplete, isImagesLoaded]);

@@ -85,3 +85,21 @@ textarea {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.05) transparent;
 }
+
+/* Performance Optimizations */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px; /* Placeholder size for better scrollbar behavior */
+}
+
+#hero {
+  content-visibility: visible; /* Always visible to prevent issues with LCP */
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
