@@ -79,7 +79,7 @@ const AppContent: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative bg-naxit-charcoal min-h-screen selection:bg-naxit-cyan selection:text-naxit-charcoal overflow-x-hidden">
+    <div className="relative min-h-screen selection:bg-naxit-cyan selection:text-naxit-charcoal overflow-x-hidden">
       <Helmet>
         <html lang="en-LK" />
       </Helmet>

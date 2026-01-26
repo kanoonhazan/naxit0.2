@@ -51,8 +51,8 @@ const LogoCloud: React.FC = () => {
   return (
     <div className="relative py-20 border-y border-white/5 bg-black/40 overflow-hidden group">
       {/* Edge fades */}
-      <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-naxit-charcoal to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-naxit-charcoal to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-naxit-charcoal to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-naxit-charcoal to-transparent z-10 pointer-events-none" />
 
       <div className="flex flex-col items-center mb-10">
         <motion.div

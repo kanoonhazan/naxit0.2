@@ -249,8 +249,8 @@ const Admin: React.FC = () => {
         <div className="min-h-screen bg-naxit-charcoal text-white font-sans selection:bg-naxit-cyan selection:text-black">
             {/* Sidebar / Topbar */}
             <nav className="border-b border-white/5 bg-black/40 backdrop-blur-xl sticky top-0 z-[100]">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-4">
+                    <div className="flex items-center gap-4 w-full sm:w-auto">
                         <div className="w-10 h-10 bg-naxit-royal/20 rounded-xl flex items-center justify-center border border-naxit-cyan/20">
                             <Layout className="w-5 h-5 text-naxit-cyan" />
                         </div>
@@ -263,32 +263,32 @@ const Admin: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 md:gap-4 w-full sm:w-auto">
                         <button
                             onClick={handleSyncAllData}
                             disabled={isSyncing}
-                            className={`glass border border-white/10 px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${isSyncing ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/5'}`}
+                            className={`glass border border-white/10 px-4 sm:px-5 py-2.5 rounded-xl text-[10px] sm:text-xs font-bold transition-all flex items-center gap-2 ${isSyncing ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/5'}`}
                         >
                             <Save className="w-4 h-4" /> {isSyncing ? 'SYNCING...' : 'SYNC ALL DATA'}
                         </button>
                         <button
                             onClick={handleDownloadData}
-                            className="glass border border-white/10 px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/5"
+                            className="glass border border-white/10 px-4 sm:px-5 py-2.5 rounded-xl text-[10px] sm:text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/5"
                             title="Download project data to update data.ts"
                         >
-                            <ExternalLink className="w-4 h-4" /> EXPORT DATA
+                            <ExternalLink className="w-4 h-4" /> EXPORT
                         </button>
                         <button
                             onClick={() => { setIsAdding(true); setEditingProject({} as Project); }}
-                            className="bg-naxit-royal hover:bg-naxit-cyan text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2"
+                            className="bg-naxit-royal hover:bg-naxit-cyan text-white px-4 sm:px-5 py-2.5 rounded-xl text-[10px] sm:text-xs font-bold transition-all flex items-center gap-2"
                         >
-                            <Plus className="w-4 h-4" /> ADD PROJECT
+                            <Plus className="w-4 h-4" /> ADD
                         </button>
                         <button
                             onClick={() => setIsAuthenticated(false)}
-                            className="glass border border-white/10 hover:border-red-500/50 hover:text-red-500 px-5 py-2.5 rounded-xl text-xs font-bold transition-all"
+                            className="glass border border-white/10 hover:border-red-500/50 hover:text-red-500 px-4 sm:px-5 py-2.5 rounded-xl text-[10px] sm:text-xs font-bold transition-all"
                         >
-                            TERMINATE
+                            EXIT
                         </button>
                     </div>
                 </div>

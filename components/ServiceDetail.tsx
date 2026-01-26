@@ -36,7 +36,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="min-h-screen bg-naxit-charcoal overflow-y-auto cursor-auto"
+            className="min-h-screen overflow-y-auto cursor-auto"
         >
             <Helmet>
                 <title>{service.title} | Naxit</title>

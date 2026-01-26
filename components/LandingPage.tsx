@@ -47,7 +47,7 @@ const LandingPage: React.FC = () => {
 
                         <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-                        <div className="bg-gradient-to-b from-naxit-charcoal via-[#080808] to-naxit-charcoal">
+                        <div className="bg-transparent">
                             <Services onSelectService={(s) => navigate(`/services/${s.slug}`)} />
                             <div className="max-w-7xl mx-auto px-4">
                                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />

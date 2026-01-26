@@ -19,40 +19,42 @@ const ProjectCard: React.FC<{ project: Project; onClick: () => void }> = ({ proj
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         onClick={onClick}
-        className="group relative h-[420px] md:h-[500px] rounded-3xl overflow-hidden glass border border-white/5 cursor-pointer"
+        className="group relative h-[420px] md:h-[500px] lg:h-[580px] rounded-[2.5rem] overflow-hidden glass border border-white/5 cursor-pointer gpu-accel"
     >
         <div className="absolute inset-0">
             <motion.img
                 src={project.image}
                 alt={`${project.title} - Featured Project in Mannar, Sri Lanka`}
-                className="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-all duration-1000"
+                className="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-all duration-1000 ease-out"
+                loading="lazy"
+                decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-naxit-charcoal/40 to-transparent" />
         </div>
-        <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
+        <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-between z-10">
             <div className="flex justify-between items-start">
                 <div>
                     <span className="text-naxit-cyan font-mono text-[10px] tracking-[0.4em] uppercase">
                         {project.category}
                     </span>
-                    <h3 className="mt-2 text-2xl font-display font-bold text-white group-hover:text-naxit-cyan transition-colors">
+                    <h3 className="mt-2 text-3xl md:text-5xl font-display font-bold text-white group-hover:text-naxit-cyan transition-colors tracking-tighter">
                         {project.title}
                     </h3>
                 </div>
-                <div className="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-white">
-                    <ExternalLink className="w-4 h-4" />
+                <div className="w-12 h-12 rounded-full glass border border-white/10 flex items-center justify-center text-white shrink-0 group-hover:border-naxit-cyan/50 transition-colors">
+                    <ExternalLink className="w-5 h-5" />
                 </div>
             </div>
             <div>
-                <p className="text-gray-300 font-light mb-6 line-clamp-2">{project.tagline}</p>
+                <p className="text-gray-300 text-lg font-light mb-6 line-clamp-2 max-w-md">{project.tagline}</p>
                 <div className="flex justify-between items-end">
-                    <div>
-                        <div className="text-[10px] font-mono text-gray-500 mb-1 tracking-widest">IMPACT</div>
-                        <div className="text-naxit-cyan font-bold">{project.impact}</div>
+                    <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500">
+                        <div className="text-[10px] font-mono text-gray-500 mb-2 tracking-widest uppercase">The Impact</div>
+                        <div className="text-naxit-cyan font-bold text-xl">{project.impact}</div>
                     </div>
                     <div className="flex gap-2">
                         {project.tech.slice(0, 2).map(t => (
-                            <span key={t} className="text-[9px] bg-white/5 px-2 py-1 rounded border border-white/10 text-gray-400">
+                            <span key={t} className="text-[10px] bg-white/5 px-3 py-1.5 rounded-xl border border-white/10 text-gray-400 font-mono">
                                 {t}
                             </span>
                         ))}
@@ -76,8 +78,10 @@ const PortfolioPage: React.FC = () => {
         ? projects
         : projects.filter(p => p.category === activeCategory);
 
+    const titleWords = ['Full', 'Portfolio']; // Simplified for this page, assuming 'Full Portfolio' is the title
+
     return (
-        <div className="min-h-screen bg-naxit-charcoal">
+        <div className="min-h-screen border-none">
             <Helmet>
                 <title>Portfolio | Naxit Masterworks</title>
                 <meta name="description" content="Explore our selected masterworks in Website Design, UI/UX, and Digital Branding." />
@@ -96,8 +100,19 @@ const PortfolioPage: React.FC = () => {
                             >
                                 <ArrowLeft className="w-4 h-4" /> Back to Home
                             </motion.button>
-                            <h1 className="text-6xl md:text-8xl font-display font-bold tracking-tighter leading-none mb-4">
-                                Full <span className="text-gradient">Portfolio</span>
+                            <h1 className="text-5xl md:text-[6.5rem] lg:text-[8rem] font-display font-extrabold leading-[1.05] md:leading-[1] mb-6 tracking-tighter text-white overflow-hidden">
+                                {titleWords.map((word, i) => (
+                                    <span key={i} className="inline-block overflow-hidden mr-3 md:mr-4">
+                                        <motion.span
+                                            initial={{ y: "100%" }}
+                                            animate={{ y: 0 }}
+                                            transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                            className={`inline-block gpu-accel ${i === 1 ? 'text-gradient' : ''}`}
+                                        >
+                                            {word}
+                                        </motion.span>
+                                    </span>
+                                ))}
                             </h1>
                             <p className="text-gray-400 text-lg font-light">
                                 A comprehensive archive of our strategic deployments and creative masterworks.
