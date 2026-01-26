@@ -4,23 +4,26 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ServiceDetail from './ServiceDetail';
 import { SERVICES } from '../data';
 import { Service } from '../types';
+import NotFound from './NotFound';
 
 const ServicePage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
     const [service, setService] = useState<Service | null>(null);
+    const [isNotFound, setIsNotFound] = useState(false);
 
     useEffect(() => {
         const foundService = SERVICES.find(s => s.slug === slug);
         if (foundService) {
             setService(foundService);
+            setIsNotFound(false);
         } else {
-            // Handle not found - for now redirect to home
-            navigate('/', { replace: true });
+            setIsNotFound(true);
         }
-    }, [slug, navigate]);
+    }, [slug]);
 
-    if (!service) return null; // Or a loading spinner
+    if (isNotFound) return <NotFound />;
+    if (!service) return null;
 
     return (
         <ServiceDetail

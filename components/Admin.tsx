@@ -205,7 +205,7 @@ const Admin: React.FC = () => {
 
     if (!isAuthenticated) {
         return (
-            <div className="min-h-screen bg-naxit-charcoal flex items-center justify-center p-6 bg-[radial-gradient(circle_at_50%_50%,rgba(0,85,255,0.1),transparent)]">
+            <div className="min-h-screen bg-transparent flex items-center justify-center p-6 bg-[radial-gradient(circle_at_50%_50%,rgba(0,85,255,0.1),transparent)]">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -246,7 +246,7 @@ const Admin: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-naxit-charcoal text-white font-sans selection:bg-naxit-cyan selection:text-black">
+        <div className="min-h-screen bg-transparent text-white font-sans selection:bg-naxit-cyan selection:text-black">
             {/* Sidebar / Topbar */}
             <nav className="border-b border-white/5 bg-black/40 backdrop-blur-xl sticky top-0 z-[100]">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-4">

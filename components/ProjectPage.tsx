@@ -4,24 +4,27 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ProjectDetail from './ProjectDetail';
 import { useProjects } from '../context/ProjectContext';
 import { Project } from '../types';
+import NotFound from './NotFound';
 
 const ProjectPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
     const [project, setProject] = useState<Project | null>(null);
+    const [isNotFound, setIsNotFound] = useState(false);
     const { getProjectBySlug } = useProjects();
 
     useEffect(() => {
         const foundProject = getProjectBySlug(slug || '');
         if (foundProject) {
             setProject(foundProject);
+            setIsNotFound(false);
         } else {
-            // Handle not found - for now redirect to home
-            navigate('/', { replace: true });
+            setIsNotFound(true);
         }
-    }, [slug, navigate, getProjectBySlug]);
+    }, [slug, getProjectBySlug]);
 
-    if (!project) return null; // Or a loading spinner
+    if (isNotFound) return <NotFound />;
+    if (!project) return null;
 
     return (
         <ProjectDetail
