@@ -20,7 +20,25 @@ body {
   background-color: #050505;
   color: white;
   overflow-x: hidden;
+  overscroll-behavior: none;
+  /* Prevent bounce effects that break Lenis on some devices */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
+
+/* Global Reset for buttery motion */
+* {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+img {
+  pointer-events: none;
+  /* Prevent accidental drag which can cause scroll lag */
+  content-visibility: auto;
+}
+
 
 ::selection {
   background-color: #00d4ff;
@@ -48,8 +66,11 @@ html.lenis body {
 .gpu-accel {
   will-change: transform, opacity;
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   perspective: 1000px;
+  -webkit-perspective: 1000px;
 }
 
 /* Buttery smooth transitions for all interactive elements */
@@ -89,11 +110,13 @@ textarea {
 /* Performance Optimizations */
 section {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 500px; /* Placeholder size for better scrollbar behavior */
+  contain-intrinsic-size: 1px 500px;
+  /* Placeholder size for better scrollbar behavior */
 }
 
 #hero {
-  content-visibility: visible; /* Always visible to prevent issues with LCP */
+  content-visibility: visible;
+  /* Always visible to prevent issues with LCP */
 }
 
 .will-change-transform {

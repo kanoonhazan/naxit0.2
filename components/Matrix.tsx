@@ -4,47 +4,47 @@ import { motion } from 'framer-motion';
 import { Zap, Target, Users, Globe, BarChart3, Fingerprint } from 'lucide-react';
 
 const OPERATIONAL_DATA = [
-  { 
-    label: 'Deployment Velocity', 
-    value: '7.2 Days', 
-    icon: <Zap className="w-4 h-4" />, 
+  {
+    label: 'Deployment Velocity',
+    value: '7.2 Days',
+    icon: <Zap className="w-4 h-4" />,
     status: 'High-Frequency',
-    desc: 'Average time from vision to global launch.' 
+    desc: 'Average time from vision to global launch.'
   },
-  { 
-    label: 'Native Talent Yield', 
-    value: 'Top 0.8%', 
-    icon: <Fingerprint className="w-4 h-4" />, 
+  {
+    label: 'Native Talent Yield',
+    value: 'Top 0.8%',
+    icon: <Fingerprint className="w-4 h-4" />,
     status: 'Curated',
-    desc: 'Elite local innovators hand-picked for projects.' 
+    desc: 'Elite local innovators hand-picked for projects.'
   },
-  { 
-    label: 'Transformation ROI', 
-    value: '+310%', 
-    icon: <BarChart3 className="w-4 h-4" />, 
+  {
+    label: 'Transformation ROI',
+    value: '+310%',
+    icon: <BarChart3 className="w-4 h-4" />,
     status: 'Aggressive',
-    desc: 'Average increase in client brand equity post-launch.' 
+    desc: 'Average increase in client brand equity post-launch.'
   },
-  { 
-    label: 'Innovation Nodes', 
-    value: '42 Active', 
-    icon: <Users className="w-4 h-4" />, 
+  {
+    label: 'Innovation Nodes',
+    value: '42 Active',
+    icon: <Users className="w-4 h-4" />,
     status: 'Synced',
-    desc: 'Global network of native specialists.' 
+    desc: 'Global network of native specialists.'
   },
-  { 
-    label: 'Digital Sovereignty', 
-    value: '100% Owned', 
-    icon: <Target className="w-4 h-4" />, 
+  {
+    label: 'Digital Sovereignty',
+    value: '100% Owned',
+    icon: <Target className="w-4 h-4" />,
     status: 'Encrypted',
-    desc: 'Zero-debt tech stacks for our partners.' 
+    desc: 'Zero-debt tech stacks for our partners.'
   },
-  { 
-    label: 'Global Uplink', 
-    value: 'Tier-1', 
-    icon: <Globe className="w-4 h-4" />, 
+  {
+    label: 'Global Uplink',
+    value: 'Tier-1',
+    icon: <Globe className="w-4 h-4" />,
     status: 'Operational',
-    desc: 'Infrastructure ready for planetary scale.' 
+    desc: 'Infrastructure ready for planetary scale.'
   },
 ];
 
@@ -53,7 +53,7 @@ const Matrix: React.FC = () => {
     <section id="matrix" className="py-40 px-4 relative overflow-hidden bg-black/20">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Narrative Branding */}
           <div className="lg:col-span-5 relative z-10">
             <motion.div
@@ -85,7 +85,7 @@ const Matrix: React.FC = () => {
           {/* Terminal View */}
           <div className="lg:col-span-7">
             <div className="glass rounded-[3rem] border border-white/10 overflow-hidden relative shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-naxit-charcoal/80">
-              
+
               {/* Terminal Header */}
               <div className="bg-white/5 px-8 py-5 border-b border-white/10 flex justify-between items-center">
                 <div className="flex gap-2.5">
@@ -101,12 +101,12 @@ const Matrix: React.FC = () => {
               {/* Data Grid */}
               <div className="p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 relative">
                 {/* Background Scanning Line */}
-                <motion.div 
+                <motion.div
                   animate={{ top: ['0%', '100%', '0%'] }}
                   transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-                  className="absolute left-0 w-full h-[1px] bg-naxit-cyan/20 z-0 pointer-events-none blur-[1px]"
+                  className="absolute left-0 w-full h-[1px] bg-naxit-cyan/20 z-0 pointer-events-none blur-[1px] will-change-[top]"
                 />
-                
+
                 {OPERATIONAL_DATA.map((point, i) => (
                   <motion.div
                     key={point.label}
@@ -124,7 +124,7 @@ const Matrix: React.FC = () => {
                         {point.status}
                       </div>
                     </div>
-                    
+
                     <div className="text-[10px] font-mono text-gray-500 uppercase tracking-[0.2em] mb-1 group-hover:text-gray-400 transition-colors">
                       {point.label}
                     </div>
@@ -147,7 +147,7 @@ const Matrix: React.FC = () => {
                       <span className="text-naxit-cyan">98.4%</span>
                     </div>
                     <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden">
-                      <motion.div 
+                      <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: '98.4%' }}
                         className="h-full bg-gradient-to-r from-naxit-royal via-naxit-cyan to-naxit-royal bg-[length:200%_100%] animate-[gradient_3s_linear_infinite]"

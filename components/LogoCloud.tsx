@@ -84,6 +84,8 @@ const LogoCloud: React.FC = () => {
                   alt={`${partner.name} - Trusted Partner in Sri Lanka Digital Ecosystem`}
                   className="h-20 w-auto object-contain opacity-80"
                   draggable={false}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ) : (

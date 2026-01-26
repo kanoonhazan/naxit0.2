@@ -58,6 +58,8 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
             src="/assets/logo.png"
             alt="NAXIT Micro Agency - Best Digital Solutions in Mannar, Sri Lanka"
             className="h-8 cursor-pointer hover:opacity-80 transition-opacity"
+            fetchPriority="high"
+            decoding="async"
           />
         </a>
 

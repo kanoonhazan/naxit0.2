@@ -37,6 +37,7 @@ const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, onSelect 
           src={getOptimizedImage(project.image, 800)}
           alt={`${project.title} - Creative Portfolio in Mannar, Sri Lanka`}
           loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover opacity-70
                      group-hover:scale-110
                      transition-all duration-1000 ease-out"
