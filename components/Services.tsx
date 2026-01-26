@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Palette, Code, Globe, Sparkles, ArrowRight } from 'lucide-react';
+import { Code, ArrowRight } from 'lucide-react';
 import { Service } from '../types';
 import { SERVICES } from '../data';
 

@@ -11,9 +11,8 @@ import Process from './Process';
 import Portfolio from './Portfolio';
 import Contact from './Contact';
 import Footer from './Footer';
-import ProjectDetail from './ProjectDetail';
 
-import { Project, Service } from '../types';
+
 
 const LandingPage: React.FC = () => {
     const navigate = useNavigate();

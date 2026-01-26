@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --naxit-easing: cubic-bezier(0.16, 1, 0.3, 1);
   --naxit-expo: cubic-bezier(0.87, 0, 0.13, 1);
