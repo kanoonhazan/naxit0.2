@@ -207,7 +207,7 @@ ${formData.message}
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             placeholder="Ruwan Perera"
-                            className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-700"
+                            className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-700"
                           />
                         </div>
                         <div className="flex flex-col gap-3 group">
@@ -216,7 +216,7 @@ ${formData.message}
                             required
                             value={formData.service}
                             onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                            className="bg-naxit-charcoal border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] text-white appearance-none cursor-pointer"
+                            className="bg-naxit-charcoal border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] text-white appearance-none cursor-pointer"
                           >
                             <option value="Professional Business Website">Professional Business Website</option>
                             <option value="Digital Presence Setup">Digital Presence Setup</option>
@@ -231,7 +231,7 @@ ${formData.message}
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             placeholder="name@company.com"
-                            className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-700"
+                            className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-700"
                           />
                         </div>
                       </div>
@@ -244,7 +244,7 @@ ${formData.message}
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           placeholder="Briefly tell us what you need (website, online setup, design, etc.)"
-                          className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] resize-none placeholder:text-gray-700"
+                          className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] resize-none placeholder:text-gray-700"
                         />
                       </div>
 

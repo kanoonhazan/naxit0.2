@@ -52,9 +52,9 @@ const Hero: React.FC = () => {
           Intelligence Unleashed
         </motion.div>
 
-        <h1 className="text-5xl md:text-[6.5rem] lg:text-[8rem] font-display font-extrabold leading-[1.05] md:leading-[1] mb-6 tracking-tighter text-white overflow-hidden">
+        <h1 className="text-4xl md:text-[6.5rem] lg:text-[8rem] font-display font-extrabold leading-[1.05] md:leading-[1] mb-6 tracking-tighter text-white overflow-hidden">
           {titleWords.map((word, i) => (
-            <span key={i} className="inline-block overflow-hidden mr-3 md:mr-4">
+            <span key={i} className="inline-block overflow-hidden mr-2 md:mr-4">
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}

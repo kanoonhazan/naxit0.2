@@ -55,9 +55,9 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "circOut" }}
-      className="fixed top-6 left-0 right-0 mx-auto w-[95%] md:w-[90%] max-w-[1920px] z-50 border border-white/10 glass bg-black/50 backdrop-blur-md rounded-3xl"
+      className="fixed top-4 md:top-6 left-0 right-0 mx-auto w-[95%] md:w-[90%] max-w-[1920px] z-50 border border-white/10 glass bg-black/50 backdrop-blur-md rounded-2xl md:rounded-3xl"
     >
-      <div className="w-full mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="w-full mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         <a href="/#hero" onClick={(e) => handleScroll(e, 'hero')}>
           <img
             src="/assets/logo.png"
