@@ -45,7 +45,12 @@ const ScrollToHash: React.FC = () => {
       const element = document.getElementById(id);
       if (element) {
         setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const lenis = (window as any).lenis;
+          if (lenis) {
+            lenis.scrollTo(element, { offset: 0, duration: 1.5 });
+          } else {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         }, 100);
       }
     }
@@ -60,21 +65,29 @@ const AppContent: React.FC = () => {
   useEffect(() => {
     // Smoother Lenis configuration
     const lenis = new Lenis({
-      lerp: 0.1,
+      lerp: 0.08, // Slightly slower for more "weight" and smoothness
+      duration: 1.5,
+      smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.5, // Standard mobile sensitivity
+      touchMultiplier: 1.8, // Slightly more responsive on touch
       infinite: false,
     });
 
+    // Expose lenis to window for global access (like in Navbar/ScrollToHash)
+    (window as any).lenis = lenis;
+
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();
+      cancelAnimationFrame(rafId);
+      (window as any).lenis = undefined;
     };
   }, []);
 

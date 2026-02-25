@@ -31,10 +31,15 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
     setTimeout(() => {
       const element = document.getElementById(targetId);
       if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
+        const lenis = (window as any).lenis;
+        if (lenis) {
+          lenis.scrollTo(element, { offset: 0, duration: 1.5 });
+        } else {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
       }
     }, 100);
   };

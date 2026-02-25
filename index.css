@@ -22,6 +22,7 @@ body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
   overflow-x: hidden;
+  overscroll-behavior: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -107,13 +108,12 @@ textarea {
 /* Performance Optimizations */
 section {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 500px;
-  /* Placeholder size for better scrollbar behavior */
+  contain-intrinsic-size: auto 800px; /* Better default for modern sections */
 }
 
 #hero {
   content-visibility: visible;
-  /* Always visible to prevent issues with LCP */
+  content-visibility: auto; /* Allow hero to be optimized but stay visible initially */
 }
 
 .will-change-transform {

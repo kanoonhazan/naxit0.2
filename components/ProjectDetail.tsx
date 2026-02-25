@@ -40,16 +40,21 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       }
     };
 
+    const lenis = (window as any).lenis;
+
     if (selectedImageIndex !== null) {
       document.body.style.overflow = 'hidden';
+      if (lenis) lenis.stop();
     } else {
       document.body.style.overflow = 'unset';
+      if (lenis) lenis.start();
     }
 
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
+      if (lenis) lenis.start();
     };
   }, [onBack, selectedImageIndex]);
 
@@ -89,7 +94,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="min-h-screen overflow-y-auto cursor-auto"
+      className="min-h-screen cursor-auto"
     >
       <Helmet>
         <title>{project.title} | Naxit Portfolio</title>

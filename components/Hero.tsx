@@ -85,7 +85,12 @@ const Hero: React.FC = () => {
           <button
             onClick={() => {
               const el = document.getElementById('contact');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              const lenis = (window as any).lenis;
+              if (lenis && el) {
+                lenis.scrollTo(el, { offset: 0, duration: 1.5 });
+              } else if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
             }}
             className="group relative px-10 py-5 bg-white text-black font-bold rounded-2xl overflow-hidden active:scale-95 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_20px_40px_rgba(0,212,255,0.2)]"
           >
@@ -95,7 +100,12 @@ const Hero: React.FC = () => {
           <button
             onClick={() => {
               const el = document.getElementById('services');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              const lenis = (window as any).lenis;
+              if (lenis && el) {
+                lenis.scrollTo(el, { offset: 0, duration: 1.5 });
+              } else if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
             }}
             className="px-10 py-5 glass rounded-2xl font-medium border border-white/10 hover:border-naxit-cyan/30 transition-all hover:bg-white/5"
           >
@@ -106,7 +116,15 @@ const Hero: React.FC = () => {
 
       {/* Modern Scroll Indicator */}
       <motion.button
-        onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+        onClick={() => {
+          const el = document.getElementById('services');
+          const lenis = (window as any).lenis;
+          if (lenis && el) {
+            lenis.scrollTo(el, { offset: 0, duration: 2 });
+          } else if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
         animate={{ opacity: [0.2, 0.5, 0.2] }}
         transition={{ duration: 3, repeat: Infinity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer"

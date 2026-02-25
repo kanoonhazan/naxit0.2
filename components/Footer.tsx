@@ -16,7 +16,12 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
 
     // Wait for modal to close, then scroll
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const lenis = (window as any).lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { duration: 1.5 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }, 100);
   };
 
@@ -34,7 +39,12 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
     // Wait for modal to unmount, then scroll the real page
     setTimeout(() => {
       const el = document.getElementById(targetId);
-      el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const lenis = (window as any).lenis;
+      if (lenis && el) {
+        lenis.scrollTo(el, { offset: 0, duration: 1.5 });
+      } else if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }, 300); // match your exit animation duration
   };
 

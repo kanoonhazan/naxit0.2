@@ -7,19 +7,19 @@ const StaticBackground: React.FC = () => {
         <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Primary Glow */}
             <div
-                className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full opacity-[0.15] blur-[120px]"
+                className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full opacity-[0.15] blur-[120px] gpu-accel"
                 style={{ background: 'radial-gradient(circle, #00D4FF 0%, transparent 70%)' }}
             />
 
             {/* Secondary Glow */}
             <div
-                className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[60%] rounded-full opacity-[0.1] blur-[120px]"
+                className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[60%] rounded-full opacity-[0.1] blur-[120px] gpu-accel"
                 style={{ background: 'radial-gradient(circle, #0055FF 0%, transparent 70%)' }}
             />
 
             {/* Center Accents */}
             <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] opacity-[0.05] blur-[150px]"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] opacity-[0.05] blur-[150px] gpu-accel"
                 style={{ background: 'radial-gradient(circle, #00D4FF 0%, transparent 50%)' }}
             />
 
