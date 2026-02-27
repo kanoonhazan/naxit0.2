@@ -55,14 +55,14 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "circOut" }}
-      className="fixed top-4 md:top-6 left-0 right-0 mx-auto w-[95%] md:w-[90%] max-w-[1920px] z-50 border border-white/10 glass bg-black/50 backdrop-blur-md rounded-2xl md:rounded-3xl"
+      className="fixed top-2 md:top-4 left-0 right-0 mx-auto w-[95%] md:w-[90%] max-w-[1920px] z-50 border border-white/10 glass bg-black/50 backdrop-blur-md rounded-xl md:rounded-2xl"
     >
-      <div className="w-full mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+      <div className="w-full mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         <a href="/#hero" onClick={(e) => handleScroll(e, 'hero')}>
           <img
             src="/assets/logo.png"
             alt="NAXIT Micro Agency - Best Digital Solutions in Mannar, Sri Lanka"
-            className="h-8 cursor-pointer hover:opacity-80 transition-opacity"
+            className="h-7 cursor-pointer hover:opacity-80 transition-opacity"
             fetchPriority="high"
             decoding="async"
           />
@@ -85,7 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
         <div className="hidden md:block">
           <button
             onClick={(e) => handleScroll(e, 'contact')}
-            className="bg-naxit-royal hover:bg-naxit-cyan text-white px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,85,255,0.3)]"
+            className="bg-naxit-royal hover:bg-naxit-cyan text-white px-8 py-1.5 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,85,255,0.3)]"
           >
             Get Started
           </button>
