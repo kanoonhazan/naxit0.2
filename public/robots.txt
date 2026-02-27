@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /private/
+Disallow: /tmp/
 
+# Host
+Host: https://www.naxitofficial.de
+
+# Sitemap
 Sitemap: https://www.naxitofficial.de/sitemap.xml
