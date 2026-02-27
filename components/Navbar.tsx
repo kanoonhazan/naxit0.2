@@ -58,13 +58,14 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
       className="fixed top-2 md:top-4 left-0 right-0 mx-auto w-[95%] md:w-[90%] max-w-[1920px] z-50 border border-white/10 glass bg-black/50 backdrop-blur-md rounded-xl md:rounded-2xl"
     >
       <div className="w-full mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
-        <a href="/#hero" onClick={(e) => handleScroll(e, 'hero')}>
+        <a href="/#hero" onClick={(e) => handleScroll(e, 'hero')} className="flex items-center">
           <img
             src="/assets/logo.png"
             alt="NAXIT Micro Agency - Best Digital Solutions in Mannar, Sri Lanka"
             className="h-7 cursor-pointer hover:opacity-80 transition-opacity"
             fetchPriority="high"
             decoding="async"
+            loading="eager"
           />
         </a>
 
@@ -93,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white hover:text-naxit-cyan transition-colors"
+          className="md:hidden flex items-center justify-center w-12 h-12 text-white hover:text-naxit-cyan transition-colors"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Close Menu" : "Open Menu"}
         >
