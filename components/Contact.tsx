@@ -194,7 +194,7 @@ ${formData.message}
                   >
                     <div className="relative z-10 mb-12 text-white">
                       <div className="text-naxit-cyan font-mono text-[10px] tracking-[0.5em] uppercase mb-4">Transmission Gateway</div>
-                      <h3 className="text-4xl md:text-6xl font-display font-bold tracking-tight leading-tight">Initialize Your <br /><span className="text-gradient">Protocol</span></h3>
+                      <h3 className="text-4xl md:text-6xl font-display font-bold tracking-tight leading-tight">Initialize Your <br /><span className="text-gradient">Projects</span></h3>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
