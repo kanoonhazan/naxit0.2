@@ -116,7 +116,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
                   key={link.name}
                   href={`/#${link.target}`}
                   onClick={(e) => handleScroll(e, link.target)}
-                  className="hover:text-naxit-cyan transition-colors"
+                  className="w-full text-center py-4 hover:text-naxit-cyan transition-colors"
                 >
                   {link.name}
                 </a>
