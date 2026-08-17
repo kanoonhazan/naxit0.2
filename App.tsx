@@ -15,6 +15,7 @@ const LandingPage = lazy(() => import('./components/LandingPage'));
 const ServicePage = lazy(() => import('./components/ServicePage'));
 const ProjectPage = lazy(() => import('./components/ProjectPage'));
 const PortfolioPage = lazy(() => import('./components/PortfolioPage'));
+const PrivacyPage = lazy(() => import('./components/PrivacyPage'));
 const Admin = lazy(() => import('./components/Admin'));
 const NotFound = lazy(() => import('./components/NotFound'));
 
@@ -113,6 +114,7 @@ const AppContent: React.FC = () => {
                 <Route path="/services/:slug" element={<ServicePage />} />
                 <Route path="/portfolio/:slug" element={<ProjectPage />} />
                 <Route path="/portfolio" element={<PortfolioPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
