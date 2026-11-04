@@ -59,7 +59,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
   }, [onBack, selectedImageIndex]);
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/94758089209', '_blank');
+    window.open('https://wa.me/94756811228', '_blank');
   };
 
   const handleNext = () => {

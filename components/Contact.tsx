@@ -25,7 +25,7 @@ ${formData.message}
 
 *Contact:* ${formData.email || 'contact through this whatsapp.'}`;
 
-    const whatsappUrl = `https://wa.me/94758089209?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/94756811228?text=${encodeURIComponent(whatsappMessage)}`;
 
     setTimeout(() => {
       window.open(whatsappUrl, '_blank');
@@ -151,8 +151,8 @@ ${formData.message}
             {/* Communication Hub (Top Stack) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { label: 'Chat on WhatsApp', value: 'WhatsApp', href: 'https://wa.me/94758089209', icon: <MessageSquare className="w-5 h-5" /> },
-                { label: 'Call Us Directly', value: '075 8089 209', href: 'tel:0758089209', icon: <Phone className="w-5 h-5" /> },
+                { label: 'Chat on WhatsApp', value: '+94 75 681 1228', href: 'https://wa.me/94756811228', icon: <MessageSquare className="w-5 h-5" /> },
+                { label: 'Call Us Directly', value: '+94 75 681 1228 / +94 99 11228', href: 'tel:+94756811228', icon: <Phone className="w-5 h-5" /> },
                 { label: 'Email Us', value: 'Email Inbox', href: 'mailto:naxitofficial@gmail.com', icon: <Mail className="w-5 h-5" /> }
               ].map((node, i) => (
                 <motion.a

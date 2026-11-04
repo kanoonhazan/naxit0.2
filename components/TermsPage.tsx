@@ -259,10 +259,16 @@ const TermsPage: React.FC = () => {
                   <div className="text-naxit-cyan font-mono text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
                     <Phone className="w-4 h-4" /> Telephone Contact
                   </div>
-                  <a href="tel:+94758089209" className="text-white font-semibold text-base hover:text-naxit-cyan transition-colors">
-                    +94 75 808 9209
-                  </a>
-                  <div className="text-gray-400 text-xs mt-1">Official voice & WhatsApp business communication channel</div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <a href="tel:+94756811228" className="text-white font-semibold text-base hover:text-naxit-cyan transition-colors">
+                      +94 75 681 1228
+                    </a>
+                    <span className="text-gray-500 text-xs">/</span>
+                    <a href="tel:+949911228" className="text-white font-semibold text-base hover:text-naxit-cyan transition-colors">
+                      +94 99 11228
+                    </a>
+                  </div>
+                  <div className="text-gray-400 text-xs mt-1">Official voice & WhatsApp (+94 75 681 1228) communication channels</div>
                 </div>
               </div>
             </motion.section>
@@ -764,7 +770,7 @@ const TermsPage: React.FC = () => {
                 </div>
 
                 <a
-                  href="tel:+94758089209"
+                  href="tel:+94756811228"
                   className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-naxit-cyan/50 hover:bg-white/[0.05] transition-all flex items-center gap-4 group"
                 >
                   <div className="w-10 h-10 rounded-xl bg-naxit-royal/20 border border-naxit-royal/40 flex items-center justify-center text-naxit-cyan group-hover:scale-110 transition-transform">
@@ -773,7 +779,7 @@ const TermsPage: React.FC = () => {
                   <div>
                     <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Phone & WhatsApp</div>
                     <div className="text-white font-medium group-hover:text-naxit-cyan transition-colors">
-                      +94 75 808 9209
+                      +94 75 681 1228 / +94 99 11228
                     </div>
                   </div>
                 </a>

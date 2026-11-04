@@ -23,11 +23,11 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
     }, [onBack]);
 
     const handleWhatsApp = () => {
-        window.open('https://wa.me/94758089209', '_blank');
+        window.open('https://wa.me/94756811228', '_blank');
     };
 
     const handleCall = () => {
-        window.location.href = 'tel:058089209';
+        window.location.href = 'tel:+94756811228';
     };
 
     return (
