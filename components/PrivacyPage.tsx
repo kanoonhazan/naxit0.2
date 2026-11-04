@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
   ArrowLeft,
@@ -127,6 +127,10 @@ const PrivacyPage: React.FC = () => {
               <span>Effective Date: August 17, 2026</span>
               <span className="text-gray-600 hidden sm:inline">•</span>
               <span>Last Updated: August 17, 2026</span>
+              <span className="text-gray-600 hidden sm:inline">•</span>
+              <Link to="/terms" className="text-naxit-cyan hover:underline flex items-center gap-1">
+                View Terms of Service &rarr;
+              </Link>
             </div>
           </motion.div>
 

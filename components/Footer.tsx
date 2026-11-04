@@ -160,7 +160,7 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
           <div className="flex gap-10 font-mono text-[9px] tracking-[0.2em] text-gray-600 uppercase">
             <span className="text-gray-400">© 2026 NAXIT INC.</span>
             <Link to="/privacy" className="hover:text-naxit-cyan transition-colors">Privacy Protocol</Link>
-            <a href="#" className="hover:text-naxit-cyan transition-colors">Terms of Service</a>
+            <Link to="/terms" className="hover:text-naxit-cyan transition-colors">Terms of Service</Link>
           </div>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 text-gray-600">
