@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
 const PARTNERS = [
-  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png' },
-  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png' },
-  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png' },
-  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png' },
-  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png' },
-  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png' },
-  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png' },
-  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png' },
+  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png', logoWebp: '/assets/brands/auramax.webp' },
+  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png', logoWebp: '/assets/brands/my-travels.webp' },
+  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png', logoWebp: '/assets/brands/auramax.webp' },
+  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png', logoWebp: '/assets/brands/my-travels.webp' },
+  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png', logoWebp: '/assets/brands/auramax.webp' },
+  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png', logoWebp: '/assets/brands/my-travels.webp' },
+  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png', logoWebp: '/assets/brands/auramax.webp' },
+  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png', logoWebp: '/assets/brands/my-travels.webp' },
 ];
 
 const LogoCloud: React.FC = () => {
@@ -79,14 +79,19 @@ const LogoCloud: React.FC = () => {
           >
             {partner.logo ? (
               <div className="min-w-[280px] flex justify-center">
-                <img
-                  src={partner.logo}
-                  alt={`${partner.name} - Trusted Partner in Sri Lanka Digital Ecosystem`}
-                  className="h-20 w-auto object-contain opacity-80"
-                  draggable={false}
-                  loading="lazy"
-                  decoding="async"
-                />
+                <picture>
+                  <source srcSet={partner.logoWebp} type="image/webp" />
+                  <img
+                    src={partner.logo}
+                    width={800}
+                    height={400}
+                    alt={`${partner.name} - Trusted Partner in Sri Lanka Digital Ecosystem`}
+                    className="h-20 w-auto object-contain opacity-80"
+                    draggable={false}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
             ) : (
               <div className="flex flex-col">

@@ -35,6 +35,8 @@ const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, onSelect 
       <div className="absolute inset-0">
         <motion.img
           src={getOptimizedImage(project.image, 800)}
+          width={800}
+          height={600}
           alt={`${project.title} - Creative Portfolio in Mannar, Sri Lanka`}
           loading="lazy"
           decoding="async"
@@ -135,7 +137,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
             <div className="text-naxit-cyan font-mono text-sm tracking-[0.4em] uppercase mb-4">
               Case Studies
             </div>
-            <h2 className="text-6xl sm:text-8xl md:text-6xl lg:text-8xl
+            <h2 id="portfolio-heading" className="text-6xl sm:text-8xl md:text-6xl lg:text-8xl
                            font-display font-bold tracking-tighter">
               Selected <br />
               <span className="text-gradient">Featured Works</span>

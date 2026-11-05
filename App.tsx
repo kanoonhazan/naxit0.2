@@ -10,8 +10,9 @@ import Preloader from './components/Preloader';
 import StaticBackground from './components/StaticBackground';
 import { ProjectProvider } from './context/ProjectContext';
 
-// Lazy load components for code splitting
-const LandingPage = lazy(() => import('./components/LandingPage'));
+import LandingPage from './components/LandingPage';
+
+// Lazy load subpages for code splitting
 const ServicePage = lazy(() => import('./components/ServicePage'));
 const ProjectPage = lazy(() => import('./components/ProjectPage'));
 const PortfolioPage = lazy(() => import('./components/PortfolioPage'));
@@ -140,12 +141,12 @@ const App: React.FC = () => {
 
   const [loading, setLoading] = useState(!hasVisited && isHome);
 
-  const handlePreloaderComplete = () => {
+  const handlePreloaderComplete = React.useCallback(() => {
     try {
       sessionStorage.setItem('hasVisited', 'true');
     } catch (e) { }
     setLoading(false);
-  };
+  }, []);
 
   return (
     <Router>

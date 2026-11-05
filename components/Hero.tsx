@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
 
 
 
-  const titleWords = "The Digital Engine for Local Business.".split(" ");
+  const titleWords = "Web Design & Digital Solutions for Sri Lankan Businesses".split(" ");
 
   return (
     <section id="hero" className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-40 pb-20 md:pt-32 md:pb-28">
@@ -52,14 +52,14 @@ const Hero: React.FC = () => {
           Intelligence Unleashed
         </motion.div>
 
-        <h1 className="text-4xl md:text-[6.5rem] lg:text-[8rem] font-display font-extrabold leading-[1.05] md:leading-[1] mb-6 tracking-tighter text-white overflow-hidden">
+        <h1 id="hero-heading" className="text-4xl md:text-[5.5rem] lg:text-[7rem] font-display font-extrabold leading-[1.08] md:leading-[1.02] mb-6 tracking-tighter text-white overflow-hidden">
           {titleWords.map((word, i) => (
-            <span key={i} className="inline-block overflow-hidden mr-2 md:mr-4">
+            <span key={i} className="inline-block overflow-hidden mr-2 md:mr-3.5">
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
-                transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={`inline-block gpu-accel ${i === 2 ? 'text-gradient' : ''}`}
+                transition={{ duration: 1.2, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className={`inline-block gpu-accel ${i >= 3 && i <= 4 ? 'text-gradient' : ''}`}
               >
                 {word}
               </motion.span>
@@ -71,9 +71,9 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg md:text-1xl text-gray-400 font-light max-w-2xl mx-auto mb-6 leading-relaxed"
+          className="text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto mb-6 leading-relaxed"
         >
-          We design and build the software tools that help Sri Lankan shops, schools, and startups grow without the technical headache.
+          NAXIT is a digital agency in Sri Lanka. We build fast websites, clean user interfaces, and business tools like ROP. We help local shops, schools, and startups grow.
         </motion.p>
 
         <motion.div

@@ -65,6 +65,7 @@ const Process: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
             <motion.h2
+              id="process-heading"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

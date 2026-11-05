@@ -55,6 +55,7 @@ ${formData.message}
               </motion.div>
 
               <motion.h2
+                id="contact-heading"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 className="text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.85] text-white"
@@ -111,6 +112,7 @@ ${formData.message}
                     href="https://share.google/kLF8l3VpKfylUEVqX"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Review NAXIT on Google"
                     className="flex items-center justify-between w-full p-4 glass rounded-2xl border border-naxit-cyan/20 bg-naxit-cyan/5 hover:bg-naxit-cyan hover:text-black transition-all group group-hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
                   >
                     <span className="text-[10px] font-mono font-bold tracking-[0.1em] uppercase">View our Google Reviews</span>
@@ -130,18 +132,29 @@ ${formData.message}
                 <div className="relative shrink-0">
                   <div className="w-[72px] h-[72px] rounded-full bg-gradient-to-br from-naxit-royal/30 to-naxit-cyan/30 p-[1px]">
                     <div className="w-full h-full rounded-full bg-naxit-charcoal flex items-center justify-center overflow-hidden">
-                      <img src="/assets/Kanoon Hazan.png" alt="Hazan K. - Founder of NAXIT Mannar, Sri Lanka" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                      <picture>
+                        <source srcSet="/assets/Kanoon-Hazan.webp" type="image/webp" />
+                        <img
+                          src="/assets/Kanoon-Hazan.png"
+                          width={500}
+                          height={500}
+                          loading="lazy"
+                          decoding="async"
+                          alt="Hazan Kanoon - Founder and Design Director of NAXIT Mannar, Sri Lanka"
+                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                        />
+                      </picture>
                     </div>
                   </div>
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-naxit-cyan rounded-full border-2 border-naxit-charcoal" />
                 </div>
                 <div>
-                  <div className="text-white font-bold text-xl tracking-tight leading-tight">Hazan K.</div>
-                  <div className="text-naxit-cyan font-mono text-[10px] uppercase tracking-[0.3em] font-bold mt-1">Founder, NAXIT</div>
+                  <div className="text-white font-bold text-xl tracking-tight leading-tight">Hazan Kanoon</div>
+                  <div className="text-naxit-cyan font-mono text-[10px] uppercase tracking-[0.3em] font-bold mt-1">Founder & Design Lead, NAXIT</div>
                 </div>
               </div>
               <p className="text-gray-400 font-display text-sm mt-6 leading-relaxed italic opacity-80">
-                "Focused on building practical digital solutions for real businesses."
+                "Focused on building practical digital solutions and clear web architecture for Sri Lankan businesses."
               </p>
             </motion.div>
           </div>
@@ -151,15 +164,16 @@ ${formData.message}
             {/* Communication Hub (Top Stack) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { label: 'Chat on WhatsApp', value: '+94 75 681 1228', href: 'https://wa.me/94756811228', icon: <MessageSquare className="w-5 h-5" /> },
-                { label: 'Call Us Directly', value: '+94 75 681 1228 / +94 99 11228', href: 'tel:+94756811228', icon: <Phone className="w-5 h-5" /> },
-                { label: 'Email Us', value: 'Email Inbox', href: 'mailto:naxitofficial@gmail.com', icon: <Mail className="w-5 h-5" /> }
+                { label: 'Chat on WhatsApp', value: '+94 75 681 1228', href: 'https://wa.me/94756811228', aria: 'Chat with NAXIT on WhatsApp', icon: <MessageSquare className="w-5 h-5" /> },
+                { label: 'Call Us Directly', value: '+94 75 681 1228 / +94 99 11228', href: 'tel:+94756811228', aria: 'Call NAXIT Customer Support', icon: <Phone className="w-5 h-5" /> },
+                { label: 'Email Us', value: 'Email Inbox', href: 'mailto:naxitofficial@gmail.com', aria: 'Send email to NAXIT Official', icon: <Mail className="w-5 h-5" /> }
               ].map((node, i) => (
                 <motion.a
                   key={node.label}
                   href={node.href}
-                  target={node.label === 'Chat' ? "_blank" : undefined}
-                  rel={node.label === 'Chat' ? "noopener noreferrer" : undefined}
+                  aria-label={node.aria}
+                  target={node.label === 'Chat on WhatsApp' ? "_blank" : undefined}
+                  rel={node.label === 'Chat on WhatsApp' ? "noopener noreferrer" : undefined}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
@@ -200,9 +214,11 @@ ${formData.message}
                     <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
                         <div className="flex flex-col gap-3 group">
-                          <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Full Name</label>
+                          <label htmlFor="contact-name" className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Full Name</label>
                           <input
                             required
+                            id="contact-name"
+                            name="name"
                             type="text"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -211,9 +227,12 @@ ${formData.message}
                           />
                         </div>
                         <div className="flex flex-col gap-3 group">
-                          <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Select Service</label>
+                          <label htmlFor="contact-service" className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Select Service</label>
                           <select
                             required
+                            id="contact-service"
+                            name="service"
+                            aria-label="Select Service"
                             value={formData.service}
                             onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                             className="bg-naxit-charcoal border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] text-white appearance-none cursor-pointer"
@@ -225,9 +244,11 @@ ${formData.message}
                           </select>
                         </div>
                         <div className="flex flex-col gap-3 group md:col-span-2">
-                          <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Email Address (Optional)</label>
+                          <label htmlFor="contact-email" className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Email Address (Optional)</label>
                           <input
                             type="email"
+                            id="contact-email"
+                            name="email"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             placeholder="name@company.com"
@@ -237,9 +258,11 @@ ${formData.message}
                       </div>
 
                       <div className="flex flex-col gap-3 group text-white">
-                        <label className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Your Business / Project</label>
+                        <label htmlFor="contact-message" className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Your Business / Project</label>
                         <textarea
                           required
+                          id="contact-message"
+                          name="message"
                           rows={4}
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}

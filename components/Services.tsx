@@ -92,6 +92,7 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
           <div className="max-w-2xl">
             <motion.h2
+              id="services-heading"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               className="text-5xl md:text-7xl font-display font-bold mb-8"

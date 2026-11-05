@@ -9,6 +9,7 @@ import {
 import { Helmet } from 'react-helmet-async';
 import { getOptimizedImage } from '../utils';
 import Footer from './Footer';
+import Breadcrumbs from './Breadcrumbs';
 
 interface ProjectDetailProps {
   project: Project;
@@ -139,11 +140,22 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 top-0 z-0 gpu-accel">
-            <img src={getOptimizedImage(project.image)} alt={`${project.title} - Project Hero in Mannar, Sri Lanka`} className="w-full h-full object-cover opacity-60 grayscale-[0.2]" />
+            <img
+              src={getOptimizedImage(project.image)}
+              width={1600}
+              height={900}
+              loading="eager"
+              decoding="async"
+              alt={`${project.title} - Project Hero in Mannar, Sri Lanka`}
+              className="w-full h-full object-cover opacity-60 grayscale-[0.2]"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-naxit-charcoal via-transparent to-transparent" />
           </motion.div>
 
           <div className="relative z-10 text-center max-w-5xl px-4 mt-32 md:mt-20">
+            <div className="flex justify-center mb-6">
+              <Breadcrumbs items={[{ label: 'Portfolio', path: '/portfolio' }, { label: project.title }]} />
+            </div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -396,6 +408,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                 <div className="max-w-[1400px] mx-auto overflow-hidden shadow-2xl md:shadow-none group-hover:shadow-[0_40px_100px_rgba(0,0,0,0.6)] transition-shadow duration-700">
                   <img
                     src={getOptimizedImage(img, 2000)}
+                    width={1400}
+                    height={800}
                     alt={`${project.title} Exhibit ${idx + 1}`}
                     className="w-full h-auto object-cover scale-[1.01] group-hover:scale-105 transition-transform duration-[2s] ease-out will-change-transform"
                     loading="lazy"

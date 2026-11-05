@@ -61,11 +61,18 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
           {/* Brand & Status Column */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <img
-                src="/assets/logo.png"
-                alt="NAXIT Micro Agency - Innovation Partner in Mannar, Sri Lanka"
-                className="h-10 w-auto"
-              />
+              <picture>
+                <source srcSet="/assets/logo.webp" type="image/webp" />
+                <img
+                  src="/assets/logo.png"
+                  width={202}
+                  height={106}
+                  loading="lazy"
+                  decoding="async"
+                  alt="NAXIT Micro Agency - Innovation Partner in Mannar, Sri Lanka"
+                  className="h-10 w-auto"
+                />
+              </picture>
             </div>
             <p className="text-gray-400 text-lg font-light leading-relaxed mb-8 max-w-sm">
               Empowering global innovation through native talent. A high-frequency micro-agency for the next generation of digital giants.
@@ -89,8 +96,10 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
             <ul className="space-y-4">
               {[
                 { name: 'Home', id: 'hero' },
+                { name: 'About', id: 'about' },
                 { name: 'Services', id: 'services' },
                 { name: 'Work', id: 'portfolio' },
+                { name: 'FAQ', id: 'faq' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
                 <li key={item.name}>
@@ -125,17 +134,18 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
             <h4 className="text-[10px] font-mono text-gray-500 tracking-[0.4em] uppercase mb-8">Social Intel</h4>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: <Linkedin className="w-4 h-4" />, label: 'LI', url: 'https://www.linkedin.com/company/naxitofficial/' },
-                { icon: <Instagram className="w-4 h-4" />, label: 'IG', url: 'https://www.instagram.com/naxitofficial' },
-                { icon: <Facebook className="w-4 h-4" />, label: 'FB', url: 'https://www.facebook.com/naxitofficial' },
-                { icon: <MapPin className="w-4 h-4" />, label: 'GB', url: 'https://share.google/kLF8l3VpKfylUEVqX' },
-                { icon: <MessageCircle className="w-4 h-4" />, label: 'WA', url: 'https://whatsapp.com/channel/0029VaCY8ulCHDyowtpSzx30' }
+                { icon: <Linkedin className="w-4 h-4" />, label: 'LI', aria: 'NAXIT on LinkedIn', url: 'https://www.linkedin.com/company/naxitofficial/' },
+                { icon: <Instagram className="w-4 h-4" />, label: 'IG', aria: 'NAXIT on Instagram', url: 'https://www.instagram.com/naxitofficial' },
+                { icon: <Facebook className="w-4 h-4" />, label: 'FB', aria: 'NAXIT on Facebook', url: 'https://www.facebook.com/naxitofficial' },
+                { icon: <MapPin className="w-4 h-4" />, label: 'GB', aria: 'Review NAXIT on Google', url: 'https://share.google/kLF8l3VpKfylUEVqX' },
+                { icon: <MessageCircle className="w-4 h-4" />, label: 'WA', aria: 'NAXIT WhatsApp channel', url: 'https://whatsapp.com/channel/0029VaCY8ulCHDyowtpSzx30' }
               ].map((social) => (
                 <a
                   key={social.label}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.aria}
                   className="glass p-3 rounded-xl border border-white/5 flex items-center justify-center hover:border-naxit-cyan/40 hover:text-naxit-cyan hover:scale-110 transition-all group cursor-pointer"
                   title={social.label}
                 >

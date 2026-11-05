@@ -9,6 +9,8 @@ import Footer from './Footer';
 import { useProjects } from '../context/ProjectContext';
 import { Project } from '../types';
 
+import Breadcrumbs from './Breadcrumbs';
+
 const CATEGORIES = ['All', 'Website Design', 'UI/UX Design', 'Digital Branding', 'Graphic Design'] as const;
 
 const ProjectCard: React.FC<{ project: Project; onClick: () => void }> = ({ project, onClick }) => (
@@ -24,6 +26,8 @@ const ProjectCard: React.FC<{ project: Project; onClick: () => void }> = ({ proj
         <div className="absolute inset-0">
             <motion.img
                 src={project.image}
+                width={800}
+                height={580}
                 alt={`${project.title} - Featured Project in Mannar, Sri Lanka`}
                 className="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-all duration-1000 ease-out"
                 loading="lazy"
@@ -96,6 +100,7 @@ const PortfolioPage: React.FC = () => {
 
             <main className="pt-32 pb-20 px-4">
                 <div className="max-w-7xl mx-auto">
+                    <Breadcrumbs items={[{ label: 'Portfolio' }]} />
                     {/* Header */}
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
                         <div className="max-w-2xl">

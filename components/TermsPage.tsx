@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import Breadcrumbs from './Breadcrumbs';
 import {
   ArrowLeft,
   FileText,
@@ -86,6 +87,7 @@ const TermsPage: React.FC = () => {
         <div className="absolute top-96 right-10 w-[400px] h-[400px] bg-naxit-cyan/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-5xl mx-auto relative z-10">
+          <Breadcrumbs items={[{ label: 'Terms of Service' }]} />
           {/* Back button & Status Badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}

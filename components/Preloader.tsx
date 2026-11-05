@@ -33,8 +33,8 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     }
 
     const preloadImages = async () => {
-      // Create a timeout promise to ensure we don't wait forever
-      const timeoutPromise = new Promise(resolve => setTimeout(() => resolve('timeout'), 8000));
+      // 1.5s max wait for critical images to prevent preloader freezing
+      const timeoutPromise = new Promise(resolve => setTimeout(() => resolve('timeout'), 1500));
 
       const imagePromises = criticalImages.map((src) => {
         return new Promise((resolve) => {
@@ -45,7 +45,6 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         });
       });
 
-      // Special handling: Wait for at least some images, but don't hang if one is slow
       await Promise.race([
         Promise.all(imagePromises),
         timeoutPromise
@@ -69,22 +68,17 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     let current = 0;
     const interval = setInterval(() => {
       if (current < sequence.length) {
-        // Fast forward if images are already loaded
-        if (sequence[current].p > 80 && !isImagesLoaded) {
-          return;
-        }
-
         setProgress(sequence[current].p);
         setText(sequence[current].t);
         current++;
       } else {
         clearInterval(interval);
-        setTimeout(onComplete, 200);
+        setTimeout(onComplete, 150);
       }
-    }, 80); // Reduced from 180ms for MUCH faster perceived speed
+    }, 120);
 
     return () => clearInterval(interval);
-  }, [onComplete, isImagesLoaded]);
+  }, [onComplete]);
 
   return (
     <motion.div

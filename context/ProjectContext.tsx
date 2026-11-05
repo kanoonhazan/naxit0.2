@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Project } from '../types';
 import { PROJECTS as INITIAL_PROJECTS } from '../data';
-import { supabase } from '../supabase';
+import { supabase, isSupabaseConfigured } from '../supabase';
 
 interface ProjectContextType {
     projects: Project[];
@@ -16,6 +16,18 @@ export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children })
     const [projects, setProjects] = useState<Project[]>(INITIAL_PROJECTS);
 
     const fetchProjects = async () => {
+        if (!isSupabaseConfigured) {
+            const savedProjects = localStorage.getItem('naxit_projects');
+            if (savedProjects) {
+                try {
+                    setProjects(JSON.parse(savedProjects));
+                } catch (e) {
+                    setProjects(INITIAL_PROJECTS);
+                }
+            }
+            return;
+        }
+
         try {
             const { data, error } = await supabase
                 .from('projects')
