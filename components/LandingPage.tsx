@@ -9,6 +9,7 @@ import LogoCloud from './LogoCloud';
 import About from './About';
 import Services from './Services';
 import Process from './Process';
+import Pricing from './Pricing';
 import Insights from './Insights';
 import Portfolio from './Portfolio';
 import FAQ from './FAQ';
@@ -62,12 +63,17 @@ const LandingPage: React.FC = () => {
                                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />
                             </div>
 
-                            <Services onSelectService={(s) => navigate(`/services/${s.slug}`)} />
+                            <Services />
                             <div className="max-w-7xl mx-auto px-4">
                                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />
                             </div>
 
                             <Process />
+                            <div className="max-w-7xl mx-auto px-4">
+                                <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />
+                            </div>
+
+                            <Pricing />
                             <div className="max-w-7xl mx-auto px-4">
                                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-naxit-cyan/20 to-transparent" />
                             </div>

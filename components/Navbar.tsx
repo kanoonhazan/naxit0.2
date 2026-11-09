@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import LanguageSwitcher from './LanguageSwitcher';
 
 interface NavbarProps {
   onCloseModal?: () => void;
@@ -47,6 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
   const navLinks = [
     { name: 'About', target: 'about' },
     { name: 'Services', target: 'services' },
+    { name: 'Pricing', target: 'pricing' },
     { name: 'Work', target: 'portfolio' },
     { name: 'FAQ', target: 'faq' },
     { name: 'Contact', target: 'contact' },
@@ -77,7 +79,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex gap-10 text-sm font-medium tracking-widest uppercase items-center">
+        <div className="hidden md:flex gap-8 text-sm font-medium tracking-widest uppercase items-center">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -90,10 +92,11 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
           ))}
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-6">
+          <LanguageSwitcher slug="web-design-sri-lanka" currentLang="en" />
           <button
             onClick={(e) => handleScroll(e, 'contact')}
-            className="bg-naxit-royal hover:bg-naxit-cyan text-white px-8 py-1.5 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,85,255,0.3)]"
+            className="bg-naxit-royal hover:bg-naxit-cyan text-white px-7 py-1.5 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,85,255,0.3)]"
           >
             Get Started
           </button>
@@ -129,6 +132,9 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
                   {link.name}
                 </a>
               ))}
+              <div className="pt-2">
+                <LanguageSwitcher slug="web-design-sri-lanka" currentLang="en" />
+              </div>
               <button
                 onClick={(e) => handleScroll(e, 'contact')}
                 className="bg-naxit-royal hover:bg-naxit-cyan text-white px-8 py-3 rounded-full text-sm font-bold transition-all duration-300"

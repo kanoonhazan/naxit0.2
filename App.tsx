@@ -11,6 +11,11 @@ import StaticBackground from './components/StaticBackground';
 import { ProjectProvider } from './context/ProjectContext';
 
 import LandingPage from './components/LandingPage';
+import KeywordServicePage from './components/KeywordServicePage';
+import { SEO_PAGES } from './data/seoPages';
+import Pricing from './components/Pricing';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 // Lazy load subpages for code splitting
 const ServicePage = lazy(() => import('./components/ServicePage'));
@@ -38,6 +43,23 @@ const PageLoader = () => (
     />
   </div>
 );
+
+const PricingPage: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-naxit-charcoal text-white selection:bg-naxit-cyan selection:text-naxit-charcoal">
+      <Helmet>
+        <title>Pricing & Packages Sri Lanka | Web & Software Rates | NAXIT</title>
+        <meta name="description" content="Transparent price list for web design, branding, graphic design, and retail software in Sri Lanka. Fast delivery, fair prices." />
+        <link rel="canonical" href="https://www.naxitofficial.de/pricing" />
+      </Helmet>
+      <Navbar onCloseModal={() => {}} />
+      <main className="pt-24 pb-12">
+        <Pricing />
+      </main>
+      <Footer onCloseModal={() => {}} />
+    </div>
+  );
+};
 
 const ScrollToHash: React.FC = () => {
   const { hash } = useLocation();
@@ -113,6 +135,31 @@ const AppContent: React.FC = () => {
             >
               <Routes location={location}>
                 <Route path="/" element={<LandingPage />} />
+                <Route path="/pricing" element={<PricingPage />} />
+
+                {/* 6 Target Keyword Services in 3 Languages (EN, TA, SI) */}
+                {SEO_PAGES.map((page) => (
+                  <React.Fragment key={page.id}>
+                    {/* English URL (Default) */}
+                    <Route path={`/${page.slug}`} element={<KeywordServicePage pageData={page} lang="en" />} />
+                    {page.aliases.map((alias) => (
+                      <Route key={`en-${alias}`} path={`/${alias}`} element={<KeywordServicePage pageData={page} lang="en" />} />
+                    ))}
+
+                    {/* Tamil URL (/ta/) */}
+                    <Route path={`/ta/${page.slug}`} element={<KeywordServicePage pageData={page} lang="ta" />} />
+                    {page.aliases.map((alias) => (
+                      <Route key={`ta-${alias}`} path={`/ta/${alias}`} element={<KeywordServicePage pageData={page} lang="ta" />} />
+                    ))}
+
+                    {/* Sinhala URL (/si/) */}
+                    <Route path={`/si/${page.slug}`} element={<KeywordServicePage pageData={page} lang="si" />} />
+                    {page.aliases.map((alias) => (
+                      <Route key={`si-${alias}`} path={`/si/${alias}`} element={<KeywordServicePage pageData={page} lang="si" />} />
+                    ))}
+                  </React.Fragment>
+                ))}
+
                 <Route path="/services/:slug" element={<ServicePage />} />
                 <Route path="/portfolio/:slug" element={<ProjectPage />} />
                 <Route path="/portfolio" element={<PortfolioPage />} />
