@@ -4,7 +4,11 @@ import { Check, Clock, MessageSquare, ArrowRight, ShieldCheck, Tag } from 'lucid
 import { Link } from 'react-router-dom';
 import { CONFIRMED_PRICE_LIST } from '../data/seoPages';
 
-export const Pricing: React.FC = () => {
+interface PricingProps {
+  isDedicatedPage?: boolean;
+}
+
+export const Pricing: React.FC<PricingProps> = ({ isDedicatedPage = false }) => {
   return (
     <section id="pricing" className="py-24 md:py-36 px-4 relative overflow-hidden bg-transparent">
       {/* Background Ambience */}
@@ -23,15 +27,26 @@ export const Pricing: React.FC = () => {
             <span>Honest, Transparent Pricing</span>
           </motion.div>
 
-          <motion.h2
-            id="pricing-heading"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl sm:text-6xl md:text-7xl font-display font-bold text-white tracking-tight leading-[1.05] mb-6"
-          >
-            Clear Prices. <span className="text-gradient">Real Deadlines.</span>
-          </motion.h2>
+          {isDedicatedPage ? (
+            <motion.h1
+              id="pricing-heading"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-4xl sm:text-6xl md:text-7xl font-display font-bold text-white tracking-tight leading-[1.05] mb-6"
+            >
+              Simple, <span className="text-gradient">Fixed Prices</span>
+            </motion.h1>
+          ) : (
+            <motion.h2
+              id="pricing-heading"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl sm:text-6xl md:text-7xl font-display font-bold text-white tracking-tight leading-[1.05] mb-6"
+            >
+              Clear Prices. <span className="text-gradient">Real Deadlines.</span>
+            </motion.h2>
+          )}
 
           <p className="text-gray-300 text-lg md:text-xl font-light leading-relaxed">
             Confirmed rates in Sri Lankan Rupees (LKR) with guaranteed turnaround times. No hidden agency markups, no vague estimates.

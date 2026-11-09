@@ -1,8 +1,40 @@
 {
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
-    ]
+  "redirects": [
+    {
+      "source": "/services/website-design-sri-lanka",
+      "destination": "/web-design-sri-lanka",
+      "permanent": true
+    },
+    {
+      "source": "/services/ui-ux-design-sri-lanka",
+      "destination": "/ui-ux-design-sri-lanka",
+      "permanent": true
+    },
+    {
+      "source": "/services/brand-identity-sri-lanka",
+      "destination": "/graphic-design-branding-sri-lanka",
+      "permanent": true
+    },
+    {
+      "source": "/services/digital-presence-sri-lanka",
+      "destination": "/web-development-mannar-jaffna",
+      "permanent": true
+    },
+    {
+      "source": "/website-development-mannar",
+      "destination": "/web-development-mannar-jaffna",
+      "permanent": true
+    },
+    {
+      "source": "/graphic-design-sri-lanka",
+      "destination": "/graphic-design-branding-sri-lanka",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }

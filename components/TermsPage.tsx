@@ -77,6 +77,8 @@ const TermsPage: React.FC = () => {
           content="Terms of Service, Acceptable Use, and Trader Status declaration for Naxit ROP (Retail Operating Platform) mobile application and NAXIT services."
         />
         <link rel="canonical" href="https://www.naxitofficial.de/terms" />
+        <link rel="alternate" hrefLang="en-LK" href="https://www.naxitofficial.de/terms" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.naxitofficial.de/terms" />
       </Helmet>
 
       <Navbar onCloseModal={() => { }} />

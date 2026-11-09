@@ -72,6 +72,9 @@ const PrivacyPage: React.FC = () => {
           name="description"
           content="Privacy Policy for Naxit ROP (Retail Operating Platform). Learn how we collect, use, and protect your business and transaction data."
         />
+        <link rel="canonical" href="https://www.naxitofficial.de/privacy" />
+        <link rel="alternate" hrefLang="en-LK" href="https://www.naxitofficial.de/privacy" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.naxitofficial.de/privacy" />
       </Helmet>
 
       <Navbar onCloseModal={() => { }} />

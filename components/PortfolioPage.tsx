@@ -93,7 +93,10 @@ const PortfolioPage: React.FC = () => {
         <div className="min-h-screen border-none">
             <Helmet>
                 <title>Portfolio | Naxit Masterworks</title>
-                <meta name="description" content="Explore our selected masterworks in Website Design, UI/UX, and Digital Branding." />
+                <meta name="description" content="Recent NAXIT work: food delivery UX, brand logos, websites and apps for Sri Lankan businesses. See the case studies." />
+                <link rel="canonical" href="https://www.naxitofficial.de/portfolio" />
+                <link rel="alternate" hrefLang="en-LK" href="https://www.naxitofficial.de/portfolio" />
+                <link rel="alternate" hrefLang="x-default" href="https://www.naxitofficial.de/portfolio" />
             </Helmet>
 
             <Navbar onCloseModal={() => { }} />

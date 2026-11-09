@@ -42,7 +42,7 @@ export const SEO_PAGES: SeoPageData[] = [
     category: 'Web Design',
     en: {
       title: 'Web Design Sri Lanka | Fast Business Websites | NAXIT',
-      metaDescription: 'NAXIT designs fast, mobile-friendly websites for Sri Lankan shops, schools and startups. Landing pages from LKR 5,000. Get a free quote on WhatsApp.',
+      metaDescription: 'Fast, mobile-friendly business websites from LKR 5,000, live within 3 days. NAXIT designs and builds websites across Sri Lanka.',
       h1: 'Web Design in Sri Lanka for Businesses That Want More Customers',
       intro: 'Most customers in Sri Lanka find a business on their phone first. If your website is slow, hard to read or missing a WhatsApp button, they leave. NAXIT builds websites that load fast on mobile data, look professional and make it easy to call or message you.',
       whatYouGetTitle: 'What you get',
@@ -143,7 +143,7 @@ export const SEO_PAGES: SeoPageData[] = [
     category: 'UI/UX Design',
     en: {
       title: 'UI/UX Design Sri Lanka | App & Website Design | NAXIT',
-      metaDescription: 'UI/UX designer in Sri Lanka. NAXIT designs simple, clear apps and websites that people enjoy using. Project-based pricing. See our work and get a quote.',
+      metaDescription: 'UI/UX design for apps and websites: wireframes, prototypes and developer-ready Figma files. NAXIT, Mannar, Sri Lanka.',
       h1: 'UI/UX Design Studio in Sri Lanka',
       intro: 'Good UI/UX design means a customer finds what they need in seconds. NAXIT researches how your buyers behave, sketches the flow, designs clean screens and tests them before any code is written. We designed and built ROP, a retail platform used by real shops, so we know how everyday users behave.',
       whatYouGetTitle: 'Core Capabilities',
@@ -226,7 +226,7 @@ export const SEO_PAGES: SeoPageData[] = [
     isMannar: true,
     en: {
       title: 'Website Developer in Mannar & Jaffna | NAXIT',
-      metaDescription: 'Website and web design services in Mannar and Northern Province. Landing pages from LKR 5,000. Fast sites for local shops and businesses.',
+      metaDescription: 'Website development for businesses in Mannar and Jaffna: fast, secure, mobile-ready sites with local support from NAXIT.',
       h1: 'Website Development in Mannar and Northern Sri Lanka',
       intro: 'NAXIT is based in Mannar. We build websites for businesses in Mannar, Vavuniya, Jaffna, Kilinochchi and Mullaitivu. Being local means we can meet you, visit your shop and understand your customers. Add your Google Business Profile and your site appears when people nearby search for your service.',
       whatYouGetTitle: 'Local Web Solutions',
@@ -305,7 +305,7 @@ export const SEO_PAGES: SeoPageData[] = [
     isRop: true,
     en: {
       title: 'Retail Software Sri Lanka | ROP Billing & Stock App | NAXIT',
-      metaDescription: 'ROP by NAXIT is retail software that works fully offline. Billing, stock and supplier bills in one app. Setup LKR 1,999, LKR 399/month.',
+      metaDescription: "ROP is NAXIT's billing and stock app for Sri Lankan retail shops. Works offline, plans from LKR 399. Free demo on WhatsApp.",
       h1: 'ROP: Billing and Stock Software for Shops Across Sri Lanka',
       intro: 'ROP helps retail shops, mini-marts, pharmacies and distributors anywhere in Sri Lanka run daily work on one screen. Whether your shop is in Colombo, Kandy, Jaffna, Galle or a small town, ROP works the same: make sales receipts fast, track stock on the shelf, record supplier bills and see how the day went. ROP is designed to work completely offline, on your device: billing, stock and daily reports all run with no internet connection. It runs on basic phones and tablets, with no complex setup and no expensive hardware.',
       whatYouGetTitle: 'What ROP does',
@@ -405,7 +405,7 @@ export const SEO_PAGES: SeoPageData[] = [
     category: 'Graphic & Branding',
     en: {
       title: 'Graphic Design Sri Lanka | Logos & Branding | NAXIT',
-      metaDescription: 'Graphic design in Sri Lanka from LKR 500. Logos, branding and social media designs by NAXIT. Fast delivery, fair prices. Get a quote on WhatsApp.',
+      metaDescription: 'Logos, flyers, social posts and full brand kits. Graphic design from LKR 500, delivered within a day. NAXIT, Sri Lanka.',
       h1: 'Graphic Design and Branding for Sri Lankan Businesses',
       intro: 'A clean logo and a consistent look make a small business look established. NAXIT designs logos, business cards, flyers, social media posts and full brand kits for shops, startups and events across Sri Lanka.',
       whatYouGetTitle: 'Packages & Turnaround',
@@ -483,7 +483,7 @@ export const SEO_PAGES: SeoPageData[] = [
     category: 'Mobile Applications',
     en: {
       title: 'Mobile App Development Sri Lanka | Android Apps | NAXIT',
-      metaDescription: 'Android mobile app development in Sri Lanka. Proven track record building real products like ROP. Clear project pricing. Get a quote on WhatsApp.',
+      metaDescription: 'Android and iOS app development from idea to Play Store. Fast, affordable mobile apps for Sri Lankan businesses.',
       h1: 'Mobile App Development for Sri Lankan Businesses',
       intro: 'With hands-on experience building our own products like ROP, NAXIT turns your business concept into a fast, reliable Android mobile application - from initial architecture to Google Play deployment.',
       whatYouGetTitle: 'App Engineering Scope',

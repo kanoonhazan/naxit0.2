@@ -49,12 +49,17 @@ const PricingPage: React.FC = () => {
     <div className="min-h-screen bg-naxit-charcoal text-white selection:bg-naxit-cyan selection:text-naxit-charcoal">
       <Helmet>
         <title>Pricing & Packages Sri Lanka | Web & Software Rates | NAXIT</title>
-        <meta name="description" content="Transparent price list for web design, branding, graphic design, and retail software in Sri Lanka. Fast delivery, fair prices." />
+        <meta
+          name="description"
+          content="Simple fixed prices: graphic design from LKR 500 within a day, branding LKR 1,000 in 1 week, static websites LKR 5,000 in 3 days."
+        />
         <link rel="canonical" href="https://www.naxitofficial.de/pricing" />
+        <link rel="alternate" hrefLang="en-LK" href="https://www.naxitofficial.de/pricing" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.naxitofficial.de/pricing" />
       </Helmet>
       <Navbar onCloseModal={() => {}} />
       <main className="pt-24 pb-12">
-        <Pricing />
+        <Pricing isDedicatedPage={true} />
       </main>
       <Footer onCloseModal={() => {}} />
     </div>
@@ -116,10 +121,13 @@ const AppContent: React.FC = () => {
     };
   }, []);
 
+  const currentCanonical = `https://www.naxitofficial.de${location.pathname === '/' ? '/' : location.pathname}`;
+
   return (
     <div className="relative min-h-screen selection:bg-naxit-cyan selection:text-naxit-charcoal overflow-x-hidden">
       <Helmet>
         <html lang="en-LK" />
+        <link rel="canonical" href={currentCanonical} />
       </Helmet>
       <ScrollToHash />
       <StaticBackground />
@@ -143,19 +151,25 @@ const AppContent: React.FC = () => {
                     {/* English URL (Default) */}
                     <Route path={`/${page.slug}`} element={<KeywordServicePage pageData={page} lang="en" />} />
                     {page.aliases.map((alias) => (
-                      <Route key={`en-${alias}`} path={`/${alias}`} element={<KeywordServicePage pageData={page} lang="en" />} />
+                      <React.Fragment key={`en-${alias}`}>
+                        <Route path={`/${alias}`} element={<KeywordServicePage pageData={page} lang="en" />} />
+                      </React.Fragment>
                     ))}
 
                     {/* Tamil URL (/ta/) */}
                     <Route path={`/ta/${page.slug}`} element={<KeywordServicePage pageData={page} lang="ta" />} />
                     {page.aliases.map((alias) => (
-                      <Route key={`ta-${alias}`} path={`/ta/${alias}`} element={<KeywordServicePage pageData={page} lang="ta" />} />
+                      <React.Fragment key={`ta-${alias}`}>
+                        <Route path={`/ta/${alias}`} element={<KeywordServicePage pageData={page} lang="ta" />} />
+                      </React.Fragment>
                     ))}
 
                     {/* Sinhala URL (/si/) */}
                     <Route path={`/si/${page.slug}`} element={<KeywordServicePage pageData={page} lang="si" />} />
                     {page.aliases.map((alias) => (
-                      <Route key={`si-${alias}`} path={`/si/${alias}`} element={<KeywordServicePage pageData={page} lang="si" />} />
+                      <React.Fragment key={`si-${alias}`}>
+                        <Route path={`/si/${alias}`} element={<KeywordServicePage pageData={page} lang="si" />} />
+                      </React.Fragment>
                     ))}
                   </React.Fragment>
                 ))}

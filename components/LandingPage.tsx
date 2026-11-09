@@ -35,8 +35,10 @@ const LandingPage: React.FC = () => {
         <div className="relative">
             <Helmet>
                 <title>Naxit | Best Web Design & Digital Agency in Sri Lanka</title>
-                <meta name="description" content="NAXIT is a web design & digital agency in Sri Lanka. We build websites, UI/UX and brand identity that help local businesses get found and grow." />
+                <meta name="description" content="NAXIT is a digital studio in Mannar, Sri Lanka: web design, UI/UX, branding and ROP retail software. Fast delivery, fair fixed prices." />
                 <link rel="canonical" href="https://www.naxitofficial.de/" />
+                <link rel="alternate" hrefLang="en-LK" href="https://www.naxitofficial.de/" />
+                <link rel="alternate" hrefLang="x-default" href="https://www.naxitofficial.de/" />
             </Helmet>
             <a
                 href="#main-content"
