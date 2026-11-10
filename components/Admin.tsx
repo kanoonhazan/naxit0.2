@@ -338,6 +338,7 @@ const Admin: React.FC = () => {
                                     <div className="absolute top-4 left-4 flex gap-2">
                                         <button
                                             onClick={() => handleToggleFeatured(project.id)}
+                                            aria-label={project.featured ? `Unfeature ${project.title}` : `Feature ${project.title}`}
                                             className={`p-2 rounded-xl border transition-all ${project.featured
                                                 ? 'bg-naxit-cyan text-black border-naxit-cyan shadow-[0_0_15px_rgba(0,187,255,0.4)]'
                                                 : 'glass border-white/10 text-white hover:bg-white/10'
@@ -349,12 +350,14 @@ const Admin: React.FC = () => {
                                     <div className="absolute top-4 right-4 flex gap-2">
                                         <button
                                             onClick={() => { setEditingProject(project); setIsAdding(false); }}
+                                            aria-label={`Edit ${project.title}`}
                                             className="p-2 glass border border-white/10 text-white rounded-xl hover:bg-naxit-royal hover:border-naxit-royal transition-all"
                                         >
                                             <Edit3 className="w-4 h-4" />
                                         </button>
                                         <button
                                             onClick={() => handleDelete(project.id)}
+                                            aria-label={`Delete ${project.title}`}
                                             className="p-2 glass border border-white/10 text-white rounded-xl hover:bg-red-500 hover:border-red-500 transition-all"
                                         >
                                             <Trash2 className="w-4 h-4" />
@@ -413,6 +416,7 @@ const Admin: React.FC = () => {
                                 </div>
                                 <button
                                     onClick={() => setEditingProject(null)}
+                                    aria-label="Close project editor"
                                     className="w-12 h-12 rounded-full glass border border-white/10 flex items-center justify-center hover:bg-white/5 transition-all"
                                 >
                                     <X className="w-6 h-6" />

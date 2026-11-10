@@ -85,7 +85,7 @@ const PrivacyPage: React.FC = () => {
         <div className="absolute top-96 right-10 w-[400px] h-[400px] bg-naxit-cyan/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-5xl mx-auto relative z-10">
-          <Breadcrumbs items={[{ label: 'Privacy Policy' }]} />
+          <Breadcrumbs items={[{ label: 'Privacy Policy', path: '/privacy' }]} />
           {/* Back button & Breadcrumb */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -185,9 +185,9 @@ const PrivacyPage: React.FC = () => {
                     <Shield className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-naxit-cyan font-display font-bold text-base sm:text-lg mb-1 flex items-center gap-2">
+                    <h2 className="text-naxit-cyan font-display font-bold text-base sm:text-lg mb-1 flex items-center gap-2">
                       Core Commitment
-                    </h3>
+                    </h2>
                     <p className="text-gray-200 text-sm sm:text-base leading-relaxed">
                       We respect your business and personal privacy. We do <strong className="text-white underline decoration-naxit-cyan decoration-2">not</strong> sell, rent, or trade your data to third parties for advertising or marketing purposes.
                     </p>
@@ -563,7 +563,7 @@ const PrivacyPage: React.FC = () => {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Direct Inquiries</div>
+                    <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Direct Inquiries</div>
                     <div className="text-white font-medium group-hover:text-naxit-cyan transition-colors">
                       support@naxit.com
                     </div>
@@ -575,7 +575,7 @@ const PrivacyPage: React.FC = () => {
                     <Building2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Developer</div>
+                    <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Developer</div>
                     <div className="text-white font-medium">Naxit Technologies</div>
                   </div>
                 </div>
@@ -584,7 +584,7 @@ const PrivacyPage: React.FC = () => {
           </div>
 
           {/* Footer Note */}
-          <div className="mt-16 text-center text-xs font-mono text-gray-500">
+          <div className="mt-16 text-center text-xs font-mono text-gray-400">
             &copy; 2026 Naxit ROP. All rights reserved. NAXIT Technologies.
           </div>
         </div>

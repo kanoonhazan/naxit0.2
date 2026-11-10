@@ -8,11 +8,13 @@ import LanguageSwitcher from './LanguageSwitcher';
 import Breadcrumbs from './Breadcrumbs';
 
 interface KeywordServicePageProps {
-  pageData: SeoPageData;
+  pageData?: SeoPageData;
+  pageId?: string;
   lang: Language;
 }
 
-export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData, lang }) => {
+export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData: propPageData, pageId, lang }) => {
+  const pageData = propPageData || SEO_PAGES.find(p => p.id === pageId) || SEO_PAGES[0];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const data = pageData[lang];
 
@@ -118,9 +120,9 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 bg-naxit-royal hover:bg-naxit-cyan text-white text-xs font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(0,85,255,0.3)]"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 bg-naxit-royal hover:bg-naxit-cyan hover:text-black text-white text-xs font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(0,85,255,0.3)]"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
+              <MessageSquare className="w-3.5 h-3.5" aria-hidden="true" />
               <span>WhatsApp Quote</span>
             </a>
           </div>
@@ -130,9 +132,8 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
       <main className="relative z-10 px-4 py-12 md:py-20 max-w-7xl mx-auto">
         <Breadcrumbs
           items={[
-            { label: 'Home', href: '/' },
-            { label: 'Services', href: '/#services' },
-            { label: data.h1 }
+            { label: 'Services', path: '/#services' },
+            { label: data.h1, path: lang === 'en' ? `/${pageData.slug}` : `/${lang}/${pageData.slug}` }
           ]}
         />
 
@@ -264,7 +265,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-naxit-royal hover:bg-naxit-cyan text-white text-sm font-bold rounded-xl transition-all shadow-lg"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-naxit-royal hover:bg-naxit-cyan hover:text-black text-white text-sm font-bold rounded-xl transition-all shadow-lg"
                   >
                     <span>Request Fixed Quote</span>
                     <ArrowRight className="w-4 h-4" />
@@ -355,18 +356,19 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
                   key={index}
                   className="glass rounded-2xl border border-white/5 overflow-hidden transition-all duration-300"
                 >
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="w-full p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02]"
-                    aria-expanded={isOpen}
-                  >
-                    <h3 className="text-base sm:text-lg font-display font-bold text-white">
-                      {faq.question}
-                    </h3>
-                    <div className={`w-8 h-8 rounded-full glass border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-naxit-cyan' : 'text-gray-400'}`}>
-                      <ChevronDown className="w-4 h-4" />
-                    </div>
-                  </button>
+                  <h3 className="text-base sm:text-lg font-display font-bold text-white">
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? null : index)}
+                      className="w-full p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02]"
+                      aria-expanded={isOpen}
+                    >
+                      <span>{faq.question}</span>
+                      <span className={`w-8 h-8 rounded-full glass border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-naxit-cyan' : 'text-gray-300'}`} aria-hidden="true">
+                        <ChevronDown className="w-4 h-4" />
+                      </span>
+                    </button>
+                  </h3>
 
                   <AnimatePresence>
                     {isOpen && (
@@ -461,7 +463,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-10 px-4 text-center text-xs text-gray-500">
+      <footer className="border-t border-white/10 py-10 px-4 text-center text-xs text-gray-400">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© 2026 NAXIT. All rights reserved. Mannar, Sri Lanka.</p>
           <div className="flex items-center gap-4">

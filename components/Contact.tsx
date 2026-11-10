@@ -80,6 +80,7 @@ ${formData.message}
                 {/* Embedded Map with Theme Filter */}
                 <div className="relative h-48 w-full rounded-2xl overflow-hidden border border-white/5 mt-1 group">
                   <iframe
+                    title="NAXIT Mannar Office Location Map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8828277240355!2d79.90929867479323!3d8.982928491076589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afdd9e633c0c94b%3A0x2f2a54bcb84897b9!2sNAXIT!5e0!3m2!1sen!2slk!4v1768412728561!5m2!1sen!2slk"
                     className="w-full h-full border-0 grayscale invert opacity-50 group-hover:opacity-100 transition-opacity duration-700"
                     loading="lazy"
@@ -89,8 +90,8 @@ ${formData.message}
 
                   {/* Map Label Overlay */}
                   <div className="absolute top-3 right-3 flex items-center gap-2 px-3 py-1.5 glass rounded-lg border border-white/10">
-                    <BadgeCheck className="w-3 h-3 text-[#4285F4]" />
-                    <span className="text-[8px] font-mono text-gray-400 uppercase tracking-tighter">Verified</span>
+                    <BadgeCheck className="w-3 h-3 text-[#4285F4]" aria-hidden="true" />
+                    <span className="text-[8px] font-mono text-gray-300 uppercase tracking-tighter">Verified</span>
                   </div>
                 </div>
 
@@ -100,7 +101,7 @@ ${formData.message}
                       <div className="flex items-center gap-2">
                         <span className="text-white font-bold text-sm tracking-tight">NAXIT</span>
                       </div>
-                      <div className="text-[10px] font-mono text-gray-500 uppercase tracking-wider pl-0.5">Operational Location</div>
+                      <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider pl-0.5">Operational Location</div>
                     </div>
                     <div className="flex items-center gap-1.5 px-3 py-1.5 glass rounded-xl border border-white/5 border-naxit-cyan/20">
                       <Star className="w-3.5 h-3.5 fill-naxit-cyan text-naxit-cyan" />
@@ -133,11 +134,11 @@ ${formData.message}
                   <div className="w-[72px] h-[72px] rounded-full bg-gradient-to-br from-naxit-royal/30 to-naxit-cyan/30 p-[1px]">
                     <div className="w-full h-full rounded-full bg-naxit-charcoal flex items-center justify-center overflow-hidden">
                       <picture>
-                        <source srcSet="/assets/Kanoon-Hazan.webp" type="image/webp" />
+                        <source srcSet="/assets/Kanoon-Hazan-sm.webp" type="image/webp" />
                         <img
-                          src="/assets/Kanoon-Hazan.png"
-                          width={500}
-                          height={500}
+                          src="/assets/Kanoon-Hazan-sm.jpg"
+                          width={144}
+                          height={144}
                           loading="lazy"
                           decoding="async"
                           alt="Hazan Kanoon - Founder and Design Director of NAXIT Mannar, Sri Lanka"
@@ -153,7 +154,7 @@ ${formData.message}
                   <div className="text-naxit-cyan font-mono text-[10px] uppercase tracking-[0.3em] font-bold mt-1">Founder & Design Lead, NAXIT</div>
                 </div>
               </div>
-              <p className="text-gray-400 font-display text-sm mt-6 leading-relaxed italic opacity-80">
+              <p className="text-gray-300 font-display text-sm mt-6 leading-relaxed italic">
                 "Focused on building practical digital solutions and clear web architecture for Sri Lankan businesses."
               </p>
             </motion.div>
@@ -183,7 +184,7 @@ ${formData.message}
                     {node.icon}
                   </div>
                   <div className="text-left">
-                    <div className="text-[9px] font-mono text-gray-500 uppercase tracking-widest">{node.label}</div>
+                    <div className="text-[9px] font-mono text-gray-400 uppercase tracking-widest">{node.label}</div>
                     <div className="text-white font-bold text-xs mt-0.5 tracking-tight group-hover:text-naxit-cyan transition-colors">{node.value}</div>
                   </div>
                 </motion.a>
@@ -214,7 +215,7 @@ ${formData.message}
                     <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
                         <div className="flex flex-col gap-3 group">
-                          <label htmlFor="contact-name" className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Full Name</label>
+                          <label htmlFor="contact-name" className="text-[10px] font-mono text-gray-400 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Full Name</label>
                           <input
                             required
                             id="contact-name"
@@ -223,11 +224,11 @@ ${formData.message}
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             placeholder="Ruwan Perera"
-                            className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-700"
+                            className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-400"
                           />
                         </div>
                         <div className="flex flex-col gap-3 group">
-                          <label htmlFor="contact-service" className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Select Service</label>
+                          <label htmlFor="contact-service" className="text-[10px] font-mono text-gray-400 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Select Service</label>
                           <select
                             required
                             id="contact-service"
@@ -244,7 +245,7 @@ ${formData.message}
                           </select>
                         </div>
                         <div className="flex flex-col gap-3 group md:col-span-2">
-                          <label htmlFor="contact-email" className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Email Address (Optional)</label>
+                          <label htmlFor="contact-email" className="text-[10px] font-mono text-gray-400 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Email Address (Optional)</label>
                           <input
                             type="email"
                             id="contact-email"
@@ -252,13 +253,13 @@ ${formData.message}
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             placeholder="name@company.com"
-                            className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-700"
+                            className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] placeholder:text-gray-400"
                           />
                         </div>
                       </div>
 
                       <div className="flex flex-col gap-3 group text-white">
-                        <label htmlFor="contact-message" className="text-[10px] font-mono text-gray-500 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Your Business / Project</label>
+                        <label htmlFor="contact-message" className="text-[10px] font-mono text-gray-400 tracking-widest group-focus-within:text-naxit-cyan transition-colors uppercase">Your Business / Project</label>
                         <textarea
                           required
                           id="contact-message"
@@ -267,7 +268,7 @@ ${formData.message}
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           placeholder="Briefly tell us what you need (website, online setup, design, etc.)"
-                          className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] resize-none placeholder:text-gray-700"
+                          className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-6 focus:outline-none focus:border-naxit-cyan/50 transition-all focus:bg-white/[0.05] resize-none placeholder:text-gray-400"
                         />
                       </div>
 

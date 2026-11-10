@@ -89,7 +89,7 @@ const TermsPage: React.FC = () => {
         <div className="absolute top-96 right-10 w-[400px] h-[400px] bg-naxit-cyan/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-5xl mx-auto relative z-10">
-          <Breadcrumbs items={[{ label: 'Terms of Service' }]} />
+          <Breadcrumbs items={[{ label: 'Terms of Service', path: '/terms' }]} />
           {/* Back button & Status Badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -192,9 +192,9 @@ const TermsPage: React.FC = () => {
                     <BookOpen className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-naxit-cyan font-display font-bold text-base sm:text-lg mb-1 flex items-center gap-2">
+                    <h2 className="text-naxit-cyan font-display font-bold text-base sm:text-lg mb-1 flex items-center gap-2">
                       Agreement to Terms
-                    </h3>
+                    </h2>
                     <p className="text-gray-200 text-sm sm:text-base leading-relaxed">
                       By downloading, installing, accessing, or using Naxit ROP from the Google Play Store or authorized distribution channels, you confirm that you have read, understood, and agreed to be bound by these Terms of Service and our associated Privacy Policy. If you do not agree, you must immediately refrain from installing or using the Application.
                     </p>
@@ -398,27 +398,27 @@ const TermsPage: React.FC = () => {
 
               <div className="space-y-4">
                 <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
+                  <h3 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-naxit-cyan" /> Credential Safeguarding
-                  </h4>
+                  </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     You are solely responsible for maintaining the strict confidentiality of your account login credentials, PIN numbers, and master encryption keys. You agree not to share your administrative credentials with unauthorized personnel.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
+                  <h3 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-naxit-cyan" /> Accountability for Terminal Activity
-                  </h4>
+                  </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     You accept full responsibility for all activities, sales transactions, refunds, and adjustments executed through your account and POS devices, whether authorized by you or carried out through compromised staff credentials.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
+                  <h3 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-naxit-cyan" /> Breach Notification
-                  </h4>
+                  </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     You must notify NAXIT Technologies immediately at <a href="mailto:support@naxit.com" className="text-naxit-cyan underline">support@naxit.com</a> if you discover or suspect any unauthorized access, security incident, or breach of your merchant credentials.
                   </p>
@@ -446,18 +446,18 @@ const TermsPage: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-naxit-cyan font-mono text-xs uppercase tracking-wider mb-2">
+                  <h3 className="text-naxit-cyan font-mono text-xs uppercase tracking-wider mb-2">
                     NAXIT Intellectual Property
-                  </h4>
+                  </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     All software architecture, binary code, interface designs, trade secrets, logos, artwork, trademarks, system documentation, and algorithms embodied in Naxit ROP remain the sole and exclusive property of NAXIT Technologies and its licensors. All rights not expressly granted herein are reserved.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-naxit-cyan font-mono text-xs uppercase tracking-wider mb-2">
+                  <h3 className="text-naxit-cyan font-mono text-xs uppercase tracking-wider mb-2">
                     Limited License Grant
-                  </h4>
+                  </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     Subject to your ongoing compliance with these Terms, NAXIT grants you a revocable, non-exclusive, non-transferable, non-sublicensable limited license to download, install, and execute the Application on your authorized mobile or tablet devices solely for your internal business operations.
                   </p>
@@ -493,18 +493,18 @@ const TermsPage: React.FC = () => {
 
               <div className="space-y-3">
                 <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
+                  <h3 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
                     <Printer className="w-4 h-4 text-naxit-cyan" /> Bluetooth & USB Thermal Receipt Printers
-                  </h4>
+                  </h3>
                   <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
                     The app supports standard ESC/POS protocol printers over Bluetooth and USB OTG. While we engineer for broad hardware compatibility across standard 58mm and 80mm printers, NAXIT cannot guarantee that every third-party hardware device, firmware variation, or custom printer chipset will be compatible.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
+                  <h3 className="text-white font-medium text-sm mb-1 flex items-center gap-2">
                     <Cpu className="w-4 h-4 text-naxit-cyan" /> Camera Barcode Scanning & Offline Processing
-                  </h4>
+                  </h3>
                   <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
                     Camera permissions are utilized strictly for real-time optical scanning of UPC/EAN barcodes. Scans occur locally on the device; raw camera streams are never captured or saved.
                   </p>
@@ -574,18 +574,18 @@ const TermsPage: React.FC = () => {
 
               <div className="space-y-4">
                 <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-rose-400 font-mono text-xs uppercase tracking-wider mb-2">
+                  <h3 className="text-rose-400 font-mono text-xs uppercase tracking-wider mb-2">
                     Exclusion of Consequential and Indirect Damages
-                  </h4>
+                  </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     In no event shall NAXIT Technologies, its directors, officers, employees, affiliates, or contractors be liable for any indirect, special, incidental, consequential, punitive, or exemplary damages—including but not limited to loss of business profits, lost revenue, lost customer goodwill, business interruption, loss of inventory records, or corrupted data—arising out of or relating to your use or inability to use Naxit ROP, even if advised of the possibility of such damages.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <h4 className="text-naxit-cyan font-mono text-xs uppercase tracking-wider mb-2">
+                  <h3 className="text-naxit-cyan font-mono text-xs uppercase tracking-wider mb-2">
                     Aggregate Financial Liability Cap
-                  </h4>
+                  </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     In all events, the total cumulative liability of NAXIT Technologies for any claims, actions, or disputes arising out of these Terms or the Application shall be capped at and limited to the total fees actually paid by you to NAXIT for using the Application in the twelve (12) months preceding the incident giving rise to liability, or fifty euros (€50.00 / USD equivalent), whichever is greater.
                   </p>
@@ -756,7 +756,7 @@ const TermsPage: React.FC = () => {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Official Support</div>
+                    <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Official Support</div>
                     <div className="text-white font-medium group-hover:text-naxit-cyan transition-colors">
                       support@naxit.com
                     </div>
@@ -768,7 +768,7 @@ const TermsPage: React.FC = () => {
                     <Building2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Developer Entity</div>
+                    <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Developer Entity</div>
                     <div className="text-white font-medium">NAXIT Technologies</div>
                   </div>
                 </div>
@@ -781,7 +781,7 @@ const TermsPage: React.FC = () => {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Phone & WhatsApp</div>
+                    <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Phone & WhatsApp</div>
                     <div className="text-white font-medium group-hover:text-naxit-cyan transition-colors">
                       +94 75 681 1228 / +94 99 11228
                     </div>
@@ -793,7 +793,7 @@ const TermsPage: React.FC = () => {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Location</div>
+                    <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Location</div>
                     <div className="text-white font-medium">Mannar, Sri Lanka</div>
                   </div>
                 </div>
@@ -802,7 +802,7 @@ const TermsPage: React.FC = () => {
           </div>
 
           {/* Footer Note */}
-          <div className="mt-16 text-center text-xs font-mono text-gray-500">
+          <div className="mt-16 text-center text-xs font-mono text-gray-400">
             &copy; 2026 NAXIT Technologies. All rights reserved. Naxit ROP Retail Operating Platform.
           </div>
         </div>

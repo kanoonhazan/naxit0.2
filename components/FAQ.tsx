@@ -100,23 +100,24 @@ const FAQ: React.FC = () => {
                 transition={{ delay: index * 0.05 }}
                 className="glass rounded-2xl md:rounded-3xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-naxit-cyan/30"
               >
-                <button
-                  type="button"
-                  onClick={() => toggle(index)}
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-answer-${index}`}
-                  className="w-full p-6 md:p-8 flex items-center justify-between text-left gap-4 focus:outline-none cursor-pointer"
-                >
-                  <h3 className="text-lg md:text-xl font-display font-bold text-white tracking-tight leading-snug">
-                    {item.question}
-                  </h3>
-                  <div
-                    className={`w-9 h-9 rounded-full glass border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-naxit-cyan text-black border-naxit-cyan' : 'text-gray-400'
-                      }`}
+                <h3 className="text-lg md:text-xl font-display font-bold text-white tracking-tight leading-snug">
+                  <button
+                    type="button"
+                    onClick={() => toggle(index)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
+                    className="w-full p-6 md:p-8 flex items-center justify-between text-left gap-4 focus:outline-none cursor-pointer"
                   >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
+                    <span>{item.question}</span>
+                    <span
+                      aria-hidden="true"
+                      className={`w-9 h-9 rounded-full glass border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-naxit-cyan text-black border-naxit-cyan' : 'text-gray-300'
+                        }`}
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </span>
+                  </button>
+                </h3>
 
                 <AnimatePresence initial={false}>
                   {isOpen && (

@@ -6,9 +6,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, '..');
 const distDir = path.resolve(projectRoot, 'dist');
+const SITE_ORIGIN = 'https://www.naxitofficial.de';
 
-// Dynamically import SEO_PAGES from data/seoPages.ts
-const { SEO_PAGES, CONFIRMED_PRICE_LIST } = await import(path.resolve(projectRoot, 'data/seoPages.ts'));
+const { SEO_PAGES } = await import(path.resolve(projectRoot, 'data/seoPages.ts'));
+const { PROJECTS } = await import(path.resolve(projectRoot, 'data/projects.ts'));
 
 const baseHtmlPath = path.resolve(distDir, 'index.html');
 if (!fs.existsSync(baseHtmlPath)) {
@@ -25,10 +26,14 @@ const routes = [
     lang: 'en-LK',
     title: 'Pricing & Packages Sri Lanka | Web & Software Rates | NAXIT',
     description: 'Simple fixed prices: graphic design from LKR 500 within a day, branding LKR 1,000 in 1 week, static websites LKR 5,000 in 3 days.',
-    canonical: 'https://www.naxitofficial.de/pricing',
+    canonical: `${SITE_ORIGIN}/pricing`,
     hreflangs: [
-      { lang: 'en-LK', url: 'https://www.naxitofficial.de/pricing' },
-      { lang: 'x-default', url: 'https://www.naxitofficial.de/pricing' }
+      { lang: 'en-LK', url: `${SITE_ORIGIN}/pricing` },
+      { lang: 'x-default', url: `${SITE_ORIGIN}/pricing` }
+    ],
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Pricing', path: '/pricing' }
     ],
     h1: 'Simple, Fixed Prices',
     intro: 'Confirmed rates in Sri Lankan Rupees (LKR) with guaranteed turnaround times. Graphic design from LKR 500 within a day, branding LKR 1,000 in 1 week, static websites LKR 5,000 in 3 days.',
@@ -42,13 +47,18 @@ const routes = [
     lang: 'en-LK',
     title: 'Portfolio | Naxit Masterworks',
     description: 'Recent NAXIT work: food delivery UX, brand logos, websites and apps for Sri Lankan businesses. See the case studies.',
-    canonical: 'https://www.naxitofficial.de/portfolio',
+    canonical: `${SITE_ORIGIN}/portfolio`,
     hreflangs: [
-      { lang: 'en-LK', url: 'https://www.naxitofficial.de/portfolio' },
-      { lang: 'x-default', url: 'https://www.naxitofficial.de/portfolio' }
+      { lang: 'en-LK', url: `${SITE_ORIGIN}/portfolio` },
+      { lang: 'x-default', url: `${SITE_ORIGIN}/portfolio` }
+    ],
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Portfolio', path: '/portfolio' }
     ],
     h1: 'NAXIT Masterworks & Portfolio',
     intro: 'Recent NAXIT work: food delivery UX, brand logos, websites and apps for Sri Lankan businesses.',
+    portfolioList: PROJECTS,
     ctaUrl: 'https://wa.me/94756811228',
     ctaText: 'Discuss Your Project'
   },
@@ -59,10 +69,14 @@ const routes = [
     lang: 'en-LK',
     title: 'Privacy Policy - Naxit ROP | NAXIT',
     description: 'Privacy Policy for Naxit ROP (Retail Operating Platform). Learn how we collect, use, and protect your business and transaction data.',
-    canonical: 'https://www.naxitofficial.de/privacy',
+    canonical: `${SITE_ORIGIN}/privacy`,
     hreflangs: [
-      { lang: 'en-LK', url: 'https://www.naxitofficial.de/privacy' },
-      { lang: 'x-default', url: 'https://www.naxitofficial.de/privacy' }
+      { lang: 'en-LK', url: `${SITE_ORIGIN}/privacy` },
+      { lang: 'x-default', url: `${SITE_ORIGIN}/privacy` }
+    ],
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Privacy Policy', path: '/privacy' }
     ],
     h1: 'Privacy Policy - Naxit ROP & Digital Services',
     intro: 'Learn how NAXIT collects, protects, and handles data for ROP and digital agency clients.',
@@ -76,10 +90,14 @@ const routes = [
     lang: 'en-LK',
     title: 'Terms of Service & Trader Declaration - Naxit ROP | NAXIT',
     description: 'Terms of Service, Acceptable Use, and Trader Status declaration for Naxit ROP (Retail Operating Platform) mobile application and NAXIT services.',
-    canonical: 'https://www.naxitofficial.de/terms',
+    canonical: `${SITE_ORIGIN}/terms`,
     hreflangs: [
-      { lang: 'en-LK', url: 'https://www.naxitofficial.de/terms' },
-      { lang: 'x-default', url: 'https://www.naxitofficial.de/terms' }
+      { lang: 'en-LK', url: `${SITE_ORIGIN}/terms` },
+      { lang: 'x-default', url: `${SITE_ORIGIN}/terms` }
+    ],
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Terms of Service', path: '/terms' }
     ],
     h1: 'Terms of Service & Trader Declaration',
     intro: 'Terms of service, trader status, and usage agreement for NAXIT products and services.',
@@ -88,11 +106,42 @@ const routes = [
   }
 ];
 
-// 5. Add all 18 Multilingual Keyword Pages (6 services x 3 languages) + Aliases
+// 5. Add all Portfolio Detail Pages (/portfolio/:slug)
+for (const project of PROJECTS) {
+  const projectUrl = `${SITE_ORIGIN}/portfolio/${project.slug}`;
+  routes.push({
+    path: `portfolio/${project.slug}`,
+    lang: 'en-LK',
+    title: `${project.title} | Naxit Portfolio`,
+    description: project.tagline,
+    canonical: projectUrl,
+    ogImage: project.image,
+    hreflangs: [
+      { lang: 'en-LK', url: projectUrl },
+      { lang: 'x-default', url: projectUrl }
+    ],
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Portfolio', path: '/portfolio' },
+      { label: project.title, path: `/portfolio/${project.slug}` }
+    ],
+    h1: project.title,
+    intro: project.tagline,
+    projectData: project,
+    ctaUrl: 'https://wa.me/94756811228',
+    ctaText: 'Talk to us on WhatsApp'
+  });
+}
+
+// 6. Add all 18 Multilingual Keyword Pages (6 services x 3 languages) + Aliases
 for (const page of SEO_PAGES) {
-  const enUrl = `https://www.naxitofficial.de/${page.slug}`;
-  const taUrl = `https://www.naxitofficial.de/ta/${page.slug}`;
-  const siUrl = `https://www.naxitofficial.de/si/${page.slug}`;
+  const enPath = `/${page.slug}`;
+  const taPath = `/ta/${page.slug}`;
+  const siPath = `/si/${page.slug}`;
+
+  const enUrl = `${SITE_ORIGIN}${enPath}`;
+  const taUrl = `${SITE_ORIGIN}${taPath}`;
+  const siUrl = `${SITE_ORIGIN}${siPath}`;
 
   const hreflangs = [
     { lang: 'en', url: enUrl },
@@ -100,6 +149,44 @@ for (const page of SEO_PAGES) {
     { lang: 'si', url: siUrl },
     { lang: 'x-default', url: enUrl }
   ];
+
+  const makeServiceSchema = (localeData) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: localeData.h1,
+    description: localeData.metaDescription,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'NAXIT',
+      telephone: '+94756811228',
+      url: `${SITE_ORIGIN}/`,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Main Street',
+        addressLocality: 'Mannar',
+        addressRegion: 'Northern Province',
+        postalCode: '41000',
+        addressCountry: 'LK'
+      }
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Sri Lanka'
+    }
+  });
+
+  const makeFaqSchema = (localeData) => ({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: (localeData.faqs || []).map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer
+      }
+    }))
+  });
 
   // English
   routes.push({
@@ -109,6 +196,13 @@ for (const page of SEO_PAGES) {
     description: page.en.metaDescription,
     canonical: enUrl,
     hreflangs,
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Services', path: '/#services' },
+      { label: page.en.h1, path: enPath }
+    ],
+    serviceSchema: makeServiceSchema(page.en),
+    faqSchema: makeFaqSchema(page.en),
     h1: page.en.h1,
     intro: page.en.intro,
     faqs: page.en.faqs,
@@ -125,6 +219,13 @@ for (const page of SEO_PAGES) {
     description: page.ta.metaDescription,
     canonical: taUrl,
     hreflangs,
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Services', path: '/#services' },
+      { label: page.ta.h1, path: taPath }
+    ],
+    serviceSchema: makeServiceSchema(page.ta),
+    faqSchema: makeFaqSchema(page.ta),
     h1: page.ta.h1,
     intro: page.ta.intro,
     faqs: page.ta.faqs,
@@ -141,6 +242,13 @@ for (const page of SEO_PAGES) {
     description: page.si.metaDescription,
     canonical: siUrl,
     hreflangs,
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Services', path: '/#services' },
+      { label: page.si.h1, path: siPath }
+    ],
+    serviceSchema: makeServiceSchema(page.si),
+    faqSchema: makeFaqSchema(page.si),
     h1: page.si.h1,
     intro: page.si.intro,
     faqs: page.si.faqs,
@@ -149,21 +257,72 @@ for (const page of SEO_PAGES) {
     ctaText: page.si.ctaButtonText || 'WhatsApp හරහා විමසන්න'
   });
 
-  // Aliases (e.g. /website-development-mannar, /retail-software-sri-lanka, etc.)
+  // Aliases (EN, TA, SI)
   for (const alias of page.aliases) {
     routes.push({
       path: alias,
       lang: 'en-LK',
       title: page.en.title,
       description: page.en.metaDescription,
-      canonical: enUrl, // canonical points to primary slug
+      canonical: enUrl,
       hreflangs,
+      breadcrumbs: [
+        { label: 'Home', path: '/' },
+        { label: 'Services', path: '/#services' },
+        { label: page.en.h1, path: enPath }
+      ],
+      serviceSchema: makeServiceSchema(page.en),
+      faqSchema: makeFaqSchema(page.en),
       h1: page.en.h1,
       intro: page.en.intro,
       faqs: page.en.faqs,
       whatYouGet: page.en.whatYouGet,
       ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`Hi NAXIT, I am interested in ${page.en.h1}.`)}`,
       ctaText: page.en.ctaButtonText || 'Get a Quote on WhatsApp'
+    });
+
+    routes.push({
+      path: `ta/${alias}`,
+      lang: 'ta',
+      title: page.ta.title,
+      description: page.ta.metaDescription,
+      canonical: taUrl,
+      hreflangs,
+      breadcrumbs: [
+        { label: 'Home', path: '/' },
+        { label: 'Services', path: '/#services' },
+        { label: page.ta.h1, path: taPath }
+      ],
+      serviceSchema: makeServiceSchema(page.ta),
+      faqSchema: makeFaqSchema(page.ta),
+      h1: page.ta.h1,
+      intro: page.ta.intro,
+      faqs: page.ta.faqs,
+      whatYouGet: page.ta.whatYouGet,
+      ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`வணக்கம் NAXIT, ${page.ta.h1} பற்றி மேலும் அறிய விரும்புகிறேன்.`)}`,
+      ctaText: page.ta.ctaButtonText || 'WhatsApp இல் தொடர்பு கொள்ளவும்'
+    });
+
+    routes.push({
+      path: `si/${alias}`,
+      lang: 'si',
+      title: page.si.title,
+      description: page.si.metaDescription,
+      canonical: siUrl,
+      hreflangs,
+      breadcrumbs: [
+        { label: 'Home', path: '/' },
+        { label: 'Services', path: '/#services' },
+        { label: page.si.h1, path: siPath }
+      ],
+      serviceSchema: makeServiceSchema(page.si),
+      faqSchema: makeFaqSchema(page.si),
+      h1: page.si.h1,
+      intro: page.si.intro,
+      faqs: page.si.faqs,
+      whatYouGet: page.si.whatYouGet,
+      ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`ආයුබෝවන් NAXIT, ${page.si.h1} පිළිබඳව විමසීමට කැමැත්තෙමි.`)}`,
+      ctaText: page.si.ctaButtonText || 'WhatsApp හරහා විමසන්න'
     });
   }
 }
@@ -178,6 +337,19 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+function buildBreadcrumbSchema(breadcrumbs) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: item.label,
+      item: `${SITE_ORIGIN}${item.path}`
+    }))
+  };
 }
 
 for (const route of routes) {
@@ -196,51 +368,79 @@ for (const route of routes) {
 
   // 3. Update meta description
   html = html.replace(
-    /<meta[^>]*name="description"[^>]*\/?>/i,
+    /<meta[^>]*name="description"[^>]*\/?>/is,
     `<meta data-rh="true" name="description" content="${escapeHtml(route.description)}" />`
   );
 
   // 4. Update OpenGraph & Twitter tags
   html = html.replace(
-    /<meta[^>]*property="og:title"[^>]*\/?>/i,
+    /<meta[^>]*property="og:title"[^>]*\/?>/is,
     `<meta data-rh="true" property="og:title" content="${escapeHtml(route.title)}" />`
   );
   html = html.replace(
-    /<meta[^>]*property="og:description"[^>]*\/?>/i,
+    /<meta[^>]*property="og:description"[^>]*\/?>/is,
     `<meta data-rh="true" property="og:description" content="${escapeHtml(route.description)}" />`
   );
   html = html.replace(
-    /<meta[^>]*property="og:url"[^>]*\/?>/i,
+    /<meta[^>]*property="og:url"[^>]*\/?>/is,
     `<meta data-rh="true" property="og:url" content="${escapeHtml(route.canonical)}" />`
   );
   html = html.replace(
-    /<meta[^>]*name="twitter:title"[^>]*\/?>/i,
+    /<meta[^>]*name="twitter:title"[^>]*\/?>/is,
     `<meta data-rh="true" name="twitter:title" content="${escapeHtml(route.title)}" />`
   );
   html = html.replace(
-    /<meta[^>]*name="twitter:description"[^>]*\/?>/i,
+    /<meta[^>]*name="twitter:description"[^>]*\/?>/is,
     `<meta data-rh="true" name="twitter:description" content="${escapeHtml(route.description)}" />`
   );
+  if (route.ogImage) {
+    html = html.replace(
+      /<meta[^>]*property="og:image"[^>]*\/?>/is,
+      `<meta data-rh="true" property="og:image" content="${escapeHtml(route.ogImage)}" />`
+    );
+    html = html.replace(
+      /<meta[^>]*name="twitter:image"[^>]*\/?>/is,
+      `<meta data-rh="true" name="twitter:image" content="${escapeHtml(route.ogImage)}" />`
+    );
+  }
 
-  // 5. Remove any pre-existing canonical & hreflang tags to prevent duplicates
+  // 5. Remove homepage-only FAQPage schema block & pre-existing canonical/hreflang
+  html = html.replace(/<script\s+data-rh="true"\s+type="application\/ld\+json">[\s\S]*?<\/script>\s*/gi, '');
   html = html.replace(/<link[^>]*rel="canonical"[^>]*\/?>\s*/gi, '');
   html = html.replace(/<link[^>]*rel="alternate"[^>]*hrefLang=[^>]*\/?>\s*/gi, '');
   html = html.replace(/<link[^>]*rel="alternate"[^>]*hreflang=[^>]*\/?>\s*/gi, '');
 
-  // Inject Canonical & Hreflang links inside <head>
+  // Inject Canonical, Hreflang, and JSON-LD structured data (BreadcrumbList + Service/FAQPage)
   const hreflangTags = route.hreflangs
-    .map(h => `<link data-rh="true" rel="alternate" hrefLang="${h.lang}" href="${h.url}" />`)
+    .map((h) => `<link data-rh="true" rel="alternate" hrefLang="${h.lang}" href="${h.url}" />`)
     .join('\n    ');
 
   const canonicalTag = `<link data-rh="true" rel="canonical" href="${route.canonical}" />`;
-  const seoHeadTags = `\n    ${canonicalTag}\n    ${hreflangTags}\n`;
 
+  const jsonLdScripts = [];
+  if (route.breadcrumbs && route.breadcrumbs.length > 0) {
+    jsonLdScripts.push(
+      `<script data-rh="true" type="application/ld+json">${JSON.stringify(buildBreadcrumbSchema(route.breadcrumbs))}</script>`
+    );
+  }
+  if (route.faqSchema) {
+    jsonLdScripts.push(
+      `<script data-rh="true" type="application/ld+json">${JSON.stringify(route.faqSchema)}</script>`
+    );
+  }
+  if (route.serviceSchema) {
+    jsonLdScripts.push(
+      `<script data-rh="true" type="application/ld+json">${JSON.stringify(route.serviceSchema)}</script>`
+    );
+  }
+
+  const seoHeadTags = `\n    ${canonicalTag}\n    ${hreflangTags}\n    ${jsonLdScripts.join('\n    ')}\n`;
   html = html.replace('</head>', `${seoHeadTags}  </head>`);
 
-  // 6. Replace <noscript> content with dedicated route content
+  // 6. Replace default <noscript> content with dedicated route content (preserving non-JS Google Fonts fallback)
   const faqsHtml = (route.faqs || [])
     .map(
-      f => `
+      (f) => `
       <article>
         <h3>${escapeHtml(f.question)}</h3>
         <p>${escapeHtml(f.answer)}</p>
@@ -249,8 +449,43 @@ for (const route of routes) {
     .join('');
 
   const whatYouGetHtml = (route.whatYouGet || [])
-    .map(item => `<li>${escapeHtml(item)}</li>`)
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
     .join('');
+
+  const breadcrumbNavHtml = route.breadcrumbs && route.breadcrumbs.length > 0
+    ? `<nav aria-label="Breadcrumb"><ol>${route.breadcrumbs
+        .map((b, idx) =>
+          idx === route.breadcrumbs.length - 1
+            ? `<li aria-current="page">${escapeHtml(b.label)}</li>`
+            : `<li><a href="${escapeHtml(b.path)}">${escapeHtml(b.label)}</a></li>`
+        )
+        .join(' / ')}</ol></nav>`
+    : '';
+
+  const portfolioArchiveHtml = route.portfolioList
+    ? `<h2>Case Studies</h2><ul>${route.portfolioList
+        .map(
+          (p) =>
+            `<li><a href="/portfolio/${escapeHtml(p.slug)}"><strong>${escapeHtml(p.title)}</strong> (${escapeHtml(p.category)})</a> — ${escapeHtml(p.tagline)}</li>`
+        )
+        .join('')}</ul>`
+    : '';
+
+  const projectDetailHtml = route.projectData
+    ? `
+      <p><strong>Category:</strong> ${escapeHtml(route.projectData.category)} | <strong>Impact:</strong> ${escapeHtml(route.projectData.impact)}</p>
+      <h2>Challenge</h2>
+      <p>${escapeHtml(route.projectData.challenge)}</p>
+      <h2>Overview</h2>
+      <p>${escapeHtml(route.projectData.fullDescription)}</p>
+      <h2>Approach</h2>
+      <p>${escapeHtml(route.projectData.approach)}</p>
+      ${route.projectData.problem ? `<h2>${escapeHtml(route.projectData.problem.title)}</h2><ul>${route.projectData.problem.content.map((c) => `<li>${escapeHtml(c)}</li>`).join('')}</ul>` : ''}
+      ${route.projectData.solution ? `<h2>${escapeHtml(route.projectData.solution.title)}</h2><ul>${route.projectData.solution.content.map((c) => `<li>${escapeHtml(c)}</li>`).join('')}</ul>` : ''}
+      ${route.projectData.designDecisions ? `<h2>Design Decisions</h2><ul>${route.projectData.designDecisions.map((d) => `<li>${escapeHtml(d)}</li>`).join('')}</ul>` : ''}
+      ${route.projectData.resultOutcome ? `<h2>${escapeHtml(route.projectData.resultOutcome.title)}</h2><ul>${route.projectData.resultOutcome.content.map((c) => `<li>${escapeHtml(c)}</li>`).join('')}</ul>` : ''}
+    `
+    : '';
 
   const noscriptContent = `
     <noscript>
@@ -273,10 +508,13 @@ for (const route of routes) {
       </header>
 
       <main>
+        ${breadcrumbNavHtml}
         <section>
           <h1>${escapeHtml(route.h1)}</h1>
           <p class="intro">${escapeHtml(route.intro)}</p>
           ${whatYouGetHtml ? `<h2>Key Features &amp; Deliverables</h2><ul>${whatYouGetHtml}</ul>` : ''}
+          ${portfolioArchiveHtml}
+          ${projectDetailHtml}
           ${faqsHtml ? `<h2>Frequently Asked Questions</h2>${faqsHtml}` : ''}
           <div style="margin-top: 24px;">
             <a href="${route.ctaUrl || 'https://wa.me/94756811228'}" style="display: inline-block; padding: 12px 24px; background: #0055ff; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold;">
@@ -298,8 +536,15 @@ for (const route of routes) {
     </noscript>
   `;
 
-  // Replace default noscript with dedicated route noscript
-  html = html.replace(/<noscript>[\s\S]*?<\/noscript>/i, noscriptContent);
+  // Replace the main body <noscript> (the last <noscript> in body, leaving the Google Fonts <noscript> in <head> intact)
+  const lastNoscriptIdx = html.lastIndexOf('<noscript>');
+  const lastNoscriptEnd = html.lastIndexOf('</noscript>');
+  if (lastNoscriptIdx !== -1 && lastNoscriptEnd !== -1) {
+    html =
+      html.slice(0, lastNoscriptIdx) +
+      noscriptContent.trim() +
+      html.slice(lastNoscriptEnd + '</noscript>'.length);
+  }
 
   const destFile = path.resolve(targetDir, 'index.html');
   fs.writeFileSync(destFile, html, 'utf8');
@@ -307,7 +552,7 @@ for (const route of routes) {
 
 // Update root dist/index.html with canonical and hreflang
 let homeHtml = template;
-const homeSeoTags = `\n    <link data-rh="true" rel="canonical" href="https://www.naxitofficial.de/" />\n    <link data-rh="true" rel="alternate" hrefLang="en-LK" href="https://www.naxitofficial.de/" />\n    <link data-rh="true" rel="alternate" hrefLang="x-default" href="https://www.naxitofficial.de/" />\n`;
+const homeSeoTags = `\n    <link data-rh="true" rel="canonical" href="${SITE_ORIGIN}/" />\n    <link data-rh="true" rel="alternate" hrefLang="en-LK" href="${SITE_ORIGIN}/" />\n    <link data-rh="true" rel="alternate" hrefLang="x-default" href="${SITE_ORIGIN}/" />\n`;
 if (!homeHtml.includes('rel="canonical"')) {
   homeHtml = homeHtml.replace('</head>', `${homeSeoTags}  </head>`);
   fs.writeFileSync(baseHtmlPath, homeHtml, 'utf8');

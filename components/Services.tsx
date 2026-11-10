@@ -151,7 +151,7 @@ const TiltCard: React.FC<{ item: ServiceItem; index: number }> = React.memo(({ i
           <span>{item.keywordLinkText}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
-        <span className="text-[10px] font-mono text-gray-500">
+        <span className="text-[10px] font-mono text-gray-400">
           {item.delivery}
         </span>
       </div>

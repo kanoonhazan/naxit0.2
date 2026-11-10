@@ -1,23 +1,15 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
 import { Helmet } from 'react-helmet-async';
-import { Analytics } from '@vercel/analytics/react';
 
-import Preloader from './components/Preloader';
 import StaticBackground from './components/StaticBackground';
 import { ProjectProvider } from './context/ProjectContext';
-
 import LandingPage from './components/LandingPage';
-import KeywordServicePage from './components/KeywordServicePage';
-import { SEO_PAGES } from './data/seoPages';
-import Pricing from './components/Pricing';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { SEO_ROUTES } from './data/seoRoutes';
 
-// Lazy load subpages for code splitting
+// Lazy load subpages & non-critical modules for code splitting
+const KeywordServicePage = lazy(() => import('./components/KeywordServicePage'));
+const PricingPage = lazy(() => import('./components/PricingPage'));
 const ServicePage = lazy(() => import('./components/ServicePage'));
 const ProjectPage = lazy(() => import('./components/ProjectPage'));
 const PortfolioPage = lazy(() => import('./components/PortfolioPage'));
@@ -25,65 +17,44 @@ const PrivacyPage = lazy(() => import('./components/PrivacyPage'));
 const TermsPage = lazy(() => import('./components/TermsPage'));
 const Admin = lazy(() => import('./components/Admin'));
 const NotFound = lazy(() => import('./components/NotFound'));
-
-// Loading fallback for Suspense - refined for high performance
-const PageLoader = () => (
-  <div className="fixed inset-0 bg-naxit-charcoal flex items-center justify-center z-50">
-    <motion.div
-      animate={{
-        scale: [1, 1.1, 1],
-        opacity: [0.3, 0.7, 0.3],
-      }}
-      transition={{
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }}
-      className="w-8 h-8 rounded-full border border-naxit-cyan/20 border-t-naxit-cyan"
-    />
-  </div>
+const DeferredAnalytics = lazy(() =>
+  import('@vercel/analytics/react').then((mod) => ({ default: mod.Analytics }))
 );
 
-const PricingPage: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-naxit-charcoal text-white selection:bg-naxit-cyan selection:text-naxit-charcoal">
-      <Helmet>
-        <title>Pricing & Packages Sri Lanka | Web & Software Rates | NAXIT</title>
-        <meta
-          name="description"
-          content="Simple fixed prices: graphic design from LKR 500 within a day, branding LKR 1,000 in 1 week, static websites LKR 5,000 in 3 days."
-        />
-        <link rel="canonical" href="https://www.naxitofficial.de/pricing" />
-        <link rel="alternate" hrefLang="en-LK" href="https://www.naxitofficial.de/pricing" />
-        <link rel="alternate" hrefLang="x-default" href="https://www.naxitofficial.de/pricing" />
-      </Helmet>
-      <Navbar onCloseModal={() => {}} />
-      <main className="pt-24 pb-12">
-        <Pricing isDedicatedPage={true} />
-      </main>
-      <Footer onCloseModal={() => {}} />
-    </div>
-  );
-};
+const PageLoader = () => (
+  <div className="fixed inset-0 bg-naxit-charcoal flex items-center justify-center z-50" role="status" aria-label="Loading page">
+    <div className="w-8 h-8 rounded-full border border-naxit-cyan/20 border-t-naxit-cyan animate-spin" />
+  </div>
+);
 
 const ScrollToHash: React.FC = () => {
   const { hash } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      const id = hash.replace('#', '');
+    if (!hash) return;
+    const id = hash.replace('#', '');
+    let attempts = 0;
+    let timerId: number;
+
+    const tryScroll = () => {
       const element = document.getElementById(id);
       if (element) {
-        setTimeout(() => {
-          const lenis = (window as any).lenis;
-          if (lenis) {
-            lenis.scrollTo(element, { offset: 0, duration: 1.5 });
-          } else {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 100);
+        const lenis = (window as any).lenis;
+        if (lenis) {
+          lenis.scrollTo(element, { offset: 0, duration: 1.5 });
+        } else {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        return;
       }
-    }
+      if (attempts < 20) {
+        attempts += 1;
+        timerId = window.setTimeout(tryScroll, 80);
+      }
+    };
+
+    timerId = window.setTimeout(tryScroll, 50);
+    return () => window.clearTimeout(timerId);
   }, [hash]);
 
   return null;
@@ -91,32 +62,68 @@ const ScrollToHash: React.FC = () => {
 
 const AppContent: React.FC = () => {
   const location = useLocation();
+  const [showAnalytics, setShowAnalytics] = useState(false);
 
   useEffect(() => {
-    // Smoother Lenis configuration
-    const lenis = new Lenis({
-      lerp: 0.08, // Slightly slower for more "weight" and smoothness
-      duration: 1.5,
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.8, // Slightly more responsive on touch
-      infinite: false,
-    });
+    let cancelled = false;
+    let lenisInstance: any;
+    let rafId: number | undefined;
 
-    // Expose lenis to window for global access (like in Navbar/ScrollToHash)
-    (window as any).lenis = lenis;
+    const initDesktopSmoothScroll = async () => {
+      if (typeof window === 'undefined' || !window.matchMedia('(pointer: fine)').matches) {
+        return;
+      }
+      try {
+        const [{ default: Lenis }] = await Promise.all([
+          import('lenis'),
+          import('lenis/dist/lenis.css'),
+        ]);
+        if (cancelled) return;
+        lenisInstance = new Lenis({
+          lerp: 0.08,
+          duration: 1.5,
+          smoothWheel: true,
+          wheelMultiplier: 1.0,
+          touchMultiplier: 1.8,
+          infinite: false,
+        });
+        (window as any).lenis = lenisInstance;
 
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+        const raf = (time: number) => {
+          lenisInstance.raf(time);
+          rafId = requestAnimationFrame(raf);
+        };
+        rafId = requestAnimationFrame(raf);
+      } catch {
+        // Native scrolling fallback if dynamic import fails
+      }
+    };
+
+    const scheduleIdle = () => {
+      const host = window.location.hostname;
+      if (host !== 'localhost' && host !== '127.0.0.1') {
+        setShowAnalytics(true);
+      }
+      initDesktopSmoothScroll();
+    };
+
+    let idleHandle: number;
+    const win = window as any;
+    if (typeof win.requestIdleCallback === 'function') {
+      idleHandle = win.requestIdleCallback(scheduleIdle, { timeout: 2000 });
+    } else {
+      idleHandle = window.setTimeout(scheduleIdle, 1200);
     }
 
-    rafId = requestAnimationFrame(raf);
-
     return () => {
-      lenis.destroy();
-      cancelAnimationFrame(rafId);
+      cancelled = true;
+      if (typeof win.cancelIdleCallback === 'function') {
+        win.cancelIdleCallback(idleHandle);
+      } else {
+        window.clearTimeout(idleHandle);
+      }
+      if (rafId !== undefined) cancelAnimationFrame(rafId);
+      if (lenisInstance) lenisInstance.destroy();
       (window as any).lenis = undefined;
     };
   }, []);
@@ -133,90 +140,65 @@ const AppContent: React.FC = () => {
       <StaticBackground />
       <ProjectProvider>
         <Suspense fallback={<PageLoader />}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={location.pathname}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'linear' }}
-            >
-              <Routes location={location}>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/pricing" element={<PricingPage />} />
+          <Routes location={location}>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
 
-                {/* 6 Target Keyword Services in 3 Languages (EN, TA, SI) */}
-                {SEO_PAGES.map((page) => (
-                  <React.Fragment key={page.id}>
-                    {/* English URL (Default) */}
-                    <Route path={`/${page.slug}`} element={<KeywordServicePage pageData={page} lang="en" />} />
-                    {page.aliases.map((alias) => (
-                      <React.Fragment key={`en-${alias}`}>
-                        <Route path={`/${alias}`} element={<KeywordServicePage pageData={page} lang="en" />} />
-                      </React.Fragment>
-                    ))}
-
-                    {/* Tamil URL (/ta/) */}
-                    <Route path={`/ta/${page.slug}`} element={<KeywordServicePage pageData={page} lang="ta" />} />
-                    {page.aliases.map((alias) => (
-                      <React.Fragment key={`ta-${alias}`}>
-                        <Route path={`/ta/${alias}`} element={<KeywordServicePage pageData={page} lang="ta" />} />
-                      </React.Fragment>
-                    ))}
-
-                    {/* Sinhala URL (/si/) */}
-                    <Route path={`/si/${page.slug}`} element={<KeywordServicePage pageData={page} lang="si" />} />
-                    {page.aliases.map((alias) => (
-                      <React.Fragment key={`si-${alias}`}>
-                        <Route path={`/si/${alias}`} element={<KeywordServicePage pageData={page} lang="si" />} />
-                      </React.Fragment>
-                    ))}
+            {/* 6 Target Keyword Services in 3 Languages (EN, TA, SI) */}
+            {SEO_ROUTES.map((page) => (
+              <React.Fragment key={page.id}>
+                {/* English URL (Default) */}
+                <Route path={`/${page.slug}`} element={<KeywordServicePage pageId={page.id} lang="en" />} />
+                {page.aliases.map((alias) => (
+                  <React.Fragment key={`en-${alias}`}>
+                    <Route path={`/${alias}`} element={<KeywordServicePage pageId={page.id} lang="en" />} />
                   </React.Fragment>
                 ))}
 
-                <Route path="/services/:slug" element={<ServicePage />} />
-                <Route path="/portfolio/:slug" element={<ProjectPage />} />
-                <Route path="/portfolio" element={<PortfolioPage />} />
-                <Route path="/privacy" element={<PrivacyPage />} />
-                <Route path="/terms" element={<TermsPage />} />
-                <Route path="/terms-of-service" element={<TermsPage />} />
-                <Route path="/agb" element={<TermsPage />} />
-                <Route path="/nutzungsbedingungen" element={<TermsPage />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </motion.div>
-          </AnimatePresence>
+                {/* Tamil URL (/ta/) */}
+                <Route path={`/ta/${page.slug}`} element={<KeywordServicePage pageId={page.id} lang="ta" />} />
+                {page.aliases.map((alias) => (
+                  <React.Fragment key={`ta-${alias}`}>
+                    <Route path={`/ta/${alias}`} element={<KeywordServicePage pageId={page.id} lang="ta" />} />
+                  </React.Fragment>
+                ))}
+
+                {/* Sinhala URL (/si/) */}
+                <Route path={`/si/${page.slug}`} element={<KeywordServicePage pageId={page.id} lang="si" />} />
+                {page.aliases.map((alias) => (
+                  <React.Fragment key={`si-${alias}`}>
+                    <Route path={`/si/${alias}`} element={<KeywordServicePage pageId={page.id} lang="si" />} />
+                  </React.Fragment>
+                ))}
+              </React.Fragment>
+            ))}
+
+            <Route path="/services/:slug" element={<ServicePage />} />
+            <Route path="/portfolio/:slug" element={<ProjectPage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/terms-of-service" element={<TermsPage />} />
+            <Route path="/agb" element={<TermsPage />} />
+            <Route path="/nutzungsbedingungen" element={<TermsPage />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </Suspense>
       </ProjectProvider>
-      <Analytics />
+      {showAnalytics && (
+        <Suspense fallback={null}>
+          <DeferredAnalytics />
+        </Suspense>
+      )}
     </div>
   );
 };
 
 const App: React.FC = () => {
-  // Logic: Only show the intensive preloader on the home page for FIRST visit.
-  // Direct links to projects/services skip the visual preloader for "speed first" experience.
-  const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
-  const hasVisited = sessionStorage.getItem('hasVisited');
-
-  const [loading, setLoading] = useState(!hasVisited && isHome);
-
-  const handlePreloaderComplete = React.useCallback(() => {
-    try {
-      sessionStorage.setItem('hasVisited', 'true');
-    } catch (e) { }
-    setLoading(false);
-  }, []);
-
   return (
     <Router>
-      <AnimatePresence mode="wait">
-        {loading && (
-          <Preloader key="loader" onComplete={handlePreloaderComplete} />
-        )}
-      </AnimatePresence>
-      {!loading && <AppContent />}
+      <AppContent />
     </Router>
   );
 };

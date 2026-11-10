@@ -75,7 +75,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             </div>
 
             {/* Content Container */}
-            <div className="relative">
+            <main className="relative">
                 {/* Hero Section */}
                 <section className="relative min-h-[70vh] md:h-[85vh] flex items-center justify-center overflow-hidden">
                     <motion.div
@@ -98,7 +98,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
 
                     <div className="relative z-10 text-center max-w-5xl px-4 mt-32 md:mt-20">
                         <div className="flex justify-center mb-6">
-                            <Breadcrumbs items={[{ label: 'Services', path: '/#services' }, { label: service.title }]} />
+                            <Breadcrumbs items={[{ label: 'Services', path: '/#services' }, { label: service.title, path: `/services/${service.slug}` }]} />
                         </div>
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -111,8 +111,11 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         <motion.h1
                             className="text-5xl md:text-[8rem] font-display font-extrabold text-white leading-[0.85] tracking-tighter"
                         >
-                            {service.title.split(' ').map((w, i) => (
-                                <span key={i} className="block">{w}</span>
+                            {service.title.split(' ').map((w, i, arr) => (
+                                <React.Fragment key={i}>
+                                    <span className="block">{w}</span>
+                                    {i < arr.length - 1 ? ' ' : ''}
+                                </React.Fragment>
                             ))}
                         </motion.h1>
                         <motion.div
@@ -160,15 +163,15 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                                 <div className="grid grid-cols-3 gap-4 pt-12 border-t border-white/5">
                                     <div className="space-y-2">
                                         <div className="text-2xl md:text-3xl font-display font-bold">+99%</div>
-                                        <div className="text-[8px] font-mono text-gray-500 uppercase tracking-widest">Efficiency</div>
+                                        <div className="text-[8px] font-mono text-gray-400 uppercase tracking-widest">Efficiency</div>
                                     </div>
                                     <div className="space-y-2 border-x border-white/5 px-4">
                                         <div className="text-2xl md:text-3xl font-display font-bold">L-4</div>
-                                        <div className="text-[8px] font-mono text-gray-500 uppercase tracking-widest">Security</div>
+                                        <div className="text-[8px] font-mono text-gray-400 uppercase tracking-widest">Security</div>
                                     </div>
                                     <div className="space-y-2 pl-4">
                                         <div className="text-2xl md:text-3xl font-display font-bold">24/7</div>
-                                        <div className="text-[8px] font-mono text-gray-500 uppercase tracking-widest">Uptime</div>
+                                        <div className="text-[8px] font-mono text-gray-400 uppercase tracking-widest">Uptime</div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -271,7 +274,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                                             "{service.result}"
                                         </p>
                                         <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-naxit-cyan to-transparent opacity-50" />
-                                        <div className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.6em]">System Response Optimized</div>
+                                        <div className="font-mono text-[10px] text-gray-400 uppercase tracking-[0.6em]">System Response Optimized</div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -312,7 +315,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                             )}
                         </div>
 
-                        <p className="text-gray-500 font-mono text-[9px] md:text-[10px] tracking-[0.5em] uppercase pt-12 md:pt-16 border-t border-white/5 w-fit mx-auto mt-20">
+                        <p className="text-gray-400 font-mono text-[9px] md:text-[10px] tracking-[0.5em] uppercase pt-12 md:pt-16 border-t border-white/5 w-fit mx-auto mt-20">
                             © 2026 NAXIT MICRO AGENCY
                         </p>
                     </motion.div>
@@ -320,7 +323,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
 
                 {/* Footer */}
                 <Footer onCloseModal={onBack} />
-            </div>
+            </main>
         </motion.div >
     );
 };

@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useAnimation } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '../types';
 import {
-  ArrowLeft, Cpu, Target, Zap, Layout, Globe, MessageCircle,
-  ChevronRight, ChevronLeft, CheckCircle2, X, ZoomIn, ZoomOut, Maximize2
+  ArrowLeft, Cpu, Target, Zap, Layout, MessageCircle,
+  ChevronRight, ChevronLeft, CheckCircle2, X, ZoomIn, ZoomOut
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { getOptimizedImage } from '../utils';
@@ -20,7 +20,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [zoom, setZoom] = useState(1);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
+  const canonicalUrl = `https://www.naxitofficial.de/portfolio/${project.slug}`;
 
 
 
@@ -100,8 +100,12 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       <Helmet>
         <title>{project.title} | Naxit Portfolio</title>
         <meta name="description" content={project.tagline} />
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-LK" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
         <meta property="og:title" content={`${project.title} | Naxit Portfolio`} />
         <meta property="og:description" content={project.tagline} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={project.image} />
       </Helmet>
       {/* Header Overlay - Floating above content */}
@@ -131,7 +135,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
       </div>
 
       {/* Content Container */}
-      <div className="relative">
+      <main className="relative">
         {/* Hero */}
         <section className="relative min-h-[70vh] md:h-[85vh] flex items-center justify-center overflow-hidden">
           <motion.div
@@ -154,7 +158,12 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
 
           <div className="relative z-10 text-center max-w-5xl px-4 mt-32 md:mt-20">
             <div className="flex justify-center mb-6">
-              <Breadcrumbs items={[{ label: 'Portfolio', path: '/portfolio' }, { label: project.title }]} />
+              <Breadcrumbs
+                items={[
+                  { label: 'Portfolio', path: '/portfolio' },
+                  { label: project.title, path: `/portfolio/${project.slug}` }
+                ]}
+              />
             </div>
             <motion.div
               initial={{ opacity: 0 }}
@@ -168,8 +177,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
               layoutId={`title-${project.id}`}
               className="text-5xl md:text-[11rem] font-display font-extrabold text-white leading-[0.85] tracking-tighter"
             >
-              {project.title.split(' ').map((w, i) => (
-                <span key={i} className="block">{w === 'Quantum' ? <span className="text-gradient">Quantum</span> : w}</span>
+              {project.title.split(' ').map((w, i, arr) => (
+                <React.Fragment key={i}>
+                  <span className="block">{w === 'Quantum' ? <span className="text-gradient">Quantum</span> : w}</span>
+                  {i < arr.length - 1 ? ' ' : ''}
+                </React.Fragment>
               ))}
             </motion.h1>
           </div>
@@ -178,10 +190,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
         {/* Narrative Grid - Re-engineered for optimal spacial utility */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-32 relative overflow-hidden">
           {/* Enhanced Background Decorations to fix void spaces */}
-          <div className="hidden lg:block absolute -left-20 top-1/4 text-white/[0.01] text-[15rem] font-display font-black pointer-events-none select-none -rotate-90 origin-center leading-none">
+          <div aria-hidden="true" className="hidden lg:block absolute -left-20 top-1/4 text-white/[0.01] text-[15rem] font-display font-black pointer-events-none select-none -rotate-90 origin-center leading-none">
             {project.title.toUpperCase()}
           </div>
-          <div className="hidden lg:block absolute -right-24 top-2/3 text-white/[0.01] text-[15rem] font-display font-black pointer-events-none select-none rotate-90 origin-center leading-none">
+          <div aria-hidden="true" className="hidden lg:block absolute -right-24 top-2/3 text-white/[0.01] text-[15rem] font-display font-black pointer-events-none select-none rotate-90 origin-center leading-none">
             {project.category.split(' ')[0].toUpperCase()}
           </div>
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:60px_60px] pointer-events-none" />
@@ -217,7 +229,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                     <div className="text-[10px] font-mono text-gray-400 mb-8 tracking-[0.3em] uppercase">System Impact</div>
                     <div className="text-6xl md:text-8xl font-display font-bold text-gradient mb-6 leading-none">{project.impact}</div>
                     <div className="h-[1px] w-full bg-white/10 mb-6" />
-                    <p className="text-gray-500 text-[10px] font-mono leading-relaxed uppercase tracking-wider">
+                    <p className="text-gray-400 text-[10px] font-mono leading-relaxed uppercase tracking-wider">
                       Strategic deployment benchmark / operational phase
                     </p>
                   </div>
@@ -308,9 +320,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                     <div className="absolute top-0 right-0 p-8 opacity-20">
                       <Zap className="w-12 h-12 text-naxit-cyan" />
                     </div>
-                    <h4 className="font-mono text-[11px] tracking-[0.4em] uppercase text-naxit-cyan mb-12 flex items-center gap-3">
+                    <h3 className="font-mono text-[11px] tracking-[0.4em] uppercase text-naxit-cyan mb-12 flex items-center gap-3">
                       <Layout className="w-4 h-4" /> Execution Logic
-                    </h4>
+                    </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
                       {project.designDecisions.map((decision, i) => (
                         <div key={i} className="flex gap-4 group">
@@ -366,7 +378,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                   </div>
 
                   <div className="mt-20 pt-10 border-t border-white/5 text-center">
-                    <span className="font-mono text-[10px] text-white/10 uppercase tracking-[0.6em]">System: High-Performance Operational</span>
+                    <span className="font-mono text-[10px] text-gray-400 uppercase tracking-[0.6em]">System: High-Performance Operational</span>
                   </div>
                 </motion.div>
               </div>
@@ -385,7 +397,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                 </div>
                 <h2 className="text-4xl md:text-7xl font-display font-bold">Execution <span className="text-gradient">Gallery</span></h2>
               </div>
-              <p className="text-gray-500 font-mono text-xs uppercase tracking-[0.2em] max-w-xs text-left md:text-right">
+              <p className="text-gray-400 font-mono text-xs uppercase tracking-[0.2em] max-w-xs text-left md:text-right">
                 High-fidelity captures from the final deployment phase.
               </p>
             </div>
@@ -446,7 +458,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                 className="absolute top-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4 z-[2001]"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="text-white/40 font-mono text-[8px] md:text-[10px] tracking-widest uppercase text-center md:text-left order-2 md:order-1">
+                <div className="text-gray-300 font-mono text-[8px] md:text-[10px] tracking-widest uppercase text-center md:text-left order-2 md:order-1">
                   {project.title} <span className="hidden md:inline">/</span> <br className="md:hidden" /> Artifact {selectedImageIndex + 1} of {project.gallery.length}
                 </div>
                 <div className="flex items-center gap-2 md:gap-4 order-1 md:order-2 w-full md:w-auto justify-between md:justify-end">
@@ -456,10 +468,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                       disabled={zoom <= 1}
                       className="p-2 rounded-full text-white hover:text-naxit-cyan disabled:opacity-30 disabled:hover:text-white transition-all"
                       title="Zoom Out"
+                      aria-label="Zoom out"
                     >
                       <ZoomOut className="w-4 h-4" />
                     </button>
-                    <div className="px-1 md:px-2 text-[9px] md:text-[10px] font-mono text-white/60 min-w-[2.5rem] md:min-w-[3.5rem] text-center">
+                    <div className="px-1 md:px-2 text-[9px] md:text-[10px] font-mono text-gray-300 min-w-[2.5rem] md:min-w-[3.5rem] text-center">
                       {(zoom * 100).toFixed(0)}%
                     </div>
                     <button
@@ -467,6 +480,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                       disabled={zoom >= 3}
                       className="p-2 rounded-full text-white hover:text-naxit-cyan disabled:opacity-30 disabled:hover:text-white transition-all"
                       title="Zoom In"
+                      aria-label="Zoom in"
                     >
                       <ZoomIn className="w-4 h-4" />
                     </button>
@@ -475,6 +489,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                     onClick={() => { setSelectedImageIndex(null); setZoom(1); }}
                     className="p-2.5 md:p-3 rounded-full glass border border-white/10 text-white hover:text-red-500 hover:border-red-500/50 transition-all shrink-0"
                     title="Close"
+                    aria-label="Close gallery modal"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -488,6 +503,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
               >
                 <button
                   onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                  aria-label="Previous artifact"
                   className="absolute left-2 md:left-8 z-[2005] p-3 md:p-4 rounded-full glass border border-white/10 text-white hover:text-naxit-cyan hover:border-naxit-cyan transition-all group backdrop-blur-md bg-black/20"
                 >
                   <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 group-hover:-translate-x-1 transition-transform" />
@@ -532,6 +548,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
 
                 <button
                   onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                  aria-label="Next artifact"
                   className="absolute right-2 md:right-8 z-[2005] p-3 md:p-4 rounded-full glass border border-white/10 text-white hover:text-naxit-cyan hover:border-naxit-cyan transition-all group backdrop-blur-md bg-black/20"
                 >
                   <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
@@ -546,6 +563,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
                   <button
                     key={i}
                     onClick={() => setSelectedImageIndex(i)}
+                    aria-label={`View artifact ${i + 1}`}
                     className={`w-1.5 h-1.5 rounded-full transition-all ${i === selectedImageIndex ? 'bg-naxit-cyan w-8' : 'bg-white/20 hover:bg-white/40'
                       }`}
                   />
@@ -583,7 +601,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
 
         {/* Footer */}
         <Footer onCloseModal={onBack} />
-      </div>
+      </main>
     </motion.div>
   );
 };

@@ -1,115 +1,59 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React from 'react';
 
 const PARTNERS = [
-  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png', logoWebp: '/assets/brands/auramax.webp' },
-  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png', logoWebp: '/assets/brands/my-travels.webp' },
-  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png', logoWebp: '/assets/brands/auramax.webp' },
-  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png', logoWebp: '/assets/brands/my-travels.webp' },
-  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png', logoWebp: '/assets/brands/auramax.webp' },
-  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png', logoWebp: '/assets/brands/my-travels.webp' },
-  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax.png', logoWebp: '/assets/brands/auramax.webp' },
-  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels.png', logoWebp: '/assets/brands/my-travels.webp' },
+  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax-sm.png', logoWebp: '/assets/brands/auramax-sm.webp' },
+  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels-sm.png', logoWebp: '/assets/brands/my-travels-sm.webp' },
+  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax-sm.png', logoWebp: '/assets/brands/auramax-sm.webp' },
+  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels-sm.png', logoWebp: '/assets/brands/my-travels-sm.webp' },
+  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax-sm.png', logoWebp: '/assets/brands/auramax-sm.webp' },
+  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels-sm.png', logoWebp: '/assets/brands/my-travels-sm.webp' },
+  { name: 'Auramax', tech: 'Logistics', logo: '/assets/brands/auramax-sm.png', logoWebp: '/assets/brands/auramax-sm.webp' },
+  { name: 'My Travels', tech: 'Travel & Tours', logo: '/assets/brands/my-travels-sm.png', logoWebp: '/assets/brands/my-travels-sm.webp' },
 ];
 
 const LogoCloud: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
-  const [width, setWidth] = useState(0);
-
   const items = [...PARTNERS, ...PARTNERS];
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const resize = () => {
-      const halfWidth = containerRef.current!.scrollWidth / 2;
-      setWidth(halfWidth);
-    };
-
-    resize();
-    window.addEventListener('resize', resize);
-    return () => window.removeEventListener('resize', resize);
-  }, []);
-
-  useEffect(() => {
-    if (!width) return;
-
-    controls.start({
-      x: [0, -width],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: 'loop',
-          duration: width / 40,
-          ease: 'linear',
-        },
-      },
-    });
-  }, [width, controls]);
 
   return (
     <div className="relative py-12 md:py-20 border-y border-white/5 bg-black/40 overflow-hidden group">
       {/* Edge fades */}
-      <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-naxit-charcoal to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-naxit-charcoal to-transparent z-10 pointer-events-none" />
+      <div aria-hidden="true" className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-naxit-charcoal to-transparent z-10 pointer-events-none" />
+      <div aria-hidden="true" className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-naxit-charcoal to-transparent z-10 pointer-events-none" />
 
       <div className="flex flex-col items-center mb-10">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-[10px] font-mono text-naxit-cyan/40 tracking-[0.5em] uppercase"
-        >
-          Brands we've helped grow
-        </motion.div>
+        <p className="text-[10px] font-mono text-naxit-cyan tracking-[0.5em] uppercase">
+          Brands we&apos;ve helped grow
+        </p>
       </div>
 
-      <motion.div
-        ref={containerRef}
-        className="flex whitespace-nowrap will-change-transform"
-        animate={controls}
-      >
+      <div className="animate-marquee whitespace-nowrap">
         {items.map((partner, index) => (
           <div
             key={`${partner.name}-${index}`}
-            className={`flex items-center justify-center gap-1 px-2 transition-all duration-500 ${partner.logo
-              ? 'opacity-40 grayscale hover:grayscale-0 hover:opacity-100'
-              : 'opacity-30 grayscale hover:grayscale-0'
-              }`}
+            aria-hidden={index >= PARTNERS.length ? true : undefined}
+            className="flex items-center justify-center gap-1 px-2 transition-all duration-500 opacity-60 grayscale hover:grayscale-0 hover:opacity-100"
           >
-            {partner.logo ? (
-              <div className="min-w-[280px] flex justify-center">
-                <picture>
-                  <source srcSet={partner.logoWebp} type="image/webp" />
-                  <img
-                    src={partner.logo}
-                    width={800}
-                    height={400}
-                    alt={`${partner.name} - Trusted Partner in Sri Lanka Digital Ecosystem`}
-                    className="h-20 w-auto object-contain opacity-80"
-                    draggable={false}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-            ) : (
-              <div className="flex flex-col">
-                <span className="text-3xl font-display font-bold tracking-tighter text-white">
-                  {partner.name}
-                  <span className="text-naxit-cyan">.</span>
-                </span>
-                <span className="text-[8px] font-mono text-naxit-cyan/60 uppercase tracking-widest -mt-1">
-                  {partner.tech}
-                </span>
-              </div>
-            )}
+            <div className="min-w-[280px] flex justify-center">
+              <picture>
+                <source srcSet={partner.logoWebp} type="image/webp" />
+                <img
+                  src={partner.logo}
+                  width={320}
+                  height={160}
+                  alt={index >= PARTNERS.length ? '' : `${partner.name} - Trusted Partner in Sri Lanka Digital Ecosystem`}
+                  className="h-20 w-auto object-contain opacity-90"
+                  draggable={false}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
           </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* Ambient glow */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1/2 bg-naxit-royal/5 blur-[120px] pointer-events-none" />
+      <div aria-hidden="true" className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1/2 bg-naxit-royal/5 blur-[120px] pointer-events-none" />
     </div>
   );
 };

@@ -9,6 +9,7 @@ interface PricingProps {
 }
 
 export const Pricing: React.FC<PricingProps> = ({ isDedicatedPage = false }) => {
+  const CardHeading = isDedicatedPage ? 'h2' : 'h3';
   return (
     <section id="pricing" className="py-24 md:py-36 px-4 relative overflow-hidden bg-transparent">
       {/* Background Ambience */}
@@ -80,9 +81,9 @@ export const Pricing: React.FC<PricingProps> = ({ isDedicatedPage = false }) => 
                   </div>
 
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-display font-bold text-white group-hover:text-naxit-cyan transition-colors">
+                    <CardHeading className="text-xl sm:text-2xl font-display font-bold text-white group-hover:text-naxit-cyan transition-colors">
                       {item.service}
-                    </h3>
+                    </CardHeading>
                     <div className="text-2xl sm:text-3xl font-display font-black text-white mt-3 font-mono">
                       {item.startingPrice}
                     </div>
@@ -122,10 +123,10 @@ export const Pricing: React.FC<PricingProps> = ({ isDedicatedPage = false }) => 
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-base font-display font-bold text-white">
+              <CardHeading className="text-base font-display font-bold text-white">
                 NAXIT Guarantee
-              </h4>
-              <p className="text-xs text-gray-400">
+              </CardHeading>
+              <p className="text-xs text-gray-300">
                 Fixed quote agreed before any work starts. Milestone reviews throughout development.
               </p>
             </div>

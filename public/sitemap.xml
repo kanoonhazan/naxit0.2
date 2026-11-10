@@ -209,21 +209,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.naxitofficial.de/mobile-app-development-sri-lanka" />
   </url>
 
-  <!-- Legacy Service Aliases -->
-  <url>
-    <loc>https://www.naxitofficial.de/services/website-design-sri-lanka</loc>
-    <lastmod>2026-11-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.naxitofficial.de/services/ui-ux-design-sri-lanka</loc>
-    <lastmod>2026-11-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
   <!-- Portfolio Archive & Projects -->
   <url>
     <loc>https://www.naxitofficial.de/portfolio</loc>
