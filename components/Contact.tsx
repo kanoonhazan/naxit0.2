@@ -1,10 +1,12 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, Loader2, MessageSquare, Phone, Mail, MapPin, Star, ExternalLink, BadgeCheck } from 'lucide-react';
+import { Send, CheckCircle2, MessageSquare, Phone, Mail, MapPin, Star, ExternalLink, BadgeCheck } from 'lucide-react';
+import { trackFormSubmit } from '../lib/analytics';
 
 const Contact: React.FC = () => {
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'success'>('idle');
+  const [lastWhatsappUrl, setLastWhatsappUrl] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,23 +16,29 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('sending');
+    const trimmedName = formData.name.trim();
+    const trimmedMessage = formData.message.trim();
+    if (!trimmedName || !trimmedMessage) {
+      return;
+    }
+
+    const trimmedEmail = formData.email.trim();
 
     // Construct WhatsApp message
-    const whatsappMessage = `Hi NAXIT, my name is ${formData.name}.
+    const whatsappMessage = `Hi NAXIT, my name is ${trimmedName}.
 
 *Needed Service:* ${formData.service}
 
-${formData.message}
+${trimmedMessage}
 
-*Contact:* ${formData.email || 'contact through this whatsapp.'}`;
+*Contact:* ${trimmedEmail || 'contact through this whatsapp.'}`;
 
     const whatsappUrl = `https://wa.me/94756811228?text=${encodeURIComponent(whatsappMessage)}`;
 
-    setTimeout(() => {
-      window.open(whatsappUrl, '_blank');
-      setStatus('success');
-    }, 1500);
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    trackFormSubmit(formData.service);
+    setLastWhatsappUrl(whatsappUrl);
+    setStatus('success');
   };
 
   return (
@@ -274,16 +282,12 @@ ${formData.message}
 
                       <div className="pt-4">
                         <button
-                          disabled={status === 'sending'}
-                          className="group relative w-full flex items-center justify-center gap-4 bg-white text-black font-bold py-6 px-12 rounded-2xl hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50 overflow-hidden"
+                          type="submit"
+                          className="group relative w-full flex items-center justify-center gap-4 bg-white text-black font-bold py-6 px-12 rounded-2xl hover:scale-[1.01] active:scale-[0.99] transition-all overflow-hidden"
                         >
                           <div className="absolute inset-0 bg-naxit-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
                           <span className="relative z-10 flex items-center gap-3 uppercase tracking-widest font-mono text-xs">
-                            {status === 'sending' ? (
-                              <Loader2 className="w-5 h-5 animate-spin text-black" />
-                            ) : (
-                              <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                            )}
+                            <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                             Send Message
                           </span>
                         </button>
@@ -301,8 +305,20 @@ ${formData.message}
                       <CheckCircle2 className="w-12 h-12 text-naxit-cyan" />
                     </div>
                     <h3 className="text-4xl md:text-5xl font-display font-bold mb-6 text-white tracking-tight leading-tight">Transmission <br /> Successful.</h3>
-                    <p className="text-gray-400 text-lg max-w-sm leading-relaxed mb-12 font-light">Your protocol has been indexed. Redirecting you to WhatsApp for the final uplink.</p>
+                    <p className="text-gray-400 text-lg max-w-sm leading-relaxed mb-8 font-light">Your message is ready in WhatsApp. If a new tab didn&apos;t open automatically, continue below.</p>
+                    {lastWhatsappUrl && (
+                      <a
+                        href={lastWhatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-naxit-cyan text-black font-bold px-6 py-3 rounded-xl text-sm hover:bg-white transition-colors mb-8"
+                      >
+                        <MessageSquare className="w-4 h-4" />
+                        <span>Open WhatsApp Chat</span>
+                      </a>
+                    )}
                     <button
+                      type="button"
                       onClick={() => setStatus('idle')}
                       className="text-xs font-mono text-naxit-cyan tracking-[0.4em] uppercase border-b border-naxit-cyan/30 pb-1 hover:text-white hover:border-white transition-colors"
                     >

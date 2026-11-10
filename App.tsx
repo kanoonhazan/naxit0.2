@@ -6,6 +6,7 @@ import StaticBackground from './components/StaticBackground';
 import { ProjectProvider } from './context/ProjectContext';
 import LandingPage from './components/LandingPage';
 import { SEO_ROUTES } from './data/seoRoutes';
+import { initLeadClickTracking } from './lib/analytics';
 
 // Lazy load subpages & non-critical modules for code splitting
 const KeywordServicePage = lazy(() => import('./components/KeywordServicePage'));
@@ -65,6 +66,8 @@ const AppContent: React.FC = () => {
   const [showAnalytics, setShowAnalytics] = useState(false);
 
   useEffect(() => {
+    const cleanupClickTracking = initLeadClickTracking();
+
     let cancelled = false;
     let lenisInstance: any;
     let rafId: number | undefined;
@@ -116,6 +119,7 @@ const AppContent: React.FC = () => {
     }
 
     return () => {
+      cleanupClickTracking();
       cancelled = true;
       if (typeof win.cancelIdleCallback === 'function') {
         win.cancelIdleCallback(idleHandle);

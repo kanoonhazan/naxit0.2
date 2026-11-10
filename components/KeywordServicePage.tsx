@@ -138,11 +138,11 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
         />
 
         {/* Hero Section */}
-        <section className="mb-20 pt-6">
+        <section className="mb-20 pt-6" data-track-location="hero">
           <div className="max-w-4xl">
             {data.badge && (
               <div className="inline-flex items-center gap-2 px-3 py-1 glass rounded-full border border-naxit-cyan/30 text-naxit-cyan font-mono text-[11px] uppercase tracking-widest mb-6">
-                <Sparkles className="w-3.5 h-3.5" />
+                <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>{data.badge}</span>
               </div>
             )}
@@ -162,15 +162,34 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-naxit-cyan transition-all duration-300 shadow-[0_10px_30px_rgba(0,212,255,0.25)] hover:shadow-[0_15px_40px_rgba(0,212,255,0.4)] transform hover:-translate-y-0.5 active:translate-y-0"
               >
-                <MessageSquare className="w-5 h-5 text-black" />
+                <MessageSquare className="w-5 h-5 text-black" aria-hidden="true" />
                 <span>{data.ctaButtonText}</span>
               </a>
+
+              {pageData.isRop && (
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.naxit.rop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-7 py-4 bg-naxit-royal hover:bg-naxit-cyan hover:text-black text-white font-bold rounded-2xl transition-all duration-300 shadow-[0_10px_25px_rgba(0,85,255,0.3)] transform hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <svg
+                    className="w-5 h-5 shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M3.61 1.814L13.793 12 3.61 22.186a1.75 1.75 0 0 1-.61-1.335V3.149c0-.517.224-.993.61-1.335zm10.89 10.893l2.637 2.637-9.89 5.66 7.253-8.297zm3.438-3.438l2.742 1.569c.887.508.887 1.816 0 2.324l-2.742 1.569-2.838-2.731 2.838-2.731zM7.247 3l9.89 5.66-2.637 2.637L7.247 3z" />
+                  </svg>
+                  <span>Get it on Google Play</span>
+                </a>
+              )}
 
               <a
                 href="tel:+94756811228"
                 className="inline-flex items-center gap-2 px-6 py-4 glass text-white font-medium rounded-2xl border border-white/10 hover:border-naxit-cyan/30 hover:bg-white/5 transition-all duration-300"
               >
-                <Phone className="w-4 h-4 text-naxit-cyan" />
+                <Phone className="w-4 h-4 text-naxit-cyan" aria-hidden="true" />
                 <span>Call +94 75 681 1228</span>
               </a>
             </div>
@@ -247,7 +266,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
 
         {/* Pricing & Value Card */}
         {data.pricingHighlight && (
-          <section className="mb-20">
+          <section className="mb-20" data-track-location="cta">
             <div className="glass p-8 md:p-12 rounded-[2.5rem] border border-naxit-cyan/20 relative overflow-hidden bg-gradient-to-br from-white/[0.03] to-naxit-royal/[0.05]">
               <div className="max-w-3xl space-y-4">
                 <div className="flex items-center gap-2 text-naxit-cyan text-xs font-mono uppercase tracking-widest">
@@ -431,7 +450,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
         </section>
 
         {/* Bottom CTA Block */}
-        <section className="glass p-8 md:p-14 rounded-[3rem] border border-white/10 text-center relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-naxit-cyan/[0.05]">
+        <section data-track-location="cta" className="glass p-8 md:p-14 rounded-[3rem] border border-white/10 text-center relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-naxit-cyan/[0.05]">
           <div className="max-w-2xl mx-auto space-y-6">
             <div className="inline-block text-naxit-cyan font-mono text-xs uppercase tracking-widest">
               Ready to grow your business?

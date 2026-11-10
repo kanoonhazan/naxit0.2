@@ -208,7 +208,8 @@ for (const page of SEO_PAGES) {
     faqs: page.en.faqs,
     whatYouGet: page.en.whatYouGet,
     ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`Hi NAXIT, I am interested in ${page.en.h1}.`)}`,
-    ctaText: page.en.ctaButtonText || 'Get a Quote on WhatsApp'
+    ctaText: page.en.ctaButtonText || 'Get a Quote on WhatsApp',
+    isRop: Boolean(page.isRop)
   });
 
   // Tamil (/ta/)
@@ -231,7 +232,8 @@ for (const page of SEO_PAGES) {
     faqs: page.ta.faqs,
     whatYouGet: page.ta.whatYouGet,
     ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`வணக்கம் NAXIT, ${page.ta.h1} பற்றி மேலும் அறிய விரும்புகிறேன்.`)}`,
-    ctaText: page.ta.ctaButtonText || 'WhatsApp இல் தொடர்பு கொள்ளவும்'
+    ctaText: page.ta.ctaButtonText || 'WhatsApp இல் தொடர்பு கொள்ளவும்',
+    isRop: Boolean(page.isRop)
   });
 
   // Sinhala (/si/)
@@ -254,7 +256,8 @@ for (const page of SEO_PAGES) {
     faqs: page.si.faqs,
     whatYouGet: page.si.whatYouGet,
     ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`ආයුබෝවන් NAXIT, ${page.si.h1} පිළිබඳව විමසීමට කැමැත්තෙමි.`)}`,
-    ctaText: page.si.ctaButtonText || 'WhatsApp හරහා විමසන්න'
+    ctaText: page.si.ctaButtonText || 'WhatsApp හරහා විමසන්න',
+    isRop: Boolean(page.isRop)
   });
 
   // Aliases (EN, TA, SI)
@@ -278,7 +281,8 @@ for (const page of SEO_PAGES) {
       faqs: page.en.faqs,
       whatYouGet: page.en.whatYouGet,
       ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`Hi NAXIT, I am interested in ${page.en.h1}.`)}`,
-      ctaText: page.en.ctaButtonText || 'Get a Quote on WhatsApp'
+      ctaText: page.en.ctaButtonText || 'Get a Quote on WhatsApp',
+      isRop: Boolean(page.isRop)
     });
 
     routes.push({
@@ -300,7 +304,8 @@ for (const page of SEO_PAGES) {
       faqs: page.ta.faqs,
       whatYouGet: page.ta.whatYouGet,
       ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`வணக்கம் NAXIT, ${page.ta.h1} பற்றி மேலும் அறிய விரும்புகிறேன்.`)}`,
-      ctaText: page.ta.ctaButtonText || 'WhatsApp இல் தொடர்பு கொள்ளவும்'
+      ctaText: page.ta.ctaButtonText || 'WhatsApp இல் தொடர்பு கொள்ளவும்',
+      isRop: Boolean(page.isRop)
     });
 
     routes.push({
@@ -322,7 +327,8 @@ for (const page of SEO_PAGES) {
       faqs: page.si.faqs,
       whatYouGet: page.si.whatYouGet,
       ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`ආයුබෝවන් NAXIT, ${page.si.h1} පිළිබඳව විමසීමට කැමැත්තෙමි.`)}`,
-      ctaText: page.si.ctaButtonText || 'WhatsApp හරහා විමසන්න'
+      ctaText: page.si.ctaButtonText || 'WhatsApp හරහා විමසන්න',
+      isRop: Boolean(page.isRop)
     });
   }
 }
@@ -519,7 +525,10 @@ for (const route of routes) {
           <div style="margin-top: 24px;">
             <a href="${route.ctaUrl || 'https://wa.me/94756811228'}" style="display: inline-block; padding: 12px 24px; background: #0055ff; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold;">
               ${escapeHtml(route.ctaText || 'Chat on WhatsApp')}
-            </a>
+            </a>${route.isRop ? `
+            <a href="https://play.google.com/store/apps/details?id=com.naxit.rop" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 12px 24px; background: #14b8a6; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-left: 12px;">
+              Get it on Google Play
+            </a>` : ''}
           </div>
         </section>
       </main>

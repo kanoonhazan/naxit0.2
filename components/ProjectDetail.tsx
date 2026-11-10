@@ -59,10 +59,6 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
     };
   }, [onBack, selectedImageIndex]);
 
-  const handleWhatsApp = () => {
-    window.open('https://wa.me/94756811228', '_blank');
-  };
-
   const handleNext = () => {
     if (selectedImageIndex === null) return;
     setSelectedImageIndex((selectedImageIndex + 1) % project.gallery.length);
@@ -122,15 +118,18 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             <span className="text-[9px] md:text-[10px] font-mono tracking-widest uppercase">Return [ESC]</span>
           </motion.button>
 
-          <motion.button
-            onClick={handleWhatsApp}
+          <motion.a
+            href="https://wa.me/94756811228"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track-location="header"
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="pointer-events-auto bg-white text-black px-4 md:px-8 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-2 md:gap-3 flex-1 md:flex-initial justify-center"
           >
             Contact WhatsApp <MessageCircle className="w-4 h-4" />
-          </motion.button>
+          </motion.a>
         </div>
       </div>
 
@@ -583,13 +582,16 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack }) => {
             Ready for <br /><span className="text-gradient">Expansion?</span>
           </motion.h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <button
-              onClick={handleWhatsApp}
+            <a
+              href="https://wa.me/94756811228"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track-location="cta"
               className="group relative flex items-center gap-3 bg-white text-black font-bold py-5 md:py-6 px-10 md:px-12 rounded-2xl hover:scale-105 transition-all text-base md:text-lg shadow-[0_20px_40px_rgba(255,255,255,0.1)] w-full md:w-auto justify-center"
             >
               <MessageCircle className="w-6 h-6 fill-black" />
               <span>Talk to us on WhatsApp</span>
-            </button>
+            </a>
             <button
               onClick={onBack}
               className="glass border border-white/10 px-10 md:px-12 py-5 md:py-6 rounded-2xl font-bold text-gray-400 hover:text-white transition-all text-base md:text-lg w-full md:w-auto justify-center"

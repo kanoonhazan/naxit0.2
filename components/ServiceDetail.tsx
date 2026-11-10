@@ -23,14 +23,6 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
         return () => window.removeEventListener('keydown', handleEsc);
     }, [onBack]);
 
-    const handleWhatsApp = () => {
-        window.open('https://wa.me/94756811228', '_blank');
-    };
-
-    const handleCall = () => {
-        window.location.href = 'tel:+94756811228';
-    };
-
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -62,15 +54,18 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         <span className="text-[9px] md:text-[10px] font-mono tracking-widest uppercase">Return [ESC]</span>
                     </motion.button>
 
-                    <motion.button
-                        onClick={handleWhatsApp}
+                    <motion.a
+                        href="https://wa.me/94756811228"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-track-location="header"
                         initial={{ x: 20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.6 }}
                         className="pointer-events-auto bg-white text-black px-4 md:px-8 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-mono tracking-widest uppercase font-bold hover:scale-105 transition-all flex items-center gap-2 md:gap-3 flex-1 md:flex-initial justify-center"
                     >
                         Whatsapp <MessageCircle className="w-4 h-4" />
-                    </motion.button>
+                    </motion.a>
                 </div>
             </div>
 
@@ -296,22 +291,26 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                         </h2>
 
                         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
-                            <button
-                                onClick={handleWhatsApp}
+                            <a
+                                href="https://wa.me/94756811228"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-track-location="cta"
                                 className="group relative flex items-center gap-3 md:gap-4 bg-white text-black font-bold py-5 md:py-6 px-10 md:px-14 rounded-2xl md:rounded-[2rem] hover:scale-105 transition-all text-lg md:text-2xl shadow-[0_20px_80px_rgba(255,255,255,0.15)] w-full md:w-auto justify-center"
                             >
                                 <MessageCircle className="w-6 h-6 md:w-8 md:h-8 fill-black" />
                                 <span>{service.ctaPrimary || 'Message on WhatsApp'}</span>
-                            </button>
+                            </a>
 
                             {service.ctaSecondary && (
-                                <button
-                                    onClick={handleCall}
-                                    className="glass border border-white/10 px-10 md:px-14 py-5 md:py-6 rounded-2xl md:rounded-[2rem] font-bold text-gray-300 hover:text-white hover:bg-white/5 transition-all text-lg md:text-2xl w-full md:w-auto justify-center"
+                                <a
+                                    href="tel:+94756811228"
+                                    data-track-location="cta"
+                                    className="glass border border-white/10 px-10 md:px-14 py-5 md:py-6 rounded-2xl md:rounded-[2rem] font-bold text-gray-300 hover:text-white hover:bg-white/5 transition-all text-lg md:text-2xl w-full md:w-auto justify-center flex items-center gap-3"
                                 >
                                     <Phone className="w-6 h-6 md:w-7 md:h-7" />
                                     <span>{service.ctaSecondary}</span>
-                                </button>
+                                </a>
                             )}
                         </div>
 

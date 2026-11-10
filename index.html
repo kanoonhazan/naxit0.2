@@ -14,19 +14,20 @@
       function gtag() {
         dataLayer.push(arguments);
       }
+      gtag('js', new Date());
+      gtag('config', 'G-QR3B42M3ED');
       window.addEventListener('load', function () {
         var loadGtag = function () {
+          if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
           var s = document.createElement('script');
           s.async = true;
           s.src = 'https://www.googletagmanager.com/gtag/js?id=G-QR3B42M3ED';
           document.head.appendChild(s);
-          gtag('js', new Date());
-          gtag('config', 'G-QR3B42M3ED');
         };
         if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadGtag, { timeout: 2500 });
+          requestIdleCallback(loadGtag, { timeout: 1200 });
         } else {
-          setTimeout(loadGtag, 1500);
+          setTimeout(loadGtag, 400);
         }
       });
     </script>
@@ -546,7 +547,7 @@
             <a href="mailto:naxitofficial@gmail.com" aria-label="Email NAXIT Official">Email: naxitofficial@gmail.com</a>
           </div>
 
-          <form action="#" method="post">
+          <form action="mailto:naxitofficial@gmail.com" method="post" enctype="text/plain">
             <div>
               <label for="contact-name">Full Name</label>
               <input type="text" id="contact-name" name="name" required placeholder="Ruwan Perera" />

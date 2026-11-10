@@ -63,6 +63,7 @@ export const Pricing: React.FC<PricingProps> = ({ isDedicatedPage = false }) => 
             return (
               <motion.div
                 key={index}
+                data-track-location="service_card"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -117,7 +118,7 @@ export const Pricing: React.FC<PricingProps> = ({ isDedicatedPage = false }) => 
         </div>
 
         {/* Commitment Banner */}
-        <div className="glass p-6 md:p-8 rounded-3xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div data-track-location="cta" className="glass p-6 md:p-8 rounded-3xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl glass border border-naxit-cyan/30 flex items-center justify-center text-naxit-cyan shrink-0">
               <ShieldCheck className="w-6 h-6" />
