@@ -37,7 +37,7 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             className="text-gray-300 text-lg md:text-xl font-light leading-relaxed"
           >
-            NAXIT is a digital agency based in Mannar, Northern Province, Sri Lanka. Hazan Kanoon founded NAXIT to help regional firms grow. Many local shop owners, private schools, and new startups struggle with slow software and high agency fees. NAXIT builds clean, fast websites and practical tools made for our local market. We serve retail shops in Mannar and Jaffna, as well as teams in Colombo. We help native firms build trust, get found on Google, and run daily work with ease.
+            Founded in 2022 by Hazan Kanoon, NAXIT is a digital agency based at 191, 11 Moor St, Mannar, Northern Province, Sri Lanka. NAXIT was founded to help regional firms grow. Many local shop owners, private schools, and new startups struggle with slow software and high agency fees. NAXIT builds clean, fast websites and practical tools made for our local market. We serve retail shops in Mannar and Jaffna, as well as teams in Colombo. We help native firms build trust, get found on Google, and run daily work with ease. Open 24 hours every day.
           </motion.p>
         </div>
 
@@ -71,9 +71,9 @@ const About: React.FC = () => {
               <MapPin className="w-5 h-5" />
             </div>
             <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Location Base</div>
-            <h3 className="text-xl font-display font-bold text-white">Mannar, Sri Lanka</h3>
+            <h3 className="text-xl font-display font-bold text-white">191, 11 Moor St, Mannar</h3>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Serving retail stores, educational institutes, and SMEs island-wide and globally.
+              Open 24 hours every day. Serving retail stores, educational institutes, and SMEs island-wide and globally.
             </p>
           </motion.div>
 

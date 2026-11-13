@@ -11,6 +11,7 @@ import { initLeadClickTracking } from './lib/analytics';
 // Lazy load subpages & non-critical modules for code splitting
 const KeywordServicePage = lazy(() => import('./components/KeywordServicePage'));
 const PricingPage = lazy(() => import('./components/PricingPage'));
+const ContactPage = lazy(() => import('./components/ContactPage'));
 const ServicePage = lazy(() => import('./components/ServicePage'));
 const ProjectPage = lazy(() => import('./components/ProjectPage'));
 const PortfolioPage = lazy(() => import('./components/PortfolioPage'));
@@ -147,6 +148,7 @@ const AppContent: React.FC = () => {
           <Routes location={location}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/contact" element={<ContactPage />} />
 
             {/* 6 Target Keyword Services in 3 Languages (EN, TA, SI) */}
             {SEO_ROUTES.map((page) => (

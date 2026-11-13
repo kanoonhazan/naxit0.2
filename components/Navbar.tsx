@@ -20,6 +20,21 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
       onCloseModal();
     }
 
+    if (targetId === 'contact') {
+      navigate('/contact');
+      return;
+    }
+
+    if (targetId === 'pricing') {
+      navigate('/pricing');
+      return;
+    }
+
+    if (targetId === 'portfolio') {
+      navigate('/portfolio');
+      return;
+    }
+
     if (location.pathname !== '/') {
       navigate(`/#${targetId}`);
       return;
@@ -42,12 +57,12 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
   };
 
   const navLinks = [
-    { name: 'About', target: 'about' },
-    { name: 'Services', target: 'services' },
-    { name: 'Pricing', target: 'pricing' },
-    { name: 'Work', target: 'portfolio' },
-    { name: 'FAQ', target: 'faq' },
-    { name: 'Contact', target: 'contact' },
+    { name: 'About', target: 'about', href: '/#about' },
+    { name: 'Services', target: 'services', href: '/#services' },
+    { name: 'Pricing', target: 'pricing', href: '/pricing' },
+    { name: 'Work', target: 'portfolio', href: '/portfolio' },
+    { name: 'FAQ', target: 'faq', href: '/#faq' },
+    { name: 'Contact', target: 'contact', href: '/contact' },
   ];
 
   return (
@@ -75,7 +90,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={`/#${link.target}`}
+                href={link.href}
                 onClick={(e) => handleScroll(e, link.target)}
                 className="hover:text-naxit-cyan transition-colors"
               >
@@ -115,7 +130,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
               {navLinks.map((link) => (
                 <a
                   key={link.name}
-                  href={`/#${link.target}`}
+                  href={link.href}
                   onClick={(e) => handleScroll(e, link.target)}
                   className="w-full text-center py-4 hover:text-naxit-cyan transition-colors"
                 >

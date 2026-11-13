@@ -89,7 +89,7 @@ ${trimmedMessage}
                 <div className="relative h-48 w-full rounded-2xl overflow-hidden border border-white/5 mt-1 group">
                   <iframe
                     title="NAXIT Mannar Office Location Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8828277240355!2d79.90929867479323!3d8.982928491076589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afdd9e633c0c94b%3A0x2f2a54bcb84897b9!2sNAXIT!5e0!3m2!1sen!2slk!4v1768412728561!5m2!1sen!2slk"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8828277240355!2d79.9118736!3d8.9829285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afdd9e633c0c94b%3A0x2f2a54bcb84897b9!2sNAXIT!5e0!3m2!1sen!2slk!4v1768412728561!5m2!1sen!2slk"
                     className="w-full h-full border-0 grayscale invert opacity-50 group-hover:opacity-100 transition-opacity duration-700"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -109,7 +109,8 @@ ${trimmedMessage}
                       <div className="flex items-center gap-2">
                         <span className="text-white font-bold text-sm tracking-tight">NAXIT</span>
                       </div>
-                      <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider pl-0.5">Operational Location</div>
+                      <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider pl-0.5">191, 11 Moor St, Mannar</div>
+                      <div className="text-[10px] font-mono text-naxit-cyan uppercase tracking-wider pl-0.5">Open 24 Hours / 7 Days</div>
                     </div>
                     <div className="flex items-center gap-1.5 px-3 py-1.5 glass rounded-xl border border-white/5 border-naxit-cyan/20">
                       <Star className="w-3.5 h-3.5 fill-naxit-cyan text-naxit-cyan" />
@@ -174,7 +175,7 @@ ${trimmedMessage}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 { label: 'Chat on WhatsApp', value: '+94 75 681 1228', href: 'https://wa.me/94756811228', aria: 'Chat with NAXIT on WhatsApp', icon: <MessageSquare className="w-5 h-5" /> },
-                { label: 'Call Us Directly', value: '+94 75 681 1228 / +94 99 11228', href: 'tel:+94756811228', aria: 'Call NAXIT Customer Support', icon: <Phone className="w-5 h-5" /> },
+                { label: 'Call Us Directly', value: '+94 75 681 1228', href: 'tel:+94756811228', aria: 'Call NAXIT Customer Support', icon: <Phone className="w-5 h-5" /> },
                 { label: 'Email Us', value: 'Email Inbox', href: 'mailto:naxitofficial@gmail.com', aria: 'Send email to NAXIT Official', icon: <Mail className="w-5 h-5" /> }
               ].map((node, i) => (
                 <motion.a

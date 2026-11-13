@@ -95,23 +95,33 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
             <h2 className="text-[10px] font-mono text-gray-400 tracking-[0.4em] uppercase mb-8">Navigation</h2>
             <ul className="space-y-4">
               {[
-                { name: 'Home', id: 'hero' },
-                { name: 'About', id: 'about' },
-                { name: 'Services', id: 'services' },
-                { name: 'Pricing', id: 'pricing' },
-                { name: 'Work', id: 'portfolio' },
-                { name: 'FAQ', id: 'faq' },
-                { name: 'Contact', id: 'contact' }
+                { name: 'Home', url: '/' },
+                { name: 'About', url: '/#about', id: 'about' },
+                { name: 'Services', url: '/#services', id: 'services' },
+                { name: 'Pricing', url: '/pricing' },
+                { name: 'Work', url: '/portfolio' },
+                { name: 'FAQ', url: '/#faq', id: 'faq' },
+                { name: 'Contact', url: '/contact' }
               ].map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={`#${item.id}`}
-                    onClick={(e) => handleScroll(e, item.id)}
-                    className="text-gray-300 hover:text-naxit-cyan transition-colors font-medium text-sm inline-block group cursor-pointer"
-                  >
-                    {item.name}
-                    <span className="block h-[1px] w-0 group-hover:w-full bg-naxit-cyan transition-all duration-300" />
-                  </a>
+                  {item.id ? (
+                    <a
+                      href={item.url}
+                      onClick={(e) => handleScroll(e, item.id)}
+                      className="text-gray-300 hover:text-naxit-cyan transition-colors font-medium text-sm inline-block group cursor-pointer"
+                    >
+                      {item.name}
+                      <span className="block h-[1px] w-0 group-hover:w-full bg-naxit-cyan transition-all duration-300" />
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.url}
+                      className="text-gray-300 hover:text-naxit-cyan transition-colors font-medium text-sm inline-block group cursor-pointer"
+                    >
+                      {item.name}
+                      <span className="block h-[1px] w-0 group-hover:w-full bg-naxit-cyan transition-all duration-300" />
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -144,7 +154,8 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
             <div className="mt-6 pt-4 border-t border-white/5 space-y-1 text-xs text-gray-300">
               <p>Phone: <a href="tel:+94756811228" className="hover:text-white">+94 75 681 1228</a></p>
               <p>Email: <a href="mailto:naxitofficial@gmail.com" className="hover:text-white">naxitofficial@gmail.com</a></p>
-              <p className="text-[11px] text-gray-400">Main St, Mannar, Northern Province, Sri Lanka</p>
+              <p className="text-[11px] text-gray-400">191, 11 Moor St, Mannar, Northern Province 41000, Sri Lanka</p>
+              <p className="text-[10px] font-mono text-naxit-cyan">Open 24 hours every day</p>
             </div>
           </div>
 

@@ -60,18 +60,51 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
       url: 'https://www.naxitofficial.de/',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Main Street',
+        streetAddress: '191, 11 Moor St',
         addressLocality: 'Mannar',
         addressRegion: 'Northern Province',
         postalCode: '41000',
         addressCountry: 'LK'
-      }
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 8.9829285,
+        longitude: 79.9118736
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '00:00',
+          closes: '23:59'
+        }
+      ]
     },
     areaServed: {
       '@type': 'Country',
       name: 'Sri Lanka'
     }
   };
+
+  const appSchema = pageData.isRop ? {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'ROP - Retail Operations Platform',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Android',
+    description: 'Offline-first retail billing and inventory management application for Sri Lankan shops.',
+    offers: {
+      '@type': 'Offer',
+      price: '399',
+      priceCurrency: 'LKR'
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'NAXIT',
+      url: 'https://www.naxitofficial.de/'
+    },
+    installUrl: 'https://play.google.com/store/apps/details?id=com.naxit.rop'
+  } : null;
 
   return (
     <div className="min-h-screen bg-naxit-charcoal text-white relative selection:bg-naxit-cyan selection:text-naxit-charcoal">
@@ -96,6 +129,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
 
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
+        {appSchema && <script type="application/ld+json">{JSON.stringify(appSchema)}</script>}
       </Helmet>
 
       {/* Top Navbar Header */}
@@ -304,7 +338,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
                 Visit or Contact Us in Mannar
               </h2>
               <p className="text-gray-300 text-sm md:text-base mt-2">
-                Main Street, Mannar, Northern Province, Sri Lanka. Serving Mannar, Jaffna, Vavuniya, and island-wide.
+                191, 11 Moor St, Mannar, Northern Province 41000, Sri Lanka. Serving Mannar, Jaffna, Vavuniya, and island-wide.
               </p>
             </div>
 
@@ -312,7 +346,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
               <div className="lg:col-span-2 h-72 rounded-2xl overflow-hidden border border-white/10">
                 <iframe
                   title="NAXIT Mannar Office Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8828277240355!2d79.90929867479323!3d8.982928491076589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afdd9e633c0c94b%3A0x2f2a54bcb84897b9!2sNAXIT!5e0!3m2!1sen!2slk!4v1768412728561!5m2!1sen!2slk"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8828277240355!2d79.9118736!3d8.9829285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afdd9e633c0c94b%3A0x2f2a54bcb84897b9!2sNAXIT!5e0!3m2!1sen!2slk!4v1768412728561!5m2!1sen!2slk"
                   className="w-full h-full border-0 grayscale invert opacity-70 hover:opacity-100 transition-opacity"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -325,7 +359,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
                     <MapPin className="w-5 h-5 text-naxit-cyan shrink-0 mt-0.5" />
                     <div>
                       <div className="font-bold text-white">Office Address</div>
-                      <p className="text-xs text-gray-400">Main Street, Mannar 41000, Northern Province, Sri Lanka</p>
+                      <p className="text-xs text-gray-400">191, 11 Moor St, Mannar 41000, Northern Province, Sri Lanka</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -339,7 +373,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
                     <Clock className="w-5 h-5 text-naxit-cyan shrink-0 mt-0.5" />
                     <div>
                       <div className="font-bold text-white">Opening Hours</div>
-                      <p className="text-xs text-gray-400">Mon - Sat: 9:00 AM - 6:00 PM</p>
+                      <p className="text-xs text-gray-400">Open 24 hours every day</p>
                     </div>
                   </div>
                 </div>
@@ -353,6 +387,127 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
                   <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
                   <span>View Verified Google Profile</span>
                 </a>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Mannar Service Relevance Section for UI/UX & Graphic Design (Section 6) */}
+        {(pageId === 'ui-ux-design' || pageId === 'graphic-design-branding') && (
+          <section className="mb-20 glass p-8 md:p-12 rounded-[2.5rem] border border-white/5 space-y-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div className="max-w-2xl">
+                <span className="text-naxit-cyan font-mono text-xs uppercase tracking-[0.3em]">
+                  {lang === 'ta' ? 'உள்ளூர் நிபுணத்துவம் • மன்னார்' : lang === 'si' ? 'දේශීය ප්‍රවීණතාවය • මන්නාරම' : 'Local Studio Relevance • Mannar'}
+                </span>
+                <h2 className="text-2xl sm:text-4xl font-display font-bold text-white mt-1">
+                  {pageId === 'ui-ux-design'
+                    ? (lang === 'ta' ? 'மன்னாரில் UI/UX வடிவமைப்பு சேவைகள்' : lang === 'si' ? 'මන්නාරමේ UI/UX සැලසුම් සේවා' : 'UI/UX Design in Mannar & Regional Sri Lanka')
+                    : (lang === 'ta' ? 'மன்னாரில் கிராபிக் டிசைன் & பிராண்டிங்' : lang === 'si' ? 'මන්නාරමේ ග්‍රැෆික් නිර්මාණ සහ බ්‍රෑන්ඩින්' : 'Graphic Design & Brand Identity in Mannar')}
+                </h2>
+                <p className="text-gray-300 text-sm md:text-base mt-2 leading-relaxed">
+                  {pageId === 'ui-ux-design'
+                    ? (lang === 'ta'
+                        ? 'NAXIT இன் முதன்மை வடிவமைப்பு ஸ்டுடியோ மன்னார் 191, 11 மூர் வீதியில் அமைந்துள்ளது. பயனர் flows, wireframes, Figma prototypes மற்றும் மொபைல்/வலைத்தள இடைமுகங்களை நாங்கள் நேரில் கலந்துரையாடி உருவாக்குகிறோம்.'
+                        : lang === 'si'
+                        ? 'NAXIT හි ප්‍රධාන නිර්මාණ මැදිරිය මන්නාරම 191, 11 මූර් වීදියේ පිහිටා ඇත. පරිශීලක flows, wireframes, Figma prototypes සහ ජංගම/වෙබ් අතුරුමුහුණත් අපි සෘජුව නිර්මාණය කරමු.'
+                        : 'NAXIT operates directly from our studio at 191, 11 Moor St, Mannar. We design intuitive user flows, clear wireframes, interactive Figma prototypes, and production-ready mobile and web interfaces with direct local communication.')
+                    : (lang === 'ta'
+                        ? 'மன்னார் 191, 11 மூர் வீதியில் உள்ள எங்கள் ஸ்டுடியோவிலிருந்து லோகோக்கள், விசிட்டிங் கார்டுகள், துண்டுப் பிரசுரங்கள் மற்றும் சமூக ஊடக பிராண்டிங் தொகுப்புகளை விரைவாக வழங்குகிறோம்.'
+                        : lang === 'si'
+                        ? 'මන්නාරම 191, 11 මූර් වීදියේ පිහිටි අපගේ මැදිරියෙන් ලාංඡන, ව්‍යාපාරික කාඩ්පත්, පත්‍රිකා සහ සමාජ මාධ්‍ය බ්‍රෑන්ඩින් පැකේජ කඩිනමින් නිර්මාණය කර දෙනු ලැබේ.'
+                        : 'From our studio at 191, 11 Moor St, Mannar, NAXIT crafts memorable logos, complete brand kits, business cards, flyers, and digital marketing graphics tailored to local businesses.')}
+                </p>
+              </div>
+
+              <Link
+                to="/web-development-mannar-jaffna"
+                className="inline-flex items-center gap-2 text-xs font-mono text-naxit-cyan hover:underline shrink-0"
+              >
+                <span>{lang === 'ta' ? 'மன்னார் வெப் டெவலப்மென்ட் காண்க' : lang === 'si' ? 'මන්නාරම වෙබ් සංවර්ධනය බලන්න' : 'Explore Mannar & Jaffna Web Dev'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            {/* Approved Case Study Highlights */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/5">
+              {pageId === 'ui-ux-design' ? (
+                <>
+                  <Link
+                    to="/portfolio/yumdrop-food-delivery-ux"
+                    className="glass p-6 rounded-2xl border border-white/5 hover:border-naxit-cyan/30 transition-all group block"
+                  >
+                    <div className="text-[10px] font-mono text-naxit-cyan uppercase tracking-widest mb-1">Approved Case Study</div>
+                    <div className="text-white font-bold text-lg group-hover:text-naxit-cyan transition-colors flex items-center justify-between">
+                      <span>YumDrop Food Delivery UX</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                      Complete UX research, user journey mapping, and interactive Figma prototypes simplifying order placement and live delivery tracking.
+                    </p>
+                  </Link>
+
+                  <Link
+                    to="/portfolio/eduaid-bridge-platform"
+                    className="glass p-6 rounded-2xl border border-white/5 hover:border-naxit-cyan/30 transition-all group block"
+                  >
+                    <div className="text-[10px] font-mono text-naxit-cyan uppercase tracking-widest mb-1">Approved Case Study</div>
+                    <div className="text-white font-bold text-lg group-hover:text-naxit-cyan transition-colors flex items-center justify-between">
+                      <span>EduAid Bridge Community UX</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                      Cross-platform UX concept with accessibility-first design, donor-student dashboards, and intuitive wireframed flows.
+                    </p>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/portfolio/tee-rex-brand-logo"
+                    className="glass p-6 rounded-2xl border border-white/5 hover:border-naxit-cyan/30 transition-all group block"
+                  >
+                    <div className="text-[10px] font-mono text-naxit-cyan uppercase tracking-widest mb-1">Approved Case Study</div>
+                    <div className="text-white font-bold text-lg group-hover:text-naxit-cyan transition-colors flex items-center justify-between">
+                      <span>Tee-Rex Apparel Brand Identity</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                      Full vector brand identity suite, typography hierarchy, and versatile garment logo placement guidelines.
+                    </p>
+                  </Link>
+
+                  <Link
+                    to="/portfolio/local-brand-logo-design"
+                    className="glass p-6 rounded-2xl border border-white/5 hover:border-naxit-cyan/30 transition-all group block"
+                  >
+                    <div className="text-[10px] font-mono text-naxit-cyan uppercase tracking-widest mb-1">Approved Case Study</div>
+                    <div className="text-white font-bold text-lg group-hover:text-naxit-cyan transition-colors flex items-center justify-between">
+                      <span>Local Brand Identity &amp; Logo</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                      High-contrast local business brand mark, print-ready business cards, and social media digital asset kits.
+                    </p>
+                  </Link>
+                </>
+              )}
+            </div>
+
+            {/* Local Studio Contact Strip */}
+            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-wrap items-center justify-between gap-4 text-xs text-gray-300">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-naxit-cyan shrink-0" />
+                <span>191, 11 Moor St, Mannar, 41000 • Open 24 hours every day</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <a href="tel:+94756811228" className="hover:text-white flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-naxit-cyan" />
+                  <span>+94 75 681 1228</span>
+                </a>
+                <Link to="/contact" className="text-naxit-cyan hover:underline font-bold">
+                  {lang === 'ta' ? 'தொடர்பு பக்கம்' : lang === 'si' ? 'සම්බන්ධතා පිටුව' : 'View Contact Page'} &rarr;
+                </Link>
               </div>
             </div>
           </section>

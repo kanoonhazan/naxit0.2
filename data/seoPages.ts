@@ -242,7 +242,7 @@ export const SEO_PAGES: SeoPageData[] = [
       faqs: [
         {
           question: 'Where is NAXIT located?',
-          answer: 'We are based on Main Street, Mannar, Northern Province, Sri Lanka, and provide in-person local support across Mannar and Jaffna, and remote service island-wide.'
+          answer: 'We are based at 191, 11 Moor St, Mannar, Northern Province 41000, Sri Lanka, open 24 hours every day, and provide in-person local support across Mannar and Jaffna, and remote service island-wide.'
         },
         {
           question: 'Can you visit our shop to discuss the website?',

@@ -41,6 +41,27 @@ const routes = [
     ctaText: 'Chat on WhatsApp'
   },
 
+  // 1b. Contact Page
+  {
+    path: 'contact',
+    lang: 'en-LK',
+    title: 'Contact NAXIT | Mannar, Sri Lanka',
+    description: 'Contact NAXIT in Mannar, Northern Province, Sri Lanka. Web design, UI/UX, branding and retail software studio. Open 24 hours every day. Phone: +94 75 681 1228, Email: naxitofficial@gmail.com.',
+    canonical: `${SITE_ORIGIN}/contact`,
+    hreflangs: [
+      { lang: 'en-LK', url: `${SITE_ORIGIN}/contact` },
+      { lang: 'x-default', url: `${SITE_ORIGIN}/contact` }
+    ],
+    breadcrumbs: [
+      { label: 'Home', path: '/' },
+      { label: 'Contact', path: '/contact' }
+    ],
+    h1: 'Contact NAXIT in Mannar',
+    intro: 'Our primary studio is located at 191, 11 Moor St, Mannar. We work directly with businesses across Mannar, Jaffna, Vavuniya, and island-wide. We are open 24 hours every day with transparent pricing, honest technical guidance, and direct local support.',
+    ctaUrl: 'https://wa.me/94756811228',
+    ctaText: 'Chat on WhatsApp'
+  },
+
   // 2. Portfolio Page
   {
     path: 'portfolio',
@@ -162,12 +183,25 @@ for (const page of SEO_PAGES) {
       url: `${SITE_ORIGIN}/`,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Main Street',
+        streetAddress: '191, 11 Moor St',
         addressLocality: 'Mannar',
         addressRegion: 'Northern Province',
         postalCode: '41000',
         addressCountry: 'LK'
-      }
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 8.9829285,
+        longitude: 79.9118736
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '00:00',
+          closes: '23:59'
+        }
+      ]
     },
     areaServed: {
       '@type': 'Country',
@@ -209,7 +243,8 @@ for (const page of SEO_PAGES) {
     whatYouGet: page.en.whatYouGet,
     ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`Hi NAXIT, I am interested in ${page.en.h1}.`)}`,
     ctaText: page.en.ctaButtonText || 'Get a Quote on WhatsApp',
-    isRop: Boolean(page.isRop)
+    isRop: Boolean(page.isRop),
+    pageId: page.id
   });
 
   // Tamil (/ta/)
@@ -233,7 +268,8 @@ for (const page of SEO_PAGES) {
     whatYouGet: page.ta.whatYouGet,
     ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`வணக்கம் NAXIT, ${page.ta.h1} பற்றி மேலும் அறிய விரும்புகிறேன்.`)}`,
     ctaText: page.ta.ctaButtonText || 'WhatsApp இல் தொடர்பு கொள்ளவும்',
-    isRop: Boolean(page.isRop)
+    isRop: Boolean(page.isRop),
+    pageId: page.id
   });
 
   // Sinhala (/si/)
@@ -257,7 +293,8 @@ for (const page of SEO_PAGES) {
     whatYouGet: page.si.whatYouGet,
     ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`ආයුබෝවන් NAXIT, ${page.si.h1} පිළිබඳව විමසීමට කැමැත්තෙමි.`)}`,
     ctaText: page.si.ctaButtonText || 'WhatsApp හරහා විමසන්න',
-    isRop: Boolean(page.isRop)
+    isRop: Boolean(page.isRop),
+    pageId: page.id
   });
 
   // Aliases (EN, TA, SI)
@@ -282,7 +319,8 @@ for (const page of SEO_PAGES) {
       whatYouGet: page.en.whatYouGet,
       ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`Hi NAXIT, I am interested in ${page.en.h1}.`)}`,
       ctaText: page.en.ctaButtonText || 'Get a Quote on WhatsApp',
-      isRop: Boolean(page.isRop)
+      isRop: Boolean(page.isRop),
+      pageId: page.id
     });
 
     routes.push({
@@ -305,7 +343,8 @@ for (const page of SEO_PAGES) {
       whatYouGet: page.ta.whatYouGet,
       ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`வணக்கம் NAXIT, ${page.ta.h1} பற்றி மேலும் அறிய விரும்புகிறேன்.`)}`,
       ctaText: page.ta.ctaButtonText || 'WhatsApp இல் தொடர்பு கொள்ளவும்',
-      isRop: Boolean(page.isRop)
+      isRop: Boolean(page.isRop),
+      pageId: page.id
     });
 
     routes.push({
@@ -328,7 +367,8 @@ for (const page of SEO_PAGES) {
       whatYouGet: page.si.whatYouGet,
       ctaUrl: `https://wa.me/94756811228?text=${encodeURIComponent(`ආයුබෝවන් NAXIT, ${page.si.h1} පිළිබඳව විමසීමට කැමැත්තෙමි.`)}`,
       ctaText: page.si.ctaButtonText || 'WhatsApp හරහා විමසන්න',
-      isRop: Boolean(page.isRop)
+      isRop: Boolean(page.isRop),
+      pageId: page.id
     });
   }
 }
@@ -439,6 +479,30 @@ for (const route of routes) {
       `<script data-rh="true" type="application/ld+json">${JSON.stringify(route.serviceSchema)}</script>`
     );
   }
+  if (route.isRop) {
+    const appSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'ROP - Retail Operations Platform',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Android',
+      description: 'Offline-first retail billing and inventory management application for Sri Lankan shops.',
+      offers: {
+        '@type': 'Offer',
+        price: '399',
+        priceCurrency: 'LKR'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'NAXIT',
+        url: `${SITE_ORIGIN}/`
+      },
+      installUrl: 'https://play.google.com/store/apps/details?id=com.naxit.rop'
+    };
+    jsonLdScripts.push(
+      `<script data-rh="true" type="application/ld+json">${JSON.stringify(appSchema)}</script>`
+    );
+  }
 
   const seoHeadTags = `\n    ${canonicalTag}\n    ${hreflangTags}\n    ${jsonLdScripts.join('\n    ')}\n`;
   html = html.replace('</head>', `${seoHeadTags}  </head>`);
@@ -466,6 +530,15 @@ for (const route of routes) {
             : `<li><a href="${escapeHtml(b.path)}">${escapeHtml(b.label)}</a></li>`
         )
         .join(' / ')}</ol></nav>`
+    : '';
+
+  const mannarRelevanceHtml = (route.pageId === 'ui-ux-design' || route.pageId === 'graphic-design-branding')
+    ? `
+      <section style="margin-top: 24px; padding: 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">
+        <h2>${route.pageId === 'ui-ux-design' ? 'Mannar &amp; Northern Province UI/UX Studio' : 'Mannar &amp; Northern Province Graphic Design Studio'}</h2>
+        <p>NAXIT operates directly from our studio at 191, 11 Moor St, Mannar, Northern Province 41000, Sri Lanka. Open 24 hours every day. Phone: +94 75 681 1228.</p>
+        <p><a href="/web-development-mannar-jaffna">Visit our Mannar &amp; Jaffna Web Development page</a> | <a href="/contact">Visit our Contact page</a></p>
+      </section>`
     : '';
 
   const portfolioArchiveHtml = route.portfolioList
@@ -508,7 +581,7 @@ for (const route of routes) {
             <li><a href="/ui-ux-design-sri-lanka">UI/UX Design</a></li>
             <li><a href="/rop-retail-software-sri-lanka">ROP Retail Software</a></li>
             <li><a href="/web-development-mannar-jaffna">Mannar &amp; Jaffna</a></li>
-            <li><a href="/#contact">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </nav>
       </header>
@@ -522,6 +595,7 @@ for (const route of routes) {
           ${portfolioArchiveHtml}
           ${projectDetailHtml}
           ${faqsHtml ? `<h2>Frequently Asked Questions</h2>${faqsHtml}` : ''}
+          ${mannarRelevanceHtml}
           <div style="margin-top: 24px;">
             <a href="${route.ctaUrl || 'https://wa.me/94756811228'}" style="display: inline-block; padding: 12px 24px; background: #0055ff; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold;">
               ${escapeHtml(route.ctaText || 'Chat on WhatsApp')}
@@ -537,6 +611,7 @@ for (const route of routes) {
         <p>© 2026 NAXIT INC. All rights reserved. Mannar | Sri Lanka</p>
         <nav aria-label="Footer Links">
           <a href="/pricing">Pricing</a> |
+          <a href="/contact">Contact</a> |
           <a href="/portfolio">Portfolio</a> |
           <a href="/privacy">Privacy</a> |
           <a href="/terms">Terms</a>
