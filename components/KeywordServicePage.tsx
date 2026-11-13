@@ -167,7 +167,7 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
         <Breadcrumbs
           items={[
             { label: 'Services', path: '/#services' },
-            { label: data.h1, path: lang === 'en' ? `/${pageData.slug}` : `/${lang}/${pageData.slug}` }
+            { label: data.breadcrumbLabel || data.h1, path: lang === 'en' ? `/${pageData.slug}` : `/${lang}/${pageData.slug}` }
           ]}
         />
 
@@ -233,7 +233,9 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
         {/* Feature Grid: What you get */}
         <section className="mb-20">
           <div className="mb-10">
-            <span className="text-naxit-cyan font-mono text-xs uppercase tracking-[0.3em]">Deliverables</span>
+            <span className="text-naxit-cyan font-mono text-xs uppercase tracking-[0.3em]">
+              {data.whatYouGetKicker || 'Deliverables'}
+            </span>
             <h2 className="text-2xl sm:text-4xl font-display font-bold text-white mt-2">
               {data.whatYouGetTitle}
             </h2>
@@ -260,16 +262,18 @@ export const KeywordServicePage: React.FC<KeywordServicePageProps> = ({ pageData
         {(data.whoWeBuildFor || (data.howItWorks && data.howItWorks.length > 0)) && (
           <section className="mb-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {data.whoWeBuildFor && (
-              <div className="lg:col-span-5 glass p-8 rounded-3xl border border-white/5 space-y-4">
+              <div className={`${data.howItWorks && data.howItWorks.length > 0 ? 'lg:col-span-5' : 'lg:col-span-12 max-w-4xl'} glass p-8 rounded-3xl border border-white/5 space-y-4`}>
                 <span className="text-naxit-cyan font-mono text-xs uppercase tracking-[0.3em]">
                   {data.whoWeBuildForTitle || 'Target Audience'}
                 </span>
                 <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
-                  Built for Local Trade & Enterprises
+                  {data.whoWeBuildForHeading || 'Built for Local Trade & Enterprises'}
                 </h3>
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                  {data.whoWeBuildFor}
-                </p>
+                {data.whoWeBuildFor.split('\n\n').map((para, pIdx) => (
+                  <p key={pIdx} className="text-gray-300 text-sm md:text-base leading-relaxed">
+                    {para}
+                  </p>
+                ))}
               </div>
             )}
 

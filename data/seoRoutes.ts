@@ -35,5 +35,10 @@ export const SEO_ROUTES: SeoRouteDef[] = [
     slug: 'mobile-app-development-sri-lanka',
     aliases: ['app-development-sri-lanka'],
   },
+  {
+    id: 'software-development',
+    slug: 'software-development-sri-lanka',
+    aliases: ['custom-software-sri-lanka'],
+  },
 ];
 

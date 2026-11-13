@@ -137,7 +137,8 @@ const Footer: React.FC<FooterProps> = ({ onCloseModal }) => {
                 { name: 'Mannar & Jaffna Web Dev', url: '/web-development-mannar-jaffna' },
                 { name: 'ROP Retail Software', url: '/rop-retail-software-sri-lanka' },
                 { name: 'Graphic Design & Branding', url: '/graphic-design-branding-sri-lanka' },
-                { name: 'Mobile App Development', url: '/mobile-app-development-sri-lanka' }
+                { name: 'Mobile App Development', url: '/mobile-app-development-sri-lanka' },
+                { name: 'Software Development', url: '/software-development-sri-lanka' }
               ].map((service) => (
                 <li key={service.name}>
                   <Link

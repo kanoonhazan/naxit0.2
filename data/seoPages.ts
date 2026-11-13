@@ -5,9 +5,12 @@ export interface SeoPageLocaleData {
   metaDescription: string;
   h1: string;
   intro: string;
+  breadcrumbLabel?: string;
+  whatYouGetKicker?: string;
   whatYouGetTitle: string;
   whatYouGet: string[];
   whoWeBuildForTitle?: string;
+  whoWeBuildForHeading?: string;
   whoWeBuildFor?: string;
   howItWorksTitle?: string;
   howItWorks?: string[];
@@ -552,6 +555,131 @@ export const SEO_PAGES: SeoPageData[] = [
       ctaButtonText: 'WhatsApp හරහා අදහස බෙදාගන්න',
       badge: 'ජංගම යෙදුම්'
     }
+  },
+  {
+    id: 'software-development',
+    slug: 'software-development-sri-lanka',
+    aliases: ['custom-software-sri-lanka'],
+    category: 'Custom Software',
+    en: {
+      title: 'Software Development Sri Lanka | Custom Systems | NAXIT',
+      metaDescription: 'NAXIT builds custom software for Sri Lankan businesses: POS and billing systems, business tools and Android apps. Fixed quotes.',
+      h1: 'Custom Software Development for Sri Lankan Businesses',
+      breadcrumbLabel: 'Software Development',
+      intro: 'Some work does not fit inside ready-made software. NAXIT designs and builds custom software for shops and businesses across Sri Lanka: billing and POS systems, business management tools and Android apps, built around how your business actually runs. We built our own retail platform, ROP, and we bring the same engineering to client work.',
+      whatYouGetKicker: 'WHAT WE BUILD',
+      whatYouGetTitle: 'Software Development Scope',
+      whatYouGet: [
+        'Custom POS and billing systems built for your counter, your products and your receipts',
+        'Business management systems: stock, sales, supplier bills, customer credit and daily reports in one place',
+        'Android apps for your business, from first design to Google Play publishing',
+        'Web-based tools and dashboards that work with how your team already operates',
+        'Offline-first software that keeps running with no internet connection'
+      ],
+      whoWeBuildForTitle: 'WHY NAXIT',
+      whoWeBuildForHeading: 'Built by a Team That Ships Its Own Software',
+      whoWeBuildFor: 'NAXIT is based in Mannar and works with businesses across Sri Lanka. We designed and built ROP, a retail billing and stock platform used by real shops, so we understand what daily business software needs: fast billing, clear reports and no complicated setup.\n\nEvery project runs with a fixed scope agreement and progress updates on WhatsApp, so you always know what is being built and what it costs.\n\nWe speak English, Tamil and Sinhala, and we can meet businesses in Mannar and the Northern Province in person.',
+      pricingHighlightTitle: 'TRANSPARENT QUOTATION',
+      pricingHighlight: 'Custom software is quoted with transparent fixed costs according to your feature list, data scope and integration requirements.',
+      faqs: [
+        {
+          question: 'How much does custom software cost?',
+          answer: 'Pricing depends on your features and integrations. Share your requirements on WhatsApp and you get a clear, fixed project estimate before any work starts.'
+        },
+        {
+          question: 'Can you build a custom POS system for my shop?',
+          answer: 'Yes. NAXIT built ROP, its own offline retail POS with billing, stock, credit ledger and reports. If you need something built around your exact way of working - special receipt formats, your own product structure, specific reports - we build it as a custom system.'
+        },
+        {
+          question: 'How long does a project take?',
+          answer: 'The timeline is fixed per project after we agree the scope. You get milestone updates on WhatsApp as each part is completed.'
+        },
+        {
+          question: 'What happens after the software is delivered?',
+          answer: 'Support and update terms are agreed in writing before the project starts, so there are no surprises later.'
+        },
+        {
+          question: 'How do we get started?',
+          answer: 'Message us on WhatsApp with what you need the software to do. We reply with questions if needed, then a fixed quote and timeline.'
+        }
+      ],
+      ctaButtonText: 'Discuss Your Project on WhatsApp',
+      badge: 'CUSTOM SOFTWARE'
+    },
+    ta: {
+      title: 'மென்பொருள் உருவாக்கம் இலங்கை | தனிப்பயன் சிஸ்டம்ஸ் | NAXIT',
+      metaDescription: 'இலங்கை வணிகங்களுக்கான தனிப்பயன் மென்பொருள்: POS மற்றும் பில்லிங் சிஸ்டம்ஸ், மேலாண்மை டூல்ஸ், Android ஆப்கள். நிலையான கட்டணம் - NAXIT.',
+      h1: 'இலங்கை வணிகங்களுக்கான தனிப்பயன் மென்பொருள் உருவாக்கம்',
+      breadcrumbLabel: 'மென்பொருள் உருவாக்கம்',
+      intro: 'ரெடிமேட் மென்பொருட்கள் சில தேவைகளுக்குப் பொருந்தாது. இலங்கை முழுவதும் கடைகள் மற்றும் வணிகங்களுக்காக NAXIT பிரத்யேக மென்பொருட்களை உருவாக்குகிறது: பில்லிங், POS, வணிக மேலாண்மை மற்றும் Android ஆப்கள்.',
+      whatYouGetKicker: 'நாங்கள் உருவாக்குபவை',
+      whatYouGetTitle: 'மென்பொருள் உருவாக்கும் எல்லை',
+      whatYouGet: [
+        'உங்கள் கவுண்டர் மற்றும் ரசீது முறைக்கேற்ப தனிப்பயன் POS மற்றும் பில்லிங் சிஸ்டம்ஸ்',
+        'வணிக மேலாண்மை: ஸ்டாக், விற்பனை, சப்ளையர் பில்கள் மற்றும் தினசரி அறிக்கைகள் ஒரே இடத்தில்',
+        'உங்கள் வணிகத்திற்கான Android ஆப்கள், வடிவமைப்பு முதல் Google Play வெளியீடு வரை',
+        'உங்கள் குழுவின் பணிமுறைக்கு ஏற்ற இணையதள டூல்ஸ் மற்றும் டேஷ்போர்டுகள்',
+        'இணைய இணைப்பு இல்லாமலும் தொடர்ந்து வேலை செய்யும் ஆஃப்லைன் மென்பொருட்கள்'
+      ],
+      whoWeBuildForTitle: 'ஏன் NAXIT?',
+      whoWeBuildForHeading: 'சொந்த மென்பொருளை இயக்கும் நிபுணத்துவ குழு',
+      whoWeBuildFor: 'NAXIT மன்னாரில் இயங்கி இலங்கை முழுவதும் வணிகங்களுக்கு சேவை செய்கிறது. எங்கள் சொந்த ROP ரீடெய்ல் மென்பொருளை உருவாக்கி வெற்றிகரமாக இயக்கி வருகிறோம்.\n\nஒவ்வொரு திட்டமும் நிலையான விலை மற்றும் WhatsApp மைல்கல் அப்டேட்களுடன் வெளிப்படையாக நடத்தப்படுகிறது.\n\nதமிழ், சிங்களம் மற்றும் ஆங்கிலத்தில் நேரடியாக கலந்துரையாடலாம்.',
+      pricingHighlightTitle: 'வெளிப்படையான திட்ட மதிப்பீடு',
+      pricingHighlight: 'உங்கள் தேவைகள், அம்சங்கள் மற்றும் தரவு அளவிற்கேற்ப நிலையான வெளிப்படையான கட்டண மதிப்பீடு வழங்கப்படுகிறது.',
+      faqs: [
+        {
+          question: 'தனிப்பயன் மென்பொருள் விலை எவ்வளவு?',
+          answer: 'அம்சங்கள் மற்றும் இணைப்புகளைப் பொறுத்தது. WhatsApp இல் உங்கள் தேவைகளைப் பகிர்ந்தால், வேலை தொடங்குவதற்கு முன் நிலையான மதிப்பீடு வழங்கப்படும்.'
+        },
+        {
+          question: 'என் கடைக்கு தனிப்பயன் POS செய்ய முடியுமா?',
+          answer: 'ஆம். ROP இயக்கும் அனுபவத்துடன் உங்கள் கடை முறைக்கேற்ப தனிப்பயன் POS சிஸ்டத்தை உருவாக்குகிறோம்.'
+        },
+        {
+          question: 'எப்படி தொடங்குவது?',
+          answer: 'WhatsApp (+94 75 681 1228) இல் உங்கள் தேவையை மெசேஜ் செய்யுங்கள். தெளிவான திட்ட மதிப்பீடு மற்றும் கால அட்டவணை தருவோம்.'
+        }
+      ],
+      ctaButtonText: 'WhatsApp இல் பேசுங்கள்',
+      badge: 'CUSTOM SOFTWARE'
+    },
+    si: {
+      title: 'මෘදුකාංග සංවර්ධනය ශ්‍රී ලංකා | Custom Systems | NAXIT',
+      metaDescription: 'ශ්‍රී ලංකාවේ ව්‍යාපාර සඳහා අභිරුචි මෘදුකාංග: POS සහ බිල්පත් පද්ධති, කළමනාකරණ මෙවලම් සහ Android ඇප්ස්. ස්ථාවර මිල ගණන් - NAXIT.',
+      h1: 'ශ්‍රී ලංකාවේ ව්‍යාපාර සඳහා අභිරුචි මෘදුකාංග සංවර්ධනය',
+      breadcrumbLabel: 'මෘදුකාංග සංවර්ධනය',
+      intro: 'සූදානම් කළ මෘදුකාංග හැම ව්‍යාපාරයකටම ගැළපෙන්නේ නැත. NAXIT ශ්‍රී ලංකාව පුරා කඩ සහ ව්‍යාපාර සඳහා විශේෂිත මෘදුකාංග සාදයි: බිල්පත් සහ POS පද්ධති, ව්‍යාපාර මෙවලම් සහ Android යෙදුම්.',
+      whatYouGetKicker: 'අප සාදන දේ',
+      whatYouGetTitle: 'මෘදුකාංග සංවර්ධන විෂය පථය',
+      whatYouGet: [
+        'ඔබේ කවුන්ටරයට සහ නිෂ්පාදනවලට ගැළපෙන අභිරුචි POS සහ බිල්පත් පද්ධති',
+        'ව්‍යාපාර කළමනාකරණය: තොග, විකුණුම්, සැපයුම්කරු බිල්පත් සහ දෛනික වාර්තා එකම තැනක',
+        'ඔබේ ව්‍යාපාරයට Android යෙදුම්, නිර්මාණයේ සිට Google Play නිකුත් කිරීම දක්වා',
+        'ඔබේ කණ්ඩායමේ වැඩකටයුතු පහසු කරන වෙබ් පද්ධති සහ dashboards',
+        'අන්තර්ජාලය නොමැතිව ක්‍රියා කරන offline-first මෘදුකාංග'
+      ],
+      whoWeBuildForTitle: 'ඇයි NAXIT?',
+      whoWeBuildForHeading: 'තමන්ගේම මෘදුකාංග සාදන පළපුරුදු කණ්ඩායමක්',
+      whoWeBuildFor: 'NAXIT මන්නාරම පදනම් කරගෙන ශ්‍රී ලංකාව පුරා ව්‍යාපාර සමඟ වැඩ කරයි. අපි ROP වැනි සැබෑ සිල්ලර මෘදුකාංග ගොඩනගා පවත්වාගෙන යමු.\n\nසෑම ව්‍යාපෘතියක්ම ස්ථාවර මිල ගිවිසුමක් සහ WhatsApp ප්‍රගති වාර්තා සමඟ විශ්වාසදායකව සිදු කෙරේ.\n\nසිංහල, දෙමළ සහ ඉංග්‍රීසි භාෂාවලින් සෘජුව සම්බන්ධ විය හැක.',
+      pricingHighlightTitle: 'විනිවිද පෙනෙන ව්‍යාපෘති මිල',
+      pricingHighlight: 'විශේෂාංග සහ අවශ්‍යතා මත පදනම්ව කලින්ම ස්ථාවර මිල ගණන් ලබා දේ.',
+      faqs: [
+        {
+          question: 'මිල කීයද?',
+          answer: 'විශේෂාංග මත පදනම් වේ. WhatsApp හරහා අවශ්‍යතා බෙදාගන්න - වැඩ ආරම්භ කිරීමට පෙර ස්ථාවර මිලක් ලබා දෙමු.'
+        },
+        {
+          question: 'මගේ කඩයට POS එකක් හදන්න පුළුවන්ද?',
+          answer: 'ඔව්. ROP හැදූ අත්දැකීමෙන් ඔබේ අවශ්‍යතාවයට ගැළපෙන අභිරුචි POS පද්ධතියක් සාදා දිය හැක.'
+        },
+        {
+          question: 'ආරම්භ කරන්නේ කෙසේද?',
+          answer: 'WhatsApp (+94 75 681 1228) හරහා පණිවිඩයක් එවන්න. විස්තර සාකච්ඡා කර ස්ථාවර මිල සහ කාලසටහනක් දෙමු.'
+        }
+      ],
+      ctaButtonText: 'WhatsApp හරහා විමසන්න',
+      badge: 'CUSTOM SOFTWARE'
+    }
   }
 ];
 
@@ -615,6 +743,16 @@ export const CONFIRMED_PRICE_LIST = [
     deliveryTimeTa: 'முழுமையாக ஆஃப்லைனில்',
     deliveryTimeSi: 'සම්පූර්ණයෙන් offline',
     slug: 'rop-retail-software-sri-lanka'
+  },
+  {
+    service: 'Custom software development',
+    serviceTa: 'தனிப்பயன் மென்பொருள் உருவாக்கம்',
+    serviceSi: 'අභිරුචි මෘදුකාංග සංවර්ධනය',
+    startingPrice: 'Project-based fixed quote',
+    deliveryTime: 'Fixed milestones',
+    deliveryTimeTa: 'திட்ட மைல்கற்கள்',
+    deliveryTimeSi: 'නියමිත කාලසටහන',
+    slug: 'software-development-sri-lanka'
   }
 ];
 

@@ -233,7 +233,7 @@ for (const page of SEO_PAGES) {
     breadcrumbs: [
       { label: 'Home', path: '/' },
       { label: 'Services', path: '/#services' },
-      { label: page.en.h1, path: enPath }
+      { label: page.en.breadcrumbLabel || page.en.h1, path: enPath }
     ],
     serviceSchema: makeServiceSchema(page.en),
     faqSchema: makeFaqSchema(page.en),
@@ -258,7 +258,7 @@ for (const page of SEO_PAGES) {
     breadcrumbs: [
       { label: 'Home', path: '/' },
       { label: 'Services', path: '/#services' },
-      { label: page.ta.h1, path: taPath }
+      { label: page.ta.breadcrumbLabel || page.ta.h1, path: taPath }
     ],
     serviceSchema: makeServiceSchema(page.ta),
     faqSchema: makeFaqSchema(page.ta),
@@ -283,7 +283,7 @@ for (const page of SEO_PAGES) {
     breadcrumbs: [
       { label: 'Home', path: '/' },
       { label: 'Services', path: '/#services' },
-      { label: page.si.h1, path: siPath }
+      { label: page.si.breadcrumbLabel || page.si.h1, path: siPath }
     ],
     serviceSchema: makeServiceSchema(page.si),
     faqSchema: makeFaqSchema(page.si),
@@ -309,7 +309,7 @@ for (const page of SEO_PAGES) {
       breadcrumbs: [
         { label: 'Home', path: '/' },
         { label: 'Services', path: '/#services' },
-        { label: page.en.h1, path: enPath }
+        { label: page.en.breadcrumbLabel || page.en.h1, path: enPath }
       ],
       serviceSchema: makeServiceSchema(page.en),
       faqSchema: makeFaqSchema(page.en),
@@ -333,7 +333,7 @@ for (const page of SEO_PAGES) {
       breadcrumbs: [
         { label: 'Home', path: '/' },
         { label: 'Services', path: '/#services' },
-        { label: page.ta.h1, path: taPath }
+        { label: page.ta.breadcrumbLabel || page.ta.h1, path: taPath }
       ],
       serviceSchema: makeServiceSchema(page.ta),
       faqSchema: makeFaqSchema(page.ta),
@@ -357,7 +357,7 @@ for (const page of SEO_PAGES) {
       breadcrumbs: [
         { label: 'Home', path: '/' },
         { label: 'Services', path: '/#services' },
-        { label: page.si.h1, path: siPath }
+        { label: page.si.breadcrumbLabel || page.si.h1, path: siPath }
       ],
       serviceSchema: makeServiceSchema(page.si),
       faqSchema: makeFaqSchema(page.si),
@@ -581,6 +581,7 @@ for (const route of routes) {
             <li><a href="/ui-ux-design-sri-lanka">UI/UX Design</a></li>
             <li><a href="/rop-retail-software-sri-lanka">ROP Retail Software</a></li>
             <li><a href="/web-development-mannar-jaffna">Mannar &amp; Jaffna</a></li>
+            <li><a href="/software-development-sri-lanka">Software Development</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </nav>
@@ -611,6 +612,7 @@ for (const route of routes) {
         <p>© 2026 NAXIT INC. All rights reserved. Mannar | Sri Lanka</p>
         <nav aria-label="Footer Links">
           <a href="/pricing">Pricing</a> |
+          <a href="/software-development-sri-lanka">Software Development</a> |
           <a href="/contact">Contact</a> |
           <a href="/portfolio">Portfolio</a> |
           <a href="/privacy">Privacy</a> |

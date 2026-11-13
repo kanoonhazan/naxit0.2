@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import LanguageSwitcher from './LanguageSwitcher';
 
 interface NavbarProps {
@@ -87,16 +87,57 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-8 text-sm font-medium tracking-widest uppercase items-center">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleScroll(e, link.target)}
-                className="hover:text-naxit-cyan transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              if (link.target === 'services') {
+                return (
+                  <div key={link.name} className="relative group">
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleScroll(e, link.target)}
+                      className="hover:text-naxit-cyan transition-colors inline-flex items-center gap-1 cursor-pointer py-1"
+                    >
+                      <span>{link.name}</span>
+                      <ChevronDown className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-transform duration-200" />
+                    </a>
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 hidden group-hover:block z-50">
+                      <div className="w-64 glass bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl space-y-1 normal-case tracking-normal text-xs text-left">
+                        <Link to="/web-design-sri-lanka" className="block px-3 py-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                          Web Design Sri Lanka
+                        </Link>
+                        <Link to="/ui-ux-design-sri-lanka" className="block px-3 py-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                          UI/UX Design Studio
+                        </Link>
+                        <Link to="/web-development-mannar-jaffna" className="block px-3 py-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                          Mannar &amp; Jaffna Web Dev
+                        </Link>
+                        <Link to="/rop-retail-software-sri-lanka" className="block px-3 py-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                          ROP Retail Software
+                        </Link>
+                        <Link to="/graphic-design-branding-sri-lanka" className="block px-3 py-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                          Graphic Design &amp; Branding
+                        </Link>
+                        <Link to="/mobile-app-development-sri-lanka" className="block px-3 py-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                          Mobile App Development
+                        </Link>
+                        <Link to="/software-development-sri-lanka" className="block px-3 py-2 rounded-xl text-naxit-cyan font-bold hover:bg-white/5 transition-colors">
+                          Software Development
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleScroll(e, link.target)}
+                  className="hover:text-naxit-cyan transition-colors"
+                >
+                  {link.name}
+                </a>
+              );
+            })}
           </div>
 
           <div className="hidden md:flex items-center gap-6">
@@ -126,16 +167,28 @@ const Navbar: React.FC<NavbarProps> = ({ onCloseModal }) => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div id="mobile-navigation" className="md:hidden overflow-hidden border-t border-white/10">
-            <div className="flex flex-col items-center py-8 gap-6 text-sm font-medium tracking-widest uppercase">
+            <div className="flex flex-col items-center py-8 gap-4 text-sm font-medium tracking-widest uppercase">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleScroll(e, link.target)}
-                  className="w-full text-center py-4 hover:text-naxit-cyan transition-colors"
-                >
-                  {link.name}
-                </a>
+                <div key={link.name} className="w-full text-center">
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleScroll(e, link.target)}
+                    className="w-full text-center py-2 inline-block hover:text-naxit-cyan transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                  {link.target === 'services' && (
+                    <div className="flex flex-wrap justify-center gap-2 px-4 py-2 text-[11px] normal-case tracking-normal text-gray-400">
+                      <Link to="/web-design-sri-lanka" onClick={() => setIsOpen(false)} className="hover:text-naxit-cyan">Web Design</Link>
+                      <span>•</span>
+                      <Link to="/ui-ux-design-sri-lanka" onClick={() => setIsOpen(false)} className="hover:text-naxit-cyan">UI/UX</Link>
+                      <span>•</span>
+                      <Link to="/rop-retail-software-sri-lanka" onClick={() => setIsOpen(false)} className="hover:text-naxit-cyan">ROP</Link>
+                      <span>•</span>
+                      <Link to="/software-development-sri-lanka" onClick={() => setIsOpen(false)} className="text-naxit-cyan font-bold">Software Dev</Link>
+                    </div>
+                  )}
+                </div>
               ))}
               <div className="pt-2">
                 <LanguageSwitcher slug="web-design-sri-lanka" currentLang="en" />

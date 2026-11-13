@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Globe, Palette, MapPin, ShoppingBag, Sparkles, Smartphone, ArrowRight } from 'lucide-react';
+import { Globe, Palette, MapPin, ShoppingBag, Sparkles, Smartphone, Code2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface ServiceItem {
@@ -81,6 +81,17 @@ const HOMEPAGE_SERVICES: ServiceItem[] = [
     delivery: 'Phased delivery',
     slug: 'mobile-app-development-sri-lanka',
     icon: <Smartphone className="w-7 h-7" />
+  },
+  {
+    id: 'software-development',
+    title: 'Custom Software Development',
+    keywordLinkText: 'Software development Sri Lanka',
+    tag: 'Custom Systems & Tools',
+    description: 'Custom POS, billing systems, management tools, and offline-first software built around how your business actually runs.',
+    price: 'Project-based quote',
+    delivery: 'Fixed scope milestones',
+    slug: 'software-development-sri-lanka',
+    icon: <Code2 className="w-7 h-7" />
   }
 ];
 
