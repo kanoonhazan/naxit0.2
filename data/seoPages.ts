@@ -304,10 +304,10 @@ export const SEO_PAGES: SeoPageData[] = [
     category: 'Offline Retail POS',
     isRop: true,
     en: {
-      title: 'Retail Software Sri Lanka | ROP Billing & Stock App | NAXIT',
-      metaDescription: "ROP is NAXIT's billing and stock app for Sri Lankan retail shops. Works offline, plans from LKR 399. Free demo on WhatsApp.",
-      h1: 'ROP: Billing and Stock Software for Shops Across Sri Lanka',
-      intro: 'ROP helps retail shops, mini-marts, pharmacies and distributors anywhere in Sri Lanka run daily work on one screen. Whether your shop is in Colombo, Kandy, Jaffna, Galle or a small town, ROP works the same: make sales receipts fast, track stock on the shelf, record supplier bills and see how the day went. ROP is designed to work completely offline, on your device: billing, stock and daily reports all run with no internet connection. It runs on basic phones and tablets, with no complex setup and no expensive hardware.',
+      title: 'POS system Sri Lanka | retail POS software & billing software | ROP NAXIT',
+      metaDescription: "ROP is an offline POS system Sri Lanka shop owners trust. High-speed retail POS software and billing software for shops. Plans from LKR 399.",
+      h1: 'ROP: POS system Sri Lanka, retail POS software & billing software for shops',
+      intro: 'ROP is an offline POS system Sri Lanka shop owners trust, built as an all-in-one retail POS software and billing software for retail shops, mini-marts, pharmacies and distributors across Sri Lanka. Whether your shop is in Colombo, Kandy, Jaffna, Galle or a small town, ROP works the same: make sales receipts fast, track stock on the shelf, record supplier bills and see how the day went. ROP is designed to work completely offline, on your device: billing, stock and daily reports all run with no internet connection. It runs on basic phones and tablets, with no complex setup and no expensive hardware.',
       whatYouGetTitle: 'What ROP does',
       whatYouGet: [
         'Quick counter billing and instant printable or digital receipts',
